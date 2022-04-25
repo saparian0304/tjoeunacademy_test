@@ -1,0 +1,53 @@
+환경변수(변할 수 있는 수)
+JAVA_HOME
+-> 자바 설치된 경로
+
+Path
+-> 어디서든 해당경로의 파일 실행
+%JAVA_HOME%\bin 
+	(변환)-> 자바 설치경로\bin\java.exe
+
+GUI : Graphic User Interface
+Inter + face
+ ~사이에 + 표면
+
+CLI : Command Line Interface
+
+자료형 변수명;
+
+변수/메서드/클래스 명명 규칙
+1. 클래스명 첫자를 대문자로
+2. 여러 단어로 이루어진 경우 
+-> 두번째 이후 단어의 첫자 : 대문자
+학생번호 : studentNumber (Camel 표기법, 주로 class명, 메서드명)
+-> 단어와 단어 사이에 '_'
+학생번호 : student_number (Snake 표기법, 주로 변수명)
+3. 상수(항상 같은 수)는 모두 대문자
+-> 원주율 : PI
+
+
+자료형
+자료 : 데이터
+형 : 타입
+데이터타입, 타입, 데이터형, 자료타입, 형...
+
+기본자료형
+- 정수(-,+,0), 실수(소수점 있는 수), 논리(참/거짓)
+정수 (byte, short, int, long, char)
+int : -21억 ~ +21억
+long : 21억이 넘는다(긴)
+실수 (double)
+논리 (boolean) : true/false 둘 중 하나의 값
+
+char (character)
+- 문자
+- 작은따옴표(')로 감싸서 표현
+
+참조(reference)자료형
+
+
+줄바꿈이 포함된 상태
+안녕하세요
+반갑습니다
+
+저는 "홍길동"입니다.
