@@ -51,5 +51,6 @@ public class Var {
 		String greet = "안녕하세요\n\t반갑습니다";	// "\n"은 줄바꿈 문자 (개행문자)
 		System.out.println(greet);
 		System.out.println("안녕하세요 저는 \"홍길동\"입니다.");
+
 	}
 }

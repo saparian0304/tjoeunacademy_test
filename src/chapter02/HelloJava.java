@@ -13,5 +13,11 @@ public class HelloJava {
 		System.out.println("hello");
 		System.out.println("hello");
 		System.out.println("hello");
+		
+		/*
+		 * hello가 출력되게 하기 위해서
+		 * 2022.04.25 anjp0304
+		 */
+		System.out.println("hello");
 	}
 }
