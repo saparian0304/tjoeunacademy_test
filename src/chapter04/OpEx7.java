@@ -11,13 +11,39 @@ public class OpEx7 {
 		score = 50;
 		pass = score >= 60 ? "합격" : "불합격";	
 		System.out.println(score+"점은 "+pass);
+		System.out.println();
 		
 		// 점수가 60이상이면 (점수가 90 이상이면 수석합격, 그렇지 않으면 합격) 
 		// 60점 미만이면 불합격
-		score = 95;
+		score = 92;
 		pass = score >= 60 ? score >=90 ? "수석합격" : "합격" : "불합격";	
 //		pass = score >= 60 ? (score >=90 ? "수석합격" : "합격") : "불합격";	
 		System.out.println(score+"점은 "+pass);
+		
+		
+		System.out.print("if문 출력1 : ");
+		if (score >= 90) {
+			pass = "수석합격";
+		} else if (score >= 60) {
+			pass = "합격";
+		} else {
+			pass = "불합격";
+		}
+		System.out.println(pass);
+		
+		System.out.printf("if문 출력2 : ");
+		if (score >= 60) {
+			if (score >= 90) {
+				pass = "수석합격";
+			} else {
+				pass = "합격";
+			}
+		} else {
+			pass = "불합격";
+		}
+		System.out.println(pass);
+		System.out.println();
+		
 		
 		// 문자열연산
 		System.out.println(100 + "100");	// "100" + "100", 숫자를 자동형변환함
