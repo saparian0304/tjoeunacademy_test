@@ -433,14 +433,226 @@ sys -> 저장영역 -> 테이블스페이스(우클릭) -> 새로만들기
 sql은 대소문자 구별 없음
 워크시트 내용 저장할 필요 없음
 
+========================================
+22.05.03 화 - 2일차
+
+SQL 주석 
+방법 1 : -- 한줄 주석
+방법 2
+/*
+여러줄 주석
+*/
+
+
+SQL문 실행에 띄어쓰기/줄바꿈은 아무런 문제가 없다.
+
+(가독성을 위해서)
+보통 SQL명령문은 대문자, 그외(테이블명, 열이름)는 소문자로 쓴다 
+줄바꿈/들여쓰기를 한다
+실무에서 프로그래밍언어와 구분하기 위해 SQL문 전체를 대문자로 사용하는 경우도 있음.
+
+
+DML (Data Manipulation Language) : 데이터 관련 명령어
+- 데이터 조작 언어
+- 데이터를 조회(DQL), 등록, 수정, 삭제
+
+DDL (Definition) : 테이블 관련 명령어
+- 데이터 정의 언어
+- 테이블 생성, 변경, 삭제
+
+DCL (Control) : 데이터베이스 권한 관련 명령어
+- 데이터 제어 언어
+- 데이터베이스 접근권한 제어
+
+TCL (Transaction Control Language)
+- 트랜잭션(논리적 작업 단위) 제어
+(트랜잭션 : 논리적 기능을 수행하기 위에 한번에 작업되어야 하는 일련의 연산단위(?))
+
+
+4-1 SELECT문
+SELECT : 데이터를 조회하는 데 사용되는 명령어
+
+테이블 탭에서 중요하게 봐야할 하위탭 : "데이터", "제약조건"
+
+JOIN : 테이블끼리 또는 테이블과 같은 다른 요소(뷰, view)를 활용하여 JOIN문을 활용할 수 있음.
+
+Select문 사용할 때 고려사항
+- 어디에서 가져올 것인지 (어떤 table)
+- 어떻게 가져올지 (전체, 일부 column)
+- 어떤 값을 출력할지 (where)
+
+기본구조
+SELECT 열이름 [AS 별칭], .... 
+FROM 테이블명
+[WHERE 조건식]
+[ORDER BY 열이름 [ASC or DESE]]
+
+[ ] : 생략이 가능(모든 경우는 아니나 생략이 가능하다는 뜻으로 사용되는 경우가 많음)
+
+";" : 문장 구분을 위해서 필요함 (한개의 문장을 실행할 때에는 ';' 가 없어도 됨)
+
+
+DISTINCT : 조회할 때 중복값을 제거
+
+SELECT 컬럼 FROM 테이블 GROUP BY 그룹화할 컬럼;   -> 잘 안씀
+
+select ename, sal, comm, sal*12+comm as 연봉 from emp;  
+-- as 별칭을 부여할 때 사용 
+-- comm값에 null값이 포함되어서 null값으로 출력됨 (null 값은 연산 불가)
+
+-- null이면 0으로 처리해주는 함수 : NVL(a , b)    (a = 열 이름, b= null값이 반환할 값)
+select ename, sal, comm, sal*12+NVL(comm, 0) as 연봉 from emp;
+select comm, nvl(comm, 0) from emp;
+
+as (별칭, alias)
+- 별칭에 띄어쓰기가 있는 경우 큰따옴표(" ")로 묶어서 사용
+- 써도 되고 안써도되나 가독성 때문에 잘 안씀
+
+
+ORDER BY
+- 정렬의 기본값은 ASC (오름차순)
+
+SELECT *
+FROM emp
+ORDER BY deptno ASC, sal DESC;
+ - 선언한 순서대로 정렬 1순위, 2순위
+
+정렬을 사용(ORDER BY)하는 것이 속도를 깎아먹는 주 요인임 => index를 사용하는 경우 일정부분 해소가 가능함
+그러나 정렬을 하지 않는 경우는 거의 없음
+
+ORDER BY는 항상 문장 맨 끝에 와야함
+
+
+2022 개발자 설문조사
+https://programmers.co.kr/pages/2022-dev-survey
+
+프로그래머스 코딩테스트 -> SQL 고득점 Kit
+
+
+쇼핑몰, 금융권, 교육기관 : 프로젝트를 해본 경험이 있는게 좋음
+
+WHERE 조건식 : 해당 조건에 true인 것만 선택해서 출력함
+SELECT * FROM emp WHERE deptno = 30;
+
+AND / OR
+WHERE문에 여러개의 조건식을 사용할 수 있다.
+
+AND (그리고)
+A AND B : A가 참이고 B도 참이면 결과는 참 (둘다 참 -> 참)
+OR (또는)
+A OR B : A가 참이거나 또는 B가 참이면 결과 참 (둘 중 하나 이상이 참 -> 참)
+
+성별이 여자 AND 나이가 30 이상 = 여자이면서 30 이상
+성별이 여자 OR 나이가 30 이상 = 여자/30미만(30이상), 남자/30이상
+
+SELECT * FROM emp WHERE deptno = 30 AND job = 'SALESMAN';
+테이블 안에 들어있는 문자열 데이터는 대,소문자를 구별한다!
+ - 데이터 값이 대문자이면 대문자로 조건문 작성, 소문자이면 소문자로 조건문 작성
+
+
+SQL문은 나머지연산을 제공하지 않음. 사칙연산(+, -, *, /)만 가능
+
+
+!=, <>, ^= : 같은 의미로 사용되는 연산자 (A != B : A와 B가 같지 않는 경우)
+"NOT 조건식" 의 형태가 사용되기도 함
+
+IN 연산자 : OR 연산자의 중복사용을 막을 수 있음
+
+BETWEEN 연산자 a AND b 
+- a와 b 사이의 값 (a값, b값 포함됨)
+
+-날짜 검색도 BETWEEN 연산으로 가능하다
+1981년 입사한 직원
+SELECT * FROM emp WHERE hiredate BETWEEN '1981-01-01' and '1981-12-31';
+
+날짜 표시형식 변경방법
+ - 도구 -> 환경설정 -> 데이터베이스 -> NLS -> 날짜형식 변경
+RR/MM/DD 또는 RRRR-MM-DD 등 가능
+
+
+AND -> BETWEEN
+OR -> IN
+
+
+LIKE (★★)
+- 텍스트 검색할때 주로 사용되는 연산자 ( '_', '%')
+- 주로 % 만 사용됨
+- 데이터 조회 속도가 느려지는 원인이 됨
+
+김
+김구
+김구라
+
+LIKE '김_'  -> 조회 데이터 (김구)
+LIKE '김%' -> 조회 데이터 (김, 김구, 김구라)
+
+
+
+-- NULL 값인 것만 출력하기 (IS NULL)    ★★★
+SELECT ename, sal, comm FROM emp WHERE comm IS NULL;
+
+-- NULL 값 제외하고 출력하기 (IS NOT NULL)   ★★★
+SELECT ename, sal, comm FROM emp WHERE comm IS NOT NULL;
+
+에러가 나지 않기때문에 SQL문이 잘못됐는지 확인하기 어렵다
+사용법을 제대로 익혀두자
+
+집합연산자 (UNION, UNION ALL, MINUS, INTERSECT)
+
+UNION : 합집합, 중복제거
+UNION ALL: 합집합, 중복값 출력 (실무에서는 UNION ALL을 많이 씀)
+MINUS : 차집합
+INTERSECT : 교집합
+
+자유게시판, 유머게시판
+
+최근게시물
+제목, 작성일이 같아도 둘다 출력되게끔함! (자유게시판, 유머게시판)
+
+
+6장 함수
+SQL은 거의 동일하지만 함수는 DB마다 다른 경우들이 있음.
+함수도 대소문자 구분 X
+
+UPPER()
+LOWER()
+LENGTH()
+
+dual 테이블  -> 더미(dummy) 테이블 (임시연산이나 함수의 결과값 확인을 위해 사용됨)
+SELECT sysdate from dual; 
+- 현재 날짜를 보고 싶을 때 dual 테이블을 이용해서 간편하게 확인함
+
+SUBSTR()   -> (substr/ing)
+"안녕하세요"
+"안녕", "안녕하"
+
+SUBSTR(문자열 데이터, 시작위치, 추출길이)
+SUBSTR(문자열 데이터, 시작위치)
+
+INSTR() -> 문자열 데이터 안에서 특정 문자 위치를 찾는 함수
+Oracle index는 1부터 시작함!
+
+REPLACE() : 자주 사용됨 (프로그래밍 언어에서도 사용됨)
+- 특정 문자를 바꾸는데 사용
+
+TRIM, LTRIM, RTRIM
+-- 원래 특정 문자를 trim하는 용도로 사용함 (잘 사용 안함)
+-- 주로 공백을 제거하는 용도로 사용됨
+TRIM
+-- both : 왼쪽+오른쪽, leading : 왼쪽, trailing : 오른쪽
+'서울시'
+'       서울시'
+'서울시         '
+
+LPAD, RPAD : 빈공간을 특정 문자로 채워줌
+
+CONCAT : 두 문자열을 합치는 함수
+ - oracle에서는 '||' 연산자가 동일한 기능을 함, 매우 편리하나 사용하지 않는게 좋음
+
+
+
+
+
+
+
 자물쇠
-
-
-
-
-
-
-
-
-
-
