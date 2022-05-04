@@ -278,5 +278,19 @@ SELECT empno || ' : ' || ename FROM emp;        -- oracle에서만 사용할 수 있기때
 -- 이름(ename) 출력시 
 -- SMITH -> **ITH
 -- WARD -> **RD
+
+-- 방법1
 SELECT ename, SUBSTR(ename, 1, 2), REPLACE(ename,SUBSTR(ename, 1,2),'**')
 FROM emp;
+
+-- 방법 2
+SELECT 
+    ename, SUBSTR(ename,3), '**'||SUBSTR(ename,3), CONCAT('**', SUBSTR(ename, 3))
+FROM emp;
+
+-- 종합
+SELECT 
+    ename, 
+    CONCAT('**', SUBSTR(ename,3))  방법1, 
+    REPLACE(ename, SUBSTR(ename, 1, 2), '**') 방법2
+from emp;

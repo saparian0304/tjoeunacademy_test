@@ -650,9 +650,90 @@ CONCAT : 두 문자열을 합치는 함수
  - oracle에서는 '||' 연산자가 동일한 기능을 함, 매우 편리하나 사용하지 않는게 좋음
 
 
+=============================================
+22.05.04 수 - 3일차
+
+SQLD 문제집 자료 - 클래스룸
+과목 1, 2만 공부하면 됨
+과목3은 할 필요 없음 (SQLP 과정)
+
+숫자 관련 함수 
+1. ROUND : 특정 위치에서 반올림
+2. TRUNC : 특정 위치에서 버림
+3. CEIL : 올림
+4. FLOOR : 내림
+5. MOD : 나머지 값을 반환
+
+날짜 관련 함수
+- 날짜 '+'/'-' 숫자 연산 가능
+- 날짜끼리 '-' 연산은 가능하나 '+' 연산은 불가능함
+1. SYSDATE : Oracle 서버가 놓인 OS의 현재 날짜 및 시간
+2. ADD_MONTHS : 몇 개월 이후 날짜
+3. MONTHS_NETWEEN : 개월수 차이 
+4. NEXT_DAY : 돌아오는 요일 반환
+5. LAST_DAY : 달의 마지막 날짜 반환
+
+형 변환 함수
+1. TO_CHAR : 숫자/날짜 -> 문자열
+2. TO_NUMBER : 문자데이터 -> 숫자형
+3. TO_DATE : 문자데이터 -> 날짜 데이터
 
 
+NULL 처리 함수
+1. NVL함수
+2. NVL2 함수
+
+조건에 따른 데이터 처리함수
+1. DECODE
+2. CASE
+
+DECODE : 간단한 경우에 사용, 다른 DB에 없는 경우 있음
+CASE
+ - 복잡한 경우에 사용 (DECODE가 표현할 수 없는 방식도 지원함)
+ - DECODE에 비해 범용적으로 사용이 가능함
+
+랭킹 함수 (★★★★★)
+- ROW_NUMBER() : 중복없이 전체 순서 지정       (공동 등수 X)
+- RANK() : 중복되면 하위랭킹 제외 후 순서 지정 (공동 1등이면, 다음 순위 3등)
+- DENSE_RANK() : 중복되면 하나의 랭킹으로 지정 (공동 1등이면, 다음 순위 2등)
+
+over : (공통 정렬 기준)
+
+SELECT 
+    sal, 
+    ROW_NUMBER() OVER (ORDER BY sal DESC) AS rank1, 
+    RANK() OVER (ORDER BY sal DESC) AS rank2, 
+    DENSE_RANK() OVER (ORDER BY sal DESC) AS rank3
+FROM emp;
 
 
+7장 다중행 함수와 데이터 그룹화
 
-자물쇠
+SUM()
+COUNT()
+AVG()
+MIN(), MAX()
+VARIANCE(), STDDEV
+
+그룹함수는 항상 NULL을 제외하고 리턴함
+'*' 사용이유 : NULL값을 포함한 전체 행의 개수를 알고싶을 때는 COUNT(*)을 사용함
+또는 Primary_Key 컬럼을 COUNT 하는 방법도 있음
+
+
+group by : 값이 같은 행끼리 묶어서 그룹핑
+~별(월별, 부서별, 연도별 등등) -> group by 사용
+
+HAVING - group by 결과의 조건 지정
+
+
+SQL문 실행순서!
+
+        어디에서 (FROM)
+        어떻게
+         - 조건에 해당하는 데이터만 (WHERE)
+         - 그룹핑 (GROUP BY)
+         - 그룹핑된 조건 (HAVING)
+         출력 컬럼 (SELECT)
+         정렬 (ORDER BY)
+         
+         AS (Alias)도 위 순서에 영향을 받음
