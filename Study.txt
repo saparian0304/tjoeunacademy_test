@@ -737,3 +737,185 @@ SQL문 실행순서!
          정렬 (ORDER BY)
          
          AS (Alias)도 위 순서에 영향을 받음
+
+
+
+======================================
+22.05.06 금 - 4일차
+
+p195
+7.4 그룹화와 관련된 여러 함수 (시험에는 항상 나옴, ★★★★)
+
+사실 잘 쓰지 않음 + oracle에 종속된 함수
+
+- ROLLUP : 데이터의 합계 출력
+- CUBE : 결합 가능한 모든 조합의 그룹핑
+- GROUPING SETS : 컬럼별 별도 합계
+
+이런 데이터가 필요하면 보통 프로그래밍 언어단에서 처리함
+
+LISTAGG : 잘 사용 X
+
+PIVOT : 엑셀과 동일한 기능
+- 행을 열로 바꿔줌 (단순히 바꾸는 것은 아니고 정리해서..)
+
+
+8장 JOIN
+
+JOIN의 종류
+* cross join (크로스 조인) : 가능한 모든 행 조인
+* euqi join (등가 조인, ★★) : 조건이 일치하는 결과만 출력 => inner join
+* no euqi join (비등가 조인) : 조건이 일치하지 않는 결과 출력
+* outer join (외부 조인, ★★) : 양쪽 테이블의 한쪽만 조건이 일치해도 출력 => left join, right join 
+* self join (자체 조인) : 자기 자신 테이블 조인
+
+
+join 그림 - 슬랙 참조 (or 구글에 join 검색)
+
+실제 실무에서는 *을 잘 사용하지 않고 직접 column명을 입력해줌
+변경사항이 생겼을 경우 프로그램 수정이 쉽지 않기때문
+
+
+표준(ansi) 조인방식 
+1.  , -> JOIN
+2. WHERE -> ON
+- JOIN, ON 표현방식에 익숙해지자
+
+시험에 나오는 부분 (★)
+- 필요한 조건식의 최소 개수 : 조인 테이블 개수에서 하나를 뺀 값
+
+
+자체조인
+예) 
+원하는 출력형태 : 직원번호, 직원명, 상사직원번호, 상사명
+-> 상사명은 emp 테이블에 없기때문에 동일한 테이블을 JOIN함
+
+LEFT OUTER JOIN (오라클 방식)
+SELECT e1.empno, e1.ename, e1.mgr, e2.ename
+FROM emp e1, emp e2
+WHERE e1.mgr = e2.empno(+);
+
+LEFT OUTER JOIN (ANSI 방식, 표준)
+SELECT 
+    e1.empno, e1.ename, e1.mgr, e2.ename
+FROM emp e1 LEFT OUTER JOIN emp e2   
+ON e1.mgr = e2.empno;
+
+
+LEFT JOIN : 왼쪽 테이블 데이터가 다 나옴
+RIGHT JOIN : 오른쪽 테이블 데이터가 다 나옴
+
+
+표준문법
+- NATURAL JOIN : 자동으로 join 해줌 (기준이 명시되어있지 않아 실무에서는 잘 사용 안함)
+- JOIN ~ USING : ON 과 비슷하나 잘 사용 안함
+- JOIN ~ ON : WHERE절과 동일함
+
+3개 이상의 테이블 조인은 잘 사용 안함
+FROM table1 JOIN table2 ON (조건식) 
+JOIN table3 ON (조건식)
+
+
+기본 구조
+1. INNER JOIN
+1-1 oracle 형식
+FROM t1, t2
+WHERE t1.x = t2.x;
+
+1-2 표준형식
+FROM t1 JOIN t2
+ON t1.x = t2.x;
+
+2. OUTTER JOIN
+2-1 oracle 형식
+FROM t1, t2
+WHERE t1.x = t2.x(+)
+
+2-2 표준형식
+FROM t1 LEFT JOIN t2
+ON t1.x = t2.x
+
+
+CONNECT BY (계층형 / 트리구조) 조회 : Oracle에서만 가능
+- 시험에서 자주 나옴
+-- 기본구조
+SELECT
+    empno, mgr, ename
+FROM emp
+START WiTH mgr IS NULL      -- 시작 조건
+CONNECT BY PRIOR empno = mgr; -- 조인 조건
+
+-- 추가 구조
+SELECT
+    level,                  -- 계층형태를 알려줌
+    LPAD(' ', 4*(LEVEL -1)) || empno,   -- 계층형태를 눈으로 보기 쉽게 하기 위함
+    mgr, ename
+FROM emp
+START WiTH mgr IS NULL      -- 시작 조건
+CONNECT BY PRIOR empno = mgr; -- 조인 조건
+
+
+ 9장(★★★★★) - 서브쿼리
+
+SELECT문을 괄호로 감싼 것 => 서브쿼리
+
+단일행 서브쿼리 ( =, !=, >, <, ....) : 실행값이 1 row인 쿼리
+다중행 서브쿼리 (IN, NOT IN, ANY, ALL) : 실행값이 1 row 이상인 쿼리
+
+다중행 서브쿼리
+* IN        : 메인쿼리의 데이터가 서브쿼리의 결과값과 하나라도 일치하면 true
+* ANY, SOME : 메인쿼리의 조건식을 만족하는 서브쿼리 결과가 하나 이상이면 true
+* ALL       : 메인쿼리 조건식을 서브쿼리 결과값 모두가 만족하면 true
+* EXISTS    : 서브쿼리의 결과가 하나라도 존재하면 true
+
+
+/*
+뷰(VIEW)
+- 가상의(논리적) 테이블
+- INLINE VIEW (코드 안에 뷰)
+*/
+
+-- SELECT문을 사용해서 가상의 테이블(view)을 만들고 FROM의 대상으로 사용할 수 있음
+
+
+/*
+데이터가 많은 경우
+JOIN을 하고 조건을 넣는 것과                       -> 단순 JOIN
+데이터를 줄여서 JOIN하는 것과는 속도차이가 있음    -> VIEW를 이용해서 데이터를 줄인 후 JOIN
+*/
+
+
+스칼라 서브쿼리 => 단일행
+- SELECT절에 오는 서브쿼리로 반드시 하나의 결과만 반환해야함
+- 한 행을 조회할때마다 실행되기때문에 속도가 느림
+
+
+페이징처리 => rownum 이용, 서브쿼리 2번 사용
+- rownum : 행에 번호를 부여해줌
+- 2번 감싸야 페이징 처리가 된다 (서브쿼리 안에 서브쿼리)
+- 정렬을 하기 위함
+
+SELECT 
+    *
+FROM (
+    SELECT rownum rnum, a.*     -- 넘버를 부여하는 서브쿼리
+    FROM (
+        SELECT empno, ename     -- 시간대 순으로 정렬하는 서브쿼리
+        FROM emp
+        ORDER BY hiredate
+    ) a
+) b
+WHERE b.rnum BETWEEN 1 AND 10;  -- 페이징 처리를 위한 BETWEEN 조건절
+
+- 인터넷에 한번만 감싸는 형태로 페이징처리 구현했다고 하지만 그렇게 할 경우 다음페이지 구현이 되지를 않음
+
+
+서브쿼리 사용 가능한 위치
+- WHERE 조건문
+- 컬럼 (스칼라 서브쿼리)
+- HAVING 조건문
+- FROM 뒤에 (INLINE VIEW)
+
+
+
+SQL 마지막 시간에 MySQL 설치 및 사용법 배울 예정
