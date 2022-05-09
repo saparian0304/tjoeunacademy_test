@@ -9,7 +9,7 @@ public class Var {
 		System.out.println(b);
 		
 		int age = 30;	// 변수의 이름을 지을때 의미를 부여하자.
-		int 나이 = 10; 	// 변수 이름을 한글로 쓸 수도 있지만 사용하지 말자.
+//		int 나이 = 10; 	// 변수 이름을 한글로 쓸 수도 있지만 사용하지 말자.
 		
 		long c = 21000000000L;	// 21억이 넘을 경우 long 사용
 		byte d = 100;	// 1 byte
