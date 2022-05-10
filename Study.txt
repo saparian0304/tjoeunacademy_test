@@ -1147,8 +1147,141 @@ WITH ADMIN OPTION (시험★) : GRANT문을 통해 부여받은 권한을 다른
 
 요구사항 -> 기획 -> 스토리보드, 화면설계 -> DB 설계
 
+=======================================
+22.05.10 월 - 6일차
+
+****************
+SQL 총 복습
+
+SELECT
+    컬럼명..
+FROM 테이블
+WHERE 조건
+GROUP BY 컬럼명
+HAVING 조건
+ORDER BY 컬럼 ASC/DESC
+
+
+JOIN 
+- 두개 이상의 테이블에서 조회
+FROM a, b
+WHERE a.컬럼명 = b.컬럼명
+
+FROM a JOIN B
+ON a.컬럼명 = b.컬럼명
+
+INNER JOIN
+LEFT/RIGHT OUTER JOIN
+
+
+Subquery
+- query 안에 query
+
+
+INSERT INTO 테이블명 (컬럼명...) VALUES (값...)
+UPDATE 테이블명 SET 컬럼명 = 값... WHERE 조건
+DELETE FROM 테이블명 WHERE 조건
+
+********************
+
+데이터 모델링(설계)
+- 현실세계에서 일어나는 사건들을 데이터화하는 과정
+- 실제 현실은 너무 복잡해서 개념화(추상화)하여 단순하게 표현
+- * 추상화, 단순화, 명확화
+
+모델링 단계
+개념적 모델링 -> 논리적 모델링 -> 물리적 모델링
+
+개념적 모델링
+- ERD(Entity Relationship Diagram)를 만드는 과정
+- 엔티티와 속성을 도출
+
+논리적 모델링
+- 관계(Relation) 정의, 식별자 정의
+- 정규화 수행
+
+물리적 모델링
+- 실제 DB에 정의
+
+엔티티/엔터티(Entity) -> 테이블(table)
+속성(attribute) -> 컬럼(column)
+
+엔터티
+- 관리되어져야하는 데이터의 집합
+- 개념, 사건, 장소...
+- 유일한 식별자가 있어야 함
+- 2개 이상의 인스턴스(행, 데이터)가 있어야함
+- 한개 이상의 속성 (식별자 외 1개 이상), 식별자 포함 2개 이상
+
+속성
+- 데이터의 가장 작은 논리적 단위
+- 엔터티는 반드시 한개 이상의 속성(식별자 제외 1개 이상)으로 이루어져 있음
+- 엔터티의 특성, 특징, 속성
+- 기본속성, 설계속성, 파생속성
+
+예) 부서 엔터티의 속성 : 부서번호, 부서명
+
+
+관계(Relationship)
+관계차수(Relationship Cardinality)
+1:1, 1:N (일대다), N:M (다대다)
+식별관계(실선) : 외래키(FK), 데이터 삭제 불가
+비식별관계(점선) : 데이터 삭제 가능
+
+ERD툴 사이트 : https://www.erdcloud.com/
+- 무료
+- 팀간 협업 가능
+
+Mysql 설치
+
+https://www.mysql.com/
+
+다운로드 -> MySQL Community (GPL) Downloads -> MySQL Community Server -> Installer MSI 프로그램 다운 및 설치 -> Setup type : Developer Default
+
+기본포트 번호
+- Oracle : 1521
+- MySQL : 3306
+- MariaDB : 3306
+동일한 포트번호를 쓸 수 없음 -> 마리아DB와 MySQL 동시설치시 하나는 포트번호를 바꿔야함 
+
+
+최고계정 : Root
+비밀번호 : root1234
+
+- 최고계정 : 윈도우-Administrator, Oracle-sys, MySQL-Root
+
+MySQL Workbench : 오라클의 sql developer와 동일한 프로그램
+
+sakila -> 샘플 DB
+MySQL 
+- Schema : 다른 툴에서는 DB로 표현됨
+
+새로운 테이블 생성
+- Name : testdb
+- Charset/Collation : utf8, utf8_general_ci
+
+계정 생성
+Administration 탭 -> Users and Privileges -> Add Account
+- Login Name : testuser
+- Limit to Hosts Matching (특정 위치에서만 접속이 되게 할 수 있음) : % (아무곳에서나 가능)
+- Password : test1234
+Schema Privileges -> add Entry -> selected schema(testdb) -> select all -> apply
+
+계정 접속
+Connection Name : 즐겨찾기 이름
+Username : 생성한 계정 이름 (testuser)
+Password : Store in Vault (test1234)
+
+
+CMD에서 mysql 실행하기
+mysql 설치경로 : C:\Program Files\MySQL\MySQL Server 8.0\bin
+명령어 : 
+실행 : 'mysql -u계정이름 -p' 엔터 후 비밀번호 이름 입력
+데이터베이스 보기 : show databases;
+테이블 선택 및 사용 : use testdb;
+이후 sql 쿼리 작성 
+- 예시 : select * from emp;
+종료 : \q
 
 
 
-
-SQL 마지막 시간에 MySQL 설치 및 사용법 배울 예정
