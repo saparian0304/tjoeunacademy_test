@@ -15,7 +15,6 @@ public class Excercise6 {
 		System.out.println("5천원권 : " + ochun + "장");
 		System.out.println("1천원권 : " + ilchun + "장");
 		
-		
 	}
 
 }

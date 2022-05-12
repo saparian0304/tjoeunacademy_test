@@ -15,10 +15,15 @@ public class Exercise1 {
 //		}
 		
 		// 두번째 방법
-		for (int i=1; i<=100; i++) {
-			if (i%5==0) {
-				sum += i;
-			}
+//		for (int i=1; i<=100; i++) {
+//			if (i%5==0) {
+//				sum += i;
+//			}
+//		}
+		
+		// 세번째 방법
+		for (int i=0; i<=100; i+=5) {
+			sum += i;
 		}
 		
 		System.out.println("5의 배수의 합계는 " + sum);
