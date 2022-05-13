@@ -224,69 +224,108 @@ WHERE product_name = 'SPECIAL_SET'
 GROUP BY 년월, product_name
 ORDER BY 년월;
 
+-- 22.05.13 금
+
 
 -- 11.월별 전용 상품 실적 순위 분석
 -- 월별 전용 상품 매출 1위~3위까지의 지점을 출력
 -- rank() over로 순위 지정 (월로 기준, 매출순서로 순위 지정)
+-- 11번_3위 이하인 매장
 SELECT
-    년월, 지점, SUM(sales) 매출액
-    
-FROM order_info oi,
+    년월, 지점, 매출액, 순위
+FROM
     (SELECT 
         SUBSTR(reserv_date,1,6) 년월,
-        branch 지점
-    FROM reservation ) r
-WHERE reserv_no = oi.reserv_no
-GROUP BY 년월, 지점
-ORDER BY 년월, 매출액;
+        branch 지점, SUM(sales) 매출액,
+        rank() over(PARTITION BY SUBSTR(reserv_date,1,6) ORDER BY sum(sales) desc) 순위
+    FROM reservation r, order_info oi
+    WHERE r.reserv_no = oi.reserv_no 
+    AND oi.item_id = 'M0001'
+    
+    GROUP BY SUBSTR(reserv_date,1,6), branch
+    ORDER BY 년월, 매출액 desc)
+WHERE 순위 <= 3;
 
-
+-- 11번_1위인 지점만매장
 SELECT
-    v.년월, v.지점,
-    매출액, 순위
+    년월,지점, 매출액, 순위
 FROM
-    (SELECT
-        년월, 지점, SUM(sales) 매출액,
-        rank() over(PARTITION BY 지점 ORDER BY sum(sales)) 순위
-        
-    FROM order_info oi,
+    (SELECT 
+        SUBSTR(reserv_date,1,6) 년월,
+        branch 지점, 
+        SUM(sales) 매출액,
+        row_number() over(PARTITION BY SUBSTR(reserv_date,1,6) ORDER BY sum(sales) desc) 순위
+    FROM reservation r, order_info oi
+    WHERE r.reserv_no = oi.reserv_no 
+    AND oi.item_id = 'M0001'
+    
+    GROUP BY SUBSTR(reserv_date,1,6), branch
+    ORDER BY 년월, 매출액 desc) v
+WHERE 순위 = 1;
+
+--12. 종합 리포트
+-- 분석9와 분석10의 결과를 월별로 합쳐서 리포트를 작성해보자. (union, max)
+/*
+- union을 하기 위해 빈값을 추가 (컬럼이 반드시 같아야함)
+- 빈값을 제거하기 위해 max함수 사용
+- 매출월을 기준으로 그룹핑
+
+-- 09 월별 취소율
+총 매출 대비 전용 상품의 판매율, 총 예약 건 대비 예약 취소율 추가 (소수점 두번째 반올림)
+-- 10 요일별 매출분석
+*/
+SELECT
+    매출월,
+    MAX(총매출) 총매출, MAX(전용상품외매출) 전용상품외매출, 
+    MAX(전용상품매출) 전용상품매출, MAX(전용상품판매율) 전용상품판매율,
+    MAX(총예약건) 총예약건, MAX(예약완료건) 예약완료건, MAX(예약취소건) 예약취소건, 
+    MAX(예약취소율) 예약취소율,
+    MAX(최대매출지점) 최대매출지점, MAX(지점매출액) 지점매출액
+FROM
+    ((SELECT
+        TO_CHAR(SUBSTR(reserv_no,1,6)) 매출월,
+        SUM(sales) 총매출,
+        SUM(CASE WHEN item_id != 'M0001' THEN sales END) 전용상품외매출, 
+        SUM(CASE item_id WHEN 'M0001' THEN sales END) 전용상품매출,
+        ROUND(SUM(CASE WHEN item_id = 'M0001' THEN sales END) / SUM(sales) * 100,1)||'%' 전용상품판매율,
+         0 총예약건, 0 예약완료건, 0 예약취소건,'' 예약취소율,  ''최대매출지점, 0 지점매출액
+    FROM order_info
+    GROUP BY TO_CHAR(SUBSTR(reserv_no,1,6))
+    
+    UNION
+    
+    SELECT
+        SUBSTR(r.reserv_date,1,6) 년월,0,0,0,'',      
+        count(cancel) 총예약건,
+        count(CASE cancel WHEN 'N' THEN cancel END),
+        count(CASE cancel WHEN 'Y' THEN cancel END),
+        ROUND(count(CASE cancel WHEN 'Y' THEN cancel END)/count(cancel) * 100,1)||'%' 예약취소율,
+        '', 0
+    FROM reservation r, order_info oi
+    WHERE oi.reserv_no(+) = r.reserv_no
+    GROUP BY SUBSTR(r.reserv_date,1,6)
+    )
+    UNION 
+    
+    SELECT
+        년월, 0,0,0, '', 0, 0, 0,'' , 지점, 매출액
+    FROM
         (SELECT 
             SUBSTR(reserv_date,1,6) 년월,
-            branch 지점
-        FROM reservation ) r
-    WHERE reserv_no = oi.reserv_no
-    
-    GROUP BY 년월, 지점
-    ORDER BY 년월, 매출액) v
-WHERE 순위 <4
-ORDER BY 년월, 매출액 DESC;
-
-
-
-SELECT
-        년월, 지점, 매출액,
-        rank() over(PARTITION BY 지점 ORDER BY 매출액) 순위
+            branch 지점, 
+            SUM(sales) 매출액,
+            row_number() over(PARTITION BY SUBSTR(reserv_date,1,6) ORDER BY sum(sales) desc) 순위
+        FROM reservation r, order_info oi
+        WHERE r.reserv_no = oi.reserv_no 
+        AND oi.item_id = 'M0001'
         
-    FROM order_info o,
-            (SELECT 
-            SUBSTR(reserv_date,1,6) 년월,
-            branch 지점, SUM(sales) 매출액,
-            rank() over(PARTITION BY 지점 ORDER BY 매출액) 순위
-            FROM reservation r, order_info oi
-            WHERE r.reserv_no = oi.reserv_no
-            GROUP BY SUBSTR(reserv_date,1,6), branch) v
-    WHERE o.
-    
-    ORDER BY 매출액;
-    
-    
-    
-SELECT 
-    SUBSTR(reserv_date,1,6) 년월,
-    branch 지점, SUM(sales) 매출액,
-    rank() over(PARTITION BY SUBSTR(reserv_date,1,6) ORDER BY sum(sales) desc) 순위
-FROM reservation r, order_info oi
-WHERE r.reserv_no = oi.reserv_no
+        GROUP BY SUBSTR(reserv_date,1,6), branch
+        ORDER BY 년월, 매출액 desc) v
+    WHERE 순위 = 1)
+GROUP BY 매출월
+ORDER BY 매출월;
 
-GROUP BY SUBSTR(reserv_date,1,6), branch
-ORDER BY 년월, 매출액 desc;
+
+
+
+    
