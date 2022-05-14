@@ -325,6 +325,87 @@ FROM
 GROUP BY 매출월
 ORDER BY 매출월;
 
+-- 22.05.14 토
+-- 13. 고객 특징 분석
+/*
+고객의 수, 남녀 숫자, 평균 나이, 평균 거래 기간 출력
+- months_between 개월 수 구하는 함수
+- 오늘날짜 기준으로 평균나이 구함
+- 소수점 두자리에서 반올림
+*/
+SELECT 
+	count(*) 고객수, 
+	count(decode (sex_code, 'M', 1, null)) 남자,
+	count(decode (sex_code, 'F', 1, null)) 여자,
+	ROUND(AVG(MONTHS_BETWEEN(sysdate, TO_DATE(birth))/12), 1) 평균나이,
+	CEIL(AVG(고객별평균거래기간*10))/10 평균거래기간
+FROM customer,
+	(SELECT 
+		customer_id, MAX(reserv_date), MIN(reserv_date),
+		MONTHS_BETWEEN(MAX(reserv_date), MIN(reserv_date)) 고객별평균거래기간
+	FROM RESERVATION r 
+	GROUP BY customer_id
+	ORDER BY customer_id);
+
+--14번 개인별 매출 분석
+--개인별 전체 상품 주문건수, 총 매출, 전용상품 주문건수, 전상품 매출 출력
+SELECT
+	r.customer_id, customer_name 고객명, count(quantity) 전체상품주문건수,
+	SUM(sales) 총매출, 
+	COUNT(decode (item_id, 'M0001', quantity, null)) 전용상품주문건수,
+	SUM(decode(item_id, 'M0001', sales, 0)) 전용상품매출
+FROM
+	reservation r, order_info o, customer c
+WHERE r.reserv_no = o.reserv_no
+AND r.customer_id = c.customer_id
+GROUP BY r.customer_id, customer_name
+ORDER BY 전용상품매출 desc;
+
+-- 15번 상위 매출 기준 10위 고객
+-- 전용상품 매출 기준 상위 10위 고객 출력 (row_number)
+-- customer_id, customer_name, 전용상품매출, 순위
+SELECT 
+	customer_id, customer_name,
+	전용상품매출,
+	순위
+FROM
+	(SELECT 
+		customer_id,
+		(SELECT customer_name FROM customer WHERE customer.customer_id = r.customer_id) customer_name,
+		SUM(DECODE(item_id, 'M0001', sales, 0)) 전용상품매출,
+		ROW_NUMBER() OVER (ORDER BY SUM(DECODE(item_id, 'M0001', sales, 0)) DESC) 순위
+	FROM reservation r JOIN order_info o
+	ON r.reserv_no = o.reserv_no
+	GROUP BY customer_id)
+WHERE rownum <= 10
+ORDER BY 순위;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
