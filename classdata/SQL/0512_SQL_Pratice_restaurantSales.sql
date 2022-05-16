@@ -101,6 +101,33 @@ WHERE i.item_id(+) = v.item_id
 GROUP BY 년월
 ORDER BY 년월;
 
+-- 피봇으로 풀기
+SELECT
+    s, 
+    nvl(special_set,0) special_set, nvl(pasta, 0) pasta,
+    nvl(pizza, 0) pizza, nvl(sea_food,0) sea_food,
+    nvl(steak, 0) steak, nvl(salad, 0) salad,
+    nvl(sandwich, 0) sandwich, nvl(wine,0) wine,
+    nvl(juice,0) juice
+FROM
+(select
+     sales, product_name , substr(reserv_date,1,6) s
+     from item i , order_info o, reservation r
+     WHERE i.item_id = o.item_id
+     AND o.reserv_no = r.reserv_no
+     ) 
+pivot ( sum(sales) FOR PRODUCT_NAME in ('SPECIAL_SET' AS SPECIAL_SET,
+                            'PASTA' AS PASTA,
+                            'PIZZA' AS PIZZA,
+                            'SEA_FOOD' AS SEA_FOOD,
+                            'STEAK' AS STEAK,
+                            'SALAD' AS SALAD,
+                            'SANDWICH' AS SANDWICH,
+                            'WINE' AS WINE,
+                            'JUICE' AS JUICE)
+)
+order by s; 
+
 --06 월별 총매출, 전용상품매출 비교 분석
 --월별 총 매출액과 전용 상품 매출액 출력
 SELECT
