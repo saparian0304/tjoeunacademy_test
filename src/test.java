@@ -1,30 +1,28 @@
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class test {
 
-	public static void main(String[] args) {
-      
-		Scanner sc = new Scanner(System.in);
-		String str = sc.nextLine();
+	public static void main(String[] args) throws IOException {
 		
-		int[] word = new int[26];
-		int len = str.length();
-//		char a = 'a';	// 97
-		for (int i=0; i<word.length; i++) {
-			word[i] = -1;
-		}
-		for (int i=0; i<word.length; i++) {
-			// 단어길이만큼의 반복문
-			for (int j=0; j<len; j++) {
-				if(word[str.charAt(j)-97] == -1 && str.charAt(j)-97== i) {
-					word[str.charAt(j)-97] = j;
-				} 
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String str = br.readLine();
+		int cycle = Integer.parseInt(str);
+		String[] arr = new String[2];
+		
+		int num = 0;
+		
+		for (int i=0; i<cycle; i++) {
+			str = br.readLine();
+			arr = str.split(" ");
+			num = Integer.parseInt(arr[0]);
+			
+			for (int j=0; j<arr[1].length(); j++) {
+				for (int k=0; k<num; k++)
+				System.out.print(arr[1].charAt(j));
 			}
+			System.out.println();
 		}
-		for (int i=0; i<word.length; i++) {
-			System.out.print(word[i] + " ");
-		}
-//		System.out.println(str.charAt(0)-96);
     }
-
 }
