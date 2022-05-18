@@ -22,6 +22,7 @@ class Hero {
 	
 	public void punch(Hero enemy) {
 		enemy.hp -= 10;
+		if (enemy.hp < 10) { enemy.hp = 0;}
 		System.out.printf("[%s]의 펀치\n\t%s: %d/30\n", 
 					this.name, enemy.name, enemy.hp);
 	}

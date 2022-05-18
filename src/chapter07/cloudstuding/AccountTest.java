@@ -17,8 +17,10 @@ public class AccountTest {
 		System.out.println(b.toString());
 	}
 }
-
 class Account {
+	/**
+	 * @param num 계좌번호
+	 */
 	String num; 	// 계좌번호
 	int balance;	// 잔액
 	
@@ -28,9 +30,16 @@ class Account {
 	}
 	
 	public String toString() {
-		return String.format("Account { num:%s, balance:%d", num, balance);
+		return String.format("Account { num:%s, balance:%d }", num, balance);
 	}
-	
+	/**
+	 * 해당 객체의 잔액을 확인
+	 * 잔액이 amount보다 크면 
+	 * 		잔액 차감, 대상(target)의 잔액 추가
+	 * @param target 입금할 대상
+	 * @param amount 입금액
+	 * @return 계좌이체 성공:true, 실패:false
+	 */
 	public boolean transfer(Account target, int amount) {
 		if (balance < amount) {
 			return false;
