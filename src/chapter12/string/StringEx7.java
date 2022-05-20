@@ -1,5 +1,7 @@
 package chapter12.string;
 
+import util.FileUtil;
+
 public class StringEx7 {
 	// java.lang.String 클래스
 	public static void main(String[] args) {
@@ -140,6 +142,36 @@ public class StringEx7 {
 			cnt++;
 		}
 		
+		System.out.println("메서드 실행");
+		upLoad("실행하자.jpg");
 		
+		
+		// 다른 패키지(util)에서 만든 메서드 실행
+		System.out.println("다른 패키지(util)에서 만든 메서드 실행");
+		System.out.println(FileUtil.getFileRename("우리처음만난날.jpg"));
+	}
+	
+	// 메서드 만들기
+	static void upLoad(String[] fileName) {
+		String serverName3 = "";
+		int idx;
+		int cnt = 0;
+		for (int i=0; i<fileName.length; i++) {
+			idx = fileName[i].lastIndexOf(".");
+			String ext3 = fileName[i].substring(idx);
+			serverName3 = System.currentTimeMillis()+"_"+cnt + ext3;	// 카운트방식
+			System.out.println(serverName3);
+	//			serverName3 = System.currentTimeMillis()+"_"+(int)(Math.random()*1000)+ ext3; // 랜덤방식
+	//			System.out.println(serverName3);
+			cnt++;
+		}
+	}
+	// 만든 메서드 오버로딩
+	static void upLoad(String fileName) {
+		String serverName3 = "";
+		int idx = fileName.lastIndexOf(".");
+		String ext3 = fileName.substring(idx);
+		serverName3 = System.currentTimeMillis()+"_"+(int)(Math.random()*1000)+ ext3; // 랜덤방식
+		System.out.println(serverName3);
 	}
 }
