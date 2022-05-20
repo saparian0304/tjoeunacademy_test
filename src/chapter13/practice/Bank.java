@@ -1,35 +1,24 @@
 package chapter13.practice;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
-
 public class Bank {
 	private List<Account> accountList = new ArrayList<Account>();
 
-	// 계좌생성
+	// 계좌생성 메서드
 	public void createAccount() {
 		System.out.println("-----------------");
 		System.out.println("계좌생성");
 		System.out.println("-----------------");
-
 		// 계좌를 생성할 Account 객체 생성
 		Account customer = new Account();
 		Scanner sc = new Scanner(System.in);
-//		
-//		// 새로 만들 계좌 정보 입력
+		// 새로 만들 계좌 정보 입력
 		System.out.print("계좌번호 : ");
 		String num = sc.next();
 
 		// 계좌번호 입력 유효성 체크
-		try {
-			Integer.parseInt(num);
-		} catch (Exception e) {
-			System.out.println("숫자를 입력해주세요");
-			return;
-		}
+		if(!checkNum(num))	return;	// false를 반환하면 메서드 종료
 		
 		// 이미 존재하는 계좌번호인지 체크
 		if (findAccount(num) == null) {
@@ -38,7 +27,6 @@ public class Bank {
 			System.out.println("이미 등록된 계좌입니다.");
 			return;
 		}
-
 		System.out.print("계좌주 : ");
 		customer.setAccount_holder(sc.next());
 		System.out.print("초기입금액 : ");
@@ -59,7 +47,6 @@ public class Bank {
 			System.out.print(accountList.get(i).getBalance() + "\n");
 		}
 	}
-
 	// 예금하기
 	public void deposit() {
 		System.out.println("-----------------");
@@ -71,13 +58,7 @@ public class Bank {
 		String num = sc.next();
 
 		// 계좌번호 입력 유효성 체크
-		try {
-			Integer.parseInt(num);
-		} catch (Exception e) {
-			System.out.println("숫자를 입력해주세요");
-			return;
-		}
-
+		if(!checkNum(num))	return;	// false를 반환하면 메서드 종료
 		// 입력한 계좌번호를 보유한 Account 찾기
 		Account client = findAccount(num);
 		
@@ -102,12 +83,7 @@ public class Bank {
 		String num = sc.next();
 
 		// 계좌번호 입력 유효성 체크
-		try {
-			Integer.parseInt(num);
-		} catch (Exception e) {
-			System.out.println("숫자를 입력해주세요");
-			return;
-		}
+		if(!checkNum(num))	return;	// false를 반환하면 메서드 종료
 
 		// 계좌번호가 등록되어있는지 확인 후 진행
 		Account client = findAccount(num);
@@ -140,5 +116,22 @@ public class Bank {
 			}
 		}
 		return client;
+	}
+	
+	/**
+	 * 계좌번호가 숫자인지 문자인지 확인하는 메서드
+	 * 
+	 * @param num 계좌번호
+	 * @return 계좌번호가 숫자가 아닌경우 false 반환
+	 */
+	private boolean checkNum(String num) {
+		boolean flag = true;
+		try {
+			Integer.parseInt(num);
+		} catch (Exception e) {
+			System.out.println("숫자를 입력해주세요");
+			flag = false;
+		}
+		return flag;
 	}
 }

@@ -18,7 +18,6 @@ public class Main {
 			int selectNo = scanner.nextInt();
 			
 			// 입력한 값에 따라 처리
-		
 			if (selectNo == 1) {		// 1. -> 계좌 생성
 				b.createAccount();
 			} else if (selectNo == 2) {
@@ -33,8 +32,6 @@ public class Main {
 			} else {
 				System.out.println("다시 입력해주세요.");
 			}
-			
-			
 		}
 	}
 }
