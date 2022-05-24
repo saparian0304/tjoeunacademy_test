@@ -81,4 +81,19 @@ public class Board {
 		return flag;
 	}
 
+	// 전체 확인 (미완성)
+//	boolean checkCross3(String str) {
+//		boolean flag = false;
+//		for (int i = 0; i < 19; i++) {
+//			for (int j = 0; j < 19; j++) {
+//				// 가로 				
+//				if(str == map[i][j] && str == map[i][j+1] && str == map[i][j+2]
+//						&& str == map[i][j+3] & str == map[i][j+4]) {
+//					flag = true;
+//				} ;
+//			}
+//		}
+//		return flag;
+//	}
+
 }

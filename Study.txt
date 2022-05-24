@@ -2130,6 +2130,56 @@ https://www.data.go.kr/
 aeWLdjxAXU_GuuCWUIs3
 DAfbQKkzPS
 
+=======================================
+22.05.24 화 - 15일차
+
+20장 데이터베이스
+
+데이터베이스의 특징
+1. 데이터 중복 최소화
+2. 데이터 공유
+3. 데이터 일관성
+4. 데이터 무결성
+5. 데이터 독립성
+6. 데이터 보안성
+7. 데이터 안정성
+
+MySQL과 자바 연결하기
+mysql.com 
+connector/J
+
+라이브러리 찾는 사이트
+https://mvnrepository.com/
+
+다운받은 Connector Java 파일(mysql-connector-java) 라이브러리 추가는 방법
+Propertise -> java build Path -> Libraries -> Classpath -> Add Txternal JARs
+
+
+
+VO (Value Object)	/ DTO (Data Transfer Object)
+DAO (Data Access Object)
+
+DB 접속
+1. 드라이버(클래스) 로드
+2. 연결(connection) 
+ - 연결에 필요한 정보 : 호스트, 포트, 아이디, 비밀번호
+3. Statement(or PreparedStatement) 객체 생성
+4. Statement 객체로 sql 실행
+5. 실행 결과를 받아옴
+6. 자원해제
+
+executeUpdate() : insert / delete / update -> 변형된 개수 리턴
+executeQuery() : select -> ResultSet 객체 리턴
+
+
+DB마다 메소드를 동일하게 사용하게 되어있음( JDBC가 인터페이스를 구현하도록 했음)
+
+행정안전부 자바 시큐어코딩 가이드
+===============================================
+===============================================
+자바 완료!!!!!
+===============================================
+===============================================
 
 
 
@@ -2155,6 +2205,14 @@ DAfbQKkzPS
 
 
 
+
+
+
+
+
+
+
+고용노동부 민원신청번호 : 1AA-2205-0747758
 
 
 프로젝트 주제는 익숙한걸로(?)
