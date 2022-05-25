@@ -25,75 +25,31 @@ public class Board {
 		System.out.println("   A B C D E F G H I J K L M N O P Q R S");
 	}
 
-	// 가로 5개 확인하기
-	boolean checkWidth(String str) {
+	// 전체 확인
+	boolean check(String str) {
 		boolean flag = false;
 		for (int i = 0; i < 19; i++) {
-			for (int j = 0; j < 15; j++) {
-				if(str == map[i][j] && str == map[i][j+1] && str == map[i][j+2]
-						&& str == map[i][j+3] & str == map[i][j+4]) {
-					flag = true;
-				} ;
-			}
-		}
-		return flag;
-	}
-	
-	// 세로 5개 확인하기
-	boolean checkHeight(String str) {
-		boolean flag = false;
-		for (int i = 0; i < 15; i++) {
 			for (int j = 0; j < 19; j++) {
-				if(str == map[i][j] && str == map[i+1][j] && str == map[i+2][j]
-						&& str == map[i+3][j] & str == map[i+4][j]) {
+				// 가로
+				if (j < 15 && str == map[i][j] && str == map[i][j + 1] && str == map[i][j + 2]
+						&& str == map[i][j + 3] & str == map[i][j + 4]) {
 					flag = true;
-				} ;
+				} else if (i < 15 && str == map[i][j]  // 세로 
+						&& str == map[i + 1][j] && str == map[i + 2][j] 
+						&& str == map[i + 3][j] & str == map[i + 4][j]) {
+					flag = true;						// 대각선 \
+				} else if (i < 15 && j < 15 && str == map[i][j] 
+						&& str == map[i + 1][j + 1] && str == map[i + 2][j + 2]
+						&& str == map[i + 3][j + 3] & str == map[i + 4][j + 4]) {
+					flag = true;						// 대각선 /
+				} else if (i < 15 && j > 3 && str == map[i][j] 
+						&& str == map[i + 1][j - 1] && str == map[i + 2][j - 2]
+						&& str == map[i + 3][j - 3] & str == map[i + 4][j - 4]) {
+					flag = true;
+				}
 			}
 		}
 		return flag;
 	}
-	
-	// 대각선 5개 확인하기\
-	boolean checkCross1(String str) {
-		boolean flag = false;
-		for (int i = 0; i < 15; i++) {
-			for (int j = 0; j < 15; j++) {
-				if(str == map[i][j] && str == map[i+1][j+1] && str == map[i+2][j+2]
-						&& str == map[i+3][j+3] & str == map[i+4][j+4]) {
-					flag = true;
-				} ;
-			}
-		}
-		return flag;
-	}
-	
-	// 대각선 5개 확인하기/
-	boolean checkCross2(String str) {
-		boolean flag = false;
-		for (int i = 4; i < 19; i++) {
-			for (int j = 0; j < 15; j++) {
-				if(str == map[i][j] && str == map[i-1][j+1] && str == map[i-2][j+2]
-						&& str == map[i-3][j+3] & str == map[i-4][j+4]) {
-					flag = true;
-				} ;
-			}
-		}
-		return flag;
-	}
-
-	// 전체 확인 (미완성)
-//	boolean checkCross3(String str) {
-//		boolean flag = false;
-//		for (int i = 0; i < 19; i++) {
-//			for (int j = 0; j < 19; j++) {
-//				// 가로 				
-//				if(str == map[i][j] && str == map[i][j+1] && str == map[i][j+2]
-//						&& str == map[i][j+3] & str == map[i][j+4]) {
-//					flag = true;
-//				} ;
-//			}
-//		}
-//		return flag;
-//	}
 
 }

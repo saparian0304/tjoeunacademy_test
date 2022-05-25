@@ -4,8 +4,8 @@ import java.util.Scanner;
 
 public class Omok {
 	public static void main(String[] args) {
-		Player user = new Player("사용자", "O");
-		Player computer = new Player("컴퓨터", "X");
+		Player user = new Player("사용자", "○");
+		Player computer = new Player("컴퓨터", "●");
 		Board board = new Board(19);
 		play(board, user, computer);
 		
@@ -23,8 +23,7 @@ public class Omok {
 			board.print();
 			
 			// 오목 여부 확인
-			if (board.checkWidth(putter.stone) || board.checkHeight(putter.stone) 
-					||board.checkCross1(putter.stone) || board.checkCross2(putter.stone)) {
+				if (board.check(putter.stone)) {
 				System.out.printf("%s의 승리입니다. \n경기 종료", putter.name);
 				break;
 			}
