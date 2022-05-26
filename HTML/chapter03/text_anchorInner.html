@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- a 태그 : 하이퍼링크를 생성하는 태그 -->
+    <!-- href="#abcd"    
+        #은 id 속성을 의미함 -> 문서 내 abcd라는 id를 가진 곳으로 이동
+        id 속성은 중복해서 사용하는 것은 웹 표준에 어긋남
+    -->
+    <a href="#alpha">Alpha 부분</a><br>
+    <a href="#beta">Beta 부분</a><br>
+    <a href="#gamma">Gamma 부분</a><br>
+    <hr>
+    <h1 id="alpha">Alpha</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia, quisquam consectetur! Repudiandae porro expedita debitis deserunt nesciunt iusto voluptatum autem sapiente iure? Nemo rerum dolores neque qui corrupti architecto veritatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur totam explicabo quod beatae inventore rem nisi excepturi illo aliquam! Vero, dolore inventore? Similique, doloremque vero molestias repellendus voluptas atque eaque?  </p>
+    <h1 id="beta">Beta</h1>
+    <p>Harum dolor corporis laborum qui ab, dolores odio repudiandae quibusdam nulla. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, aspernatur. Iusto dolorum eos aliquid enim dolor ipsum eveniet similique rerum blanditiis maiores, libero veniam voluptatem autem! In eligendi perspiciatis eveniet. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Pariatur eos eum corporis optio sed quidem cumque dolorem corrupti suscipit ea dolores provident odit neque recusandae dignissimos cum animi, beatae Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis molestias aperiam vitae dicta dignissimos provident fugiat animi ullam veritatis eos facere, quis nulla iste dolorum explicabo quam perferendis ab exercitationem?</p>
+    <h1 id="gamma">Gamma</h1>
+    <p>Odit at illo tenetur ut iusto perspiciatis consequuntur est ea quod.</p>
+
+    <hr>
+    <h1>하이퍼링크 주소에 비어있는 값을 사용하게 되는 경우 방법들</h1>
+    <a href="#"> #만 사용하는 경우</a> <br>창이 위로 올라가서 불편함<br> <br> 
+    <a href="#;">#;를 사용하는 경우</a> <br>창이 올라가지 않음 <br><br>
+    <a href="javascript:;">javasript:;를 사용하는 경우 </a> <br>창이 올라가지 않음 <br><br>
+    <a href="javascript:alert('안녕 나는 에러야');">실제 javascript를 사용할 경우 </a> <br> 경고창이 나오는 자바스크립트 실행하게 만듬
+
+</body>
+</html>
