@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 Selector Basic</title>
+    <style>
+        .item { color : red;}
+        .header { background-color: blue;}
+        /* h1태그이면서 item클래스 선택자 */
+        h1.item {
+            color:aqua;
+        }
+        /* 
+        선택자가 2개 이상인 경우
+        > : 자식
+        (공백) : 자손
+        , : 각자(따로)
+        (붙어있음) : ~이면서 저거 (둘다)  h1.item (태그선택자+클래스선택자 붙임)
+        */
+    </style>
+</head>
+<body>
+    h1 태그 class="item header" <br>
+    .item { color : red;} <br>
+    .header { background-color: blue;}<br>
+    클래스는 여러개를 사용할 수 있다 (한 태그 내에서 공백으로 구분) <br>
+
+    <h1 class="item header">h1태그, 클래스 : item, header</h1>
+    <h1 class="header">h1태그, 클래스 : header</h1>
+    <h2 class="item">h2태그, 클래스 : item</h1>
+</body>
+</html>

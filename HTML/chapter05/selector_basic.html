@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 Selector Basic</title>
+    <style>
+        /* 태그선택자 : 앞에 아무것도 붙이지 않음 */
+        h1 { 
+            color:red;
+            background-color: orange;
+        }
+        /* 아이디 선택자 : #아이디 */
+        #head {
+            color:gray;
+            background-color:black;
+        }
+        /* 클래스 선택자 : .클래스 */
+        .title {
+            color:blue;
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <h1>태그선택자는 앞에 아무것도 붙이지 않음</h1>
+    <h1>CSS3 선택자 기본</h1>
+    <h2 id="head">아이디 선택자 : #아이디 (한 개의 아이디는 페이지에서 딱 한번만 사용해야 한다 -> 자바스크립트때문)</h2>
+    <h3 class="title">클래스 선택자 : .클래스</h3>
+    <div class="title">클래스는 중복사용이 가능하다</div>
+</body>
+</html>

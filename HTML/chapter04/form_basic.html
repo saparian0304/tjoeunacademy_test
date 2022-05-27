@@ -7,11 +7,15 @@
     <title>Document</title>
 </head>
 <body>
-    <form>  <!-- action : 전송위치, method : 전송방식 -->
+    <form action="" method="">  <!-- action : 전송위치, method : 전송방식 -->
+        <!-- 
+            action 안적으면 자기자신, 
+            method 안적으면 GET  (파일전송은 POST 방식으로 해야함)
+        -->
         <!-- 사용자가 입력하는 입력 양식 -->
-        <input type="text" name="text" value="text 타입"> <br>          <!-- 텍스트 입력 폼 -->
+        <label for="id_">이름 : </label><input type="text" id="id_" name="text" value="text 타입"> <br>          <!-- 텍스트 입력 폼 -->
         <input type="password" name="password" value="password"> <br>   <!-- 입력한 텍스트 화면 노출 X-->
-        <input type="file" name="file" value="file"> <br>               <!-- 파일 첨부-->
+        <input type="file" name="file" value="file"> <br>               <!-- 파일 첨부 : file은 value 속성을 쓸 수 없다. 적용X-->
         <h4>취미</h4>
         <!-- 체크박스(on/off)는 체크된 것만 배열형태로 전달됨 -->
         <input type="checkbox" name="hobby" id="game" value="1"> <label for="game">게임</label>
@@ -34,6 +38,8 @@
         <!-- multiple 속성을 사용할 경우 ctrl을 이용해서 다중선택이 가능 -> 데스크톱에서 관리자모드에서 주로 사용됨 -->
         <select name="food" >
         <!--   <select name="food" multiple>    -->
+            
+            <option value="99" selected>음식선택</option>
             <option value="0">김밥</option>
             <option value="1">떡볶이</option>
             <option value="2">순대</option>
@@ -51,7 +57,8 @@
         </textarea> <br>
 
         <!-- 버튼 -->
-        <input type="button" value="button"> <br>   <!--아무 의미 없음-->
+        <input type="button" value="input 태그 내 type=botton">    <!--아무 의미 없음, value값 : 버튼에 표시되는 텍스트-->
+        <button>button 태그</button> <br>       <!-- 새로 생긴 버튼 태그-->
         <input type="reset" value="reset"> <br>     <!--처음 조건으로 돌아감-->
         <input type="submit" value="submit"> <br>   <!--제출버튼-->
         <input type="image" src="https://via.placeholder.com/230"> <br>     <!-- 이미지 버튼 : 누르면 전송됨-->
