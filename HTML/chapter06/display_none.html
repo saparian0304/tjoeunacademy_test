@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+    <style>
+        #box {
+            /* display: none 태그가 존재하지만 웹페이지상에서 표현되지 않음, 차지하는 영역 X*/
+            /* display: none;  */
+            
+            /* display: inline 글씨 있는 부분만 영역이 잡힘, width, height 속성이 적용되지 않음 */
+            /* display : inline; */
+            background-color: red;
+            width : 300px;
+            height : 100px;
+            /* display: inline-block 기본적으로 글씨 있는 부분만 영역이 잡힘, width, height 속성도 적용이 가능함 */
+            display : inline-block;
+            /* visibility : hidden 눈에는 안보이지만 영역이 잡혀있음 */
+            /* visibility: hidden; */
+            
+        }
+    </style>
+</head>
+<body>
+    <span>더미 객체</span>
+    <div id="box">대상 객체</div>
+    <span>더미 객체</span>
+</body>
+</html>

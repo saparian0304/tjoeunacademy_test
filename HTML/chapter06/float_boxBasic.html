@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float Style Property</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin: 10px;
+            padding: 10px;
+            /* 태그를 왼쪽으로 붙입니다 */
+            float: left;
+        }
+        .footer {
+            /* float 속성을 초기화 */
+            /* 초기화 해주지 않으면 box클래스의 float 속성을 따라감 */
+            clear: left;
+        }
+    </style>
+</head>
+<body>
+    <div>header</div>
+    <div class="box">1</div>
+    <div class="box">2</div>
+    <div class="footer">footer</div>
+</body>
+</html>

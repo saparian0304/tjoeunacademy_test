@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 Selector Basic</title>
+    <style>
+        /* input 태그가 사용 가능할 때
+        background-color 속성에 white 키워드를 적용합니다. */
+        input:enabled { background-color: white;}
+        /* input 태그가 사용 불가능할 때
+        background-color 속성에 gray 키워드를 적용합니다. */
+        input:disabled { background-color: gray;}
+        /* input[disabled="disabled"]{ background-color: gray;}  */
+           /* 위처럼 속성선택자로도 사용이 가능함
+
+           disabled는 전송이 되지 않음 */
+       
+
+        /* input 태그에 포커스를 맞출 때
+        background-color 속성에 orange 키워드를 적용합니다. */
+        input:focus {background-color: orange;}
+    </style>
+</head>
+<body>
+    <h2>사용가능</h2>
+    <input value="hong" readonly>   <!-- readonly 속성을 적용하면 수정이 불가능함-->
+    <h2> 사용 불가능</h2>
+    <input disabled="disabled">
+    <!-- <input disabled> 이렇게 사용하는 것도 가능함 -->
+
+</body>
+</html>

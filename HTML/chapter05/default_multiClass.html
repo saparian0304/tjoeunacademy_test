@@ -12,12 +12,19 @@
         h1.item {
             color:aqua;
         }
+
+        /* 자식 선택자 */
+        h1 > .item {
+            color:yellow;
+        }
         /* 
         선택자가 2개 이상인 경우
         > : 자식
         (공백) : 자손
         , : 각자(따로)
         (붙어있음) : ~이면서 저거 (둘다)  h1.item (태그선택자+클래스선택자 붙임)
+
+        동일한 선택자가 두개 이상일 경우 : 맨 아래 적힌 것이 우선순위를 가진다.
         */
     </style>
 </head>
@@ -27,7 +34,10 @@
     .header { background-color: blue;}<br>
     클래스는 여러개를 사용할 수 있다 (한 태그 내에서 공백으로 구분) <br>
 
-    <h1 class="item header">h1태그, 클래스 : item, header</h1>
+    <h1 class="item header">h1태그, 클래스 : item, header
+        <div class="item"> 자식입니다.</div>
+    </h1>
+        
     <h1 class="header">h1태그, 클래스 : header</h1>
     <h2 class="item">h2태그, 클래스 : item</h1>
 </body>

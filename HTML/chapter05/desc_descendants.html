@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS3 Selector Basic</title>
+    <style>
+        /* 후손선택자 
+        띄어쓰기로 구분 -> 하위 모든 후손이 선택됨 
+
+        자식선택자 
+        > 로 구분 : 바로 아래 자식들만 선택됨
+        */
+        #header > h1 { color: red;}
+        #section h1 { color: orange;}
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1 class="title"> Lorem, ipsum. id=header, class=title</h1>
+        <div id="nav">
+            <h1>Navigation. id=nav</h1>
+        </div>
+    </div>
+    <div id="section">
+        <h1 class="title">Lorem, ipsum.</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt et nisi culpa explicabo voluptatum voluptas at atque error, deserunt quibusdam quasi perferendis veritatis possimus reprehenderit, natus dolorem praesentium eveniet fugit.</p>
+    </div>
+</body>
+</html>
