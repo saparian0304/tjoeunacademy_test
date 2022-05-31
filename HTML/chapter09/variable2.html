@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function sum() {
+            var v1 = Number(document.getElementById('v1').value);
+            var v2 = Number(document.getElementById('v2').value);
+            var v3 = Number(document.getElementById('v3').value);
+            document.getElementById('total').value = v1+v2+v3;
+        }
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>2022-06-01</th>
+            <td>
+                <input type="text" id="v1">
+            </td>
+        </tr>
+        <tr>
+            <th>2022-06-02</th>
+            <td>
+                <input type="text" id="v2">
+            </td>
+        </tr>
+        <tr>
+            <th>2022-06-03</th>
+            <td>
+                <input type="text" id="v3">
+            </td>
+        </tr>
+        <tr>
+            <th>합계</th>
+            <td>
+                <input type="text" id="total">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <input type="button" value="합계" onclick="sum();">
+            </td>
+        </tr>
+    </table>
+    
+</body>
+</html>

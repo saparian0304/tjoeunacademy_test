@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 1080px; 
+            margin: 0 auto;
+            margin-bottom: 8px;
+
+            /* 높이를 지정안한 상태에서 유동영역을 감싸기 위해 사용 */
+            overflow: hidden;
+        }
+        ul.gnb {
+            float: left;
+            padding: 8px 0;
+            background: green;
+        }
+
+        ul.gnb > li {
+            list-style-type: none;
+            float: left;
+            padding: 0 0 0 16px;
+        }
+        ul.gnb > li:nth-child(1) {
+            padding-left: 0;
+        }
+
+        ul.rank {
+            float: right;
+            padding: 8px 0;
+            background: yellow;
+        }
+
+        .rank > li {
+            list-style-type: none;
+        }
+        .left {
+            float: left;
+            width: 740px;
+            height: 428px;
+            background: red;
+            clear: both;
+        }
+
+        .right {
+            float: right;
+            width: 332px;
+            height: 428px;
+            background: blue;
+            
+        }
+
+        .footer {
+            height: 80px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Logo</h1>
+    </div>
+    <div class="container">
+        <ul class="gnb">
+            <li>메일</li>
+            <li>카페</li>
+            <li>블로그</li>
+            <li>쇼핑</li>
+            <li>사전</li>
+            <li>뉴스</li>
+            <li>증권</li>
+            <li>부동산</li>
+            <li>지도</li>
+        </ul>
+        <ul class="rank">
+            <li>실시간 검색 순위</li>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+    <div class="container">
+        <div class="footer"></div>
+    </div>
+</body>
+</html>

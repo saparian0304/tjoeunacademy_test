@@ -1,0 +1,91 @@
+<script>
+    // 변수 선언
+    var name;
+    // 변수 초기화
+    name = "홍길동";
+    console.log(name);
+    // 타입 확인
+    console.log(typeof(name));
+    var number = 10;
+    console.log(typeof(number));
+    number = '김길동';  // 타입이 문자열로 변경
+    console.log(typeof(number));
+
+    
+    /***********************************/
+    /*
+    자료형
+    - number
+    - string
+    - boolean
+    - undefined -> 미정의된 값
+    - function
+    - object
+    */
+    var bool = true;
+    console.log(typeof(bool));
+    // 미정의된 값 -> undefined
+    var test;
+    document.write(test);
+    
+    /***********************************/
+    // 문자열
+    // 쌍따옴표(""), 홑따옴표('') 둘 다 사용 가능
+    // 단, '  ', "  "와 같이 시작과 끝을 동일하게 해야한다.
+    var name = "홍길동";
+    // 저는 "홍길동"입니다.-> 출력
+    console.log('저는 "홍길동"입니다.');
+
+    /***********************************/
+    // 배열 (대괄호 사용, 타입 혼용 가능)
+    var arr = ['홍길동', 5, '김길동', 3.14]; // var로 변수 선언을 표시할 수 있으나 안되어있는 경우도 많다.
+    // 인덱싱은 자바와 동일
+    // 인덱스는 0부터
+    console.log(arr[0]);
+    // 배열을 콘솔 출력
+    console.log(arr);
+
+    // 전역(global)변수, 지역(local)변수
+    var a = 1;      // 전역변수
+    // 함수
+    function test() {
+        a += 1;
+        var b = 2;  // 지역변수 -> 함수 실행이 끝나면 삭제됨
+    }
+    test();
+    console.log(a);     // 전역변수는 어디서든 사용될 수 있음
+    console.log(b);     // 에러 -> scope 바깥에서 지역변수 호출은 사용이 불가함
+    
+    // ####################################################
+    // 형변환
+    // html의 모든 값들은 전부 문자열
+    // 자동형변환
+    var a = 1;
+    var b = '2';
+    var c = a + b;
+    console.log(c);     // String
+
+    var a = '1';
+    var b = 2;
+    var c = a + b;
+    var d = a - b;
+    console.log(c);     // 문자열로 계산
+    console.log(d);     // 숫자로 계산...
+
+    // 명시적 형변환
+    // 숫자 -> 문자
+    var a = 1;
+    console.log(typeof(String(a)));     // String() -> 생성자 함수 (숫자를 문자로 형변환해줌)
+    console.log(typeof(a+''));
+    // 문자 -> 숫자
+    var a = '1';
+    var b = Number(a);          // Number() -> 문자를 숫자로 형변환
+    console.log(typeof(b));
+    var c = parseInt(a);        // parseInt() -> 문자를 숫자로 형변환
+    console.log(typeof(c));
+    // Number()와 parseInt()의 차이점
+    var a = '';
+    console.log(Number(a));     // 0 -> 값이 비어있을 경우 0으로 변환
+    console.log(parseInt(a));   // NaN -> 값이 비어있을 경우 NaN (Not a Number)로 출력
+    
+</script>

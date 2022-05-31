@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>수평 정렬 레이아웃</title>
+    <style>
+        div.container {
+            /* overflow: hidden 유무에 따라 다음 태그가 따라올라오거나 내려가거나 정해진다. 다른 방법으로는 다음 태그에 clear 속성을 사용할 수 있다.  */
+            overflow: hidden;
+        }
+
+        div.item {
+            float: left;
+            margin: 0 3px;
+            padding: 10px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates laudantium autem quae? Repudiandae quia, possimus qui, sapiente voluptates expedita libero inventore quaerat praesentium facilis tempore ex distinctio ullam impedit repellendus.</p>
+    <div class="container">
+        <div class="item"> 메뉴 - 1</div>
+        <div class="item"> 메뉴 - 2</div>
+        <div class="item"> 메뉴 - 3</div>
+        <div class="item"> 메뉴 - 4</div>
+    </div>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam voluptas obcaecati accusamus in, dignissimos aut cum, excepturi illum quae labore nobis praesentium ipsa architecto. Earum, omnis saepe. Temporibus, molestiae aspernatur.</p>
+</body>
+</html>
