@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // f(); // 익명함수는 선언 후에 실행해야한다. 선언 전에 실행하면 에러가 난다.
+        // f2(); // 함수가 정의된 위치에 상관없이 실행된다.
+
+        // 익명함수 선언
+        var f = function() {
+            alert('함수_01');
+            alert('함수_02');
+        };
+
+        var f2 = function() {
+            alert("익명함수 f2")
+        }
+        // f2();       // 함수의 실행 위치, 익명함수 여부에 따라 실행되는 함수가 달라진다.
+
+        // 선언한 함수 : 실행문들이 실행되기 전 미리 로드가 된다.
+        // 익명함수는 선언된 함수와 달리 순서에 따라 실행된다.
+        console.log(typeof(f) + " : " + f);
+        
+        // 함수 선언
+        function f2() {
+            alert('f2');
+        };
+
+        function f2() {         // 함수 이름이 똑같을 경우 덮어씌워진다.
+            alert('f2() 두번째 정의한 함수');
+        };
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,23 @@
+<script>
+    // Date 객체를 선언합니다. : 현재 시간 측정
+    var date = new Date();
+
+    // 요소를 추출합니다.
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var day = date.getDate();   // 일
+    var dayOfWeek = date.getDay();    // 요일
+
+    var hours = date.getHours();
+    var minutes = date.getMinutes();
+    var seconds = date.getSeconds();
+
+    console.log("현재시간: " + date);
+    console.log("현재 년도: "+ year);
+    console.log("월 : " + month);
+    console.log("일 : " + day);
+    console.log("요일 : " + dayOfWeek);
+    console.log("시 : " + hours);
+    console.log("분 : " + minutes);
+    console.log("초 : " + seconds);
+</script>

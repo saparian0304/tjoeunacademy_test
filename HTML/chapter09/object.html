@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var product = {
+            '제품명' : '7D 건조 망고',
+            '유형' : '당절임',
+            '성분' : '망고, 설탕, 메타중아황산나트륨, 치자황색소',
+            '원산지' : '필리핀',
+            'greet' : function() {
+                alert('안녕하세요');
+            }
+        };
+
+        console.log(typeof(product));
+        console.log(product);
+
+        // 객체 속성에 접근하는 두가지 방법
+        console.log(product['제품명']);
+        console.log(product.제품명);
+
+        // 객체 속성에 있는 함수를 사용하기
+        product.greet();
+        var g = product['greet'];
+        g();
+
+        // for in 반복문
+        for (var k in product) {
+            if (typeof(product[k])=='function') {
+                product[k]();
+            } else {
+                console.log(product[k]);
+            }
+        }
+
+        /*
+        자바스크립트 / 파이썬
+        값이 있으면 true;    (-1, ' '(공백), '0')
+        값이 없으면 false;   ( 0, ''(빈문자열), undefined)
+        */
+
+        /*
+        비교연산 ( == , === )
+        == 
+         - 값이 같은지 비교, 문자열 비교도 가능
+         - 객체인 경우 주소 비교
+
+        ===
+         - 값도 같고, 타입도 같아야 true
+        */
+        console.log('비교연산 출력 결과'); 
+        console.log(1 == '1');  // 비교시점에 자동 형변환
+        
+        var arr1 = [1,2,3];
+        var arr2 = [1,2,3];
+        console.log(arr1==arr2);    // 주소 비교
+        var arr3 = arr1;        // 주소가 대입
+        console.log(arr1==arr3);    
+
+        arr3[0] = 4;
+        console.log(arr1[0]);   // 4 : 주소값이 같기 때문
+
+        console.log(1 ==='1');   // 값이 같지만 타입이 달라서 false
+        console.log(1 !=='1');   // 값이나 타입이 다르면 true
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

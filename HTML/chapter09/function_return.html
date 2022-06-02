@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>매개변수와 반환값이 있는 함수</title>
+    <script>
+        // 함수 선언
+        function f(x) {
+            return x * x;
+        };
+
+        function f2(x) {
+            return 2*x +1;
+        };
+
+        function f3(x) {
+            return 3*x*x + 52*x + 273;
+        };
+        // 함수 호출
+        alert(f(3));
+        alert(f2(3));
+        alert(f3(3));
+
+        /*
+        return 
+        - 값을 가지고 돌아감
+        - 그냥 돌아감 -> 함수의 실행을 중지시킴
+        */
+       function aaa() {
+           console.log(1);
+        //    return;
+           console.log(2);
+       }
+       aaa();
+
+       /*
+       callback
+       call (실행),  back(뒤) -> 뒤에서 실행
+       - 매개변수로 함수를 전달해주고 함수 안에서 매개변수 함수를 실행
+
+       - 함수가 매개변수
+       - 매개변수가 된 함수를 본 함수 내에서 실행
+       */
+
+       // 계산기 함수 매개변수(계산함수, 숫자1, 숫자2)
+       function calculator(f, x, y) {
+           return f(x,y);
+       }
+
+       // 더하기
+       function add(x,y) {
+           return x+y;
+       }
+       // 빼기
+       function minus(x,y) {
+           return x-y;
+       }
+
+    //    var r = calculator(add, 10, 20);
+       var r = calculator(minus, 10, 20);
+       console.log(r);
+
+       // callback 함수 응용 <- 익명함수를 이용하기
+       var r = calculator(function (x, y) {
+        return x+y;
+       }, 10, 20);
+
+       console.log(r);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

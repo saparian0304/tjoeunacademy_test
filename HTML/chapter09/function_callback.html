@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>콜백 함수</title>
+    <script>
+        function callTenTimes(callback) {
+            for (var i=0; i<10; i++) {
+                callback();
+            }
+        }
+
+        var callback = function() {
+            alert('함수호출');
+        };
+
+        // callTenTimes(callback);
+
+        function aaa() {
+            console.log('aaa');
+        }
+
+        function aaa() {
+            console.log('aaa2')
+        }
+        // 코드가 덮어씌워지는 것을 방지하기 위해 함수 내부에 다시 함수를 정의할 수 있음
+        function bbb() {
+            function aaa() {
+                console.log('aaa');
+            }
+            aaa();
+        }
+
+        bbb();
+
+
+        /*
+        closure -> 클로저
+         - 독립적인 변수를 가지는 함수 
+         - 내부함수를 사용해서 별도의 스코프 정의        
+        */
+        function greet(name) {
+            var msg = name + "님 안녕하세요";       // 지역변수 : 항수 실행 종료시 소멸됨
+            return function() {             // return에도 함수를 적용할 수 있음
+                console.log(msg);
+            };
+        }
+
+        greet('홍길동')();
+        // console.log(msg);   // 지역변수는 외부에서 사용할 수 없음
+        var a= function (greet, name) {
+            console.log(greet(name))
+        }
+
+        //클로저 함수를 각각의 변수에 할당하면 각자 독립적으로 값을 사용하고 보존할 수 있다
+        var f1 = greet('홍길동');
+        var f2 = greet('이순신');
+        f1();
+        f2();
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 변수를 선언합니다.
+        var date = new Date();
+        var hours = date.getHours();
+
+        // 조건문
+        if (hours < 12) {
+            // 표현식 "hours < 12" 가 참일 때 실행됩니다.
+            alert('오전입니다.')
+        } else {
+            alert('오후입니다.')
+        }
+
+
+        // 조건문의 중첩
+        var mother = false;
+        var money = true;
+        var rice = true;
+
+        if (mother) {
+            console.log("밥 주세요");
+        } else {
+            if ( money) {
+                console.log("시켜먹자");
+            } else {
+                if (rice) {
+                    console.log("집에 있는 밥 먹자");
+                } else {
+                    console.log("굶자");
+                }
+            }
+        }
+        
+        // 중첩없이 4개의 조건으로 처리
+        if (mother) {
+            console.log("밥 주세요");
+        } else if (money) {
+            console.log("시켜먹자");
+        } else if (rice) {
+            console.log("집에 있는 밥 먹자");
+        } else {
+            console.log("굶자");
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
