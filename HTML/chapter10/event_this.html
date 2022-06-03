@@ -1,0 +1,18 @@
+<script>
+    window.onload = function() {
+
+        var btns = document.querySelectorAll('.btn');
+        // console.log(btns);
+        for (var i=0; i<btns.length; i++) {
+            btns[i].onclick = function() {
+                // console.log(this);
+                this.innerHTML = '클릭';
+            }
+        }
+    }
+</script>
+<body>
+    <button class='btn'>버튼1</button>
+    <button class='btn'>버튼2</button>
+    <button class='btn'>버튼3</button>
+</body>

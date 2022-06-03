@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Basic</title>
+    <script>
+        // 이벤트를 연결
+        window.onload = function() {
+            // 문서 객체를 선택
+            var header = document.querySelectorAll('h1');
+            console.log(header);
+            // 문서 객체를 조작
+            for (var i=0; i<header.length; i++) {
+                header[i].style.color = 'orange';
+                header[i].style.background = 'red';
+                header[i].innerHTML = '<i>From JavaScript <br>우하하하<i>';  
+
+            }
+            // innerHTML : 태그 내부 텍스트가 바뀜, 태그도 넣을 수 있음
+        }
+    </script>
+</head>
+<body>
+    <h1>Header</h1>
+    <h1>Header</h1>
+    <h1>querySelector는 선택자 1개를 선택함.<br>동일한 선택자가 여러개 있을 경우 가장 먼저 등장하는 것을 선택함</h1>
+    querySelectorAll 은 배열로 요소를 가짐
+</body>
+</html>

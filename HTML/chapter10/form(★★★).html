@@ -1,0 +1,38 @@
+<script>
+    function login() {
+        // alert('login'); 함수 실행되는지 확인
+        // 아이디를 입력안하면 아이디를 입력하세요 alert
+        if (document.getElementById('id').value.trim()=='') {
+        // if (document.querySelector("input[name='id']").value.trim()=='') {
+            alert('아이디를 입력하세요');
+            return false;
+        };
+        if (document.querySelector("input[name='pwd']").value=='') {
+            alert('비밀번호를 입력하세요');
+            return false;
+        };
+    };
+</script>
+<body>
+    <form action='login.jsp' onsubmit="return login();">
+        <table border='1'>
+            <tr>
+                <th>아이디</th>
+                <td>
+                    <input type='text' name='id' id='id'>
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td>
+                    <input type="password" name='pwd'>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type='submit' value="로그인">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

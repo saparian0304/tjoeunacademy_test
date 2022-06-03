@@ -1,0 +1,14 @@
+<script>
+    // 이벤트를 연결
+    window.onload = function() {
+        // setAttribute : 속성을 지정해줄 수 있음
+        document.body.setAttribute('data-custom', 'value');
+
+        // getAttribute : 속성을 추출
+        var dataCustom = document.body.getAttribute('data-custom');
+        alert(dataCustom);
+    }
+</script>
+<body>
+
+</body>

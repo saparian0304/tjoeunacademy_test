@@ -1,0 +1,21 @@
+<script>
+    window.onload = function() {
+
+        document.getElementById('div1').onclick = function() {
+            alert('div');
+        };
+
+        document.getElementById('a1').onclick = function(e) {
+            alert('a');
+            // 기본이벤트 제거
+            e.preventDefault();
+            // 이벤트 전파 제거 (이벤트 중첩 발생을 막아줌)
+            e.stopPropagation();
+        };
+    }
+</script>
+<body>
+    <div id="div1">
+        <a href="https://www.naver.com" id="a1">클릭</a>
+    </div>
+</body>

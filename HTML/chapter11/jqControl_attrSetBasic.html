@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        // 속성값을 입력해서 속성 지정하기
+        // $(function() {
+        //     $('img').attr('alt', 'jQuery 라이브러리를 사용한 속성 지정');
+        //     $('img').attr('src', '/img/logo.png');
+        //     $('img').attr('width', '100');
+        // });
+
+        // 객체를 이용해서 속성 지정하기
+        // $(function() {
+        //     $('img').attr({
+        //         alt : 'jQuery 라이브러리를 사용한 속성 지정',
+        //         src : '/img/logo.png',
+        //         width : 100
+        //     });
+        // });
+
+        // 함수를 이용해서 속성 지정하기
+        // $(function() {
+        //     $('img').attr({
+        //         alt: 'jQuery 라이브러리를 사용한 속성 지정',
+        //         src : '/img/logo.png',
+        //         width : function(id) {
+        //             var size = ( id* 1) * 100;
+        //             return size;
+        //         }
+        //     });
+        // });
+        $(function() {
+            $('img').attr({
+                alt: 'jQuery 라이브러리를 사용한 속성 지정',
+                src : '/img/logo.png',
+            });
+
+            $('img:nth-child(2n-1)').attr('width' ,function(d) {
+                var size = ( d+ 1) * 100;
+                // alert(d)
+                return size;
+            });
+
+            // $('img').attr();
+        });
+    </script>
+</head>
+<body>
+    <img>
+    <img>
+    <img>
+    <img>
+    <img>
+</body>
+</html>

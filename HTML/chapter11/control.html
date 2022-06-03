@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $('#btn').click(function() {
+                // alert('클릭');
+                // $('#div1').append('<a href="">추가</a>');   // 태그 안쪽 끝에 추가
+                // $('#div1').after('<a href="">추가</a>');   // 태그 바깥 뒤에 추가
+                // $('#div1').prepend('<a href="">추가</a>');   // 태그 안쪽 앞에 추가
+                // $('#div1').before('<a href="">추가</a>');   // 태그 바깥쪽 앞에 추가
+
+                /*
+                반대되는 것들
+                appendTo, prependTo
+                insertAfter, insertBefore
+                */
+
+                $('#div1').after($('#div1').clone());
+
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <input type='button' id='btn' value="추가">
+    <div id='div1'>DIV</div>
+</body>
+</html>

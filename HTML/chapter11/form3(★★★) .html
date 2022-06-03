@@ -1,0 +1,42 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    function login() {
+        $('input[name="id"]').val('홍');
+        // alert('login'); 함수 실행되는지 확인
+        // 아이디를 입력안하면 아이디를 입력하세요 alert
+        // if (document.getElementById('id').value.trim()=='') {
+        // if (document.querySelector("input[name='id']").value.trim()=='') {
+        if ($('input[name="id"]').val().trim()==''){
+            alert('아이디를 입력하세요');
+            return ;
+        };
+        if (document.querySelector("input[name='pwd']").value=='') {
+            alert('비밀번호를 입력하세요');
+            return;
+        };
+        document.getElementById('frm').submit();
+    };
+</script>
+<body>
+    <form id='frm' action='login.jsp'>
+        <table border='1'>
+            <tr>
+                <th>아이디</th>
+                <td>
+                    <input type='text' name='id' id='id'>
+                </td>
+            </tr>
+            <tr>
+                <th>비밀번호</th>
+                <td>
+                    <input type="password" name='pwd'>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: center;">
+                    <input type='button' value="로그인" onclick="login();">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>

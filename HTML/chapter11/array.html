@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $("img").each(function(idx, e){
+                // console.log(idx, e);
+                console.log($(e).attr('alt'));
+            });
+            // $('img').click(function(){
+            //     // console.log($(this).index());
+            //     var idx = $(this).index();
+            //     $('span').css('color','');
+            //     $('span').eq(idx).css('color', 'red');
+            //     // eq()
+            // });
+           
+            // on() 메서드
+            // $('img').on('mouseover', function(){
+            // $('img').bind('hover', function(){
+            $('img').hover(function(){
+                var idx = $(this).index();
+                $('span').css('color','');
+                $('span').eq(idx).css('color', 'red');
+                // eq()
+            }, function() {
+                $('span').css('color','')
+            });
+
+            $('#btn').click(function(){
+                $('img').off('mouseover');
+            })
+        });
+    </script>
+</head>
+<body>
+    <img src='/img/logo.png' alt="이미지1">
+    <img src='/img/logo.png' alt="이미지2">
+    <img src='/img/logo.png' alt="이미지3">
+    <img src='/img/logo.png' alt="이미지4">
+    <img src='/img/logo.png' alt="이미지5">
+    <hr>
+    <span>이미지1</span>
+    <span>이미지2</span>
+    <span>이미지3</span>
+    <span>이미지4</span>
+    <span>이미지5</span>
+    <input type="button" id="btn" value="이벤트 끄기">
+</body>
+</html>
