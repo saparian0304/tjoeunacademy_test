@@ -18,22 +18,34 @@ public class Main {
 			System.out.println("진행하고 싶은 메뉴를 입력해주세요(1~5) : ");
 			int input = inputNum();
 			
-			
-			
 			// 상품 입력시 중복여부 체크필요
 			if (input == 1) {
 				Item i = new Item();
 				menu("1. 상품 입력");
 				System.out.print("상품 번호: ");
-				i.setItemNo(inputNum());
+				int tempNo = inputNum();
+				if (tempNo != 0 ) {
+					i.setItemNo(tempNo);
+				} else {
+					continue;
+				}
+				
 				System.out.print("상품명: ");
 				i.setItemName(sc.next());
+
 				System.out.print("상품 가격: ");
-				i.setPrice(inputNum());
+				tempNo = inputNum();
+				if (tempNo != 0 ) {
+					i.setPrice(tempNo);
+				} else {
+					continue;
+				}
 				itemList.add(i);
+				
 			} else if (input == 2) {
 				menu("2. 상품 목록");
 				listOfItem(itemList);
+				
 			} else if (input == 3) {
 				menu("3. 상품 구매");
 				System.out.print("구매할 상품 번호를 입력해주세요");
@@ -45,9 +57,16 @@ public class Main {
 						break;
 					}
 				}
+				if(o.getI().getItemName() == null) {
+					System.out.println("입력하신 상품은 존재하지 않습니다.");
+					continue;
+				}
 				System.out.print("구매 수량을 입력해주세요");
-				o.setCount(inputNum());
-				orderList.add(o);
+				int tempNo = inputNum();
+				if (tempNo != 0) {
+					o.setCount(tempNo);
+					orderList.add(o);
+				}
 			} else if (input == 4) {
 				menu("4. 장바구니 확인");
 				int sum = 0;
@@ -78,7 +97,10 @@ public class Main {
 		System.out.println("====================");
 	}
 	
-	// 상품 목록 메서드
+	/**
+	 * 상품목록 메서드
+	 * @param list
+	 */
 	public static void listOfItem(List<Item> list) {
 		System.out.println("상품번호\t상품명\t가격");
 		for(int i=0; i<list.size();i++) {
@@ -88,7 +110,10 @@ public class Main {
 					list.get(i).getPrice());
 		}
 	}
-
+	/**
+	 * 숫자 입력받기
+	 * @return 숫자가 아니면 0을 반환
+	 */
 	public static int inputNum() {
 		Scanner scan = new Scanner(System.in);
 		String temp = scan.nextLine();
