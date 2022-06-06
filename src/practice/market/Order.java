@@ -1,13 +1,13 @@
 package practice.market;
 
 public class Order {
-	private Item i = new Item();
+	private ItemVO i = new ItemVO();
 	private int count;
 	
-	public Item getI() {
+	public ItemVO getI() {
 		return i;
 	}
-	public void setI(Item i) {
+	public void setI(ItemVO i) {
 		this.i = i;
 	}
 	public int getCount() {

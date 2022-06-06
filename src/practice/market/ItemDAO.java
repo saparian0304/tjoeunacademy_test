@@ -29,20 +29,19 @@ public class ItemDAO {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println("데이터베이스 접속");
+//		System.out.println("데이터베이스 접속");
 	}
 	
 	public int insert(ItemVO vo) {
 		int result = 0;
 		
-		String sql = "INSERT INTO ITEM(itemNo, itemName, price) VALUES(ITEM_AUTO,'아메리카노',3500);";
+		String sql = String.format("INSERT INTO ITEM(itemNo, itemName, price, category) VALUES(ITEM_AUTO.nextval, '%s', %d, '%s')",
+				vo.getItemName(), 
+				vo.getPrice(),
+				vo.getCategory());
 		try {
 			pstat = conn.prepareStatement(sql);
-//			pstat.setString(1, "ITEM_AUTO.nextval");
-//			pstat.setString(2, vo.getItemName());
-//			pstat.setInt(3, vo.getPrice());
 			result = pstat.executeUpdate();
-			System.out.println(sql);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
@@ -50,9 +49,9 @@ public class ItemDAO {
 		return result;
 	}
 	
-	public int select() {
+	public List<ItemVO> select() {
 		List<ItemVO> itemList = new ArrayList<ItemVO>();
-		String sql = "SELECT * FROM ITEM;";
+		String sql = "SELECT * FROM ITEM";
 		try {
 			pstat = conn.prepareStatement(sql);
 			rs = pstat.executeQuery();
@@ -69,6 +68,6 @@ public class ItemDAO {
 			e.getMessage();
 		}
 		
-		return 0;
+		return itemList;
 	}
 }

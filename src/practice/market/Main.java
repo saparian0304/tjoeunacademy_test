@@ -1,5 +1,6 @@
 package practice.market;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,7 +8,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		List<Item> itemList = new ArrayList<Item>();
+		List<ItemVO> itemList = new ArrayList<ItemVO>();
 		List<Order> orderList = new ArrayList<Order>();
 		
 		Scanner sc = new Scanner(System.in);
@@ -22,16 +23,9 @@ public class Main {
 			if (input == 1) {
 				ItemVO i = new ItemVO();
 				menu("1. 상품 입력");
-//				System.out.print("상품 번호: ");
-//				int tempNo = inputNum();
-//				if (tempNo != 0 ) {
-//					i.setItemNo(tempNo);
-//				} else {
-//					continue;
-//				}
 				
 				System.out.print("상품명: ");
-				i.setItemName(sc.next());
+				i.setItemName(sc.nextLine());
 
 				System.out.print("상품 가격: ");
 				int tempNo = inputNum();
@@ -40,12 +34,21 @@ public class Main {
 				} else {
 					continue;
 				}
+				
+				System.out.print("카테고리: ");
+				i.setCategory(sc.nextLine());
 				ItemDAO dao = new ItemDAO();
 				dao.insert(i);
+				try {
+					dao.conn.close();
+				} catch (SQLException e){  e.getMessage(); }
 				
 			} else if (input == 2) {
-				menu("2. 상품 목록");
-				listOfItem(itemList);
+				ItemDAO dao = new ItemDAO();
+				listOfItem(dao.select());
+				try {
+					dao.conn.close();
+				} catch (SQLException e){  e.getMessage(); }
 				
 			} else if (input == 3) {
 				menu("3. 상품 구매");
@@ -71,9 +74,9 @@ public class Main {
 			} else if (input == 4) {
 				menu("4. 장바구니 확인");
 				int sum = 0;
-				System.out.println("상품번호\t상품명\t가격");
+				System.out.printf("상품번호\t상품명        \t가격");
 				for (int i=0; i<orderList.size(); i++) {
-					System.out.printf("%s\t%d\t%d%n",
+					System.out.printf("%s\t%15d\t%d%n",
 							orderList.get(i).getI().getItemName(), 
 							orderList.get(i).getCount(), 
 							orderList.get(i).getI().getPrice()*orderList.get(i).getCount() );
@@ -102,13 +105,14 @@ public class Main {
 	 * 상품목록 메서드
 	 * @param list
 	 */
-	public static void listOfItem(List<Item> list) {
-		System.out.println("상품번호\t상품명\t가격");
+	public static void listOfItem(List<ItemVO> list) {
+		System.out.printf("상품번호\t            상품명   \t가격\t카테고리%n");
 		for(int i=0; i<list.size();i++) {
-			System.out.printf("%d\t%s\t%d 원%n",
+			System.out.printf("%d\t%15s\t%d 원\t%s%n",
 					list.get(i).getItemNo(), 
 					list.get(i).getItemName(), 
-					list.get(i).getPrice());
+					list.get(i).getPrice(),
+					list.get(i).getCategory());
 		}
 	}
 	/**
