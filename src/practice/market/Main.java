@@ -20,27 +20,28 @@ public class Main {
 			
 			// 상품 입력시 중복여부 체크필요
 			if (input == 1) {
-				Item i = new Item();
+				ItemVO i = new ItemVO();
 				menu("1. 상품 입력");
-				System.out.print("상품 번호: ");
-				int tempNo = inputNum();
-				if (tempNo != 0 ) {
-					i.setItemNo(tempNo);
-				} else {
-					continue;
-				}
+//				System.out.print("상품 번호: ");
+//				int tempNo = inputNum();
+//				if (tempNo != 0 ) {
+//					i.setItemNo(tempNo);
+//				} else {
+//					continue;
+//				}
 				
 				System.out.print("상품명: ");
 				i.setItemName(sc.next());
 
 				System.out.print("상품 가격: ");
-				tempNo = inputNum();
+				int tempNo = inputNum();
 				if (tempNo != 0 ) {
 					i.setPrice(tempNo);
 				} else {
 					continue;
 				}
-				itemList.add(i);
+				ItemDAO dao = new ItemDAO();
+				dao.insert(i);
 				
 			} else if (input == 2) {
 				menu("2. 상품 목록");
