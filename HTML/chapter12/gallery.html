@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div.item:nth-child(1) {background: blueviolet;}
+        div.item:nth-child(2) {background: pink;}
+        div.item:nth-child(3) {background: burlywood;}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function() {
+            // 변수 선언
+            var width = $('[data-role="slider"]').attr('data-width');
+            var height = $('[data-role="slider"]').attr('data-height');
+            var count = $('[data-role="slider"] div.item').length;
+
+            // 스타일을 적용합니다.
+            $('[data-role="slider"]').css({
+                position: 'relative',
+                overflow: 'hidden',
+                width: width,
+                height: height
+            }).find('.container').css({
+                position: 'absolute',
+                width: count*width,
+                overflow: 'hidden'
+            }).find('.item').css({
+                width: width,
+                height: height,
+                float: 'left'
+            });
+
+            // 변수 선언
+            var currentPage = 0;
+            var changePage = function() {
+                $('[data-role="slider"] > .container').animate({
+                    left: -currentPage * width
+                }, 500);
+            };
+
+            // 이벤트 연결
+            $('#left-button').click(function() {
+                if (currentPage > 0) {
+                    // 왼쪽으로 이동
+                    currentPage = currentPage -1;
+                    changePage();
+                } else if (currentPage== 0){
+                    currentPage = 2;
+                    changePage();
+                }
+            });
+
+            $('#right-button').click(function() {
+                if(currentPage < count-1) {
+                    // 오른쪽으로 이동
+                    currentPage = currentPage +1;
+                    changePage();
+                } else if (currentPage== 2){
+                    currentPage = 0;
+                    changePage();
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+    <div data-role="slider" data-width="500" data-height="300">
+        <div class="container">
+            <div class="item">
+                <h1>Lorem ipsum dolor sit amet.</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime voluptatem illo placeat doloribus atque perferendis! Neque perferendis tempore consequatur, rerum enim, deserunt iusto velit necessitatibus commodi totam labore facere nemo.</p>
+            </div>
+            <div class="item">
+                <h1>Lorem ipsum dolor sit amet.</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime voluptatem illo placeat doloribus atque perferendis! Neque perferendis tempore consequatur, rerum enim, deserunt iusto velit necessitatibus commodi totam labore facere nemo.</p>
+            </div>
+            <div class="item">
+                <h1>Lorem ipsum dolor sit amet.</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime voluptatem illo placeat doloribus atque perferendis! Neque perferendis tempore consequatur, rerum enim, deserunt iusto velit necessitatibus commodi totam labore facere nemo.</p>
+            </div>
+        </div>
+    </div>
+    <button id="left-button">←</button>
+    <button id="right-button">→</button>
+</body>
+</html>

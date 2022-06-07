@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <div>클릭</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function() {
+            var colors = ['red', 'green', 'blue']
+            var currentColor = 0;
+            $('div').css({
+                backgroundColor: colors[currentColor]
+            }).click(function() {
+                currentColor++;
+                if(currentColor==3) {
+                    currentColor = 0;
+                };
+                // $(this).css({
+                //     backgroundColor:colors[currentColor]});
+                // })
+                $(this).css({ backgroundColor:colors[currentColor++%3]});
+            });
+        })
+        
+    </script>
+    <style>
+        div {
+            width: 100px;
+            height: 50px;
+            line-height: 50px;  /* 글자를 수직 중앙 정렬*/
+            text-align: center; /* 글자를 수평 중앙 정렬*/
+            color: white;
+            border: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    
+</body>
+</html>

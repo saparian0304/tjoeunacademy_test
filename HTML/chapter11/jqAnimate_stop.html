@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function() {
+            // 변수 선언
+            var clearQueue = false;
+            var goToEnd = false;
+
+            // 이벤트 연결
+            $('#clearQueue').change(function() {
+                clearQueue = $(this).prop('checked');
+            });
+
+            $('#goToEnd').change(function() {
+                goToEnd = $(this).prop('checked');
+            });
+
+            $('#stopButton').click(function() {
+                $('#box').stop(clearQueue, goToEnd);
+            });
+
+            $('#box').css({
+                width: 100,
+                height: 100,
+                background: 'red'
+            });
+
+            /*
+            반복 중지
+            clearInterval(변수);
+            */
+           
+           var interval = setInterval(function() {
+               $('#box').animate({
+                   width: 200
+                }, 1000).delay(1000).animate({
+                    width: 100,
+                    height: 100
+                }, 1000);
+            }, 3000)
+            
+            $('#stopInterval').click(function(){
+                clearInterval(interval);
+            });
+
+        })
+    </script>
+</head>
+<body>
+    <!-- 입력 양식 -->
+    <label>clearQueue</label>
+    <input id="clearQueue" type="checkbox">
+    <br>
+    <label>goToEnd</label>
+    <input id="goToEnd" type="checkbox">
+    <br>
+    <button id="stopButton">Stop</button>
+    <button id="stopInterval">반복중지</button>
+    <!-- 애니메이션 -->
+    <div id="box"></div>
+</body>
+</html>

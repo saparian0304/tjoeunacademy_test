@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * { margin : 0; padding: 0 }
+
+        .box {
+            background: black;
+            margin: 5px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script>
+        $(function() {
+            for (var i=0; i<100; i++) {
+                $('<div></div>').addClass('box').css({
+                    width:100,
+                    height: Math.floor(Math.random() * 100) +50
+                }).appendTo('body');
+            }
+
+            $('body').masonry({
+                columnWidth: 110
+            });
+        });
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

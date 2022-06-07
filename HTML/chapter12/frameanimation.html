@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        window.onload = function() {
+            // 변수를 선언합니다.
+            var count = 0;
+            var image = document.getElementById('image');
+            var frames = [
+                '0.png', '1.png', '2.png', '3.png', '4.png', 
+                '5.png', '6.png', '7.png', '8.png', '9.png', 
+                '10.png', '11.png', '12.png', '13.png', '14.png', 
+            ];
+
+            var interval;
+            
+            document.getElementById('start').onclick = function() {
+                clearInterval(interval);
+                interval = setInterval(function () {
+                    image.src = '/img/'+frames[count%frames.length];
+                    count += 1;
+                }, 1000/20);
+            }
+            document.getElementById('stop').onclick = function() {
+                clearInterval(interval);
+            }
+            // 제이쿼리로 풀기
+            // var img = setInterval(function () {
+            //         image.src = '/img/'+frames[count%frames.length];
+            //         count += 1;
+            // }, 1000/20);
+
+            // $('#stop').click(function() {
+            //         clearInterval(img);
+            // })
+            // $('#start').click(function() {
+            //         clearInterval(img);
+            //         img = setInterval(function () {
+            //         image.src = '/img/'+frames[count%frames.length];
+            //         count += 1;
+            //     }, 1000/20);
+            // })
+        }
+    </script>
+</head>
+<body>
+    <button id="start">start</button>
+    <button id="stop">stop</button>
+    <br>
+    <img id="image">
+</body>
+</html>

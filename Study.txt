@@ -3101,6 +3101,86 @@ $('img').on('mouseover', function(){ });
 $('img').bind('hover', function(){  });
 $('img').hover(function(){  });
 
+=======================================
+22.06.07 금 - 23일차
+
+11.5 시각효과
+11.5.1 시각효과 메서드
+- show(속도), hide(속도), toggle(속도)
+- slideDown(속도), slideUP(속도), slideToggle(속도)
+- fadeIn(속도), fadeOut(속도), fadeToggle(속도)
+
+메서드 사용 : 3가지 종류
+.메서드();
+.메서드(duration);
+.메서드(duration, callback);
+
+11.5.2 애니메이션 효과
+
+- $(selector).animate(속성객체);
+- $(selector).animate(속성객체, 시간);
+- $(selector).animate(속성객체, 시간, 콜백함수);
+
+반복해서 함수 실행
+- setInterval(callback, 시간)
+
+반복 중지 (매개변수에 중지할 함수를 변수로 넣어줘야함)
+- clearInterval(변수)
+
+12장 자바스크립트와 jQuery 라이브러리 응용
+
+12.1 입력 양식 포커스
+
+12.2 프레임 애니메이션
+
+setInterval(함수, 시간) : 특정 시간마다 함수 실행
+setTimeout(함수, 시간) : 특정 시간 후에 함수 실행 (반복 X)
+clearInterval(식별번호) : setInterval() 함수로 설정한 타이머 제거
+clearTimeout(식별번호) : setTimeout() 함수로 설정한 타이머 제거
+
+12.3 문서 객체 생성과 추가
+$(대상).prepend(객체)
+$(대상).append(객체)
+$(대상).before(객체)
+$(대상).after(객체)
+
+$(객체).prependTo(대상)
+$(객체).appendTo(대상)
+$(객체).beforeTo(대상)
+$(객체).afterTo(대상)
+
+
+
+
+12.4 무한 스크롤
+document.height = 전체 문서의 높이
+window.scrollTop = 스크롤 높이
+window.height = 브라우저 창의 높이
+
+(document.height == window.scrollTop + window.height) 이면 문서 추가
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

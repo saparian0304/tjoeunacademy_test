@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function() {
+            var appendDocument = function() {
+                for (var i=0; i<20; i++) {
+                    $('<h1>Infinity Scroll</h1>').appendTo('body');
+                }
+            }
+            // 초기에 문서 객체 추가
+            appendDocument();
+
+            $(window).scroll(function() {
+                var scrollHeight = $(window).scrollTop() + $(window).height();
+                var documentHeight = $(document).height();
+
+                if (scrollHeight+10 >= documentHeight){
+                    appendDocument();
+                }
+            })
+        })
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
