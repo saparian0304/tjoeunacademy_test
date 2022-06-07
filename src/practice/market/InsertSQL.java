@@ -16,11 +16,11 @@ public class InsertSQL {
 				"에스프레소 커피", "에스프레소 커피", "콜드브루 커피", "콜드브루 커피",  "콜드브루 커피"};
 		
 		for (int i=0; i<15; i++) {
-//			String str = String.format("INSERT INTO ITEM VALUES (ITEM_AUTO.nextval, %d, '%s', '%s');", price[i], menu[i], category[i]);
-			String str = String.format("%d\t%15s\t%s%n",
-					price[i], 
-					menu[i], 
-					category[i] );
+			String str = String.format("INSERT INTO ITEM VALUES (ITEM_AUTO.nextval, %d, '%s', '%s');%n", price[i], menu[i], category[i]);
+//			String str = String.format("%d\t%15s\t%s%n",
+//					price[i], 
+//					menu[i], 
+//					category[i] );
 			
 			System.out.printf(str);
 		}

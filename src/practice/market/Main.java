@@ -10,16 +10,19 @@ public class Main {
 	public static void main(String[] args) {
 		List<ItemVO> itemList = new ArrayList<ItemVO>();
 		List<Order> orderList = new ArrayList<Order>();
+		ItemDAO dao = new ItemDAO();
+		itemList = dao.select();
 		
 		Scanner sc = new Scanner(System.in);
 		while(true) {
 			System.out.println("=========================================================================");
-			System.out.println("1. 상품 입력 | 2. 상품목록 | 3. 상품구매 | 4. 장바구니 확인 | 5. 프로그램 종료");		// 카테고리, 상품번호, 상품명, 가격 -> 상품목록 리스트에 add
+			System.out.println("1. 상품 입력 | 2. 상품목록 | 3. 상품구매 | 4. 장바구니 확인 | 5. 프로그램 종료 | 6. 로그인");		// 카테고리, 상품번호, 상품명, 가격 -> 상품목록 리스트에 add
 			System.out.println("=========================================================================");
 			System.out.println("진행하고 싶은 메뉴를 입력해주세요(1~5) : ");
 			int input = inputNum();
 			
 			// 상품 입력시 중복여부 체크필요
+			// 에러가 리턴될 경우 종료
 			if (input == 1) {
 				ItemVO i = new ItemVO();
 				menu("1. 상품 입력");
@@ -37,14 +40,15 @@ public class Main {
 				
 				System.out.print("카테고리: ");
 				i.setCategory(sc.nextLine());
-				ItemDAO dao = new ItemDAO();
+				dao = new ItemDAO();
 				dao.insert(i);
 				try {
 					dao.conn.close();
 				} catch (SQLException e){  e.getMessage(); }
 				
 			} else if (input == 2) {
-				ItemDAO dao = new ItemDAO();
+				itemList.clear();
+				dao = new ItemDAO();
 				listOfItem(dao.select());
 				try {
 					dao.conn.close();
@@ -52,9 +56,14 @@ public class Main {
 				
 			} else if (input == 3) {
 				menu("3. 상품 구매");
-				System.out.print("구매할 상품 번호를 입력해주세요");
+				itemList.clear();
+				dao = new ItemDAO();
+				itemList = dao.select();
+				listOfItem(itemList);
+				System.out.print("구매할 상품 번호를 입력해주세요. : ");
 				Order o = new Order();
 				int no = inputNum();	
+				System.out.println();
 				for (int i=0; i<itemList.size(); i++) {
 					if (no == itemList.get(i).getItemNo()) {
 						o.setI(itemList.get(i));
@@ -74,18 +83,28 @@ public class Main {
 			} else if (input == 4) {
 				menu("4. 장바구니 확인");
 				int sum = 0;
-				System.out.printf("상품번호\t상품명        \t가격");
+				System.out.printf("상품번호\t            상품명\t주문수량\t가격\n");
 				for (int i=0; i<orderList.size(); i++) {
-					System.out.printf("%s\t%15d\t%d%n",
-							orderList.get(i).getI().getItemName(), 
-							orderList.get(i).getCount(), 
+					System.out.printf("%d\t%15s\t%d\t%d%n",
+							orderList.get(i).getI().getItemNo(), 
+							orderList.get(i).getI().getItemName(),
+							orderList.get(i).getCount(),
 							orderList.get(i).getI().getPrice()*orderList.get(i).getCount() );
 					sum += orderList.get(i).getI().getPrice()*orderList.get(i).getCount();
 				}
 				System.out.println("합계 : " + sum);
 			}	else if ( input == 5) {
 				System.out.println("프로그램 종료");
+				try {
+					dao.conn.close();
+				} catch (SQLException e){  e.getMessage(); }
 				break;
+			} else if ( input == 6) {
+				menu("6. 로그인");
+				System.out.print("아이디 : ");
+				String temp = sc.nextLine();
+				
+				
 			} else {
 				System.out.println("잘못 입력하셨습니다.");
 			}

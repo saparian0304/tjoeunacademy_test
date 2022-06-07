@@ -51,7 +51,7 @@ public class ItemDAO {
 	
 	public List<ItemVO> select() {
 		List<ItemVO> itemList = new ArrayList<ItemVO>();
-		String sql = "SELECT * FROM ITEM";
+		String sql = "SELECT * FROM ITEM ORDER BY itemNo";
 		try {
 			pstat = conn.prepareStatement(sql);
 			rs = pstat.executeQuery();
