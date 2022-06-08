@@ -1,0 +1,16 @@
+### Java ###
+# Compiled class file
+bin
+.classpath
+.project
+.settings
+
+
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+JSP/.classpath
+JSP/build/
+JSP/.project
+JSP/.settings

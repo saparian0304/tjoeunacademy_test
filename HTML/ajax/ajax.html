@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        /*
+        버튼을 클릭하면 비동기(ajax)로 userAttribute.html을 요청해서 응답받은 결과를 화면에 출력
+        */
+        $(function (){
+            $('#btn').click(function(){
+                $.ajax({
+                    url : '/userAttribute.html',
+                    dataType : 'HTML',
+                    cache : false,
+                    data : {
+                        param1 : 'a',
+                        param2 : 'b'
+                    },
+                    type : 'get',
+                    success : function(data) {
+                        // 응답받은 결과를 처리
+                        console.log(data)
+                        $('#area').html(data);
+                    }, 
+                    error : function(res) {
+                        console.log(res);
+                        
+                    }
+                })
+            });
+        })
+    </script>
+</head>
+<body>
+    <input type="button" id="btn" value="ajax"><br>
+    <div id="area"></div>
+</body>
+</html>

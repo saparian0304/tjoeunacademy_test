@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $('#btn').click(function() {
+                $.ajax({
+                    url : 'board.json',
+                    dataType : 'JSON',
+                    success : function(data) {
+                        // $('#tb1 tr:nth-child(n+2)').remove();
+                        $('#tb1 > tbody >tr:nth-child(n+2)').remove();
+                        // $('#tb1 tr').each(function(idx, e){
+                        //     console.log(idx);
+                        //     if (idx>0) {
+                        //         $(e).remove();
+                        //         console.log(e, '삭제')
+                        //     }
+                        // })
+                        // console.log(data);
+                        $.each(data, function(idx, value){
+                            var html = "<tr><td>" + value.no + "</td>";
+                            html += "<td>" + value.title + "</td>";
+                            html += "<td>" + value.name + "</td>";
+                            html += "<td>" + value.date + "</td></tr>";
+                            $('#tb1').append(html);
+                        })
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <table border="1" id="tb1">
+        <tr>
+            <th>글번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+        </tr>
+    </table>
+    <input type="button" id="btn" value="ajax">
+</body>
+</html>

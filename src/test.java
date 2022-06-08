@@ -23,18 +23,28 @@ public class test {
 		 * 단어의 길이는 2보다 크거나 같고, 15보다 작거나 같다.
 		 * 
 		 * 첫째 줄에 다이얼을 걸기 위해서 필요한 최소 시간을 출력한다.
+		 * 
+		 * 	  65  68  71  74  77  80   84  87  
+		 *    abc def ghi jkl mno pqrs tuv wxyz
+		 * 1   2   3   4   5   6   7    8   9    0
 		 */
 		Scanner sc = new Scanner(System.in);
-		String str= sc.nextLine();
-		int a = reverseN(str.split(" ")[0]);
-		int b = reverseN(str.split(" ")[1]);
-		System.out.println(Math.max(a, b));
-		
-	}
-	
-	public static int reverseN(String str) {
-		String temp = ""+str.charAt(2) + str.charAt(1) + str.charAt(0);
-		
-		return Integer.parseInt(temp);
+		String temp = sc.nextLine();
+		int time=0;
+		for (int i=0; i<temp.length(); i++) {
+			char n = temp.charAt(i);
+			if (n<80) {
+//				System.out.println((n-59)/3);
+				time += (n-59)/3;
+			} else if (n < 87) {
+//				System.out.println((n-80)/4 + 7);
+				time += (n-80)/4 + 7;
+			} else if (n >= 87) {
+//				System.out.println(9);
+				time += 9;
+			}
+		}
+		time += temp.length();
+		System.out.println(time);
 	}
 }

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+        minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <!-- 초기화하기 -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        a { text-decoration: none;}
+        img {border: 0;}
+        li {list-style: none;}
+    </style>
+
+    <!-- 공통 구성하기 -->
+    <style>
+        .container {
+            margin-left:auto;
+            margin-right: auto;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+
+    <!-- 헤더 구성하기-->
+    <style>
+        #main-header {
+            padding: 10px 5px
+        }
+
+        #main-header h1 {
+            font-size: 20px;
+            font-weight: normal;
+            line-height: 27px;
+            color: #222;
+        }
+
+        #main-header ul {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        #main-header li {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #main-header li a {
+            color: #555;
+        }
+
+        #main-header li.active a {
+            color: black;
+            font-weight: 500;
+        }
+
+        #main-header label {
+            text-align: center;
+            float: right;
+            width: 40px;
+            height: 27px;
+            line-height: 27px;
+            color: #222;
+            border: 1px solid #222;
+            border-radius: 5px;
+        }
+
+        #checkbox {
+            display: none;
+        }
+
+        #checkbox + nav {
+            display: block;
+        }
+
+        #checkbox:checked + nav {
+            display: none;
+        }
+    </style>
+
+    <!-- 본문과 푸터 구성하기-->
+    <style>
+        #main-content {
+            background: #00afa0;
+            padding: 40px 15px 30px;
+        }
+
+        #main-content h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: white;
+            font-weight: 500;
+        }
+
+        #main-content p {
+            color: #222;
+            text-align: center;
+            color: white;
+        }
+
+        #sub-content {
+            padding-top: 30px;
+        }
+
+        #sub-content h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #sub-content h2 {
+            text-align: center;
+            color: #333;
+            font-size: 17px;
+        }
+
+        #sub-content p {
+            color: #555;;
+        }
+
+        #sub-content img {
+            width: 200px;
+            display: block;
+            margin: 10px auto;
+        }
+
+        #main-footer {
+            padding-top: 40px;
+        }
+
+        footer {
+            background: #323232;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            line-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div id="main-header">
+        <header class="container">
+            <div>
+                <label for="checkbox">▼</label>
+                <h1>Hanbit</h1>
+            </div>
+            <input id="checkbox" checked="checked" type="checkbox">
+            <nav>
+                <ul>
+                    <li><a href="#">Brand</a></li>
+                    <li class="active"><a href="#">Network</a></li>
+                    <li><a href="#">Store</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+    <div id="main-content">
+        <article class="container">
+            <h1>Lorem, ipsum dolor.</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore animi, iste mollitia iure optio libero voluptas nihil hic, saepe cum officia odio? Voluptatibus dolorum praesentium tempore, consequatur ex libero? Eum!</p>
+        </article>
+    </div>
+    <div id="sub-content">
+        <article class="container">
+            <h1>자바 ORM 표준 JPA 프로그래밍</h1>
+            <h2>스프링 데이터 예제 프로젝트로 배우는 전자정부 표준 데이터베이스 프레임워크</h2>
+            <img src="/img/image_0.jpg">
+            <p>자바 ORM 표준 JPA는 SQL 작성 없이 객체를 데이터베이스에 직접 저장할 수 있게 도와주고, 객체와 관계형 데이터베이스의 차이도 중간에서 해결해준다. 이 책은 JPA 기초 이론과 핵심 원리, 그리고 실무에 필요한 성능 최적화 방법까지 JPA에 대한 모든 것을 다룬다. 또한, 스프링 프레임워크와 JPA를 함께 사용하는 방법을 설명하고, 스프링 데이터 JPA, QueryDSL 같은 혁신적인 오픈 소스를 활용해서 자바 웹 애플리케이션을 효과적으로 개발하는 방법을 다룬다.</p>
+            <br>
+            <h1>구글엔지니어는 이렇게 일한다</h1>
+            <h2>구글러가 전하는 문화, 프로세스, 도구의 모든 것</h2>
+            <img src="/img/image_1.jpg">
+            <p>지난 50년의 세월과 이 책이 입증한 사실이 한 가지 있다. 바로 '소프트웨어 엔지니어링의 발전은 결코 정체되지 않는다'라는 것이다. 빠른 기술 변화 속에서 소프트웨어 엔지니어링의 중요성이 더욱 강조되면서 소프트웨어 엔지니어의 역할은 점점 더 확장될 것이다. 이제 더 이상 소프트웨어 엔지니어링은 단순히 조직을 효과적으로 운영하는 방법에 그치지 않을 것이다. 이 책에서는 여러분이 궁금해하고, 반드시 알아야 할 프로그램을 효과적으로 짜는 방법은 물론, 코드베이스를 지속 가능하고 건실하게 만들어주는 엔지니어링 관행까지 모두 소개한다. 이 책 한 권이면 소프트웨어 엔지니어링 프로세스를 완벽하게 익히고 좋은 제품을 남들보다 빠르게 구현할 수 있게 된다. 또한 20년 넘게 수만 명의 구글러가 쌓아온 노하우도 습득할 수 있다. 품질 좋은 소프트웨어 제품을 신속하게 개발하고 싶거나 구글의 소프트웨어 관리 방법이 궁금한 모든 이에게 훌륭한 안내서가 되어줄 것이다.</p>
+        </article>
+    </div>
+    <div id="main-footer">
+        <footer class="container">
+            <div>ⓒ1991-2017 Example. All rights reserved.</div>
+        </footer>
+    </div>
+</body>
+</html>

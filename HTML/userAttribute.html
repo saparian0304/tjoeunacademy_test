@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        div {
+            float: left;
+        }
+        </style>
+    <script>
+        $(function() {
+            $('.pic').click(function() {
+                // data('aaa') : 사용자정의 속성("data-aaa")의 값을 가져오는 메서드
+                var no = $(this).data('no');
+                console.log(no)
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="pic" data-no="1">
+        <img src="/img/0.png">
+    </div>
+    <div class="pic" data-no="2">
+        <img src="/img/1.png">
+    </div>
+    <div class="pic" data-no="3">
+        <img src="/img/2.png">
+    </div>
+
+
+</body>
+</html>
