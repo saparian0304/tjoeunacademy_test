@@ -9,7 +9,7 @@
 <body>
 <%
 System.out.println("target");
-
+out.println("dkdkdkdkdk");
 // request에 있는 name 출력
 out.print(request.getAttribute("name"));
 //session에 저장

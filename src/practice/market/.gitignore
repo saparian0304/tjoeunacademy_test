@@ -5,3 +5,7 @@
 /Member.class
 /MemberVO.class
 /MemberDAO.class
+/DBConnect.class
+/InsertSQL.class
+/ItemDAO.class
+/ItemVO.class

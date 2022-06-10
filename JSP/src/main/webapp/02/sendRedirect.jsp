@@ -9,11 +9,12 @@ session.setAttribute("id", "hong");
 
 System.out.println("샌드 리다이렉트 : senRedirect1");
 response.sendRedirect("target.jsp");
-/*
-for(int i=0; i<90000; i++) {
+
+for(int i=0; i<900000; i++) {
+	out.println(i);
 	System.out.println(i);
 }
-*/
+
 System.out.println("샌드 리다이렉트 : senRedirect2");
 
 %>

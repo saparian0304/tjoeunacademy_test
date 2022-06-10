@@ -22,13 +22,29 @@ public class test {
 		 * 첫째 줄에 그룹 단어의 개수를 출력한다.
 		 */
 		Scanner sc = new Scanner(System.in);
-		String temp = "ddz=z=";
-		String[] arr = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
+		String str = "aabbbccb";
+		String temp = String.valueOf(str.charAt(0));
 		
-		for (int i=0; i<arr.length; i++) {
-			temp = temp.replace(arr[i], "*");
-			
+		
+		int len = str.length();
+		boolean flag = true;
+		
+		
+		for (int i=1; i<len; i++) {
+			if (str.charAt(0) == temp.charAt(1)) {
+				
+				
+			} else {
+				if (temp.contains(String.valueOf(str.charAt(1)))) {
+					flag = false;
+				}
+				temp += String.valueOf(str.charAt(1));
+			}
+				
+				System.out.println(temp +" : "+ str);
+				
+			str = str.substring(1);
+//			System.out.println(str);
 		}
-		System.out.println(temp.length());
 	}
 }
