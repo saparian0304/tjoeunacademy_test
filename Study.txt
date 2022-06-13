@@ -3468,14 +3468,59 @@ get 메서드
 
 history
 
+=======================================
+22.06.13 월 - 27일차
+5.5 JDBC 설정 및 데이터베이스 연결
+
+tomcat은 JSP를 work라는 디렉토리로 옮긴다.
+work 디렉토리에는 JSP로 생성된 java(서블릿 파일),컴파일한 class 파일, 세션파일들이 상주하는 공간임.
+
+파일 수정했는데 적용이 안되는 경우
+ - 웹 모듈에 auto reload 기능이 켜져있는지 확인
+ - 서버탭 서버명 우클릭 -> "clean tomcat work directory" -> 체크한 클래스파일을 지우고 다시 컴파일을 한다.
+ - 상단 Project -> build Automatically (체크 되어있는지 확인)
 
 
+5.6 커넥션 풀로 성능 개선
+
+DB 접속시 new 연산자를 이용해 Connection 객체를 생성할 경우 빈번한 연결/해제가 일어나서 시스템 성능에 큰 영향을 미침 -> 현재는 Connection pool이라는 방법으로 미리 Connection 객체를 생성해 풀에 넣어좋고 요청시 생성한 connection 객체를 사용/반납하는 형태로 이루어지고 있음
 
 
+hikariCP
+ - 스트링부트 2.0부터 기본으로 탑재된 JDBC connection pool이다.
 
+5.6.1 커넥션 풀과 JNDI
+대부분의 WAS는 커넥션 풀을 비롯한 여러 자원을 JNDI 서비스로 제공하고있음
 
+JNDI : Java Naming and Directory Interface
+ - 이름만 알면 찾아서 쓸수있는 디렉터리 서비스 (객체이름과 실제 객체를 연결)
+ - 비슷한 예로 DNS (Domain Name System)가 있음 (도메인과 IP주소를 연결)
 
+추후 실무에서 hosts파일(호스트파일) 수정하면서 개발을 하는 경우가 있음
+ - hosts 파일 관련 검색하면 자료가 많이 있음
+ - 네트워크 관련 공부하면서 알게될 수 있음
 
+5.6.2 커넥션풀 설정
+톰캣 서버 설정 파일 수정(server.xml, context.xml)
+
+6장 세션(Session)
+
+쿠키는 문자열로만 저장되나, 세션은 객체도 저장할 수 있음
+
+세션은 클라이언트가 서버에 접속해 있는 동안 그 상태를 유지하는 것이 목적임.
+
+6.3 세션과 DB를 이용한 로그인 구현
+
+6.3.2 DB 연동
+
+- DTO(Data Transfer Object) : 데이터를 교환하기 위해 생성하는 객체
+- DAO(Data Access Object) : DB의 데이터에 접근하기 위한 객체
+  - CRUD를 전담함 (Create, Read, Update, Delete)
+
+7장 액션태그(Action Tag)
+
+자바빈즈 : 일종의 객체라고 생각하자
+- 데이터를 저장하기 위한 멤버변수(속성)와 게터/세터 메서드로만 이루어진 클래스
 
 
 
