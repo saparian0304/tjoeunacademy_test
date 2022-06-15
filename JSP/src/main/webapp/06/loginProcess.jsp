@@ -38,6 +38,7 @@
 		// 로그인 실패
 		request.setAttribute("LoginErrMsg", "로그인 오류입니다.");
 		request.getRequestDispatcher("loginForm.jsp").forward(request, response);
+		// forward(request, response) ->
 	}
 	%>
 </body>

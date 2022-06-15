@@ -18,6 +18,22 @@ public class JSFunction {
 			return script;
 	} 
 	
+//	public static String alertLocation(String msg, String url, JspWriter out) {
+//		String script = "";
+//			   script	+= "<script>"
+//						+ "		alert('" 
+//						+ msg 
+//						+ "');"
+//						+ "		location.href='" 
+//						+ url 
+//						+ "';"	
+//						+ "</script>";
+//			   try {
+//				   out.println(script);
+//			   } catch (Exception e) {}
+//			return script;
+//	} 
+	
 	// 메시지 알림창을 띄운 후 이전 페이지로 돌아감
 	public static void alertBack(String msg, JspWriter out) {
 		try {

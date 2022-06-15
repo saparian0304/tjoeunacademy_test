@@ -13,7 +13,7 @@
 		
 			<!-- 8장과 9장의 회원제 게시판 프로젝트에서 사용할 링크 -->
 			&nbsp;&nbsp;&nbsp; <!-- 메뉴 사이의 공백 확보용 특수문자 -->
-			<a href="/08/list.jsp">게시판(페이징X)</a>
+			<a href="/web/08/list.jsp">게시판(페이징X)</a>
 			&nbsp;&nbsp;&nbsp;
 			<a href="/09/list.jsp">게시판(페이징O)</a>
 		</td>

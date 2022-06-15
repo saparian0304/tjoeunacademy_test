@@ -14,8 +14,10 @@
 	String upass = request.getParameter("user_pw");
 	DBConnect jdbc = new DBConnect();
 	// DB 연결하기
+	jdbc.select(uid, upass);
 	
 	
+	jdbc.close();
 	// 맞으면 로그인에 성공했습니다.
 	// 틀리면 로그인에 실패했습니다.
 

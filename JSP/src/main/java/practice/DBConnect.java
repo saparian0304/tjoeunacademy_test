@@ -26,7 +26,7 @@ public class DBConnect {
 	
 	// DB에 원하는 멤버DTO 찾아오기 작성중
 	public MemberDTO select(String id, String pwd) {
-		
+		MemberDTO dto = new MemberDTO();
 		try {
 			String sql = "SELECT * FROM member";
 			psmt = con.prepareStatement(sql);
@@ -34,13 +34,25 @@ public class DBConnect {
 			
 			while (rs.next()) {
 				if (rs.getString("id")==id && rs.getString("pass") == pwd) {
-					
+					dto.setId(id);
+					dto.setPwd(pwd);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println(dto.getId());
 		
-		
+		return dto;
+	}
+	
+	public void close() {
+		try {
+			rs.close();
+			psmt.close();
+			con.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
