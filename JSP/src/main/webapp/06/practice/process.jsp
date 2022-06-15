@@ -12,6 +12,7 @@
 	
 	String uid = request.getParameter("user_id");
 	String upass = request.getParameter("user_pw");
+	
 	DBConnect jdbc = new DBConnect();
 	// DB 연결하기
 	jdbc.select(uid, upass);
