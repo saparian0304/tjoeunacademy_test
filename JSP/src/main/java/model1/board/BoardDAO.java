@@ -96,7 +96,7 @@ public class BoardDAO extends JDBConnect {
 		// 쿼리문 템플릿
 		String query = "SELECT * FROM "
 						+ "(SELECT tb.*, ROWNUM rNum "
-						+ " FROM ( SELECT * FROM board ";
+						+ " FROM ( SELECT * FROM board LEFT JOIN member ON board.id = member.id ";
 		
 		// 검색 조건 추가
 		if (map.get("searchWord") != null) {
@@ -127,6 +127,7 @@ public class BoardDAO extends JDBConnect {
 				dto.setContent(rs.getString("content"));
 				dto.setPostdate(rs.getDate("postdate"));
 				dto.setId(rs.getString("id"));
+				dto.setName(rs.getString("name"));	
 				dto.setVisitcount(rs.getString("visitcount"));
 				
 				bbs.add(dto);

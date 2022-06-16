@@ -1,17 +1,14 @@
 <%@ page import="java.util.*" %>
 <%@ page import="model1.board.*" %>
 <%@ page import="utils.BoardPage" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
-/**********서블릿에서 처리되는 코드(가정)***************/
-
 // DAO를 생성해서 DB에 연결
 BoardDAO dao = new BoardDAO(application);
+
 // 사용자가 입력한 검색 조건을 Map에 저장
 Map<String, Object> param = new HashMap<String, Object>();
 String searchField = request.getParameter("searchField");
@@ -46,14 +43,9 @@ param.put("end", end);
 
 List<BoardDTO> boardLists = dao.selectListPage(param);
 dao.close();
-
-request.setAttribute("totalCount", totalCount);
-request.setAttribute("boardLists", boardLists);
-request.setAttribute("pageNum", pageNum);
-/**********서블릿에서 처리되는 코드(가정)***************/
-if (request.getParameterValues("searchField") != null)
-
 %>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,9 +61,9 @@ if (request.getParameterValues("searchField") != null)
 		<tr>
 			<td align="center">
 				<select name="searchField">
-					<option value="titlecontent" <c:if test="${param.searchField=='titlecontent'}">selected</c:if>>제목+내용</option>
-					<option value="title" <c:if test="${param.searchField=='title'}">selected</c:if>>제목</option>
-					<option value="content" <c:if test="${param.searchField=='content' }">selected</c:if>>내용</option>
+					<option value="titlecontent" <%="titlecontent".equals(searchField)?"selected":"" %>>제목+내용</option>
+					<option value="title" <%="title".equals(searchField)?"selected":"" %>>제목</option>
+					<option value="content" <%="content".equals(searchField)?"selected":"" %>>내용</option>
 				</select>
 				<input type="text" name="searchWord" value="<%if (searchWord != null) out.print(searchWord); %>">
 				<input type="submit" value="검색하기">
@@ -90,35 +82,44 @@ if (request.getParameterValues("searchField") != null)
 			<th width="15%">작성일</th>
 		</tr>
 		<!-- 목록의 내용 -->
-
-
-<c:if test="${empty boardLists }">
+<%
+if (boardLists.isEmpty()) {
+	// 게시물이 하나도 없을 때
+%>
 		<tr>
 			<td colspan="5" align="center">
 				등록된 게시물이 없다.
 			</td>
 		</tr>
-</c:if>
-<c:if test="${!empty boardLists }"> 
-<c:forEach var="board" items="${boardLists }" varStatus="status">
-		<tr align="center">
-			<td>${totalCount - status.index -(pageNum-1)*10}</td>
-			<td align="left">
-				<a href="view.jsp?num=${board.num }">${board.title }</a>
-			</td>
-			<td align="center">${board.id }</td>
-			<td align="center">${board.visitcount }</td>
-			<td align="center">
-				<fmt:formatDate value="${board.postdate }" pattern="yyyy년 MM월 dd일"/>
-			</td>
-		</tr>
-</c:forEach>
-</c:if>
 <%
+} 
+else {
+	// 게시물이 있을 때
+	int virtualNum = 0;
+	int countNum = 0;
+	for (BoardDTO dto : boardLists) {
+		//virtualNum = totalCount--;
+		virtualNum = totalCount - (((pageNum - 1) * pageSize) + countNum++);
+%>
+		<tr align="center">
+			<td><%=virtualNum %></td>
+			<td align="left">
+				<a href="view.jsp?num=<%=dto.getNum() %>"><%=dto.getTitle() %></a>
+			</td>
+			<td align="center"><%=dto.getName() %></td>
+			<td align="center"><%=dto.getVisitcount() %></td>
+			<td align="center"><%=dto.getPostdate() %></td>
+		</tr>
+<%
+	}
+}
+//System.out.println(request.getRequestURI());
 String uri = request.getRequestURI() +"?";
 if (request.getParameter("searchWord") !=null)
 	uri += "searchField="  + request.getParameter("searchField") 
 			+ "&searchWord=" + request.getParameter("searchWord");
+//System.out.println(uri);
+
 %>
 	</table>
 	<!-- 목록 하단의 [글쓰기] 버튼 -->

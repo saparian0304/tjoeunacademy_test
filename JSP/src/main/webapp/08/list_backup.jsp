@@ -1,13 +1,10 @@
 <%@ page import="java.util.*" %>
 <%@ page import="model1.board.*" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
-/***********************서블릿에서 보내주는 코드***************************/
 // DAO를 생성해서 DB에 연결
 BoardDAO dao = new BoardDAO(application);
 
@@ -23,14 +20,6 @@ if (searchWord != null) {
 int totalCount = dao.selectCount(param);
 List<BoardDTO> boardLists = dao.selectList(param);
 dao.close();
-
-String pageSize = application.getInitParameter("POSTS_PER_PAGE");
-String blockSize = application.getInitParameter("PAGES_PER_BLOCK");
-
-/***********************서블릿에서 보내주는 코드***************************/
-request.setAttribute("totalCount", totalCount);
-request.setAttribute("boardLists", boardLists);
-
 %>
     
     
@@ -49,11 +38,11 @@ request.setAttribute("boardLists", boardLists);
 		<tr>
 			<td align="center">
 				<select name="searchField">
-					<option value="titlecontent" <c:if test="${param.searchField =='titlecontent' }">selected</c:if>>제목+내용</option>
-					<option value="title" <c:if test="${param.searchField == 'title'}">selected</c:if>>제목</option>
-					<option value="content" <c:if test="${ param.searchField == 'content' }">selected</c:if>>내용</option>
+					<option value="titlecontent" <%="titlecontent".equals(searchField)?"selected":"" %>>제목+내용</option>
+					<option value="title" <%="title".equals(searchField)?"selected":"" %>>제목</option>
+					<option value="content" <%="content".equals(searchField)?"selected":"" %>>내용</option>
 				</select>
-				<input type="text" name="searchWord" value="${param.searchWord }">
+				<input type="text" name="searchWord" value="<%if (searchWord != null) out.print(searchWord); %>">
 				<input type="submit" value="검색하기">
 			</td>
 		</tr>
@@ -70,27 +59,36 @@ request.setAttribute("boardLists", boardLists);
 			<th width="15%">작성일</th>
 		</tr>
 		<!-- 목록의 내용 -->
-
-<c:if test="${ empty boardLists }">
+<%
+if (boardLists.isEmpty()) {
+	// 게시물이 하나도 없을 때
+%>
 		<tr>
 			<td colspan="5" align="center">
 				등록된 게시물이 없다.
 			</td>
 		</tr>
-</c:if>
-<c:if test="${!empty boardLists }">
-	<c:forEach var="board" items="${ boardLists}" varStatus="status">
+<%
+} 
+else {
+	// 게시물이 있을 때
+	int virtualNum = 0;
+	for (BoardDTO dto : boardLists) {
+		virtualNum = totalCount--;
+%>
 		<tr align="center">
-			<td>${totalCount - status.index}</td>
+			<td><%=virtualNum %></td>
 			<td align="left">
-				<a href="view.jsp?num=${board.num }">${board.title }</a>
+				<a href="view.jsp?num=<%=dto.getNum() %>"><%=dto.getTitle() %></a>
 			</td>
-			<td align="center">${board.name }</td>
-			<td align="center">${board.visitcount }</td>
-			<td align="center"><fmt:formatDate value="${board.postdate }" pattern="yyyy년 MM월 dd일"/></td>
+			<td align="center"><%=dto.getName() %></td>
+			<td align="center"><%=dto.getVisitcount() %></td>
+			<td align="center"><%=dto.getPostdate() %></td>
 		</tr>
-	</c:forEach>
-</c:if>
+<%
+	}
+}
+%>
 	</table>
 	<!-- 목록 하단의 [글쓰기] 버튼 -->
 	<table border="1" width="90%">

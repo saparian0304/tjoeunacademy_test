@@ -6,13 +6,17 @@
     pageEncoding="UTF-8"%>
     
 <%
+/***********************서블릿에서 보내주는 코드***************************/
 String num = request.getParameter("num");
 
 BoardDAO dao = new BoardDAO(application);
 dao.updateVisitCount(num);
 BoardDTO dto = dao.selectView(num);
 dao.close();
+/***********************서블릿에서 보내주는 코드***************************/
 
+request.setAttribute("num", num);
+request.setAttribute("dto", dto);
  %>
 <!DOCTYPE html>
 <html>
@@ -36,28 +40,28 @@ dao.close();
 	<jsp:include page="/common/link.jsp"></jsp:include>
 	<h2>회원제 게시판 - 상세보기(View)</h2>
 	<form name="writeFrm">
-		<input type="hidden" name="num" value="<%=num %>">
+		<input type="hidden" name="num" value="${num }">
 		<table border="1" width="90%">
 			<tr>
 				<td>번호</td>
-				<td><%=dto.getNum() %></td>
+				<td>${dto.num }</td>
 				<td>작성자</td>
-				<td><%=dto.getName() %></td>
+				<td>${dto.name }</td>
 			</tr>
 			<tr>
 				<td>작성일</td>
-				<td><%=dto.getPostdate() %></td>
+				<td>${dto.postdate }</td>
 				<td>조회수</td>
-				<td><%=dto.getVisitcount() %></td>
+				<td>${dto.visitcount }</td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td colspan="3"><%=dto.getTitle() %></td>
+				<td colspan="3">${dto.title }</td>
 			</tr>
 			<tr>
 				<td>내용</td>
 				<td colspan="3" height="100">
-					<%=dto.getContent().replace("\r\n", "<br>") %></td>
+					${dto.contentBr }</td>
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
@@ -66,7 +70,7 @@ dao.close();
 					if (session.getAttribute("UserSess")!=null
 						&& ((MemberDTO)(session.getAttribute("UserSess"))).getId().equals(dto.getId())) {
 					%>
-					<button type="button" onclick="location.href='edit.jsp?num=<%=dto.getNum() %>';">
+					<button type="button" onclick="location.href='edit.jsp?num=${dto.num}>';">
 						수정하기</button>
 					<button type="button" onclick="deletePost();">삭제하기</button>					
 					<%

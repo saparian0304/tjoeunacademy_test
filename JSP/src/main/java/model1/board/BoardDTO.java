@@ -27,6 +27,10 @@ public class BoardDTO {
 	public String getContent() {
 		return content;
 	}
+	public String getContentBr() {
+		return content.replace("\r\n", "<br>");
+	}
+	
 	public void setContent(String content) {
 		this.content = content;
 	}
