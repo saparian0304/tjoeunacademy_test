@@ -3745,9 +3745,57 @@ varStatus : 루프의 현재 상태를 알려주는 변수의 이름을 지정�
 숫자 포맷 - formatNumber
 날짜 포맷 - formatDate
 
+=======================================
+22.06.17 금 - 31일차
+
+EL에서 값을 가져올 때 대부분의 경우엔 request 영역에 있는 속성값을 가져온다.
+page, session, application에 있는 사용하는 속성의 naming을 겹치게 사용하지 개발하지 않는다.
+-> requestScope.속성명 처럼 "requestScope"를 일부러 쓰는 경우는 흔하지 않게 만든다.
+
+12장 파일 업로드 및 다운로드
+
+파일을 첨부할 수 있는 자료실형 게시판 만들기
+ - 업로드 라이브러리 추가
+ - form 태그를 통한 전송파일 및 인코딩방식 설정
+ - 파일 저장될 폴더의 물리적 경로 설정
+ - 파일 다운로드를 위한 I/O 및 응답헤더 설정
+
+파일 업로드 라이브러리 추가하기
+- mvnrepository.com에서 "cos" 검색 2번째 클릭 -> (COS » 05Nov2002) -> jar 다운로드
 
 
+12.2
+파일 업로드용 작성폼 속성
+- method : post
+- enctype : multipart/form-data ( 다른 속성값도 쓸 수 있음 )
 
+enctype을 지정한 경우 multipart/form-data로 지정한 경우 getParameter()로 form 값을 받을 수 없음 -> MultipartRequest 클래스를 사용해서 받을 수 있음
+
+
+server를 clean 한 경우 물리경로에 저장된 파일이 다 사라지게 된다.
+프로젝트에 만들어준 경로에 다시 저장하고 clean을 하면 삭제되더라도 컴파일 할 경우 다시 이동된다.
+workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\web\uploads
+(\web\uploads : 프로젝트와 동일한 경로)
+
+
+다운로드 과정
+       서버        ->    실제파일명    ->      읽기(input)
+클라이언트(다운  ) <-   쓰기(output, 원본파일명으로 변경)
+
+
+추가 과제
+1. fileList.jsp JSTL로 적용
+2. fileList.jsp 화면에 이미지 노출 (td추가)
+3. board에 첨부파일 기능 추가
+- 테이블에 컬럼 추가
+- 상세페이지에서 첨부 파일이 있는 경우 다운로드
+
+4. 첨부파일이 있는 경우 디스켓 모양
+
+5. 삭제시 사진도 함께 삭제 (DB에 남아있지 않도록하기)
+6. 수정시 (?)
+ - 방법 1: 기존파일 삭제 체크박스
+ - 방법 2: 기존파일 삭제 아이콘 및 파일 추가 기능?
 
 
 

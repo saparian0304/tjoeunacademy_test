@@ -10,7 +10,21 @@ public class BoardDTO {
 	private java.sql.Date postdate;
 	private String visitcount;
 	private String name;
+	private String ofile;
+	private String sfile;
 	
+	public String getOfile() {
+		return ofile;
+	}
+	public void setOfile(String ofile) {
+		this.ofile = ofile;
+	}
+	public String getSfile() {
+		return sfile;
+	}
+	public void setSfile(String sfile) {
+		this.sfile = sfile;
+	}
 	// 게터, 세터
 	public String getNum() {
 		return num;

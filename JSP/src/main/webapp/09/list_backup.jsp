@@ -113,13 +113,10 @@ else {
 <%
 	}
 }
-//System.out.println(request.getRequestURI());
 String uri = request.getRequestURI() +"?";
 if (request.getParameter("searchWord") !=null)
 	uri += "searchField="  + request.getParameter("searchField") 
 			+ "&searchWord=" + request.getParameter("searchWord");
-//System.out.println(uri);
-
 %>
 	</table>
 	<!-- 목록 하단의 [글쓰기] 버튼 -->

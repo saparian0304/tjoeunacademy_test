@@ -17,6 +17,8 @@
 			<a href="<c:url value="/08/list.jsp"/>">게시판(페이징X)</a>
 			&nbsp;&nbsp;&nbsp;
 			<a href="<c:url value="/09/list.jsp"/>">게시판(페이징O)</a>
+			&nbsp;&nbsp;&nbsp;
+			<a href="<c:url value="/12/fileList_EL,JSTL.jsp"/>">파일업로드</a>
 		</td>
 	</tr>
 </table>

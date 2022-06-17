@@ -16,7 +16,6 @@ public class BoardPage {
 			pagingStr += "<a href='" + reqUrl + "&pageNum=" + (pageTemp - 1) 
 						+ "'>[이전 블록]</a>";
 		}
-		
 		// 현재 블럭의 시작 페이지
 		int blockCount = 1;
 		while (blockCount <= blockPage && pageTemp <= totalPages) {
@@ -30,7 +29,6 @@ public class BoardPage {
 			pageTemp++;
 			blockCount++;
 		}
-		
 		// 현재 블럭의 마지막 페이지가 총 페이지 수 이하이면
 		if (pageTemp <= totalPages) {
 			pagingStr += "<a href='" + reqUrl + "&pageNum=" + pageTemp

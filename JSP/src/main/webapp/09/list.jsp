@@ -52,7 +52,6 @@ request.setAttribute("boardLists", boardLists);
 request.setAttribute("pageNum", pageNum);
 /**********서블릿에서 처리되는 코드(가정)***************/
 if (request.getParameterValues("searchField") != null)
-
 %>
 <!DOCTYPE html>
 <html>
@@ -101,6 +100,7 @@ if (request.getParameterValues("searchField") != null)
 </c:if>
 <c:if test="${!empty boardLists }"> 
 <c:forEach var="board" items="${boardLists }" varStatus="status">
+<c:set var="sumVisit" value="${sumVisit + board.visitcount }"/>
 		<tr align="center">
 			<td>${totalCount - status.index -(pageNum-1)*10}</td>
 			<td align="left">
@@ -131,6 +131,7 @@ if (request.getParameter("searchWord") !=null)
 			</td>
 			<!-- 글쓰기 버튼 -->
 			<td>
+				방문자 수 총합 : ${sumVisit }
 				<button type="button" onclick="location.href='write.jsp';">글쓰기
 				</button>
 			</td>

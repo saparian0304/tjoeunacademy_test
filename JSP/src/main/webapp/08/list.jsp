@@ -1,5 +1,6 @@
 <%@ page import="java.util.*" %>
 <%@ page import="model1.board.*" %>
+<%@ page import="utils.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -20,12 +21,28 @@ if (searchWord != null) {
 	param.put("searchWord", searchWord);
 }
 
+int pageSize = Integer.parseInt(application.getInitParameter("POSTS_PER_PAGE"));
+int blockSize = Integer.parseInt(application.getInitParameter("PAGES_PER_BLOCK"));
+
+int pageNum = 1;
+String pageTemp = request.getParameter("pageNum");	// 요청 페이지 번호
+if (pageTemp != null && !pageTemp.equals(""))
+	pageNum = Integer.parseInt(pageTemp);
+
 int totalCount = dao.selectCount(param);
-List<BoardDTO> boardLists = dao.selectList(param);
+
+int start = (pageNum - 1) * pageSize +1;	// rownum의 시작값
+int end = pageNum * pageSize;				// rownum의 끝값
+
+param.put("start", start);
+param.put("end", end);
+
+List<BoardDTO> boardLists = dao.selectListPage(param);
 dao.close();
 
-String pageSize = application.getInitParameter("POSTS_PER_PAGE");
-String blockSize = application.getInitParameter("PAGES_PER_BLOCK");
+
+
+
 
 /***********************서블릿에서 보내주는 코드***************************/
 request.setAttribute("totalCount", totalCount);
@@ -71,31 +88,47 @@ request.setAttribute("boardLists", boardLists);
 		</tr>
 		<!-- 목록의 내용 -->
 
-<c:if test="${ empty boardLists }">
+<c:if test="${empty boardLists }">
 		<tr>
 			<td colspan="5" align="center">
 				등록된 게시물이 없다.
 			</td>
 		</tr>
 </c:if>
-<c:if test="${!empty boardLists }">
-	<c:forEach var="board" items="${ boardLists}" varStatus="status">
+<c:if test="${!empty boardLists }"> 
+<c:forEach var="board" items="${boardLists }" varStatus="status">
+<c:set var="sumVisit" value="${sumVisit + board.visitcount }"/>
 		<tr align="center">
-			<td>${totalCount - status.index}</td>
+			<td>${totalCount - status.index -(pageNum-1)*10}</td>
 			<td align="left">
 				<a href="view.jsp?num=${board.num }">${board.title }</a>
 			</td>
-			<td align="center">${board.name }</td>
+			<td align="center">${board.id }</td>
 			<td align="center">${board.visitcount }</td>
-			<td align="center"><fmt:formatDate value="${board.postdate }" pattern="yyyy년 MM월 dd일"/></td>
+			<td align="center">
+				<fmt:formatDate value="${board.postdate }" pattern="yyyy년 MM월 dd일"/>
+			</td>
 		</tr>
-	</c:forEach>
+</c:forEach>
 </c:if>
 	</table>
 	<!-- 목록 하단의 [글쓰기] 버튼 -->
+<%
+String uri = request.getRequestURI() +"?";
+if (request.getParameter("searchWord") !=null)
+	uri += "searchField="  + request.getParameter("searchField") 
+			+ "&searchWord=" + request.getParameter("searchWord");
+%>
 	<table border="1" width="90%">
-		<tr align="right">
+		<tr align="center">
+			<!-- 페이징 처리 -->
 			<td>
+				<%=BoardPage.pagingStr(totalCount, pageSize, blockSize,
+					pageNum, uri) %>
+			</td>
+			<!-- 글쓰기 버튼 -->
+			<td>
+				방문자 수 총합 : ${sumVisit }
 				<button type="button" onclick="location.href='write.jsp';">글쓰기
 				</button>
 			</td>
