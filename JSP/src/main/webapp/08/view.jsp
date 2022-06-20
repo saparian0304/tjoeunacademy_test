@@ -1,6 +1,7 @@
 <%@ page import="model1.board.BoardDAO" %>
 <%@ page import="model1.board.BoardDTO" %>
 <%@ page import="membership.MemberDTO" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -61,8 +62,13 @@ request.setAttribute("dto", dto);
 			<tr>
 				<td>내용</td>
 				<td colspan="3" height="100">
-					${dto.contentBr }</td>
+					${dto.contentBr } ${dto.sfile }</td>
 			</tr>
+		<c:if test="${not empty dto.contentBr}">
+			<tr>
+				<td>사진 이미지</td>
+			</tr>
+		</c:if>
 			<tr>
 				<td colspan="4" align="center">
 					<%

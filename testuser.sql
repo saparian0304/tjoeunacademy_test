@@ -1,0 +1,1213 @@
+--------------------------------------------------------
+--  파일이 생성됨 - 월요일-6월-20-2022   
+--------------------------------------------------------
+--------------------------------------------------------
+--  DDL for Sequence SEQ_BOARD_NUM
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "TESTUSER"."SEQ_BOARD_NUM"  MINVALUE 1 MAXVALUE 999999999999 INCREMENT BY 1 START WITH 581 CACHE 20 NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
+--------------------------------------------------------
+--  DDL for Sequence SEQ_DEPT_SEQUENCE
+--------------------------------------------------------
+
+   CREATE SEQUENCE  "TESTUSER"."SEQ_DEPT_SEQUENCE"  MINVALUE 0 MAXVALUE 90 INCREMENT BY 10 START WITH 50 CACHE 2 NOORDER  NOCYCLE  NOKEEP  NOSCALE  GLOBAL ;
+--------------------------------------------------------
+--  DDL for Table BOARD
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."BOARD" 
+   (	"NUM" NUMBER, 
+	"TITLE" VARCHAR2(200 BYTE), 
+	"CONTENT" VARCHAR2(2000 BYTE), 
+	"ID" VARCHAR2(10 BYTE), 
+	"POSTDATE" DATE, 
+	"VISITCOUNT" NUMBER(6,0), 
+	"SFILE" VARCHAR2(200 BYTE), 
+	"OFILE" VARCHAR2(200 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table BONUS
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."BONUS" 
+   (	"ENAME" VARCHAR2(10 BYTE), 
+	"JOB" VARCHAR2(9 BYTE), 
+	"SAL" NUMBER, 
+	"COMM" NUMBER
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table CHAP10HW_DEPT
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."CHAP10HW_DEPT" 
+   (	"DEPTNO" NUMBER(2,0), 
+	"DNAME" VARCHAR2(14 BYTE), 
+	"LOC" VARCHAR2(13 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table CHAP10HW_EMP
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."CHAP10HW_EMP" 
+   (	"EMPNO" NUMBER(4,0), 
+	"ENAME" VARCHAR2(10 BYTE), 
+	"JOB" VARCHAR2(9 BYTE), 
+	"MGR" NUMBER(4,0), 
+	"HIREDATE" DATE, 
+	"SAL" NUMBER(7,2), 
+	"COMM" NUMBER(7,2), 
+	"DEPTNO" NUMBER(2,0)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table CHAP10HW_SALGRADE
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."CHAP10HW_SALGRADE" 
+   (	"GRADE" NUMBER, 
+	"LOSAL" NUMBER, 
+	"HISAL" NUMBER
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table DEPT
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."DEPT" 
+   (	"DEPTNO" NUMBER(2,0), 
+	"DNAME" VARCHAR2(14 BYTE), 
+	"LOC" VARCHAR2(13 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table DEPT_DDL
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."DEPT_DDL" 
+   (	"DEPTNO" NUMBER(2,0), 
+	"DNAME" VARCHAR2(14 BYTE), 
+	"LOC" VARCHAR2(13 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table DEPT_SEQUENCE
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."DEPT_SEQUENCE" 
+   (	"DEPTNO" NUMBER(2,0), 
+	"DNAME" VARCHAR2(14 BYTE), 
+	"LOC" VARCHAR2(13 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table DEPT_TCL
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."DEPT_TCL" 
+   (	"DEPTNO" NUMBER(2,0), 
+	"DNAME" VARCHAR2(14 BYTE), 
+	"LOC" VARCHAR2(13 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table DEPT_TEMP
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."DEPT_TEMP" 
+   (	"DEPTNO" NUMBER(2,0), 
+	"DNAME" VARCHAR2(14 BYTE), 
+	"LOC" VARCHAR2(13 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table DEPT_TEMP2
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."DEPT_TEMP2" 
+   (	"DEPTNO" NUMBER(2,0), 
+	"DNAME" VARCHAR2(14 BYTE), 
+	"LOC" VARCHAR2(13 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table EMP
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."EMP" 
+   (	"EMPNO" NUMBER(4,0), 
+	"ENAME" VARCHAR2(10 BYTE), 
+	"JOB" VARCHAR2(9 BYTE), 
+	"MGR" NUMBER(4,0), 
+	"HIREDATE" DATE, 
+	"SAL" NUMBER(7,2), 
+	"COMM" NUMBER(7,2), 
+	"DEPTNO" NUMBER(2,0)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table EMP_ALTER
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."EMP_ALTER" 
+   (	"EMPNO" NUMBER(5,0), 
+	"ENAME" VARCHAR2(10 BYTE), 
+	"JOB" VARCHAR2(9 BYTE), 
+	"MGR" NUMBER(4,0), 
+	"HIREDATE" DATE, 
+	"SAL" NUMBER(7,2), 
+	"COMM" NUMBER(7,2), 
+	"DEPTNO" NUMBER(2,0)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table EMP_DDL
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."EMP_DDL" 
+   (	"EMPNO" NUMBER(4,0), 
+	"ENAME" VARCHAR2(10 BYTE), 
+	"JOB" VARCHAR2(9 BYTE), 
+	"MGR" NUMBER(4,0), 
+	"HIREDATE" DATE, 
+	"SAL" NUMBER(7,2), 
+	"COMM" NUMBER(7,2), 
+	"DEPTNO" NUMBER(2,0)
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table EMP_TEMP
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."EMP_TEMP" 
+   (	"EMPNO" NUMBER(4,0), 
+	"ENAME" VARCHAR2(10 BYTE), 
+	"JOB" VARCHAR2(9 BYTE), 
+	"MGR" NUMBER(4,0), 
+	"HIREDATE" DATE, 
+	"SAL" NUMBER(7,2), 
+	"COMM" NUMBER(7,2), 
+	"DEPTNO" NUMBER(2,0)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table EMP_TEMP2
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."EMP_TEMP2" 
+   (	"EMPNO" NUMBER(4,0), 
+	"ENAME" VARCHAR2(10 BYTE), 
+	"JOB" VARCHAR2(9 BYTE), 
+	"MGR" NUMBER(4,0), 
+	"HIREDATE" DATE, 
+	"SAL" NUMBER(7,2), 
+	"COMM" NUMBER(7,2), 
+	"DEPTNO" NUMBER(2,0)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table ITEM
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."ITEM" 
+   (	"ITEMNO" NUMBER, 
+	"PRICE" NUMBER, 
+	"ITEMNAME" VARCHAR2(255 BYTE), 
+	"CATEGORY" VARCHAR2(255 BYTE)
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table MEMBER
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."MEMBER" 
+   (	"ID" VARCHAR2(10 BYTE), 
+	"PASS" VARCHAR2(10 BYTE), 
+	"NAME" VARCHAR2(30 BYTE), 
+	"REGIDATE" DATE DEFAULT sysdate
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table MYFILE
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."MYFILE" 
+   (	"IDX" NUMBER, 
+	"NAME" VARCHAR2(50 BYTE), 
+	"TITLE" VARCHAR2(200 BYTE), 
+	"CATE" VARCHAR2(50 BYTE), 
+	"OFILE" VARCHAR2(100 BYTE), 
+	"SFILE" VARCHAR2(30 BYTE), 
+	"POSTDATE" DATE DEFAULT sysdate
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table PURCHASEHISTORY
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."PURCHASEHISTORY" 
+   (	"ITEMNO" NUMBER, 
+	"MEMBERNO" NUMBER, 
+	"ORDERNO" VARCHAR2(20 BYTE), 
+	"CNT" NUMBER, 
+	"SUBTOTAL" NUMBER
+   ) SEGMENT CREATION DEFERRED 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Table SALGRADE
+--------------------------------------------------------
+
+  CREATE TABLE "TESTUSER"."SALGRADE" 
+   (	"GRADE" NUMBER, 
+	"LOSAL" NUMBER, 
+	"HISAL" NUMBER
+   ) SEGMENT CREATION IMMEDIATE 
+  PCTFREE 10 PCTUSED 40 INITRANS 1 MAXTRANS 255 
+ NOCOMPRESS LOGGING
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for View VM_EMP20
+--------------------------------------------------------
+
+  CREATE OR REPLACE FORCE NONEDITIONABLE VIEW "TESTUSER"."VM_EMP20" ("EMPNO", "ENAME", "JOB", "DEPTNO") AS 
+  (SELECT empno, ename, job, deptno
+        FROM emp
+        WHERE deptno = 20)
+;
+REM INSERTING into TESTUSER.BOARD
+SET DEFINE OFF;
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (546,'파일첨부','1111','test1',to_date('2022-06-17','RRRR-MM-DD'),2,'202206168_182054411.png','0.png');
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (21,'지금은 봄입니다.','봄의왈츠','musthave',to_date('2022-06-14','RRRR-MM-DD'),4,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (22,'지금은 여름입니다.','여름향기','musthave',to_date('2022-06-14','RRRR-MM-DD'),4,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (23,'지금은 가을입니다.','가을동화','musthave',to_date('2022-06-14','RRRR-MM-DD'),2,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (24,'지금은 겨울입니다.','겨울연가','musthave',to_date('2022-06-14','RRRR-MM-DD'),1,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (536,'엄청 긴 글','안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+안녕하세요?
+이렇게하면 길어질까요?
+','test1',to_date('2022-06-16','RRRR-MM-DD'),9,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (33,'성공?','성공하자','test1',to_date('2022-06-14','RRRR-MM-DD'),4,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (571,'AI지식','책 사진 나오게 하기','test1',to_date('2022-06-20','RRRR-MM-DD'),59,'202206171_115517612','ai지식');
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (236,'title-0','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),9,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (237,'title-1','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (238,'title-2','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (239,'title-3','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (240,'title-4','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),1,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (241,'title-5','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (242,'title-6','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (243,'title-7','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (244,'title-8','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (245,'title-9','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (246,'title-10','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (247,'title-11','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (248,'title-12','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (249,'title-13','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (250,'title-14','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (251,'title-15','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (252,'title-16','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (253,'title-17','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (254,'title-18','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (255,'title-19','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (256,'title-20','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (257,'title-21','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (258,'title-22','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (259,'title-23','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (260,'title-24','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (261,'title-25','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (262,'title-26','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (263,'title-27','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (264,'title-28','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (265,'title-29','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (266,'title-30','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (267,'title-31','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (268,'title-32','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (269,'title-33','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (270,'title-34','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (271,'title-35','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (272,'title-36','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (273,'title-37','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (274,'title-38','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (275,'title-39','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (276,'title-40','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (277,'title-41','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (278,'title-42','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (279,'title-43','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (280,'title-44','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (281,'title-45','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (282,'title-46','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (283,'title-47','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (284,'title-48','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (285,'title-49','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (286,'title-50','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (287,'title-51','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (288,'title-52','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (289,'title-53','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (290,'title-54','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (291,'title-55','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (292,'title-56','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (293,'title-57','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (294,'title-58','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (295,'title-59','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (296,'title-60','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (297,'title-61','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (298,'title-62','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (299,'title-63','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (300,'title-64','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (301,'title-65','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (302,'title-66','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (303,'title-67','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (304,'title-68','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (305,'title-69','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (306,'title-70','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (307,'title-71','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (308,'title-72','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (309,'title-73','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (310,'title-74','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (311,'title-75','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (312,'title-76','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (313,'title-77','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (314,'title-78','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (315,'title-79','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (316,'title-80','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (317,'title-81','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (318,'title-82','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (319,'title-83','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (320,'title-84','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (321,'title-85','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (322,'title-86','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (323,'title-87','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (324,'title-88','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (325,'title-89','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (326,'title-90','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (327,'title-91','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (328,'title-92','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (329,'title-93','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (330,'title-94','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (331,'title-95','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (332,'title-96','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (333,'title-97','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (334,'title-98','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),1,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (335,'title-99','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (336,'페이징처리-0','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (337,'페이징처리-1','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (338,'페이징처리-2','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (339,'페이징처리-3','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (340,'페이징처리-4','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (341,'페이징처리-5','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (342,'페이징처리-6','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (343,'페이징처리-7','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (344,'페이징처리-8','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (345,'페이징처리-9','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (346,'페이징처리-10','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (347,'페이징처리-11','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (348,'페이징처리-12','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (349,'페이징처리-13','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (350,'페이징처리-14','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (351,'페이징처리-15','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),1,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (352,'페이징처리-16','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (353,'페이징처리-17','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (354,'페이징처리-18','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (355,'페이징처리-19','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (356,'페이징처리-20','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (357,'페이징처리-21','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (358,'페이징처리-22','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (359,'페이징처리-23','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (360,'페이징처리-24','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (361,'페이징처리-25','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (362,'페이징처리-26','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (363,'페이징처리-27','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (364,'페이징처리-28','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (365,'페이징처리-29','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (366,'페이징처리-30','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (367,'페이징처리-31','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (368,'페이징처리-32','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (369,'페이징처리-33','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (370,'페이징처리-34','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (371,'페이징처리-35','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (372,'페이징처리-36','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (373,'페이징처리-37','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (374,'페이징처리-38','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (375,'페이징처리-39','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (376,'페이징처리-40','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (377,'페이징처리-41','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (378,'페이징처리-42','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (379,'페이징처리-43','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (380,'페이징처리-44','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (381,'페이징처리-45','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (382,'페이징처리-46','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (383,'페이징처리-47','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (384,'페이징처리-48','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (385,'페이징처리-49','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (386,'페이징처리-50','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (387,'페이징처리-51','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (388,'페이징처리-52','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (389,'페이징처리-53','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (390,'페이징처리-54','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (391,'페이징처리-55','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (392,'페이징처리-56','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (393,'페이징처리-57','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (394,'페이징처리-58','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (395,'페이징처리-59','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (396,'페이징처리-60','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (397,'페이징처리-61','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (398,'페이징처리-62','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (399,'페이징처리-63','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (400,'페이징처리-64','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (401,'페이징처리-65','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (402,'페이징처리-66','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (403,'페이징처리-67','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (404,'페이징처리-68','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (405,'페이징처리-69','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (2,'제목1입니다','내용1입니다','musthave',to_date('2022-06-10','RRRR-MM-DD'),6,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (406,'페이징처리-70','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (407,'페이징처리-71','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (408,'페이징처리-72','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (409,'페이징처리-73','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (410,'페이징처리-74','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (411,'페이징처리-75','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (412,'페이징처리-76','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (413,'페이징처리-77','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (414,'페이징처리-78','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (415,'페이징처리-79','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (416,'페이징처리-80','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (417,'페이징처리-81','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (418,'페이징처리-82','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (419,'페이징처리-83','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (420,'페이징처리-84','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (421,'페이징처리-85','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (422,'페이징처리-86','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (423,'페이징처리-87','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (424,'페이징처리-88','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (425,'페이징처리-89','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (426,'페이징처리-90','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (427,'페이징처리-91','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (428,'페이징처리-92','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (429,'페이징처리-93','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (430,'페이징처리-94','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (431,'페이징처리-95','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (432,'페이징처리-96','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (433,'페이징처리-97','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (434,'페이징처리-98','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (435,'페이징처리-99','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (436,'페이징처리-0','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (437,'페이징처리-1','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (438,'페이징처리-2','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (439,'페이징처리-3','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (440,'페이징처리-4','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (441,'페이징처리-5','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (442,'페이징처리-6','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (443,'페이징처리-7','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (444,'페이징처리-8','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (445,'페이징처리-9','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (446,'페이징처리-10','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (447,'페이징처리-11','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (448,'페이징처리-12','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (449,'페이징처리-13','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (450,'페이징처리-14','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (451,'페이징처리-15','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (452,'페이징처리-16','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),1,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (453,'페이징처리-17','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (454,'페이징처리-18','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (455,'페이징처리-19','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (456,'페이징처리-20','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (457,'페이징처리-21','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (458,'페이징처리-22','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (459,'페이징처리-23','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (460,'페이징처리-24','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (461,'페이징처리-25','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (462,'페이징처리-26','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (463,'페이징처리-27','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (464,'페이징처리-28','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (465,'페이징처리-29','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (466,'페이징처리-30','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (467,'페이징처리-31','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (468,'페이징처리-32','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (469,'페이징처리-33','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (470,'페이징처리-34','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (471,'페이징처리-35','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (472,'페이징처리-36','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (473,'페이징처리-37','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (474,'페이징처리-38','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (475,'페이징처리-39','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (476,'페이징처리-40','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (477,'페이징처리-41','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (478,'페이징처리-42','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (479,'페이징처리-43','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (480,'페이징처리-44','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (481,'페이징처리-45','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (482,'페이징처리-46','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (483,'페이징처리-47','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (484,'페이징처리-48','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (485,'페이징처리-49','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (486,'페이징처리-50','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (487,'페이징처리-51','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (488,'페이징처리-52','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (489,'페이징처리-53','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (490,'페이징처리-54','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (491,'페이징처리-55','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (492,'페이징처리-56','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (493,'페이징처리-57','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (494,'페이징처리-58','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (495,'페이징처리-59','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (496,'페이징처리-60','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (497,'페이징처리-61','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (498,'페이징처리-62','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (499,'페이징처리-63','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (500,'페이징처리-64','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (501,'페이징처리-65','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (502,'페이징처리-66','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),1,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (503,'페이징처리-67','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (504,'페이징처리-68','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (505,'페이징처리-69','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (506,'페이징처리-70','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (507,'페이징처리-71','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (508,'페이징처리-72','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (509,'페이징처리-73','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (510,'페이징처리-74','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (511,'페이징처리-75','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (512,'페이징처리-76','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (513,'페이징처리-77','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (514,'페이징처리-78','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (515,'페이징처리-79','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (516,'페이징처리-80','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (517,'페이징처리-81','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (518,'페이징처리-82','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (519,'페이징처리-83','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (520,'페이징처리-84','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (521,'페이징처리-85','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (522,'페이징처리-86','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (523,'페이징처리-87','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (524,'페이징처리-88','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (525,'페이징처리-89','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (526,'페이징처리-90','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (527,'페이징처리-91','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),1,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (528,'페이징처리-92','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (529,'페이징처리-93','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),8,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (530,'페이징처리-94','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),2,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (531,'페이징처리-95','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),2,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (532,'페이징처리-96','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),1,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (533,'페이징처리-97','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),1,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (534,'페이징처리-98','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),0,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (535,'페이징처리-99','dddd','test1',to_date('2022-06-15','RRRR-MM-DD'),1,null,null);
+Insert into TESTUSER.BOARD (NUM,TITLE,CONTENT,ID,POSTDATE,VISITCOUNT,SFILE,OFILE) values (545,'파일첨부하기','ㅇㅇㅇㅇ','test1',to_date('2022-06-17','RRRR-MM-DD'),1,null,null);
+REM INSERTING into TESTUSER.BONUS
+SET DEFINE OFF;
+REM INSERTING into TESTUSER.CHAP10HW_DEPT
+SET DEFINE OFF;
+Insert into TESTUSER.CHAP10HW_DEPT (DEPTNO,DNAME,LOC) values (10,'ACCOUNTING','NEW YORK');
+Insert into TESTUSER.CHAP10HW_DEPT (DEPTNO,DNAME,LOC) values (20,'RESEARCH','DALLAS');
+Insert into TESTUSER.CHAP10HW_DEPT (DEPTNO,DNAME,LOC) values (30,'SALES','CHICAGO');
+Insert into TESTUSER.CHAP10HW_DEPT (DEPTNO,DNAME,LOC) values (40,'OPERATIONS','BOSTON');
+Insert into TESTUSER.CHAP10HW_DEPT (DEPTNO,DNAME,LOC) values (50,'ORACLE','BUSAN');
+Insert into TESTUSER.CHAP10HW_DEPT (DEPTNO,DNAME,LOC) values (60,'SQL','ILSAN');
+Insert into TESTUSER.CHAP10HW_DEPT (DEPTNO,DNAME,LOC) values (70,'SELECT','INCHEON');
+Insert into TESTUSER.CHAP10HW_DEPT (DEPTNO,DNAME,LOC) values (80,'DML','BUNDANG');
+REM INSERTING into TESTUSER.CHAP10HW_EMP
+SET DEFINE OFF;
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7369,'SMITH','CLERK',7902,to_date('1980-12-17','RRRR-MM-DD'),800,null,20);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7499,'ALLEN','SALESMAN',7698,to_date('1981-02-20','RRRR-MM-DD'),1600,300,30);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7521,'WARD','SALESMAN',7698,to_date('1981-02-22','RRRR-MM-DD'),1250,500,30);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7566,'JONES','MANAGER',7839,to_date('1981-04-02','RRRR-MM-DD'),2975,null,20);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7654,'MARTIN','SALESMAN',7698,to_date('1981-09-28','RRRR-MM-DD'),1250,1400,30);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7698,'BLAKE','MANAGER',7839,to_date('1981-05-01','RRRR-MM-DD'),2850,null,30);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7782,'CLARK','MANAGER',7839,to_date('1981-06-09','RRRR-MM-DD'),2450,null,10);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7788,'SCOTT','ANALYST',7566,to_date('1987-04-19','RRRR-MM-DD'),3000,null,20);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7844,'TURNER','SALESMAN',7698,to_date('1981-09-08','RRRR-MM-DD'),1500,0,30);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7876,'ADAMS','CLERK',7788,to_date('1987-05-23','RRRR-MM-DD'),1100,null,20);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7900,'JAMES','CLERK',7698,to_date('1981-12-03','RRRR-MM-DD'),950,null,30);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7902,'FORD','ANALYST',7566,to_date('1981-12-03','RRRR-MM-DD'),3000,null,20);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7934,'MILLER','CLERK',7782,to_date('1982-01-23','RRRR-MM-DD'),1300,null,10);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7202,'TEST_USER2','CLERK',7201,to_date('2016-02-21','RRRR-MM-DD'),1800,null,50);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7204,'TEST_USER4','SALESMAN',7201,to_date('2016-05-31','RRRR-MM-DD'),2700,300,60);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7205,'TEST_USER5','CLERK',7201,to_date('2016-07-20','RRRR-MM-DD'),2860,null,80);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7206,'TEST_USER6','CLERK',7201,to_date('2016-09-08','RRRR-MM-DD'),2860,null,80);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7207,'TEST_USER7','LECTURER',7201,to_date('2016-10-28','RRRR-MM-DD'),2530,null,80);
+Insert into TESTUSER.CHAP10HW_EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7208,'TEST_USER8','STUDENT',7201,to_date('2018-03-09','RRRR-MM-DD'),1320,null,80);
+REM INSERTING into TESTUSER.CHAP10HW_SALGRADE
+SET DEFINE OFF;
+Insert into TESTUSER.CHAP10HW_SALGRADE (GRADE,LOSAL,HISAL) values (1,700,1200);
+Insert into TESTUSER.CHAP10HW_SALGRADE (GRADE,LOSAL,HISAL) values (2,1201,1400);
+Insert into TESTUSER.CHAP10HW_SALGRADE (GRADE,LOSAL,HISAL) values (3,1401,2000);
+Insert into TESTUSER.CHAP10HW_SALGRADE (GRADE,LOSAL,HISAL) values (4,2001,3000);
+Insert into TESTUSER.CHAP10HW_SALGRADE (GRADE,LOSAL,HISAL) values (5,3001,9999);
+REM INSERTING into TESTUSER.DEPT
+SET DEFINE OFF;
+Insert into TESTUSER.DEPT (DEPTNO,DNAME,LOC) values (10,'ACCOUNTING','NEW YORK');
+Insert into TESTUSER.DEPT (DEPTNO,DNAME,LOC) values (20,'RESEARCH','DALLAS');
+Insert into TESTUSER.DEPT (DEPTNO,DNAME,LOC) values (30,'SALES','CHICAGO');
+Insert into TESTUSER.DEPT (DEPTNO,DNAME,LOC) values (40,'OPERATIONS','BOSTON');
+REM INSERTING into TESTUSER.DEPT_DDL
+SET DEFINE OFF;
+Insert into TESTUSER.DEPT_DDL (DEPTNO,DNAME,LOC) values (10,'ACCOUNTING','NEW YORK');
+Insert into TESTUSER.DEPT_DDL (DEPTNO,DNAME,LOC) values (20,'RESEARCH','DALLAS');
+Insert into TESTUSER.DEPT_DDL (DEPTNO,DNAME,LOC) values (30,'SALES','CHICAGO');
+Insert into TESTUSER.DEPT_DDL (DEPTNO,DNAME,LOC) values (40,'OPERATIONS','BOSTON');
+REM INSERTING into TESTUSER.DEPT_SEQUENCE
+SET DEFINE OFF;
+Insert into TESTUSER.DEPT_SEQUENCE (DEPTNO,DNAME,LOC) values (20,'DATABASE','SEOUL');
+Insert into TESTUSER.DEPT_SEQUENCE (DEPTNO,DNAME,LOC) values (30,'DATABASE','SEOUL');
+Insert into TESTUSER.DEPT_SEQUENCE (DEPTNO,DNAME,LOC) values (40,'DATABASE','SEOUL');
+REM INSERTING into TESTUSER.DEPT_TCL
+SET DEFINE OFF;
+Insert into TESTUSER.DEPT_TCL (DEPTNO,DNAME,LOC) values (10,'ACCOUNTING','NEW YORK');
+Insert into TESTUSER.DEPT_TCL (DEPTNO,DNAME,LOC) values (30,'SALES','JEJU');
+Insert into TESTUSER.DEPT_TCL (DEPTNO,DNAME,LOC) values (40,'OPERATIONS','BOSTON');
+Insert into TESTUSER.DEPT_TCL (DEPTNO,DNAME,LOC) values (50,'DATABASE','BUSAN');
+Insert into TESTUSER.DEPT_TCL (DEPTNO,DNAME,LOC) values (60,'AAA','SEOUL');
+Insert into TESTUSER.DEPT_TCL (DEPTNO,DNAME,LOC) values (70,'BBB','SEOUL');
+REM INSERTING into TESTUSER.DEPT_TEMP
+SET DEFINE OFF;
+Insert into TESTUSER.DEPT_TEMP (DEPTNO,DNAME,LOC) values (10,'ACCOUNTING','NEW YORK');
+Insert into TESTUSER.DEPT_TEMP (DEPTNO,DNAME,LOC) values (20,'RESEARCH','DALLAS');
+Insert into TESTUSER.DEPT_TEMP (DEPTNO,DNAME,LOC) values (30,'SALES','CHICAGO');
+Insert into TESTUSER.DEPT_TEMP (DEPTNO,DNAME,LOC) values (40,'OPERATIONS','BOSTON');
+Insert into TESTUSER.DEPT_TEMP (DEPTNO,DNAME,LOC) values (50,'DATABASE','SEOUL');
+Insert into TESTUSER.DEPT_TEMP (DEPTNO,DNAME,LOC) values (60,'NETWORK','BUSAN');
+Insert into TESTUSER.DEPT_TEMP (DEPTNO,DNAME,LOC) values (70,'WEB',null);
+Insert into TESTUSER.DEPT_TEMP (DEPTNO,DNAME,LOC) values (80,'MOBILE',null);
+Insert into TESTUSER.DEPT_TEMP (DEPTNO,DNAME,LOC) values (90,null,'INCHEON');
+REM INSERTING into TESTUSER.DEPT_TEMP2
+SET DEFINE OFF;
+Insert into TESTUSER.DEPT_TEMP2 (DEPTNO,DNAME,LOC) values (10,'ACCOUNTING','NEW YORK');
+Insert into TESTUSER.DEPT_TEMP2 (DEPTNO,DNAME,LOC) values (20,'RESEARCH','DALLAS');
+Insert into TESTUSER.DEPT_TEMP2 (DEPTNO,DNAME,LOC) values (30,'SALES','CHICAGO');
+Insert into TESTUSER.DEPT_TEMP2 (DEPTNO,DNAME,LOC) values (40,'OPERATIONS','SEOUL');
+REM INSERTING into TESTUSER.EMP
+SET DEFINE OFF;
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7369,'SMITH','CLERK',7902,to_date('1980-12-17','RRRR-MM-DD'),800,null,20);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7499,'ALLEN','SALESMAN',7698,to_date('1981-02-20','RRRR-MM-DD'),1600,300,30);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7521,'WARD','SALESMAN',7698,to_date('1981-02-22','RRRR-MM-DD'),1250,500,30);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7566,'JONES','MANAGER',7839,to_date('1981-04-02','RRRR-MM-DD'),2975,null,20);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7654,'MARTIN','SALESMAN',7698,to_date('1981-09-28','RRRR-MM-DD'),1250,1400,30);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7698,'BLAKE','MANAGER',7839,to_date('1981-05-01','RRRR-MM-DD'),2850,null,30);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7782,'CLARK','MANAGER',7839,to_date('1981-06-09','RRRR-MM-DD'),2450,null,10);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7788,'SCOTT','ANALYST',7566,to_date('1987-04-19','RRRR-MM-DD'),3000,null,20);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7839,'KING','PRESIDENT',null,to_date('1981-11-17','RRRR-MM-DD'),5000,null,10);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7844,'TURNER','SALESMAN',7698,to_date('1981-09-08','RRRR-MM-DD'),1500,0,30);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7876,'ADAMS','CLERK',7788,to_date('1987-05-23','RRRR-MM-DD'),1100,null,20);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7900,'JAMES','CLERK',7698,to_date('1981-12-03','RRRR-MM-DD'),950,null,30);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7902,'FORD','ANALYST',7566,to_date('1981-12-03','RRRR-MM-DD'),3000,null,20);
+Insert into TESTUSER.EMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7934,'MILLER','CLERK',7782,to_date('1982-01-23','RRRR-MM-DD'),1300,null,10);
+REM INSERTING into TESTUSER.EMP_ALTER
+SET DEFINE OFF;
+REM INSERTING into TESTUSER.EMP_DDL
+SET DEFINE OFF;
+REM INSERTING into TESTUSER.EMP_TEMP
+SET DEFINE OFF;
+Insert into TESTUSER.EMP_TEMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (9999,'홍길동','PRESIDENT',null,to_date('2001-01-01','RRRR-MM-DD'),5000,1000,10);
+Insert into TESTUSER.EMP_TEMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (1111,'성춘향','MANAGER',9999,to_date('2001-01-05','RRRR-MM-DD'),4000,null,20);
+Insert into TESTUSER.EMP_TEMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (2111,'이순신','MANAGER',9999,to_date('2001-01-07','RRRR-MM-DD'),4000,null,20);
+Insert into TESTUSER.EMP_TEMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (3111,'심청이','MANAGER',9999,to_date('2022-05-09','RRRR-MM-DD'),4000,null,30);
+Insert into TESTUSER.EMP_TEMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7369,'SMITH','CLERK',7902,to_date('1980-12-17','RRRR-MM-DD'),800,null,20);
+Insert into TESTUSER.EMP_TEMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7876,'ADAMS','CLERK',7788,to_date('1987-05-23','RRRR-MM-DD'),1100,null,20);
+Insert into TESTUSER.EMP_TEMP (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7900,'JAMES','CLERK',7698,to_date('1981-12-03','RRRR-MM-DD'),950,null,30);
+REM INSERTING into TESTUSER.EMP_TEMP2
+SET DEFINE OFF;
+Insert into TESTUSER.EMP_TEMP2 (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7369,'SMITH','CLERK',7902,to_date('1980-12-17','RRRR-MM-DD'),800,null,20);
+Insert into TESTUSER.EMP_TEMP2 (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7499,'ALLEN','SALESMAN',7698,to_date('1981-02-20','RRRR-MM-DD'),1600,300,30);
+Insert into TESTUSER.EMP_TEMP2 (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7521,'WARD','SALESMAN',7698,to_date('1981-02-22','RRRR-MM-DD'),1250,500,30);
+Insert into TESTUSER.EMP_TEMP2 (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7654,'MARTIN','SALESMAN',7698,to_date('1981-09-28','RRRR-MM-DD'),1250,1400,30);
+Insert into TESTUSER.EMP_TEMP2 (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7788,'SCOTT','ANALYST',7566,to_date('1987-04-19','RRRR-MM-DD'),3000,null,20);
+Insert into TESTUSER.EMP_TEMP2 (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7839,'KING','PRESIDENT',null,to_date('1981-11-17','RRRR-MM-DD'),5000,null,10);
+Insert into TESTUSER.EMP_TEMP2 (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7844,'TURNER','SALESMAN',7698,to_date('1981-09-08','RRRR-MM-DD'),1500,0,30);
+Insert into TESTUSER.EMP_TEMP2 (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7876,'ADAMS','CLERK',7788,to_date('1987-05-23','RRRR-MM-DD'),1100,null,20);
+Insert into TESTUSER.EMP_TEMP2 (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7900,'JAMES','CLERK',7698,to_date('1981-12-03','RRRR-MM-DD'),950,null,30);
+Insert into TESTUSER.EMP_TEMP2 (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7902,'FORD','ANALYST',7566,to_date('1981-12-03','RRRR-MM-DD'),3000,null,20);
+Insert into TESTUSER.EMP_TEMP2 (EMPNO,ENAME,JOB,MGR,HIREDATE,SAL,COMM,DEPTNO) values (7934,'MILLER','CLERK',7782,to_date('1982-01-23','RRRR-MM-DD'),1300,null,10);
+REM INSERTING into TESTUSER.ITEM
+SET DEFINE OFF;
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (18,4500,'콜드브루 화이트 비엔나','콜드브루 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (19,4500,'콜드브루 크림넛','콜드브루 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (1,2900,'에스프레소','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (2,3200,'카페 아메리카노','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (3,3700,'카페라떼','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (4,3700,'카푸치노','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (5,3700,'아인슈페너','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (6,3800,'연유 카페라떼','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (7,3900,'카페모카','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (8,3900,'화이트 초콜릿 모카','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (9,3900,'바닐라라떼','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (10,3900,'카라멜마끼아또','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (11,4200,'민트 모카','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (12,4500,'아포가토','에스프레소 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (13,3700,'콜드브루 아메리카노','콜드브루 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (14,3700,'흑당 콜드브루','콜드브루 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (15,3900,'콜드브루 니트로','콜드브루 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (16,4200,'콜드브루 라떼','콜드브루 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (17,4300,'연유 콜드브루','콜드브루 커피');
+Insert into TESTUSER.ITEM (ITEMNO,PRICE,ITEMNAME,CATEGORY) values (20,3300,'흑당라떼','밀크베버리지');
+REM INSERTING into TESTUSER.MEMBER
+SET DEFINE OFF;
+Insert into TESTUSER.MEMBER (ID,PASS,NAME,REGIDATE) values ('test1','1111','테스트1회원',to_date('2022-06-13','RRRR-MM-DD'));
+Insert into TESTUSER.MEMBER (ID,PASS,NAME,REGIDATE) values ('musthave','1234','머스트해브',to_date('2022-06-10','RRRR-MM-DD'));
+REM INSERTING into TESTUSER.MYFILE
+SET DEFINE OFF;
+Insert into TESTUSER.MYFILE (IDX,NAME,TITLE,CATE,OFILE,SFILE,POSTDATE) values (541,'testuser','test1','사진,','149.jpg','202206168_113649750.jpg',to_date('2022-06-17','RRRR-MM-DD'));
+Insert into TESTUSER.MYFILE (IDX,NAME,TITLE,CATE,OFILE,SFILE,POSTDATE) values (542,'testuser','test1','사진,','149.jpg','202206168_113856902.jpg',to_date('2022-06-17','RRRR-MM-DD'));
+Insert into TESTUSER.MYFILE (IDX,NAME,TITLE,CATE,OFILE,SFILE,POSTDATE) values (543,'user1','test2','사진,워드,음원,','150.jpg','202206168_12452950.jpg',to_date('2022-06-17','RRRR-MM-DD'));
+Insert into TESTUSER.MYFILE (IDX,NAME,TITLE,CATE,OFILE,SFILE,POSTDATE) values (544,'머스트해브','아아아','사진,','ai지식.jpg','202206168_161756255.jpg',to_date('2022-06-17','RRRR-MM-DD'));
+REM INSERTING into TESTUSER.PURCHASEHISTORY
+SET DEFINE OFF;
+REM INSERTING into TESTUSER.SALGRADE
+SET DEFINE OFF;
+Insert into TESTUSER.SALGRADE (GRADE,LOSAL,HISAL) values (1,700,1200);
+Insert into TESTUSER.SALGRADE (GRADE,LOSAL,HISAL) values (2,1201,1400);
+Insert into TESTUSER.SALGRADE (GRADE,LOSAL,HISAL) values (3,1401,2000);
+Insert into TESTUSER.SALGRADE (GRADE,LOSAL,HISAL) values (4,2001,3000);
+Insert into TESTUSER.SALGRADE (GRADE,LOSAL,HISAL) values (5,3001,9999);
+REM INSERTING into TESTUSER.VM_EMP20
+SET DEFINE OFF;
+Insert into TESTUSER.VM_EMP20 (EMPNO,ENAME,JOB,DEPTNO) values (7369,'SMITH','CLERK',20);
+Insert into TESTUSER.VM_EMP20 (EMPNO,ENAME,JOB,DEPTNO) values (7566,'JONES','MANAGER',20);
+Insert into TESTUSER.VM_EMP20 (EMPNO,ENAME,JOB,DEPTNO) values (7788,'SCOTT','ANALYST',20);
+Insert into TESTUSER.VM_EMP20 (EMPNO,ENAME,JOB,DEPTNO) values (7876,'ADAMS','CLERK',20);
+Insert into TESTUSER.VM_EMP20 (EMPNO,ENAME,JOB,DEPTNO) values (7902,'FORD','ANALYST',20);
+--------------------------------------------------------
+--  DDL for Index BOARD_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."BOARD_PK" ON "TESTUSER"."BOARD" ("NUM") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index IDX_EMP_DEPTNO
+--------------------------------------------------------
+
+  CREATE INDEX "TESTUSER"."IDX_EMP_DEPTNO" ON "TESTUSER"."EMP" ("DEPTNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index IDX_EMP_EMPNODEPTNO
+--------------------------------------------------------
+
+  CREATE INDEX "TESTUSER"."IDX_EMP_EMPNODEPTNO" ON "TESTUSER"."EMP" ("EMPNO", "DEPTNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index IDX_EMP_ENAME
+--------------------------------------------------------
+
+  CREATE INDEX "TESTUSER"."IDX_EMP_ENAME" ON "TESTUSER"."EMP" ("ENAME") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index IDX_EMP_SAL
+--------------------------------------------------------
+
+  CREATE INDEX "TESTUSER"."IDX_EMP_SAL" ON "TESTUSER"."EMP" ("SAL") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index ITEM_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."ITEM_PK" ON "TESTUSER"."ITEM" ("ITEMNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index MYFILE_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."MYFILE_PK" ON "TESTUSER"."MYFILE" ("IDX") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index PK_DEPT
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."PK_DEPT" ON "TESTUSER"."DEPT" ("DEPTNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index PK_EMP
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."PK_EMP" ON "TESTUSER"."EMP" ("EMPNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index PURCHASEHISTORY_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."PURCHASEHISTORY_PK" ON "TESTUSER"."PURCHASEHISTORY" ("MEMBERNO", "ITEMNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index TABLE1_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."TABLE1_PK" ON "TESTUSER"."MEMBER" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index BOARD_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."BOARD_PK" ON "TESTUSER"."BOARD" ("NUM") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index PK_DEPT
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."PK_DEPT" ON "TESTUSER"."DEPT" ("DEPTNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index PK_EMP
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."PK_EMP" ON "TESTUSER"."EMP" ("EMPNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index IDX_EMP_SAL
+--------------------------------------------------------
+
+  CREATE INDEX "TESTUSER"."IDX_EMP_SAL" ON "TESTUSER"."EMP" ("SAL") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index IDX_EMP_ENAME
+--------------------------------------------------------
+
+  CREATE INDEX "TESTUSER"."IDX_EMP_ENAME" ON "TESTUSER"."EMP" ("ENAME") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index IDX_EMP_DEPTNO
+--------------------------------------------------------
+
+  CREATE INDEX "TESTUSER"."IDX_EMP_DEPTNO" ON "TESTUSER"."EMP" ("DEPTNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index IDX_EMP_EMPNODEPTNO
+--------------------------------------------------------
+
+  CREATE INDEX "TESTUSER"."IDX_EMP_EMPNODEPTNO" ON "TESTUSER"."EMP" ("EMPNO", "DEPTNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index ITEM_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."ITEM_PK" ON "TESTUSER"."ITEM" ("ITEMNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index TABLE1_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."TABLE1_PK" ON "TESTUSER"."MEMBER" ("ID") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index MYFILE_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."MYFILE_PK" ON "TESTUSER"."MYFILE" ("IDX") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  DDL for Index PURCHASEHISTORY_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "TESTUSER"."PURCHASEHISTORY_PK" ON "TESTUSER"."PURCHASEHISTORY" ("MEMBERNO", "ITEMNO") 
+  PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "TEST" ;
+--------------------------------------------------------
+--  Constraints for Table BOARD
+--------------------------------------------------------
+
+  ALTER TABLE "TESTUSER"."BOARD" MODIFY ("NUM" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."BOARD" ADD CONSTRAINT "BOARD_PK" PRIMARY KEY ("NUM")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST"  ENABLE;
+  ALTER TABLE "TESTUSER"."BOARD" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."BOARD" MODIFY ("TITLE" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."BOARD" MODIFY ("CONTENT" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."BOARD" MODIFY ("POSTDATE" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table DEPT
+--------------------------------------------------------
+
+  ALTER TABLE "TESTUSER"."DEPT" ADD CONSTRAINT "PK_DEPT" PRIMARY KEY ("DEPTNO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table EMP
+--------------------------------------------------------
+
+  ALTER TABLE "TESTUSER"."EMP" ADD CONSTRAINT "PK_EMP" PRIMARY KEY ("EMPNO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table ITEM
+--------------------------------------------------------
+
+  ALTER TABLE "TESTUSER"."ITEM" MODIFY ("ITEMNO" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."ITEM" ADD CONSTRAINT "ITEM_PK" PRIMARY KEY ("ITEMNO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table MEMBER
+--------------------------------------------------------
+
+  ALTER TABLE "TESTUSER"."MEMBER" MODIFY ("ID" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."MEMBER" MODIFY ("PASS" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."MEMBER" MODIFY ("NAME" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."MEMBER" ADD CONSTRAINT "TABLE1_PK" PRIMARY KEY ("ID")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table MYFILE
+--------------------------------------------------------
+
+  ALTER TABLE "TESTUSER"."MYFILE" MODIFY ("IDX" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."MYFILE" MODIFY ("NAME" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."MYFILE" MODIFY ("TITLE" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."MYFILE" MODIFY ("OFILE" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."MYFILE" MODIFY ("SFILE" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."MYFILE" MODIFY ("POSTDATE" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."MYFILE" ADD CONSTRAINT "MYFILE_PK" PRIMARY KEY ("IDX")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  STORAGE(INITIAL 65536 NEXT 1048576 MINEXTENTS 1 MAXEXTENTS 2147483645
+  PCTINCREASE 0 FREELISTS 1 FREELIST GROUPS 1
+  BUFFER_POOL DEFAULT FLASH_CACHE DEFAULT CELL_FLASH_CACHE DEFAULT)
+  TABLESPACE "TEST"  ENABLE;
+--------------------------------------------------------
+--  Constraints for Table PURCHASEHISTORY
+--------------------------------------------------------
+
+  ALTER TABLE "TESTUSER"."PURCHASEHISTORY" MODIFY ("MEMBERNO" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."PURCHASEHISTORY" MODIFY ("ORDERNO" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."PURCHASEHISTORY" MODIFY ("CNT" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."PURCHASEHISTORY" MODIFY ("SUBTOTAL" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."PURCHASEHISTORY" MODIFY ("ITEMNO" NOT NULL ENABLE);
+  ALTER TABLE "TESTUSER"."PURCHASEHISTORY" ADD CONSTRAINT "PURCHASEHISTORY_PK" PRIMARY KEY ("MEMBERNO", "ITEMNO")
+  USING INDEX PCTFREE 10 INITRANS 2 MAXTRANS 255 COMPUTE STATISTICS 
+  TABLESPACE "TEST"  ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table BOARD
+--------------------------------------------------------
+
+  ALTER TABLE "TESTUSER"."BOARD" ADD CONSTRAINT "BOARD_FK1" FOREIGN KEY ("ID")
+	  REFERENCES "TESTUSER"."MEMBER" ("ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table EMP
+--------------------------------------------------------
+
+  ALTER TABLE "TESTUSER"."EMP" ADD CONSTRAINT "FK_DEPTNO" FOREIGN KEY ("DEPTNO")
+	  REFERENCES "TESTUSER"."DEPT" ("DEPTNO") ENABLE;
