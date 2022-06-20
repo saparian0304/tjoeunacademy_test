@@ -62,11 +62,15 @@ request.setAttribute("dto", dto);
 			<tr>
 				<td>내용</td>
 				<td colspan="3" height="100">
-					${dto.contentBr } ${dto.sfile }</td>
+					${dto.contentBr } 
+				</td>
 			</tr>
-		<c:if test="${not empty dto.contentBr}">
+		<c:if test="${!empty dto.sfile}">
 			<tr>
-				<td>사진 이미지</td>
+				<td>첨부파일</td>
+				<td colspan="3">
+					<img src="<c:url value="/uploads/${dto.sfile }"/>" height="150">
+				</td>
 			</tr>
 		</c:if>
 			<tr>

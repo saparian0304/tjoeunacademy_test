@@ -36,20 +36,16 @@ try {
 	// 폼값 받기
 	String title = mr.getParameter("title");
 	String content = mr.getParameter("content");
-	String sfile = sfileName.substring(0, sfileName.lastIndexOf("."));
-	String ofile = ofileName.substring(0, ofileName.lastIndexOf("."));
 	
 	// 폼값을 DTO 객체에 저장
 	BoardDTO dto = new BoardDTO();
 	dto.setTitle(title);
 	dto.setContent(content);
 	dto.setId(((MemberDTO)(session.getAttribute("UserSess"))).getId());
-	dto.setOfile(ofile);
-	dto.setSfile(sfile);
+	dto.setOfile(ofileName);
+	dto.setSfile(sfileName);
 	System.out.println("title : " + title );
 	System.out.println("id : " + ((MemberDTO)(session.getAttribute("UserSess"))).getId() );
-	System.out.println("sfile : " + sfile);
-	System.out.println("ofile : " + ofile);
 	
 	// DAO 객체를 통해 DB에 DTO 저장
 	BoardDAO dao = new BoardDAO(application);

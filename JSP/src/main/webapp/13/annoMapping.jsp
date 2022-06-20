@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HelloServlet.jsp</title>
+<title>AnnoMapping</title>
 </head>
 <body>
-	<h2>web.xml에서 매핑 후 JSP에서 출력하기</h2>
+	<h2>애너테이션으로 매핑하기</h2>
 	<p>
-		<strong><%=request.getAttribute("message") %></strong><br>
 		<strong>${message }</strong>
+		<strong><%=request.getAttribute("message") %></strong>
 		<br>
-		<a href="./HelloServlet.do">바로가기</a>
+		<a href="<%=request.getContextPath() %>/13/annoMapping.do">바로가기</a>
 	</p>
 </body>
 </html>

@@ -69,4 +69,13 @@
   	<url-pattern>/13/HelloServlet.do</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>directServletPrint</servlet-name>
+  	<servlet-class>servlet.DirectServletPrint</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>directServletPrint</servlet-name>
+  	<url-pattern>/13/directServletPrint.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
