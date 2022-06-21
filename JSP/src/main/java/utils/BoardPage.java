@@ -11,9 +11,9 @@ public class BoardPage {
 		// 이전 페이지 블록 바로가기 출력 
 		int pageTemp = (((pageNum-1) / blockPage) * blockPage) + 1;
 		if (pageTemp != 1) {
-			pagingStr += "<a href='" + reqUrl + "&pageNum=1'>[첫 페이지]</a>";
+			pagingStr += "<a href='" + reqUrl + "?pageNum=1'>[첫 페이지]</a>";
 			pagingStr += "&nbsp;";
-			pagingStr += "<a href='" + reqUrl + "&pageNum=" + (pageTemp - 1) 
+			pagingStr += "<a href='" + reqUrl + "?pageNum=" + (pageTemp - 1) 
 						+ "'>[이전 블록]</a>";
 		}
 		// 현재 블럭의 시작 페이지
@@ -23,7 +23,7 @@ public class BoardPage {
 				// 현재 페이지는 링크를 걸지 않음
 				pagingStr += "&nbsp;" + pageTemp + "&nbsp;";
 			} else {
-				pagingStr += "&nbsp;<a href='" + reqUrl + "&pageNum=" +pageTemp
+				pagingStr += "&nbsp;<a href='" + reqUrl + "?pageNum=" +pageTemp
 							+ "'>" + pageTemp + "</a>&nbsp;";
 			}
 			pageTemp++;
@@ -31,10 +31,10 @@ public class BoardPage {
 		}
 		// 현재 블럭의 마지막 페이지가 총 페이지 수 이하이면
 		if (pageTemp <= totalPages) {
-			pagingStr += "<a href='" + reqUrl + "&pageNum=" + pageTemp
+			pagingStr += "<a href='" + reqUrl + "?pageNum=" + pageTemp
 						+ "'>[다음 블록]</a>";
 			pagingStr += "&nbsp;";
-			pagingStr += "<a href='" + reqUrl + "&pageNum=" + totalPages 
+			pagingStr += "<a href='" + reqUrl + "?pageNum=" + totalPages 
 						+ "'>[마지막 페이지]</a>";
 		}
 		

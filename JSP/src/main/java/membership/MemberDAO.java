@@ -27,6 +27,7 @@ public class MemberDAO extends JDBConnect {
 				dto.setPass(rs.getString("pass"));
 				dto.setName(rs.getString(3));
 				dto.setRegidate(rs.getString(4));
+				
 			}
 		} 
 		catch (Exception e ) {

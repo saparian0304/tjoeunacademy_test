@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@ page import="model1.board.BoardDAO" %>
 <%@ page import="model1.board.BoardDTO" %>
 <%@ page import="membership.MemberDTO" %>
@@ -70,6 +71,8 @@ request.setAttribute("dto", dto);
 				<td>첨부파일</td>
 				<td colspan="3">
 					<img src="<c:url value="/uploads/${dto.sfile }"/>" height="150">
+					<a href="download.jsp?oName=<%=URLEncoder.encode(dto.getOfile(), "UTF-8") %>
+				&sName=<%=URLEncoder.encode(dto.getSfile(), "UTF-8") %>">[다운로드]</a>
 				</td>
 			</tr>
 		</c:if>
