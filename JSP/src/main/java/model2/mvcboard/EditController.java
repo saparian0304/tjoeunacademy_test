@@ -42,15 +42,12 @@ public class EditController extends HttpServlet {
 		int maxPostSize = Integer.parseInt(application.getInitParameter("maxPostSize"));
 		
 		MultipartRequest mr = FileUtil.uploadFile(req, saveDirectory, maxPostSize);
-		System.out.println("if문 실행 전 ");
 		
 		if (mr == null) {
-			System.out.println("if문 안쪽");
 			
 			JSFunction.alertBack(resp, "첨부파일이 제한 용량을 초과합니다.");
 			return;
 		}
-		System.out.println("if문 실행 후 ");
 		// 파일 업로드 외 처리
 		String idx = mr.getParameter("idx");
 		String prevOfile = mr.getParameter("prevOfile");

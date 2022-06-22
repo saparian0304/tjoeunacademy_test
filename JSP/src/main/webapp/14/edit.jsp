@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>파일 첨부형 게시판</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	function validateForm(form) {
 		if (form.name.value =="" ) {
@@ -58,7 +59,7 @@
 			<tr>
 				<td>첨부파일</td>
 				<td>
-					<input type="file" name="ofile">
+					<input type="file" name="ofile">${dto.ofile }
 				</td>
 			</tr>
 			<tr>

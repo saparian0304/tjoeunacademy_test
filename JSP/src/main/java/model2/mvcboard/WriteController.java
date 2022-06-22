@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -35,6 +37,7 @@ public class WriteController extends HttpServlet {
 		
 		
 		MultipartRequest mr = FileUtil.uploadFile(req, saveDirectory, maxPostSize);
+		
 		if (mr == null) {
 			JSFunction.alertLocation(resp, "첨부파일이 제한 용량을 초과합니다.", 
 					"../mvcboard/write.do");
@@ -47,24 +50,38 @@ public class WriteController extends HttpServlet {
 		dto.setContent(mr.getParameter("content"));
 		dto.setPass(mr.getParameter("pass"));
 		
-		String fileName = mr.getFilesystemName("ofile");
-		if (fileName != null) {
-			
-			String now = new SimpleDateFormat("yyyyMMDD_HmsS").format(new Date());
-			String ext = fileName.substring(fileName.lastIndexOf("."));
-			String newFileName = now + ext;
-			
-			File oldFile = new File(saveDirectory + File.separator + fileName);
-			File newFile = new File(saveDirectory + File.separator + newFileName);
-			oldFile.renameTo(newFile);
-			
-			dto.setOfile(fileName);
-			dto.setSfile(newFileName);
-		}
-		
 		MVCBoardDAO dao = new MVCBoardDAO();
 		int result = dao.insertWrite(dto);
 		dao.close();
+		
+		if (result == 1) {
+
+			Enumeration list = mr.getFileNames();
+			
+			while(list.hasMoreElements()) {
+				String ofile =(String)list.nextElement();
+				File f =mr.getFile(ofile);
+				String fileName = f.getName();
+				
+				String now = new SimpleDateFormat("yyyyMMDD_HmsS").format(new Date());
+				String ext = fileName.substring(fileName.lastIndexOf("."));
+				String newFileName = now + ext;
+				
+				File oldFile = new File(saveDirectory + File.separator + fileName);
+				File newFile = new File(saveDirectory + File.separator + newFileName);
+				oldFile.renameTo(newFile);
+				
+				
+				
+				AddfileDAO fileDao = new AddfileDAO();
+				AddFileDTO fileDto = new AddFileDTO();
+				fileDto.setOfile(fileName);
+				fileDto.setSfile(newFileName);
+				result = fileDao.insertFile(fileDto);
+			}
+		}
+		
+				
 		
 		if (result == 1) {
 			resp.sendRedirect("../mvcboard/list.do");

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>파일 첨부형 게시판</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 	function validateForm(form) {
 		if (form.name.value == "") {
@@ -32,6 +33,32 @@
 			return false;
 		}
 	}
+	
+	$(function (){
+		$('.plus').click(function(){
+			//console.log($('.addfile').length);
+			if ($('.addfile').length > 4){
+				alert('5개 이상 만들수 없습니다.');
+				return;			
+			}
+			
+			var html = '';
+			html += '<tr class="addfile">';
+			html +=		'<td>첨부파일</td>';
+			html +=		'<td>';
+			html +=			'<input type="file" name="ofile'+($('.addfile').length+1)+'">';
+			html +=			'<img src="<c:url value="/img/minus.png"/>" width="17px" align="center" class="minus">';
+			html +=		'</td>';
+			html +=	'</tr>';
+			$(this).closest('tr').after(html);
+		})
+	})
+	
+	$(document).on('click', '.plus', function(){    
+            $('.minus').click(function(){
+                $(this).closest('tr').remove();
+            });
+        }); 
 </script>
 </head>
 <body>
@@ -57,10 +84,11 @@
 					<textarea name="content" style="width:90%; height:100px;"></textarea>
 				</td>
 			</tr>
-			<tr>
+			<tr class="addfile">
 				<td>첨부파일</td>
 				<td>
-					<input type="file" name="ofile">
+					<input type="file" name="ofile1">
+					<img src="<c:url value="/img/plus.png"/>" width="17px" align="center" class="plus">
 				</td>
 			</tr>
 			<tr>
