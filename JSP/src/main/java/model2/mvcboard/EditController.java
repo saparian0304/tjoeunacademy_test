@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -27,8 +28,10 @@ public class EditController extends HttpServlet {
 		String idx = req.getParameter("idx");
 		MVCBoardDAO dao = new MVCBoardDAO();
 		MVCBoardDTO dto = dao.selectView(idx);
+		List<String> fileList = dao.selectFileList(dto.getIdx());
 		
 		req.setAttribute("dto", dto);
+		req.setAttribute("fileList", fileList);
 		req.getRequestDispatcher("/14/edit.jsp").forward(req, resp);
 	}
 	

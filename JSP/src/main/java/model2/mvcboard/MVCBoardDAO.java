@@ -135,6 +135,25 @@ public class MVCBoardDAO extends DBConnPool {
 		return dto;
 	}
 	
+	public List<String> selectFileList(String idx) {
+		List<String> list = new ArrayList();
+		String query = "SELECT * FROM addfile WHERE board_idx = ? ORDER BY f_idx";
+		try {
+			psmt = con.prepareStatement(query);
+			psmt.setString(1, idx);
+			rs = psmt.executeQuery();
+			
+			while (rs.next()) {
+				list.add(rs.getString("ofile"));
+			}
+		}
+		catch (Exception e) {
+			System.out.println("게시물 상세보기 중 예외 발생");
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
 	// 주어진 일련번호에 해당하는 게시물의 조회수를 1 증가시키는 메서드
 	public void updateVisitCount(String idx) {
 		String query = "UPDATE mvcboard SET "

@@ -32,20 +32,21 @@
 			<td>내용</td>
 			<td colspan="3" height="100">${dto.content }</td>
 		</tr>
-		
+	<c:if test="${empty fileList }">
 		<tr>
 			<td>첨부파일</td>
-			<td>
-				<c:if test="${!empty dto.ofile }">
-				${dto.ofile }
-				<a href="../mvcboard/download.do?ofile=${dto.ofile }&sfile=${dto.sfile}&idx=${dto.idx}">
+			<td colspan="3">첨부된 파일이 존재하지 않습니다.</td>
+		</tr>	
+	</c:if>
+	<c:forEach var="file" items="${fileList }" varStatus="status">
+		<tr>
+			<td>첨부파일</td>
+			<td colspan="3">${file } <a href="../mvcboard/download.do?ofile=${dto.ofile }&sfile=${dto.sfile}&idx=${dto.idx}">
 				[다운로드]
 				</a>
-				</c:if>
 			</td>
-			<td>다운로드수</td>
-			<td>${dto.downcount }</td>
-		</tr>
+		</tr>	
+	</c:forEach>
 		
 		<tr>
 			<td colspan="4" align="center">

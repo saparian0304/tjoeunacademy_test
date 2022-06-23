@@ -57,6 +57,7 @@ public class ListController extends HttpServlet{
 		map.put("pageNum", pageNum);
 		
 		req.setAttribute("boardLists", boardLists);
+		
 		req.setAttribute("map", map);
 		req.getRequestDispatcher("/14/list.jsp").forward(req, resp);
 	}

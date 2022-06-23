@@ -35,18 +35,19 @@
 	}
 	
 	$(function (){
+		var cnt = 1;
 		$('.plus').click(function(){
 			//console.log($('.addfile').length);
 			if ($('.addfile').length > 4){
 				alert('5개 이상 만들수 없습니다.');
 				return;			
 			}
-			
+			cnt = cnt + 1;
 			var html = '';
 			html += '<tr class="addfile">';
 			html +=		'<td>첨부파일</td>';
 			html +=		'<td>';
-			html +=			'<input type="file" name="ofile'+($('.addfile').length+1)+'">';
+			html +=			'<input type="file" name="ofile'+cnt+'">';
 			html +=			'<img src="<c:url value="/img/minus.png"/>" width="17px" align="center" class="minus">';
 			html +=		'</td>';
 			html +=	'</tr>';

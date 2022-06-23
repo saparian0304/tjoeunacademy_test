@@ -3936,7 +3936,7 @@ enctype을 "multipart/form-data"로 선언하고 submit한 데이터들은 reque
 [쓰기] 첨부파일 추가, 삭제 버튼 만들기
 - 첨부파일 수 제한 : 1~5개 
 - 6개 이상은 불가 알림
-- file table이 따로 있어야함
+- DB에 file table이 따로 있어야함 
 
 [상세] 첨부파일 목록 확인
 
@@ -3948,9 +3948,13 @@ enctype을 "multipart/form-data"로 선언하고 submit한 데이터들은 reque
 web-inf 안에는 클라이언트가 직접 접속하지 못한다.
 
 
+=======================================
+22.06.23 목 - 35일차
 
-
-
+/user/write.do (입력 받기 위해) -> insert.do로 전송
+/user/insert.do (전송 받은 값들을 DB에 저장)
+/user/index.do (DB에 저장된 데이터를 출력)
+/user/view.do (사용자가 클릭한 회원의 상세정보 출력)
 
 
 

@@ -27,6 +27,56 @@
 			return false;
 		}
 	}
+	
+	$(function (){
+		var cnt = 1;
+		$('.plus').click(function(){
+			//console.log($('.addfile').length);
+			if ($('.addfile').length > 4){
+				alert('5개 이상 만들수 없습니다.');
+				return;			
+			}
+			cnt = cnt + 1;
+			var html = '';
+			html += '<tr class="addfile">';
+			html +=		'<td>첨부파일</td>';
+			html +=		'<td>';
+			html +=			'<input type="file" name="ofile'+cnt+'">';
+			html +=			'<img src="<c:url value="/img/minus.png"/>" width="17px" align="center" class="minus">';
+			html +=		'</td>';
+			html +=	'</tr>';
+			$(this).closest('tr').after(html);
+		})
+		
+		$('.delete').click(function(){
+            $.ajax({
+                url : '/delete.do',
+                dataType : 'HTML',
+                cache : false,
+                data : {
+                    param1 : 'a',
+                    param2 : 'b'
+                },
+                type : 'get',
+                success : function(data) {
+                    // 응답받은 결과를 처리
+                    console.log(data)
+                    $('#area').html(data);
+                }, 
+                error : function(res) {
+                    console.log(res);
+                    
+                }
+            })
+        });
+		
+	})
+	
+	$(document).on('click', '.plus', function(){    
+            $('.minus').click(function(){
+                $(this).closest('tr').remove();
+            });
+        }); 
 </script>
 </head>
 <body>
@@ -56,10 +106,21 @@
 					<textarea name="content" style="width:90%;height:100px;">${dto.content }</textarea>
 				<td>
 			</tr>
-			<tr>
+	<c:forEach var="file" items="${fileList }" varStatus="status">
+		<tr class="addfile">
+			<td>첨부파일</td>
+			<td colspan="3">${file } <a href="../mvcboard/download.do?ofile=${dto.ofile }&sfile=${dto.sfile}&idx=${dto.idx}">
+				[다운로드]
+				</a>&nbsp;&nbsp;&nbsp;
+				<img src="/web/img/delete.png" class="delete" height="15px">
+			</td>
+		</tr>	
+	</c:forEach>
+			<tr class="addfile">
 				<td>첨부파일</td>
 				<td>
-					<input type="file" name="ofile">${dto.ofile }
+					<input type="file" name="ofile1">${dto.ofile }
+					<img src="<c:url value="/img/plus.png"/>" width="17px" align="center" class="plus">
 				</td>
 			</tr>
 			<tr>
