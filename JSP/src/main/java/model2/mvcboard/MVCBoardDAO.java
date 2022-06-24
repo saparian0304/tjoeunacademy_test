@@ -135,8 +135,10 @@ public class MVCBoardDAO extends DBConnPool {
 		return dto;
 	}
 	
-	public List<String> selectFileList(String idx) {
-		List<String> list = new ArrayList();
+	public List<Map<String, String>> selectFileList(String idx) {
+		List<Map<String, String>> list = new ArrayList();
+		
+		
 		String query = "SELECT * FROM addfile WHERE board_idx = ? ORDER BY f_idx";
 		try {
 			psmt = con.prepareStatement(query);
@@ -144,7 +146,11 @@ public class MVCBoardDAO extends DBConnPool {
 			rs = psmt.executeQuery();
 			
 			while (rs.next()) {
-				list.add(rs.getString("ofile"));
+				Map<String, String> map = new HashMap();
+				map.put("ofile", rs.getString("ofile"));
+				map.put("sfile", rs.getString("sfile"));
+				map.put("f_idx", rs.getString("f_idx"));
+				list.add(map);
 			}
 		}
 		catch (Exception e) {

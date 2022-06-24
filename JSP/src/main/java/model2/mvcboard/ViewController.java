@@ -2,6 +2,7 @@ package model2.mvcboard;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +19,7 @@ public class ViewController extends HttpServlet {
 		String idx = req.getParameter("idx");
 		dao.updateVisitCount(idx);
 		MVCBoardDTO dto = dao.selectView(idx);
-		List<String> fileList = dao.selectFileList(dto.getIdx());
+		List<Map<String, String>> fileList = dao.selectFileList(dto.getIdx());
 		dao.close();
 		
 		dto.setContent(dto.getContent().replaceAll("\r\n", "<br>"));

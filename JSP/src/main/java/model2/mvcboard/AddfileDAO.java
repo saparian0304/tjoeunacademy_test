@@ -48,7 +48,23 @@ public class AddfileDAO extends DBConnPool {
 				e.printStackTrace();
 			}
 		}
+		return result;
+	}
+	
+	public int deleteFile(int idx) {
+		int result = 0;
 		
+		String sql = "DELETE FROM addfile WHERE F_idx = ?";
+		
+		try {
+			psmt = con.prepareStatement(sql);
+			psmt.setInt(1, idx);
+			
+			result = psmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		return result;
 	}

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -28,7 +29,7 @@ public class EditController extends HttpServlet {
 		String idx = req.getParameter("idx");
 		MVCBoardDAO dao = new MVCBoardDAO();
 		MVCBoardDTO dto = dao.selectView(idx);
-		List<String> fileList = dao.selectFileList(dto.getIdx());
+		List<Map<String, String>> fileList = dao.selectFileList(dto.getIdx());
 		
 		req.setAttribute("dto", dto);
 		req.setAttribute("fileList", fileList);

@@ -40,8 +40,8 @@
 	</c:if>
 	<c:forEach var="file" items="${fileList }" varStatus="status">
 		<tr>
-			<td>첨부파일</td>
-			<td colspan="3">${file } <a href="../mvcboard/download.do?ofile=${dto.ofile }&sfile=${dto.sfile}&idx=${dto.idx}">
+			<td>첨부파일${status.index }</td>
+			<td colspan="3">${file.ofile } <a href="../mvcboard/download.do?ofile=${dto.ofile }&sfile=${dto.sfile}&idx=${dto.idx}">
 				[다운로드]
 				</a>
 			</td>

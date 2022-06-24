@@ -49,23 +49,24 @@
 		})
 		
 		$('.delete').click(function(){
-            $.ajax({
-                url : '/delete.do',
+            alert($(this).closest('tr').data('f_idx'));
+            var row = $(this);
+			$.ajax({
+                url : '/web/mvcboard/delete.do',
                 dataType : 'HTML',
                 cache : false,
                 data : {
-                    param1 : 'a',
-                    param2 : 'b'
+                    f_idx : $(this).closest('tr').data('f_idx'),
                 },
-                type : 'get',
-                success : function(data) {
+                type : 'post',
+                success : function() {
                     // 응답받은 결과를 처리
-                    console.log(data)
-                    $('#area').html(data);
+                    $(row).closest('tr').remove();
+                    console.log('성공');
                 }, 
-                error : function(res) {
-                    console.log(res);
-                    
+                error : function() {
+                    //alert('삭제 과정 중 오류가 발생했습니다.')
+                    console.log('삭제 과정 중 오류가 발생했습니다.');
                 }
             })
         });
@@ -83,48 +84,51 @@
 	<h2>파일 첨부형 게시판 - 수정하기(edit)</h2>
 	<form name="wirteFrm" method="post" enctype="multipart/form-data"
 		action="../mvcboard/edit.do" onsubmit="return validateForm(this);">
-		<input type="hidden" name="idx" value="${dto.idx }">
+		<input type="hidden" name="idx" value="${dto.idx }" class="idx_">
 		<input type="hidden" name="prevOfile" value="${dto.ofile }">
 		<input type="hidden" name="prevSfile" value="${dto.sfile }">
 		
-		<table border="1" width="90%">
+		<table border="1" width="100%">
 			<tr>
 				<td>작성자</td>
-				<td>
+				<td colspan="3">
 					<input type="text" name="name" style="width:150px;" value="${dto.name }">
 				</td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td>
+				<td colspan="3">
 					<input type="text" name="title" style="width:90%;" value="${dto.title }">
 				</td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td>
+				<td colspan="3">
 					<textarea name="content" style="width:90%;height:100px;">${dto.content }</textarea>
-				<td>
+				</td>
 			</tr>
 	<c:forEach var="file" items="${fileList }" varStatus="status">
-		<tr class="addfile">
+		<tr class="addfile" data-f_idx="${file.f_idx}">
 			<td>첨부파일</td>
-			<td colspan="3">${file } <a href="../mvcboard/download.do?ofile=${dto.ofile }&sfile=${dto.sfile}&idx=${dto.idx}">
-				[다운로드]
-				</a>&nbsp;&nbsp;&nbsp;
+			<td width="55%">${file.ofile }</td>
+			<td align="center">
+				<a href="../mvcboard/download.do?ofile=${file.ofile }&sfile=${file.sfile }&board_idx=${dto.idx }" >
+				[다운로드]</a>&nbsp;&nbsp;&nbsp;
+			</td>
+			<td align="center">
 				<img src="/web/img/delete.png" class="delete" height="15px">
 			</td>
 		</tr>	
 	</c:forEach>
 			<tr class="addfile">
 				<td>첨부파일</td>
-				<td>
+				<td colspan="3">
 					<input type="file" name="ofile1">${dto.ofile }
 					<img src="<c:url value="/img/plus.png"/>" width="17px" align="center" class="plus">
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" align="center">
+				<td colspan="4" align="center">
 					<button type="submit">작성 완료</button>
 					<button type="reset">RESET</button>
 					<button type="button" onclick="location.href='../mvcboard/list.do';">
