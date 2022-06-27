@@ -4014,7 +4014,7 @@ SpringMVC Progect 선택
 pom.xml
 spring 버전 수정 5.0.7
 java 버전 수정 1.6 -> 11
-servlet 버전 2.5 -> 3.1
+servlet 버전 2.5 -> 3.1.0, artifactId
 
 서블릿 버전 수정
 <dependency>
@@ -4027,7 +4027,7 @@ servlet 버전 2.5 -> 3.1
 서블릿 버전마다 web.xml 초기 설정이 다름
 "web.xml dtd" 구글 검색 -> 버전에 맞는 코드 카피해서 수정!
 
-maven 
+maven update(alt+f5) : force
 
 
 웹상에서 오목 만들기 (비동기로 만들기)
@@ -4050,6 +4050,149 @@ maven
 5. Ajax 데이터 받아서 결과 출력하기
  - 오목 성공시 끝내기
  - (추가기능) 게임 새로 시작버튼, 세션 정보 삭제
+
+=======================================
+22.06.27 월 - 37일차
+
+servlet-context.xml 설명(webapp/WEB-INF/spring/appServlet)
+<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <beans:property name="prefix" value="/WEB-INF/views/" />
+    <beans:property name="suffix" value=".jsp" />
+</beans:bean>
+ - 빈즈 접두사, 접미사 설정이 되어있음 
+
+<context:component-scan base-package="org.zerock.controller" />
+ - 스프링 실행시 스캔할 패키지 설정
+ - @Controller 가 붙은 클래스를 스캔해서 객체를 등록시켜둠
+
+
+
+프론트컨트롤러 : DispacherServlet
+ - 모든 요청을 받아서 컨트롤을 해줌
+ - DispacherServlet 설정은 web.xml에 있음 (webapp/WEB-INF/web.xml)
+ - servlet-context.xml의 위치정보를 가지고 있음 (빈즈 설정 및 서블릿 담긴 패키지 정보)
+
+
+브라우저에서 요청 -> DS -> controller -> service -> DAO -> SQL 실행
+ ( 이부분 필기 못함.. ) view resolver <- service <- DAO <- SQL 결과
+
+
+
+========================================================
+별도의 톰캣 설치 (이클립스와는 별개, 배포용 서버 구동하기)
+https://tomcat.apache.org 접속 -> tomcat 9 -> "32-bit/64-bit Windows Service Installer" 다운로드 -> 설치 실행 -> 포트번호 수정 (80 포트) -> 설치경로 수정
+
+- 이클립스에서 8080 포트를 사용하고 있고, 실제 서비스하는것처럼 포트번호를 80으로 수정
+- 설치경로 (kdigital/java/tomcat9.0)
+
+실행시키면 우측 하단 트레이창에 톰캣이 나타남 -> 설정 및 실행,중지를 직접 할 수 있음
+주소창에 "localhost"만 치면 기본화면이 나타남 (80포트는 기본이기때문에 생략해도 됨)
+
+톰캣 폴더 설명
+ - bin : 톰캣을 실행하고, 종료시키는 스크립트 (.bat , .sh 등) 파일이 들어있다.
+ - lib : 라이브러리들이 있음
+ - conf : 서버 전체 설정파일 폴더 ( server.xml 등 )
+ - logs : 모든 로그들이 쌓임
+ - webapps : 사이트 파일들이 잇을 장소
+ - work : jsp 파일을 서블릿형태로 변환한 java 파일과 class 파일이 저장
+
+JNDI 설정 
+ - server.xml, context.xml 수정 (이클립스에 있는 서버에서 설정한 내용과 동일하게 수정)
+ - server : <Resource> 태그 내용 - OracleDriver 관련 설정
+ - context : <ResourceLink> 태그 내용
+
+(JNDI의 용도 : 연결하고 싶은 데이터베이스 DB Pool을 미리 Naming 시켜주는 방법
+ 저장해둔 WAS의 데이터베이스 정보에 JNDI를 설정해두면 웹 애플리케이션은 JNDI만 호출하면 된다.)
+(JNDI 정보를 확인하려고 할때 -> 톰캣 서버 설정 파일(server.xml, context.xml)을 확인해야한다. )
+
+이클립스에서 올리고자하는 프로젝트 우클릭 -> export -> war file -> 생성한 war file을 배포용 서버(webapps 폴더)에 넣어주면 알아서 파일들(jsp, class등)이 생성됨 (class파일들도 webapps/프로젝트명/WEB-INF/classes 위치에 들어감)
+
+war파일을 톰캣서버에 넣으면 이제 배포용 서버를 통해서 접속이 가능하게 됨 (이클립스를 통해서 들어가지 않아도 됨)
+
+webapps/ROOT
+ - 기본 default 경로 (localhost 이후 컨텍스트path를 입력하지 않으면 기본으로 접속되는 경로)
+==================================================================
+
+1.3.1 프로젝트 실행히 흔히 발생하는 문제들
+pom.xml에서 빨간색 경고가 발생하는 경우
+ - 해당 라이브러리를 다운로드하지 못할 때 생기는 문제
+ - Maven으로 다운로드 되는 파일들은 c:/windows/사용자이름/.m2 폴더 내에 모임 -> 이클립스 종료 후 .m2 폴더에 내용을 삭제한 후 다시 실행한다. -> 이클립스 재싱행시 다시 관련 라이브러리를 다운로드하게 됨
+
+tomcat 실행시 에러메시지 "invalid loc header (bad signature)"가 뜨면서 실행되지 않는 경우
+ - 라이브러리 관련 오류 -> 라이브러리 문제(위와 같은 방식으로 처리), Maven을 강제로 업데이트(프로젝트 우클릭 -> Maven -> Update Project)
+
+
+1.4 Lombok 라이브러리 설치 (이클립스에 설정이 필요함)
+
+Lombok : 개발시 자주 이용되는 getter/setter, toString(), 생성자 등을 자동으로 생성해주는 라이브러리
+
+프로젝트에서만 사용되는 것이 아니라서 Eclipse 에디터 내에서도 사용되어야하기 때문에 별도로 설치하는 과정이 필요함
+
+https://projectlombok.org -> download -> 롬복 다운로드
+
+CMD 실행 -> 다운로드 경로로 이동한 뒤 "java -jar lombok.jar" 명령어 실행 -> "Specify location" 클릭해서 eclipse.exe 선택 후 "install/Update" -> 완료 후 "Quit installer" -> 이클립스 재실행
+
+https://mvnrepository.com/ -> 'lombok' 검색 -> project lombok 접속 -> Maven 복사해서 스프링프로젝트 pom.xml 열어서 <dependencise> 태그 사이에 붙여넣기 -> Libraries/Maven Dependencies에서 lombok jar파일이 생성된 것 확인 (dependency 추가로 생성된 lombok.jar 파일로 이클립스 내 롬복 설치과정을 수행해도됨)
+
+java 파일에 게터/세터 삭제 -> 클래스 위에 @Getter, @Setter 어노테이션 추가 후 자동임포트! -> 게터/세터가 없어도 사용이 가능함 (컴파일된 class파일에 게터/세터 코드가 생성된 되는 원리)
+
+개발환경에서만 lombok.jar파일이 필요하고 서버에서는 필요없음 (class파일에 이미 게터/세터가 만들어져있기때문)
+
+
+1.5 Java Configuration을 하는 경우 (xml 파일이 아닌 java로 설정하는 방법)
+
+New -> Spring Legacy Project -> 프로젝트명 설정, Spring MVC Project 선택 후 'next' -> 패키지파일명 설정 후 finish.
+web.xml 파일 및 spring 폴더 삭제
+pom.xml 파일 수정
+ - maven-war-plugin 추가
+@Configuration을 이용하여 설정파일을 직접 작성 (RootConfig 클래스)
+web.xml을 대신하는 클래스 작성 (추상클래스 상속 - AbstractAnnotationConfigDispatcherServletInitializer)
+
+
+2장 스프링의 특징과 의존성 주입
+
+스프링의 주요 특징
+ - POJO 기반의 구성 (POJO : 일반적인 자바 객체라고 생각하자)
+ - 의존성 주입(DI)을 통한 객체 간의 관계 구성
+ - AOP (관점 지향 프로그래밍) 지원
+ - 편리한 MVC 구조
+ - WAS의 종속적이지 않은 개발 환경
+
+의존성(Dependency) : 하나의 객체가 다른 객체 없이 제대로 된 역할을 할 수 없는 것
+ - 스프링에서는 ApplicationContext라는 존재가 필요한 객체들을 생성하고, 필요한 객체들을  - 주입하는 역할을 하는 구조를 가진다.
+ - 빈(Bean) : ApplicationContext가 관리하는 객체
+ - 빈과 빈 사이의 의존 관계를 처리하는 방식의 종류 : xml, 어노테이션, java
+
+AOP의 지원
+ - 비즈니스 로직은 아니지만 반드시 처리가 필요한 부분을 '횡단 관심사'라고 함
+ - 이러한 횡단 관심사를 모듈로 분리하여 다루기 위해 AOP가 사용됨
+
+
+프로젝트의 scr 폴더 내 'root-context.xml' : 스프링 프레임워크에서 관리해야하는 객체(빈)를 설정하는 설정파일
+ - servlet-context.xml : 요청과 관련된 객체를 정의
+ - root-context.xml : view와 관련되지 않은 객체를 정의
+
+
+- 스프링이 스캔 중에 @Component 어노테이션이 있으면 객체를 생성한다.
+- @Component가 있는 클래스 내에 @Autowired를 가진 필드가 있으면 생성한 객체 중에 해당되는 타입이 있는지를 확인하고 있을경우 그 객체를 주입해서 콤포넌트를 생성해서 보괂나다.
+
+
+2.3 스프링이 동작하면서 생기는 일
+2.3.1 테스트 코드를 통한 확인
+
+테스트코드 작성에 필요한 라이브러리 추가
+JUnit을 사용하기 위해서는 "Spring TestContext Framework"가 있어야함
+mvnrepository.com에 가서 Spring TestContext Framework를 버전에 맞는 것 찾아서 dependency 추가
+
+@Component
+
+
+
+
+
+
+
+
 
 
 
