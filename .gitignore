@@ -1,9 +1,9 @@
 ### Java ###
 # Compiled class file
-bin
-.classpath
-.project
-.settings
+test/bin
+test/.classpath
+test/.project
+test/.settings
 
 
 
@@ -14,3 +14,21 @@ JSP/.classpath
 JSP/build/
 JSP/.project
 JSP/.settings
+
+ex00/.settings/
+ex00/target/
+ex00/.project
+ex00/.settings
+ex00/.springBeans
+
+jex00/.settings/
+jex00/target/
+jex00/.project
+jex00/.settings
+jex00/.springBeans
+
+spring/.settings/
+spring/target/
+spring/.project
+spring/.settings
+spring/.springBeans
