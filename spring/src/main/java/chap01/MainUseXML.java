@@ -13,5 +13,7 @@ public class MainUseXML {
 		
 		Greet g2 = ctx.getBean("hi", Greet.class);
 		System.out.println(g == g2);
+		
+		System.out.println(ctx.getBean("hello"));
 	}
 }

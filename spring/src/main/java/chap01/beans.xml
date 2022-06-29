@@ -10,5 +10,13 @@
 	<bean id="hi" class="chap01.Greet">
 		<property name="format" value="%s님, 안녕하세요"/>
 	</bean>
+
+	<bean id="hi2" class="chap01.Greet">
+		<property name="format" value="%s님, 안녕하세요"/>
+	</bean>
+	
+	<bean id="hello" class="java.lang.String" >
+		<beans:constructor-arg value="#{hi.greet('김길동')}"/>
+	</bean>
 	
 </beans:beans>

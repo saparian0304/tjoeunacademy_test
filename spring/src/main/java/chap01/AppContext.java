@@ -31,6 +31,7 @@ public class AppContext {
 	
 	@Bean 
 	public Greet hello2() {
-		return hi2();
+		return hi2();			
+		// hi2() 메서드를 실행하는 것이 아니고, 빈 컨테이너에 hi2라는 이름의 객체를 그냥 반환하는 것
 	}
 }

@@ -4258,6 +4258,102 @@ spring 프로젝트 패키지 구분
 
 ApplicationContext : 스프링 컨테이너를 의미함
 
+=======================================
+22.06.29 화 - 39일차
+
+
+==========포트폴리오 웹에 올리는 방법 2가지 (시작)============
+
+방법 1. 웹호스팅 - 카페24, 후이즈, 가비아 
+https://hosting.cafe24.com/ 
+-> 스페셜호스팅 -> tomcat 호스팅 -> 일반형
+
+방법 2. AWS
+aws 서버 1년간 무료제공 -> 자바, DB, 톰캣서버 설치해서 배포
+
+
+// 도메인은 살 필요가 없음 (IP로 접속 하는 걸로..)
+
+==========포트폴리오 웹에 올리는 방법 2가지 (끝)============
+
+3장 스프링과 Oracle Database 연동
+
+mvnrepository.com 통해서 ojdbc 최신버전(21.6.0.0.1) 받기
+
+3.4 커넥션 풀 설정 (HikariCP)
+mvnrepository.com 통해서 'HikariCP' 최신버전(5.0.1) 받기
+("HikariCP"라고 검색해야 최신버전이 나온다)
+
+
+04. MyBatis와 스프링 연동
+
+MyBatis : SQL 매핑 프레임워크로 분류됨
+ - 자동으로 Connection close() 가능
+ - MyBatis 내부적으로 PreparedStatement 처리
+ - #{prop}와 같이 속성을 지정하면 내부적으로 자동 처리
+ - 리턴 타입을 지정하는 경우 자동으로 객체 생성 및 ResultSet 처리
+
+mvnrepository.com 통해서 최신버전 받기
+ - MaBatis (3.5.10)
+ - MyBatis-spring (2.0.7)
+
+스프링라이브러리는 스프링 버전과 똑같이 맞춰주도록 하자
+ - Spring JDBC (5.0.7)
+ - Spring Transaction (5.0.7)
+
+4.2 스프링과연 연동처리
+
+MyBatis의 Mapper
+ - sql과 그에 대한 처리를 지정하는 역할
+ - xml과 인터페이스 + 어노테이션 형태로 작성이 가능하다
+
+4.2.1 Mapper 인터페이스
+테스트코드가 정상적으로 작동한다면 스프링 내부에 TimeMapper 타입으로 만들어진 스프링 객체가 존재한다는 뜻이다.
+
+개발시에는 인터페이스만 만들어줬는데 내부적으로 적당한 클래스를 만들어서 구현해줌
+
+인터페이스만 만들면 구현클래스는 마이바티스가 만들어준다는 원리...
+스프링이 인터페이스를 이용해서 객체를 생성한다.
+
+4.2.3 XML 매퍼와 같이 쓰기
+어노테이션 방식이 편리하나 SQL문이 복잡하거나 길어지는 경우는 XML을 이용하는 방식을 더 선호하게 된다.
+
+이 경우 XML 파일의 위치가 중요함
+ - Mapper 인터페이스가 있는 위치
+ - src/main/resources
+
+
+==========이클립스 프로젝트 Propertise 메뉴 설명=============
+Build path->source 를 확인하면 자바파일의 타겟 폴더를 확인 할 수 있다. (컴파일한 파일들이 위치하는 장소)
+
+
+Deployment Assembly
+ - Source : 실제 작업할때 경로
+ - Deploy Path : 배포했을 때 경로 (웹에서 접속하는 경로)
+
+
+==========이클립스 프로젝트 Propertise 메뉴 설명=============
+
+log4jdbc-log4j2
+ - SQL 로그를 제대로 보기 위한 라이브러리
+ 
+1. pom.xml에 디펜던시를 추가해서 라이브러리에 추가한다.
+2. src/main/resources 에 파일을 추가한다.
+ - 파일명 : "log4jdbc.log4j2.properties"
+ - 내용 : "log4jdbc.spylogdelegator.name=net.sf.log4jdbc.log.slf4j.Slf4jSpyLogDelegator"
+3. rootconfig에 driverClassName, JdbcUrl 설정을 수정해준다
+
+로그 레벨 
+ - all > trace > debug > info > warn > error > fatal > off
+ - all : 모든로그를 보여줌
+ - off : 로그 X
+
+일반적으로 로그레벨은 "error"로 설정해둠(실제 운영서버)
+(개발서버에서는 "debug")
+
+System.out.println()은 톰캣 서버에 있는 디스크에 파일을 쓰는 작업이기때문에 속도가 느려지는 원인이 됨
+
+
 
 
 
