@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="chap04.BoardMapper"> <!-- namespace : 꼭 경로가 같아야한다. -->
+	<resultMap type="chap04.BoardDTO" id="boardMap">
+		<result column="title" property="subject"/>
+		<result column="postdate" property="postdate"/>
+	</resultMap>
+	<!-- 검색조건 따로 마련 -->
+	<sql id="whereSql">
+		<where>
+			<if test="searchWord != null and searchWord !=''">
+			${searchField} LIKE '%${searchWord}%'
+			</if>
+			<if test="searchDate != null and searchDate !=''">
+			AND postdate = #{searchDate}
+			<!-- WHERE ${postdate} = '${searchDate}' 도 가능-->
+			</if>
+			<if test="nums != null">
+				AND num IN
+				<foreach collection="nums" open="(" close=")" separator="," item="value">
+					 #{value}	
+				</foreach>
+			</if>
+		</where>
+	</sql>
+
+
+	<select id="selectCount" parameterType="chap04.BoardDTO" resultType="int">	
+	<!-- 실제로는 java.lang.Integer이나 myBatis 내부에 int로 alias가 걸려있음 -->
+		SELECT count(*) 
+		FROM board
+		<include refid="whereSql"></include>
+		ORDER BY num DESC
+	</select>
+	
+	<select id="selectList" parameterType="chap04.BoardDTO" resultType="bdto" >  <!-- resultMap="boardMap" -->
+	<!-- DTO에 결과값이 담김 -> 여러개일 경우 알아서 리스트에 담김 -->
+		SELECT 
+			<!-- * -->
+			title as subject, postdate
+		FROM board
+		<include refid="whereSql"></include>
+		ORDER BY num DESC
+	</select>
+	
+	
+	
+	<insert id="insert" parameterType='chap04.BoardDTO'>
+		INSERT INTO board (
+			num, title, content, id, postdate, visitcount
+			<if test="sfile != null">
+			, sfile, ofile
+			</if>
+		) VALUES (
+			seq_board_num.nextval, #{title}, #{content}, #{id}, sysdate, 0
+			<if test="sfile != null">
+			, #{sfile}, #{ofile}		
+			</if>
+		)
+		<!-- 
+		변수명 = "aaa"일때
+		#{변수명} => 'aaa' 문자열 형태로 들어감
+		${변수명} => aaa 그대로 들어감
+		때문에 '%%'안에 사용할때는 $를 사용해야한다.
+		 -->		
+	</insert>
+	
+	
+</mapper>
