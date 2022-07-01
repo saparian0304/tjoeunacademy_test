@@ -22,7 +22,7 @@ public class MyBatisTest {
 	@Autowired
 	BoardMapper mapper;
 	
-	@Test
+//	@Test
 	public void selectCount2() {
 		BoardDTO dto = new BoardDTO();
 //		dto.setSearchWord("11");
@@ -67,5 +67,24 @@ public class MyBatisTest {
 		dto.setId("test1");
 		int result = dao.insert(dto);
 		log.info("등록결과 : " + result);
+	}
+	@Test
+	public void insert1() {
+		BoardDTO dto = new BoardDTO();
+		dto.setTitle("selectkey1");
+		dto.setContent("setting");
+		dto.setId("test1");
+		int result = mapper.insert(dto);
+		log.info("등록결과 : " + result);
+		log.info("num값 : " + dto.getNum());
+	}
+	
+	@Test
+	public void updateDelete() {
+		BoardDTO dto = new BoardDTO();
+		dto.setTitle("페이징 처리2");
+		dto.setContent("페이징 처리2");
+		dto.setNum(368);
+		log.info("수정개수: " + dao.update(dto));
 	}
 }

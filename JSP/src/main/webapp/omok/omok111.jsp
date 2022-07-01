@@ -31,8 +31,8 @@
         }
         .col {
           border: hidden;
-          width: 28.77px;
-          height: 28.77px;
+          width: 30px;
+          height: 30px;
           text-align: center;
           margin : 0px 0px;
         }

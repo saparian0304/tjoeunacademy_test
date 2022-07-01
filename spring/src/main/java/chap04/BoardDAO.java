@@ -26,4 +26,8 @@ public class BoardDAO {
 		return sst.insert("board.insert", dto);
 		
 	}
+	
+	public int update(BoardDTO dto ) {
+		return sst.update("board.updateBoard", dto);
+	}
 }

@@ -62,8 +62,16 @@
 		#{변수명} => 'aaa' 문자열 형태로 들어감
 		${변수명} => aaa 그대로 들어감
 		때문에 '%%'안에 사용할때는 $를 사용해야한다.
-		 -->		
+		 -->	
+		 
+		 <selectKey keyProperty="num" order="AFTER" resultType="int">
+		 	<!-- selectKey : SQL 실행하고 나서 키값을 가져옴-->
+		 	<!-- 파라미터로 받은 객체에 keyProperty 이름(num)에 키값을 set해줌 -->
+		 	SELECT seq_board_num.currval FROM dual
+		 </selectKey>	
 	</insert>
+	
+	
 	
 	
 </mapper>
