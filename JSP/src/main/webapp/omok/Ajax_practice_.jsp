@@ -13,8 +13,16 @@ $(function() {
 			url : "/web/ajax/Ajax_parctice.do", //이동할 jsp파일 주소
 			type: "post",
 			data : {color: $(this).attr("class")},
-			success : function () {
-				alert("성공");
+			async : false,
+			datatype: "text",
+			success : function (obj) {
+				// alert("성공");
+				console.log(obj);
+				if (obj == "성공") {
+					alert("성공");
+				} else {
+					alert("계속 진행");
+				}
 			},
 			error:function(){ 
 				alert("실패");
@@ -22,8 +30,6 @@ $(function() {
 		})
 	})	
 })
-
-	
 
 </script>
 
@@ -50,5 +56,6 @@ div {
 	<div class="red"></div>
 	<div class="blue"></div>
 	<div class="green"></div>
+	<h2>초록이면 성공, 다른 색은 실패</h2>
 </body>
 </html>

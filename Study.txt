@@ -4507,6 +4507,114 @@ ResponseEntity : 응답헤더에 원하는 메시지와 상태코드를 담아�
 @RequestParam("nickname", required = false)
  - 속성을 2개를 쓰고자 할때는 반드시 value를 넣어줘야한다. 생략이 불가능함
 
+=======================================
+22.07.04 월 - 42일차
+
+자바설정 방식 (xml방식과 혼용하기)
+web.xml에 DispatcherServlet에 초기화 파라미터 추가
+ - contextClass : 설정 클래스파일 (org.springframework.web.context.support.AnnotationConfigWebApplicationContext)
+ - contextConfigLocation : 자바설정 파일 위치
+
+web.xml에 인코딩 필터 설정 (spring이 가진 필터 적용)
+
+
+자바설정파일 (contextconfigLocation에 매핑된 파일)
+ - WebMvcConfigurer 인터페이스 구현하기
+ - configureDefaultServletHandling 오버라이드하기
+    - 정적인 URL을 default servlet이 처리할 수 있도록 하는 메서드
+ - configureViewResolvers 오버라이드하기
+    - ViewResolver가 prefix, suffix 설정하기
+
+
+
+------------- 이클립스 톰캣 서버 설정 (start) ---------------
+ - autoreload 설정 : 자바파일이 수정된 것을 보면 자동으로 재시작 할 수있게끔 하는 설정
+ - 운영서버에서는 사용하지 않는다 (서버에 부담이 감)
+------------- 이클립스 톰캣 서버 설정 (end) ---------------
+
+
+하나의 url에서 두개의 처리 (로직, 응답), 2개 이상도 가능
+1. Request 객체로 구분해서 처리하기
+ - HttpServletRequest 객체를 매개변수로 받기
+ - Request객체의 getMethod()값이 "GET"인지 "POST"인지 구분해서 viewResolver에 리턴해준다. (equals 매서드로 비교하기때문에 대소문자 구분해줘야한다.)
+
+2. @RequestMapping으로 구분
+ - method를 RequestMethod="GET", RequestMethod="POST"로 구분
+3. @GetMapping / @PostMapping으로 구분
+
+
+
+리턴이 없는 경우 (매핑URL과 같은 경로의 jsp 파일을 포워딩함)
+redirect -> url 자체가 바뀜 
+예) return "redirect:/board/test.do";
+ - board/test.do로 url이 바뀜
+ - 포워딩의 경우엔 url은 바뀌지 않음
+
+
+redirect: 과 주소 사이 공백 여부 차이
+ - redirect:주소 (공백X) -> 컨텍스트패스와 상관없이 이동    
+   "redirect:/board/test.do"
+    -> localhost:8080/spring/board/test.do
+
+ - redirect: 주소 (공백O) -> 컨텍스트패스를 포함한 경로로 이동 
+   "redirect: /board/test.do"
+    -> localhost:8080/board/test.do
+
+
+리턴 없음 (jsp가 필요 없는 경우)
+ - HttpServletResponse 객체에 getWriter()를 이용
+ - PrintWriter 객체에 담아서 print
+
+
+값을 저장소에 저장하기 (request / session) -> jsp에 꺼내쓰기위함
+1. Request에 저장하기
+(1) request에 저장 (하나의 요청에서만 공유가 가능)
+ - HttpServletRequest 객체에 setAttribute() 메서드 이용
+(2) Model 객체에 저장
+ - spring이 알아서 request에 저장함
+2. Session에 저장하기
+(1) request 객체의 getSession() 메서드 이용
+(2) HttpSession 객체를 이용
+단순비교하면 HttpSession 객체를 이용하는 것이 더 편해보이나 대부분의 경우 이미 Request 객체를 사용하고 있기때문에 Request객체를 이용해서 Session을 사용하는 것이 편할 때도 많다.
+
+3. ModelAndView 객체 리턴하기
+ - 값과 jsp 경로를 ModelAndView 객체에 저장할 수 있음
+
+-------------------------------------------------
+한글 출력하는 방법 (setCharacterEncoding)       |
+ - response.setCharacterEncoding("utf-8") 사용  |
+ - PrintWriter 객체보다 위에 있어야한다.        |
+-------------------------------------------------
+
+비즈니스 로직이 필요없는 페이지(디자인만 있는 페이지)
+ -> Controller를 굳이 따로 만들 필요가 없을때
+ -> Config파일에 직접 controller를 지정할 수 있음
+ -> addViewControllers(ViewControllerRegistry reg)를 오버라이드
+    - reg.addViewController("요청주소").setViewName("jsp페이지명")
+
+
+파라미터를 받는 4가지 방법
+1. HttpServletRequest 객체 이용
+2. @RequestParam 이용
+ - 기본값 : 필수입력    &&    매개변수명이 파라미터명과 일치해야함
+ - 이름이 다른 경우 : @RequestParam의 name 속성에 파라미터명 지정
+ - 필수값이 아닌경우 : required 속성을 false로 지정
+ - 기본자료형인 경우 : required=false로 지정해도 에러남 (null 지정할수없기때문) -> defaultValue 지정
+3. 커맨드 객체(ModelAttribute) 이용
+ - VO(DTO) 객체에 필드명과 파라미터명이 일치하면 자동으로 저장해줌 (일치하지않으면 저장X)
+ - 자동으로 request에 저장 (VO(DTO)객체를 매개변수로 넣어주기만 하면 된다)
+ - 배열로 전송되는 경우 각 값들을 ","로 구분하여 하나의 문자열로 저장함 (필드가 배열로 선언되었을시 배열로 전환해줌)
+4. @PathVariable
+ - URL : @GetMapping("/board/{page}/{searchWord}")
+ - 매개변수 : @PathVariable int page, @PathVariable String searchWord
+예) http://localhost:8080/spring/param/board/1/자바
+   -> page : 1, searchWord : 자바
+ - API에서 주로 사용되나 다른 곳에서는 잘 사용되지 않음
+
+
+
+
+
 
 
 
@@ -4543,3 +4651,7 @@ ResponseEntity : 응답헤더에 원하는 메시지와 상태코드를 담아�
 검색이 필요한 프로젝트로
 프로젝트 주제는 익숙한걸로(?)
 사용되는 기술이 중요(?)
+
+자주 사용되는 버전 
+ - 스프링 4~5
+ - 톰캣 7~8
