@@ -66,7 +66,7 @@ public class ResponseController {
 	@GetMapping("/sess.do")
 	public void sess(HttpServletRequest req) {
 		HttpSession sess = req.getSession();
-		sess.setAttribute("hobby", "coding");		
+		sess.setAttribute("hobby", "coding");
 		// 다시 save.do로 접속하면 session 정보가 저장된것 확인이 가능함
 	}
 	

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="emp">
+	
+	<select id="selectList" parameterType="org.practice.ajp.emp.EmpVO" resultType="org.practice.ajp.emp.EmpVO">
+		SELECT * FROM emp
+		<where>
+			<if test="job != null and job != ''">
+			job = #{job}
+			</if>
+		</where>
+		ORDER BY empno DESC
+	</select>
+	
+</mapper>

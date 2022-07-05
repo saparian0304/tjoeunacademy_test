@@ -2,17 +2,22 @@ package omok;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.http.HttpHeaders;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import org.apache.catalina.filters.HttpHeaderSecurityFilter;
 @WebServlet("/test.do")
 public class Test1 extends HttpServlet {
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		resp.setContentType("text/html; charset=UTF-8");
+		resp.setHeader("abc", "abd");
 		
 		String col = req.getParameter("col");
 		String row = req.getParameter("row");
@@ -62,7 +67,8 @@ public class Test1 extends HttpServlet {
 			
 		}
 		out.print(str);
-		
+//		System.out.println(resp.getHeader("abc"));
+//		req.getRequestDispatcher("/omok/board.jsp").forward(req, resp);
 	}
 	
 	public static boolean goal(String[][] getArr, String stone) {
