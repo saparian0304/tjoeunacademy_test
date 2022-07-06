@@ -4614,6 +4614,123 @@ redirect: 과 주소 사이 공백 여부 차이
 =======================================
 22.07.05 화 - 43일차
 
+BoardController
+ - URL매핑, jsp포워딩, service 호출
+
+BoardService
+ - list(count+list+페이징 처리)
+
+BoardDAO
+ - count
+ - list
+
+BoardVO
+ - 모든 컬럼
+
+board.xml
+ - count
+ - list
+
+jsp
+ - 목록 출력, 검색, 페이징
+
+
+controller -> service -> DAO -> SQL 
+controller <- service <- DAO <- SQL 
+
+=======================================
+22.07.06 수 - 44일차
+
+6.5.5 파일 업로드 처리
+
+서블릿 3.0 이후(톰캣 7.0)은 추가 라이브러리가 필요 X
+
+1. 파일 업로드에 필요한 라이브러리 다운로드(commons-fileupload 또는 cos.jar)
+ - commons-fileupload (mvnrepository에서 받는다)
+
+2. servlet-context.xml에 "multipartResolver" 빈 객체 추가
+ - 필드 초기화 (defaultEncoding, maxUploadSize, maxUploadSize, uploadTempDir, maxInMemorySize)
+ - defaultEncoding : 인코딩 형태
+ - maxUploadSize : 파일 업로드 제한
+ - maxUploadSize : 개별 파일 업로드 제한
+ - uploadTempDir : 업로드할 위치
+ - maxInMemorySize : 메모리상에서 유지하는 최대 크기
+
+
+6.6 Controller의 Exception 처리
+처리방법 2가지
+ - @ExceptionHandler와 @ControllerAdvice를 이용한 처리
+ - @ResponseEntity를 이용하는 예외 메시지 구성
+
+6.6.1 @ControllerAdvice
+AOP방식을 이용하면 공통적인 예외사항에 대해서 별도로 분리할 수 있다. (@ControllerAdvice 이용)
+ - @ControllerAdvice : 사용된 객체에서 발생하는 예외를 처리하는 존재임을 알려주는 어노테이션
+ - @ExceptionHandler : 메서드에서 발생하는 예외타입을 알려주는 어노테이션
+
+
+7장 스프링 MVC 프로젝트의 기본구성
+
+웹프로젝트는 일반적으로 3-tier(티어)방식으로 구성된다 (presentation, business, persistence tier)
+
+Presentation Tier(화면 계층)
+ - 화면에 보여주는 기술을 사용하는 영역
+
+Business Tier(비즈니스 계층)
+ - 비즈니스 로직을 담고 있는 영역
+ - 고객의 요구사항을 반영하는 계층
+
+Persistence Tier(영속 계층, 데이터계층)
+ - DB와 연결된 계층
+ - 데이터를 보관하고 사용하는 방식에 대한 설계
+
+각 영역 네이밍 규칙
+ - Controller : 스프링 MVC에서 동작하는 Controller 클래스
+ - Service, ServiceImpl : 비즈니스 영역을 담당
+ - DAO, Repository 
+ - VO, DTO : 데이터를 담고있는 객체
+    - VO : 일반적으로 Read Only 목적이 강하고, 데이터 자체도 immutable(불변)하도록 설계함
+    - DTO : 데이터 수집 목적이 더 강함
+
+패키지의 네이밍 규칙
+ - 방법 1 : 영역별로 패키지를 설계하는 방법(controller별, service별, ...)
+ - 방법 2 : 비즈니스 단위별로 구분하는 방법
+
+
+1. 요구사항 분석설계 
+2. 화면 설계(스토리보드 작성) 
+ - 목업 툴 이용 : PowerPoint, Balsamiq studio, Pencil Mockup, Power Mockup, 카카오오븐(무료)
+  
+----------(start)MyBatis 사용법---------------
+두가지 방법이 있음
+1. SqlSessionTemplate를 사용하는 방법 (MyBatis 3.0 이전)
+2. MapperInterface를 사용하는 방법 (MyBatis 3.0 이후에 생김)
+
+SqlSessionTemplate 사용
+ - SqlSessionFactory에 MapperLocation 경로를 설정해줘야함(SQL이 들어있는 xml 경로)
+ - DAO에서 SqlSessionTemplate(sst)를 주입받아서 사용
+ - 사용법 예) sst.selectOne("namespace.id", vo);
+    - namespace : xml의 namespace 값
+    - id : xml에서 SQL문 태그의 id 값
+    - vo : 매개변수로 사용할 객체
+
+MapperInterface 사용
+ - mybatis-spring:scan 매퍼인터페이스 파일 스캔할 경로 지정 필요(root-context.xml)
+ - Mapper 인터페이스 파일 생성 : 사용할 함수 정의
+ - sql.xml 파일 경로를 인터페이스 파일과 동일한 경로에 생성(src/main/resources/..이하)
+ - 사용법
+    - namespace : 경로포함한 인터페이스명 작성(org.xx.xx.Xx)
+    - SQL문 태그의 id : 인터페이스에 정의된 함수명과 일치
+
+
+기타
+ - parameterType, resultType 필요시 지정
+----------(end)MyBatis 사용법---------------
+
+
+
+
+
+
 
 
 

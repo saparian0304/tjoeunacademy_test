@@ -118,7 +118,7 @@
 			<scope>test</scope>
 		</dependency>       
 		
-		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+		<!-- lombok : 롬복(자동 게터/세터 생성) -->
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
 		    <artifactId>lombok</artifactId>
@@ -134,14 +134,19 @@
 		    <scope>test</scope>
 		</dependency>
 
-		 <!-- jackson-databind -->
+		 <!-- jackson-databind : JSON 처리 -->
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.13.3</version>
 		</dependency>
+		<!-- commons-fileupload : 파일 업로드 라이브러리-->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
 
-		 
 	</dependencies>
     <build>
         <plugins>

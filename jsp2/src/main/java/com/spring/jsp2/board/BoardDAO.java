@@ -19,4 +19,5 @@ public class BoardDAO {
 	public List<BoardVO> list(BoardVO vo) {
 		return sst.selectList("board.list", vo);
 	}
+	
 }

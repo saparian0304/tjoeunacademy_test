@@ -45,6 +45,18 @@ jex01/.project
 jex01/.settings
 jex01/.springBeans
 
+ex02/.settings/
+ex02/target/
+ex02/.project
+ex02/.settings
+ex02/.springBeans
+
+jex02/.settings/
+jex02/target/
+jex02/.project
+jex02/.settings
+jex02/.springBeans
+
 practice/.settings/
 practice/target/
 practice/.project
@@ -63,3 +75,8 @@ jsp2/.project
 jsp2/.settings
 jsp2/.springBeans
 
+omokproject/.settings/
+omokproject/target/
+omokproject/.project
+omokproject/.settings
+omokproject/.springBeans

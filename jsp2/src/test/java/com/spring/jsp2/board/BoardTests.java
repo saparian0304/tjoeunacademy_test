@@ -40,5 +40,5 @@ public class BoardTests {
 		
 		log.info(list.size()+"");
 	}
-
+	
 }
