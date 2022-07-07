@@ -1,5 +1,7 @@
 package com.spring.jsp2.board;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
 import java.util.List;
 
 import org.junit.Test;

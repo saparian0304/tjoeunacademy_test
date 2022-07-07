@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.BoardMapper">
+
+	<select id="getList" resultType="org.zerock.domain.BoardVO">
+	<!-- <![CDATA[  ]]> : SQL문에 있는 부등호 기호(<, >)를 태그로 인식하는 것을 막아주기 위한 방법-->
+	<![CDATA[
+		SELECT * FROM tb1_board WHERE bno > 0
+	]]>
+	</select>
+	
+	<insert id="insert">
+		INSERT into tb1_board (bno, title, content, writer)
+		VALUES
+			(SEQ_BOARD.NEXTVAL, #{title}, #{content}, #{writer})
+	</insert>
+	<insert id="insertSelectKey">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+			SELECT SEQ_BOARD.NEXTVAL from dual
+		</selectKey>
+		
+		INSERT into tb1_board (bno, title, content, writer)
+		VALUES
+			(#{bno}, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<select id="read" resultType="org.zerock.domain.BoardVO" parameterType="long">
+		SELECT * FROM tb1_board WHERE bno = #{xxxx}     
+		<!-- 파라미터 값이 하나만 넘어오기때문에 "xxxx"처럼 아무거나 써도 된다. -->
+	</select>
+	
+	<delete id="delete">
+		DELETE FROM tb1_board WHERE bno = #{aaaaa}
+	</delete>
+	
+	<update id="update" parameterType="org.zerock.domain.BoardVO">
+		UPDATE tb1_board SET 
+			title = #{title},
+			content = #{content},
+			writer = #{writer},
+			updateDate = sysdate
+		WHERE bno = #{bno} 
+	</update>
+</mapper>

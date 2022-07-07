@@ -4716,30 +4716,71 @@ SqlSessionTemplate 사용
 MapperInterface 사용
  - mybatis-spring:scan 매퍼인터페이스 파일 스캔할 경로 지정 필요(root-context.xml)
  - Mapper 인터페이스 파일 생성 : 사용할 함수 정의
- - sql.xml 파일 경로를 인터페이스 파일과 동일한 경로에 생성(src/main/resources/..이하)
+ - mybatis-spring scan : sql.xml 파일 경로를 인터페이스 파일과 동일한 경로에 생성(src/main/resources/..이하)
+    - mybatis-spring scan을 사용하기 위해서는 xml 상단에 "xmlns:mybatis-spring" 설정 필요
  - 사용법
     - namespace : 경로포함한 인터페이스명 작성(org.xx.xx.Xx)
     - SQL문 태그의 id : 인터페이스에 정의된 함수명과 일치
-
+ - 매퍼인터페이스를 만들면 mybatis가 알아서 클래스를 정의해서 객체를 만들어준다.
 
 기타
  - parameterType, resultType 필요시 지정
+ - <![CDATA[  ]]> : SQL문에 있는 부등호 기호(<, >)를 태그로 인식하는 것을 막아주기 위함
 ----------(end)MyBatis 사용법---------------
 
+=======================================
+22.07.07 목 - 45일차
+
+8장. 영속/비즈니스 계층의 CRUD 구현
+
+영속계층의 작업 순서 
+ - 테이블의 칼럼 구조를 반영하는 VO(Value Object) 클래스의 생성
+ - MyBatis의 Mapper 인터페이스의 작성/XML 처리
+ - 작성한 Mapper 인터페이스의 테스트
+
+<![CDATA[  ]]> : SQL문에 있는 부등호 기호(<, >)를 태그로 인식하는 것을 막아주기 위함
+
+8.2 영속 영역의 CRUD 구현
+
+8.2.1 CREATE(insert) 처리
+ - 생성된 PK값이 필요없는 경우
+ - 생성된 PK값이 필요한 경우 : @SelectKey 어노테이션을 이용하여 PK값을 미리 처리해서 설정한 이름에 보관하는 방식
+
+8.2.2 READ(select) 처리
+ - PK값을 이용해서 데이터를 조회
+
+예) 
+- 함수 정의 : BoardVO read(long bno);
+- SQL문 : SELECT * FROM tb1_board WHERE bno = #{xxxx}   
+   파라미터 값이 하나만 넘어오기때문에 "xxxx"처럼 아무거나 써도 된다. 
+
+
+9장. 비즈니스 계층
+
+비즈니스 계층 : 로직을 기준으로 처리를 한다 -> 하나의 메서드에서 여러가지 기능을 구현한다는 의미
+ - 영속계층에서는 하나의 메서드에서 하나의 기능만을 구현했다.
+
+10장 프레젠테이션(웹) 계층의 CRUD 구현
+
+톰캣의 실행 없이 Controller를 test하는 방법을 알 필요가 있음
+
+테스트 어노테이션 관련 정리
+ - @Before : @Test가 있는 메서드가 실행되기 전에 매번 실행된다
+ - @WebAppConfiguration : Servlet의 ServletContext를 이용하기 위한 어노테이션 -> 스프링에서는 WebApplicationContext를 이용하기 위한 표시
+    - 필드에 WebApplicationContext 객체를 주입받을 수 있음
+ - @FixMethodOrder(MethodSorters.NAME_ASCENDING) : @Test를 메서드명 순서대로 실행시킬 수 있음
+
+addAttribute 과 addFlashAttribute의 차이
+ - redirect를 했을 경우 주소창을 보면 차이를 느낄 수 있다
+ - 사용 예 
+   redirect -> "/board/list"
+   추가할 attribute -> "result" : "success"
+    - addAttribute 사용시 주소창 : /board/list?result=success
+    - addFlashAttribute 사용시 주소창 : /board/list
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+자바설정에서는 인터페이스 형식의 빈을 인식 못하는 건가...
 
 
 
