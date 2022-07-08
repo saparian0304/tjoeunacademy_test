@@ -9,7 +9,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
-@ComponentScan(basePackages = {"org.practice.ajp"})
+@ComponentScan(basePackages = {"org.practice.ajp", "org.practice.member"})
 public class ServletConfig implements WebMvcConfigurer{
 
 	@Override
