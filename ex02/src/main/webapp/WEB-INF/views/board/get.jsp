@@ -35,6 +35,8 @@
 					
 					<form id='operForm' action="/board/modify" method="get">
 						<input type="hidden" id="bno" name="bno" value="${board.bno}">
+						<input type="hidden" name="pageNum" value="${criteria.pageNum}">
+						<input type="hidden" name="amount" value="${criteria.amount}">
 					</form>
 					<script>
 						$(function() {

@@ -9,15 +9,15 @@
 <script>
 	$(function() {
 		var sum = 0;
+		/*
 		setInterval(() => {
-//			sum = add(sum);
-			
 			console.log(sum);
 		}, 1000);
-		
+		*/
 		$('body').click(function () {
+			console.log("add전 sum : " + sum)
 			sum = add(sum);	
-			
+			console.log("add 후 sum : " + sum)
 			$.ajax({  
 				 url : '/ajp/member/list.do ',  
 				 type : 'POST',
@@ -26,8 +26,14 @@
 				 data : {"idx" : sum },
 				 success : function(data){
 					 console.log(data);
+					 console.log("data : " + data);
+					 console.log("\${num} : ");
 					 sum = <%=application.getAttribute("num") %>;
+					 console.log("sum : " + sum);
 					 console.log("성공");
+					 
+					 $('body').html(${sum});  
+					 
 				 }, 
 				 error : function (e){
 					console.log("실패");

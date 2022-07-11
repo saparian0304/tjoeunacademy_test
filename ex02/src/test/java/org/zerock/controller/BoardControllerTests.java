@@ -36,7 +36,7 @@ public class BoardControllerTests {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
 	
-//	@Test
+	@Test
 	public void testList() throws Exception {
 		
 		log.info("ModelMap : " + mockMvc.perform(MockMvcRequestBuilders.get("/board/list"))
@@ -62,8 +62,18 @@ public class BoardControllerTests {
 //		.andReturn());
 //		log.info("ResultAction : "+mockMvc.perform(MockMvcRequestBuilders.get("/board/list")));
 	}
-	
 	@Test
+	public void testListPaging() throws Exception {
+		
+		log.info("ModelMap : " + mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+		.param("pageNum", "2")
+		.param("amount", "10"))
+		.andReturn()
+		.getModelAndView()
+		.getModelMap());
+	}
+	
+//	@Test
 	public void testRegister() throws Exception {
 		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/register")
 				.param("title", "(추가)테스트 새글 제목")

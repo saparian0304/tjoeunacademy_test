@@ -33,6 +33,7 @@ public class MemberController {
 		ServletContext application = session.getServletContext();
 		
 		application.setAttribute("num", num);
+		System.out.println(application.getAttribute("num"));
 		String msg = "{\"num\" : \""+num+"\"}";
 //		String msg = "";
 		HttpHeaders header = new HttpHeaders();
