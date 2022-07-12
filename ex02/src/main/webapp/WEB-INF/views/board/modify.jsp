@@ -19,10 +19,14 @@
 				formObj.attr("action", "/board/list").attr("method","get");
 				var pageNumTag = $("input[name='pageNum']").clone();
 				var amountTag = $("input[name='amount']").clone();
+				var keywordTag = $("input[name='keyword']").clone();
+				var typeTag = $("input[name='type']").clone();
 				
 				formObj.empty();
 				formObj.append(pageNumTag);
 				formObj.append(amountTag);
+				formObj.append(keywordTag);
+				formObj.append(typeTag);
 			}
 			formObj.submit();
 			
@@ -48,6 +52,8 @@
 				<form role="form" action="/board/modify" method="post">
 					<input type="hidden" name="pageNum" value="${criteria.pageNum}">
 					<input type="hidden" name="amount" value="${criteria.amount}">
+					<input type="hidden" name="type" value="${criteria.type}">
+					<input type="hidden" name="keyword" value="${criteria.keyword}">
 					<div class="form-group">
 						<label>Bno</label> <input class="form-control" name="bno" value="${board.bno}" readonly="readonly">
 					</div>
@@ -66,6 +72,7 @@
 					<button type="submit" data-oper="remove" class="btn btn-danger"
 					onclick='location.href="/board/modify?bno=${board.bno}"'>Remove</button>
 					<button type="submit" data-oper="list" class="btn btn-info">List</button>
+					<input type="button" value="List(cri)" onclick="location.href='list?${criteria.listLink }'">
 				</form>
 			</div>
 			<!-- end panel-body -->

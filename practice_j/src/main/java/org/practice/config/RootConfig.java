@@ -16,7 +16,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @MapperScan(basePackages = {"org.practice.mapper"})
-@ComponentScan(basePackages = {"org.practice.ajp", "org.practice.member"})
+@ComponentScan(basePackages = {"org.practice.ajp", "org.practice.member", "org.practice.bank"})
 public class RootConfig {
 
 	@Bean

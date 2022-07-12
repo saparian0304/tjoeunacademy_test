@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.practice.mapper.AccountMapper">
+	<insert id="open">
+		INSERT INTO account (accountnum, holder)
+		VALUES ( SEQ_ACCOUNT.nextval, #{holder})
+	</insert>
+	
+	<insert id="insertBal">
+		INSERT INTO transaction (idx, accountnum, deposit, balance)
+		VALUES ( SEQ_tx.nextval, SEQ_ACCOUNT.currval, #{deposit}, #{deposit})
+	</insert>
+	
+	<insert id="deposit">
+		INSERT INTO transaction (idx, accountnum, deposit, balance)
+		VALUES ( SEQ_tx.nextval, #{accountNum}, #{deposit}, #{balance})
+	</insert>
+	
+	<insert id="withdraw">
+		INSERT INTO transaction (idx, accountnum, withdraw, balance)
+		VALUES ( SEQ_tx.nextval, #{accountNum}, #{withdraw}, #{balance})
+	</insert>
+	
+	<select id="getBalance" resultType="int">
+		SELECT balance FROM (
+		    SELECT balance FROM transaction 
+				WHERE accountnum = 2
+				ORDER BY updatedate desc
+		    )
+		WHERE rownum = 1
+	</select>
+</mapper>

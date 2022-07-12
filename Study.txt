@@ -4843,6 +4843,108 @@ jsp파일을 WEB-INF 폴더 내에 저장하는 이유 -> 클라이언트에서 
  - 이전과 다음으로 이동 가능한 링크의 표시 여부(prev, next)
  - 화면에 보여지는 페이지의 시작 번호와 끝 번호(startPage, endPage)
 
+=======================================
+22.07.12 화 - 48일차
+
+15장. 검색 처리
+
+검색조건
+ - <select> 태그를 이용하는 방법
+ - <checkbox> 태그를 이용하는 방법
+
+MyBatis의 동적 태그들
+ - if
+ - choose (when, otherwise)
+ - trim (where, set)
+ - foreach
+
+<trim>, <where>, <set>은 단독으로 사용되지 않고 <if>, <choose>와 같은 태그들을 내포하여 SQL을 연결해줄 때 사용된다.
+
+15.4 화면에서 검색 조건 처리
+ - 페이지 번호가 파라미터로 유지되었던 것처럼 검색 조건과 키워드 역시 항상 화면 이동시 같이 전송되어야 한다.
+ - 화면에서 검색버튼을 클릭하면 새로 검색한다는 의미이므로 1페이지로 이동한다.
+ - 한글의 경우 GET 방식으로 이동할 때 문제가 생길 수 있으므로 주의해야 한다.
+
+UriComponentsBuilder 클래스 
+ - 여러개의 파라미터를 연결해서 URL 형태로 만들어주는 클래스 (스프링이 제공해줌)
+ - builder 클래스의 경우 new 연산자를 사용을 못하고 메서드를 통해서 builder 인스턴스(객체)를 이용하는 경우가 많다.
+
+
+Part 4. Rest 방식과 Ajax를 이용하는 댓글 처리
+학습목표
+ - REST api
+ - Ajax
+
+16장 REST 방식으로 전환
+
+REST(Representational State Transfer)
+ - 하나의 URI는 하나의 고유한 리소스(Resource)를 대표하도록 설계된다는 개념
+
+REST 관련 어노테이션
+ - @RestController : Controller가 REST 방식을 처리하기 위한 것임을 표시
+ - @ResponseBody : 일반적인 JSP와 같은 뷰로 전달되는 것이 아니라 데이터 자체를 전달하기 위한 용도
+ - @PathVariable : URL 경로에 있는 값을 파라미터로 추출할때 사용
+ - @CrossOrigin : Ajax의 크로스 도메인 문제를 해결해주는 어노테이션 (★★★★)
+ - @RequestBody : JSON 데이터를 원하는 타입으로 바인딩 처리
+
+Ajax의 크로스 도메인 문제
+ - 다른 서버와의 통신을 보안상의 문제때문에 클라이언트 단에서 차단되는 문제
+ - 이를 해결하기 위한 것이 @CrossOrigin 이라는 어노테이션
+
+
+REST 방식에서 기억해야할 것
+ - 서버에서 전송하는 것이 순수한 데이터 형태이다!
+ - JSP같은 뷰(view)로 전달하지 않는다.
+ - 보통 JSON이나 XML로 처리한다.
+
+REST관련 라이브러리
+ - jackson-databind
+ - jackson-dataformat-xml
+ - gson
+
+JSON의 구조
+ - [] : 배열(array)을 의미
+ - {} : 객체(object)를 의미
+
+@GetMapping에 사용된 produce 속성 
+ - 해당 메서드가 생산하는 MIME 타입을 의미함
+ - 반드시 지정해야하는 것이 아니라서 생략도 가능하다 
+ - 기본값은 XML (".json"을 붙여서 요청하면 json 형태로 받음)
+
+
+16.2.2 객체의 반환
+객체를 반환하는 작업은 JSON 이나 XML을 이용함
+
+SampleVO에서 필드를 int가 아닌 Integer로 선언한 이유
+ - 기본자료형을 쓸 경우 null값일 때 에러가 나는 경우가 있음 -> 때문에 데이터를 전달하는 경우에 int보다는 Integer클래스를 사용해야함.
+
+16.2.4 ResponseEntity 타입
+ - 데이터를 요청한 쪽에서 정상/비정상 데이터를 구분할 수 있는 확실한 방법을 제공해야한다.
+ - ResponseEntity는 데이터와 함께 HTTP 헤더의 상태메시지등을 같이 전달하는 용도로 사용한다.
+
+@RequestBody
+ - JSON 데이터를 원하는 타입의 객체로 변환해야 하는 경우에 주로 사용
+
+16.5 다양한 전송방식
+
+GET/ POST 외에 다양한 방식으로 데이터를 전달한다
+ - 등록 : POST
+ - 조회 : GET
+ - 수정 : PUT
+ - 삭제 : DELETE
+
+POST 방식도 그렇지만 PUT, DELETE 방식은 브라우저에서 테스트하기가 쉽지 않기때문에 다른 도구들을 이용해서 테스트하고 개발을 한다.
+
+
+1. 계좌관리 테이블 만들어서 구현
+ - DB 이용
+2. 계좌관리 + ajax
+3. 고양이 사진 사이트 + ajax 구현
+
+
+
+
+
 
 
 
