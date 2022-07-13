@@ -31,12 +31,25 @@ public class BankMapperTest {
 		mapper.insertBal(vo);
 	}
 	
-	@Test
+//	@Test
 	public void testGetBalance() {
 		AccountVO vo = new AccountVO();
 		vo.setAccountNum(1);
 		vo.setDeposit(10000);
 		
 		log.info("계좌 잔고 : "+mapper.getBalance(vo));
+	}
+	
+//	@Test
+	public void testDelete() {
+		AccountVO vo = new AccountVO();
+		vo.setAccountNum(10);
+		
+		log.info("삭제 여부 : " + mapper.deleteAccount(vo));
+	}
+	
+	@Test
+	public void testGetList() {
+		log.info("리스트 : " + mapper.getList());
 	}
 }

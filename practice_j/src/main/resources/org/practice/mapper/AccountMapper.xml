@@ -29,4 +29,21 @@
 		    )
 		WHERE rownum = 1
 	</select>
+	
+	<delete id="deleteAccount">
+		DELETE FROM account 
+		WHERE accountnum = #{accountNum}
+	</delete>
+	<select id="getList" resultType="org.practice.bank.AccountVO">
+		SELECT a.accountnum accountnum, holder, balance
+		FROM account a, (
+		    SELECT ta.accountnum, balance
+		    FROM transaction ta,
+		        (SELECT Max(idx) recentidx, accountnum
+		        FROM transaction 
+		        GROUP BY accountnum
+		        ORDER BY accountnum)
+		    WHERE ta.idx = recentidx ) tb
+		WHERE a.accountnum = tb.accountnum
+	</select>
 </mapper>

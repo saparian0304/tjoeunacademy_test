@@ -14,7 +14,7 @@
 		</init-param>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<param-value>chap05.MvcConfig</param-value>
+			<param-value>chap06.MvcConfig</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>

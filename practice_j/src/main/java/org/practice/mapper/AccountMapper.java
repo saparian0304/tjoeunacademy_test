@@ -1,7 +1,8 @@
 package org.practice.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 import org.practice.bank.AccountVO;
 
 @Mapper
@@ -14,4 +15,7 @@ public interface AccountMapper {
 	int withdraw(AccountVO vo);
 	
 	int getBalance(AccountVO vo);
+	
+	int deleteAccount(AccountVO vo);
+	List<AccountVO> getList();
 }
