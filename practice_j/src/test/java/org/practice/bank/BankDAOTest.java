@@ -41,12 +41,18 @@ public class BankDAOTest {
 		log.info("인출금액 초과로 false가 나와야함 ->"+dao.withdraw(vo));
 		
 	}
-	@Test
+//	@Test
 	public void testWithdraw2() {
 		AccountVO vo = new AccountVO();
 		vo.setAccountNum(2);
 		vo.setWithdraw(3000);
 		log.info("true가 나와야함 ->"+dao.withdraw(vo));
-		
 	}
+	
+//	@Test
+	public void testDelete() {
+		
+		log.info("true가 나와야 함 : " + dao.removeAccount(2));
+	}
+	
 }

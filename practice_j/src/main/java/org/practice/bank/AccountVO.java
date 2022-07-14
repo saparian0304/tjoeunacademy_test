@@ -14,6 +14,7 @@ public class AccountVO {
 	private int age;				// 나이
 	private String gender;			// 성별
 
+	private int idx;
 	private int balance;			// 계좌 잔고
 	private int deposit;			// 입금
 	private int withdraw;			// 출금

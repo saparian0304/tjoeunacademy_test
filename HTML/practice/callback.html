@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+$(function(){
+	
+    study1(study3);
+    
+    function study1(study2) {
+        console.log('study1... ');
+        study2();
+    }
+
+    function study3() {
+        console.log('study3....');
+    }
+});
+
+
+</script>
+</head>
+<body>
+<h2>콜백함수 연습장</h2>
+<button class="aaaa">콜백함수 실행 버튼</button>
+</body>
+</html>

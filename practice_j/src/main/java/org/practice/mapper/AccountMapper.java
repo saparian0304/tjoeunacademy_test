@@ -15,7 +15,9 @@ public interface AccountMapper {
 	int withdraw(AccountVO vo);
 	
 	int getBalance(AccountVO vo);
+	int getBalance(int accountNum);
 	
-	int deleteAccount(AccountVO vo);
+	int deleteAccount(int accountNum);	// 아직 구현 안함
 	List<AccountVO> getList();
+	List<AccountVO> getHistory(int accountNum);
 }

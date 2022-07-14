@@ -18,7 +18,7 @@
 	<c:forEach items="${map.list}" var="account">
 		<tr>
 			<td>${account.accountNum}</td>
-			<td>${account.holder }</td>
+			<td><a href="/ajp/bank/get.do?accountNum=${account.accountNum}&holder=${account.holder}">${account.holder }</td>
 			<td>${account.balance}</td>
 		</tr>
 	</c:forEach>

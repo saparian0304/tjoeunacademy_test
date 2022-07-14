@@ -24,7 +24,7 @@
 	<select id="getBalance" resultType="int">
 		SELECT balance FROM (
 		    SELECT balance FROM transaction 
-				WHERE accountnum = 2
+				WHERE accountnum = #{accountNum}
 				ORDER BY updatedate desc
 		    )
 		WHERE rownum = 1
@@ -46,4 +46,15 @@
 		    WHERE ta.idx = recentidx ) tb
 		WHERE a.accountnum = tb.accountnum
 	</select>
+	
+	<select id="getHistory" resultType="org.practice.bank.AccountVO">
+		SELECT a.accountnum, holder, deposit, withdraw, balance, updatedate
+		FROM account a, (
+		    SELECT * 	
+		    FROM transaction 
+		    WHERE accountnum = #{accountNum} ) t
+		WHERE a.accountnum(+) = t.accountnum
+		ORDER BY idx DESC	
+	</select>
+	
 </mapper>

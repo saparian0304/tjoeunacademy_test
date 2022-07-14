@@ -46,14 +46,27 @@ public class AccountDAO {
 		return result;
 	}
 	
-	public boolean removeAccount(AccountVO vo) {
-		return mapper.deleteAccount(vo) == 1 ? true : false;
-	}
-	
 	public Map<String, Object> getList() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<AccountVO> list = mapper.getList();
 		map.put("list", list);
 		return map;
+	}
+	
+	
+	public List<AccountVO> getHistory(int accountNum) {
+		return mapper.getHistory(accountNum);
+	}
+	
+	public boolean removeAccount(int accountNum) {
+		int balance = mapper.getBalance(accountNum);
+		int result = 0;
+		AccountVO vo = new AccountVO();
+		vo.setAccountNum(accountNum);
+		vo.setWithdraw(balance);
+		vo.setBalance(balance);
+		result += mapper.deposit(vo);
+		result += mapper.deleteAccount(accountNum);
+		return result == 2 ? true : false ;
 	}
 }

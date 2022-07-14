@@ -45,11 +45,16 @@ public class BankMapperTest {
 		AccountVO vo = new AccountVO();
 		vo.setAccountNum(10);
 		
-		log.info("삭제 여부 : " + mapper.deleteAccount(vo));
+		log.info("삭제 여부 : " + mapper.deleteAccount(10));
+	}
+	
+//	@Test
+	public void testGetList() {
+		log.info("리스트 : " + mapper.getList());
 	}
 	
 	@Test
-	public void testGetList() {
-		log.info("리스트 : " + mapper.getList());
+	public void testGet() {
+		mapper.getHistory(2).forEach(a -> log.info(a));
 	}
 }
