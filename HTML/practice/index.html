@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content{
+            display : none;
+        }
+
+        h3 {
+            margin-left: 30px;
+        }
+
+        h4 {
+            margin-left: 60px;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(function() {
+            $('.click').click(function() {
+                $('.content').hide();
+                $(this).children('.content').show(); 
+            })
+        
+            $('.body').click(function() {
+                $('.content').hide();
+            })
+
+        });
+    </script>
+  
+</head>
+<body>
+    
+    <h2 class="click">1. 프로젝트 개발 업무 분담</h2>
+        <div class="click">
+            <h3>(1) 바둑판에 사용할 html태그 레이아웃 구성</h3>
+            <div class="content">
+                <h4>- 테이블 태그가 아닌 div태그로 구성</h4>
+                <h4>- 바둑돌 둘 곳을 식별할 수 있도록 해야함</h4>
+                <h4>- 태그를 구성하는데 반복적인 작업을 피하기 위해서 이중반복문을 이용한 태그 생성</h4>
+            </div>
+        </div>
+        <div class="click">
+            <h3>(2) 바둑돌이 놓이는 클릭이벤트 구현</h3>
+            <div class="content">
+                <h4>- 클릭시 순서에 따라 입력되는 그림을 다르게 하기 - 흑백 구분</h4>
+                <h4>- 이미 둔 곳에는 돌이 추가되지 않도록 하기 - 클릭이벤트 종료</h4>
+                <h4>- 바둑돌 이미지 태그 삽입시 돌의 위치 맞추기</h4>
+            </div>
+        </div>
+        <div class="click">
+            <h3>(3) ajax를 이용해서 클릭이벤트 발생시 필요한 파라미터 가공</h3>
+                <div class="content">
+                    <h4>- 세션에 바둑돌에 대한 위치 저장</h4>
+                    <h4>- 입력받은 정보를 기반으로 오목여부 확인하기</h4>
+                    <h4>- 기존에 작성했던 오목 알고리즘을 프로젝트에 맞게 변환하기</h4>
+                    <h4>- 게임 재시작시 세션에 남아있던 바둑판 위치 초기화</h4>
+                </div>
+        </div>
+        <div class="click">
+            <h3>(4) 클라이언트-서버간 통신 연결 (url 매핑 및 ajax 통신)</h3>
+                <div class="content">
+                    <h4>- 오목 게임 접속 url 매핑</h4>
+                    <h4>- ajax를 이용한 파라미터 전달</h4>
+                    <h4>- 오목 여부에 따른 결과값 클라이언트에 응답</h4>
+                </div>
+        </div>
+    <div class="click">
+        <h2>2. 개발환경</h2>
+            <h3>1차 - 서블릿</h3>
+            <h3>2차 - 스프링</h3>
+            <h3>추가작업 - 코드 리팩토링</h3>
+    </div>
+    <div class="click">
+        <h2>3. 소감</h2>
+            <div class="content">
+                <h4>- 간단한 부분처럼 보여도 막상 생각대로 코드를 짜고 표현해내는 것이 쉽지 않음</h4>
+                <h4>- 서로 할 수있다고 믿어주고 기다려줘서 좋았다</h4>
+                <h4>- 스스로 해낼 수 있어서 성취감이 있었다</h4>
+                <h4>- 개인마다 생각하는 방향이 다르고, 코드에 녹여가는 방법이 다르다는 점을 느낌</h4>
+            </div>
+    </div>
+</body>
+</html>
