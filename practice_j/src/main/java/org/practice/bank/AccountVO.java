@@ -22,4 +22,7 @@ public class AccountVO {
 	private Timestamp regidate;		// 계좌생성일
 	private Timestamp updatedate;	// 최종거래일자
 	
+	private String msg;			// 전달할 메세지
+	private String go;			// 이동할 페이지정보
+	
 }

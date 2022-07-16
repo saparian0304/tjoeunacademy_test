@@ -15,7 +15,7 @@
             /* border: 1px solid transparent;  */
             border: 1px none black;
             box-sizing: border-box;
-            background-image: url("./image/Blank_Go_board.png");
+            background-image: url("../resources/image/Blank_Go_board.png");
             background-size: calc(988px - 34px) calc(988px + 3px);
             background-repeat: no-repeat;
         }
@@ -49,7 +49,7 @@
                 if(rowNumber % 2 == 0){
                     var img=document.createElement("img");
                    $(this).prepend(img)
-                    img.src="./image/white.png";
+                    img.src="../resources/image/white.png";
                     img.style.width=40+"px";
                     img.style.marginTop=5+"px";
                     img.style.marginLeft=5+"px";
@@ -57,7 +57,7 @@
                 }else{
                     var img=document.createElement("img");
                     $(this).prepend(img)
-                    img.src="./image/black.png";
+                    img.src="../resources/image/black.png";
                     img.style.width=40+"px";
                     img.style.marginTop=5+"px";
                     img.style.marginLeft=5+"px";
@@ -66,7 +66,7 @@
                 $(this).off("click").on('click', function() {})
            	
                 $.ajax({
-					url : '/omokproject/test1.do',
+					url : '/omok/board/ajax.do',
 					type : 'post',
 					traditional : true,
 					data : {

@@ -1,25 +1,37 @@
-package practice;
+package org.board.game;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/test1.do")
-public class Test1 extends HttpServlet {
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-	@Override
-	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//@Controller
+//@RequestMapping(value="/board")
+public class Test1_0711 {
+
+	
+//	@GetMapping("/omok.do")
+	public String board() {
+		return "board";
+	}
+	
+//	@PostMapping("/ajax.do")
+	public void board(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		resp.setContentType("text/html; charset=UTF-8");
 		
 		String col = req.getParameter("col");
 		String row = req.getParameter("row");
+		System.out.println(col);
 		int rowNum = Integer.parseInt(req.getParameter("num"));
 		
 		col = col.substring(3);
@@ -65,7 +77,6 @@ public class Test1 extends HttpServlet {
 			
 		}
 		out.print(str);
-		
 	}
 	
 	public static boolean goal(String[][] getArr, String stone) {

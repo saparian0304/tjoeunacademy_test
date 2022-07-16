@@ -25,8 +25,7 @@
 		</tr>
 	</table>
 	
-	<button type="button" name="open" onclick="location.href='/ajp/bank/open.do'">생성</button>
-	<button type="button" name="deposit">입금</button>
-	<button type="button" name="withdraw">출금</button>
+	<button type="button" name="open" onclick="location.href='/ajp/bank/open.do'">계좌 생성</button>
+	
 </body>
 </html>

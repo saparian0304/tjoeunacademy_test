@@ -13,5 +13,7 @@
 		입금액 : <input type="text" name="deposit">
 		<button type="submit" >생성</button>
 	</form>
+	<br>
+	<button onclick="location.href='/ajp/bank/list.do'">계좌목록</button>
 </body>
 </html>

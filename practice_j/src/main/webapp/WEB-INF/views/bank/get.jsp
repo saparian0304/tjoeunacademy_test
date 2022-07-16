@@ -29,6 +29,10 @@
 	</tr>
 </c:forEach>
 </table>
-<button type="submit" onclick="location.href='/ajp/bank/remove.do?accountNum=${accountNum}'">계좌 삭제</button>
+<button type="button" name="deposit" onclick="location.href='/ajp/bank/deposit.do?accountNum=${vo.accountNum}&holder=${vo.holder }'">입금</button>
+<button type="button" name="withdraw" onclick="location.href='/ajp/bank/withdraw.do?accountNum=${vo.accountNum}&holder=${vo.holder }'">출금</button>
+<button type="submit" onclick="location.href='/ajp/bank/remove.do?accountNum=${vo.accountNum}'">계좌 삭제</button>
+<button onclick="location.href='/ajp/bank/list.do'">계좌 리스트</button>
+
 </body>
 </html>

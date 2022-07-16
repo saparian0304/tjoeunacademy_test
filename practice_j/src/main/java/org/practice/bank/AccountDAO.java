@@ -27,6 +27,11 @@ public class AccountDAO {
 		
 		vo.setBalance(mapper.getBalance(vo)+vo.getDeposit());
 		result = mapper.deposit(vo);
+		if (result == 1) {
+			vo.setMsg("입금 성공");
+		} else {
+			vo.setMsg("입금 실패");
+		}
 		
 		return result;
 	}
@@ -37,12 +42,17 @@ public class AccountDAO {
 		// 인출할 돈이 부족하면 false 리턴
 		if (price < 0 ) {
 			result = false;
+			vo.setMsg("인출할 금액이 부족합니다.");
 			return result;
 		}
 		
 		// DB에 저장
 		vo.setBalance(price);
-		mapper.withdraw(vo);
+		if (mapper.withdraw(vo) == 1) {
+			vo.setMsg("인출 성공");
+		} else {
+			vo.setMsg("인출 실패");
+		}
 		return result;
 	}
 	
@@ -64,8 +74,8 @@ public class AccountDAO {
 		AccountVO vo = new AccountVO();
 		vo.setAccountNum(accountNum);
 		vo.setWithdraw(balance);
-		vo.setBalance(balance);
-		result += mapper.deposit(vo);
+		vo.setBalance(0);
+		result += mapper.withdraw(vo);
 		result += mapper.deleteAccount(accountNum);
 		return result == 2 ? true : false ;
 	}
