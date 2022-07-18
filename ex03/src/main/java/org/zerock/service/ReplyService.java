@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.ReplyPageDTO;
 import org.zerock.domain.ReplyVO;
 
 public interface ReplyService {
@@ -15,4 +16,5 @@ public interface ReplyService {
 	
 	List<ReplyVO> getList(Criteria cri, Long bno);
 	List<ReplyVO> getListWithPaging( Criteria cri, Long bno);
+	public ReplyPageDTO getListPage(Criteria cri, Long bno);
 }

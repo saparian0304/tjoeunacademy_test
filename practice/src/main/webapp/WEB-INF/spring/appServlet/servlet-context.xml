@@ -21,7 +21,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="org.practice.ajp" />
+	<context:component-scan base-package="org.practice.ajp, org.practice.bankA" />
 	
 	
 	

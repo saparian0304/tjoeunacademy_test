@@ -62,7 +62,14 @@
 							function showList(page) {
 								replyService.getList(
 									{bno:bnoValue, page: page || 1 }, 
-									function(list) {
+									function(replyCnt, list) {
+										
+										if(page == -1) {
+											pageNum = Math.ceil(replyCnt/10.0);
+											showList(pageNum);
+											return;
+										}
+										
 										var str = "";
 										if(list == null || list.length == 0 ) {
 											replyUL.html("");
@@ -78,6 +85,8 @@
 											str += 	"</li>";
 										}
 										replyUL.html(str);
+										
+										showReplyPage(replyCnt);
 									} // 익명함수 종료
 								); // getList() 종료
 							} // showList() 종료
@@ -116,43 +125,96 @@
 									showList(1);
 								})
 							})
-							
-							/*
-							replyService.add(
-								{reply:"JS Test", replyer: "tester", bno : bnoValue},
-								function (result) {
-									alert("RESULT : " + result);
-								}
-							)
-
-							replyService.getList({bno:bnoValue, page:1}, function(list){
+							// 댓글 클릭 이벤트
+							$('.chat').on("click", "li", function(e) {
+								var rno = $(this).data('rno');
 								
-								for(var i=0, len = list.length||0; i<len; i++) {
-									console.log(list[i]);
-								}
-							})
-							
-							replyService.remove(19, function(count) {
-								console.log(count);
+								replyService.get(rno, function(reply) {
+									modalInputReply.val(reply.reply);
+									modalInputReplyer.val(reply.replyer);
+									modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
+									modal.data("rno", reply.rno);
+									
+									modal.find("button[id != 'modalCloseBtn']").hide();
+									modalModBtn.show();
+									modalRemoveBtn.show();
+									
+									$(".modal").modal("show");
+								});
+							});
+							// 댓글 수정
+							modalModBtn.on("click", function(e){
+								var reply = {
+										rno : modal.data('rno'), 
+										reply : modalInputReply.val()
+										};
 								
-								if(count==="success") {
-									alert("REMOVED");
-								}
-							}, function(err) {
-								alert('ERROR...');
+								replyService.update(reply, function(result){
+									alert(result);
+									modal.modal("hide");
+									showList(pageNum);
+								});
 							});
 							
-							replyService.update({
-								rno : 20,
-								bno : bnoValue,
-								reply : "Modified Reply..."
-							}, function(result) {
-								alert('수정완료....');
+							// 댓글 삭제
+							modalRemoveBtn.on("click", function(e) {
+								var rno = modal.data("rno");
+								replyService.remove(rno, function(result){
+									alert(result);
+									modal.modal("hide");
+									showList(pageNum);
+								});
+							});
+
+							// 댓글 페이징 처리
+							var pageNum = 1;
+							var replyPageFooter = $(".panel-footer");
+							function showReplyPage(replyCnt) {
+								
+								var endNum = Math.ceil(pageNum / 10.0) * 10;
+								var startNum = endNum -9;
+								
+								var prev = startNum != 1;
+								var next = false;
+								
+								if(endNum * 10 >= replyCnt) {
+									endNum = Math.ceil(replyCnt/10.0);
+								}
+								
+								if(endNum * 10 < replyCnt) {
+									next = true;
+								}
+								
+								var str = "<ul class='pagination pull-right'>";
+								
+								if(prev) {
+									str += "<li class='page-item'><a class='page-link' href='" + (startNum -1) + "'>Previous</a></li>";
+								}
+								
+								for (var i = startNum; i<=endNum ; i++) {
+									var active = pageNum == i? "active" : "";
+									
+									str += "<li class='page-item " + active + " '><a class='page-link' href='" + i + "'>" + i + "</a></li>";
+								}
+								
+								if(next) {
+									str += "<li class='page-item " + active + " '><a class='page-link' href='" + (endNum + 1) + "'>Next</a></li>";
+								}
+								
+								str += "</ul></div>";
+								console.log(str);
+								replyPageFooter.html(str);
+							}
+							
+							// 댓글페이지 번호 이벤트
+							replyPageFooter.on("click", "li a", function(e) {
+								e.preventDefault();
+								
+								var targetPageNum = $(this).attr("href");
+								pageNum = targetPageNum;
+								
+								showList(pageNum);
 							})
-							replyService.get(21, function(data) {
-								console.log(data);
-							})
-							*/
 						});
 					</script>
 			</div>
@@ -185,6 +247,9 @@
 						</div>
 					</li>
 				</ul>
+			</div>
+			<div class="panel-footer">
+			
 			</div>
 		</div>
 	</div>

@@ -56,4 +56,6 @@ public class BoardServiceImpl implements BoardService {
 		log.info("getTotalCount....." );
 		return mapper.getTotalCount(cri);
 	}
+	
+	
 }
