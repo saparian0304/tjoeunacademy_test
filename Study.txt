@@ -1263,7 +1263,8 @@ MySQL
 계정 생성
 Administration 탭 -> Users and Privileges -> Add Account
 - Login Name : testuser
-- Limit to Hosts Matching (특정 위치에서만 접속이 되게 할 수 있음) : % (아무곳에서나 가능)
+- Limit to Hosts Matching (특정 위치에서만 접속이 되게 할 수 있음) : % (아무곳에서나 가능, localhost는 db가 설치된 컴퓨터에서만 접속이 가능함 -> root 계정은 localhost로 설정됨)
+   - 실제 현업에서는 DB 설정이 localhost로 되어있기 때문에 서버를 원격으로 접속하게됨 (CLI환경으로 접속해야함)
 - Password : test1234
 Schema Privileges -> add Entry -> selected schema(testdb) -> select all -> apply
 
@@ -5166,6 +5167,99 @@ DOM에서 이벤트 리스너를 등록하는 것은 반드시 해당 DOM 요소
 배포(AWS, 카페24)
 
 포트폴리오 문서
+
+
+=======================================
+22.07.19 화 - 53일차
+
+스프링 게시판 복습 시작
+
+어떻게 구현할지에 대해서 생각해보기---------
+(1) 게시판 글 리스트 구현
+ - 목록 조회에 필요한 SQL 및 관련 메서드 정의
+ - 클라이언트 화면 내 기능 구현
+(2) 상세페이지 구현
+(3) 새글 작성 구현
+ - 로그인 및 작성 권한 여부 확인
+ - SQL 및 관련 매서드 정의
+ - 백엔드 및 프론트엔드 연결
+(4) 수정, 삭제 구현
+(5) 검색기능 구현
+(6) 로그인 기능 구현
+(7) 댓글 기능 구현
+(6) 회원가입 기능 구현
+----------------------------------------------
+
+게시판(/board)
+- 목록(/index.do)
+  - 전체카운트, 목록조회, 검색, 페이징처리
+- 상세(/view.do)
+  - 해당글 조회, 조회수 1증가
+- 등록 insert.do (등록폼 write.do)
+- 수정 update.do (수정폼 edit.do)
+- 삭제 delete.do
+
+mapper
+- 전체 카운트
+- 해당 페이지 조회 (검색 포함)
+- 상세글 조회
+- 조회수 +1
+- 수정
+- 삭제
+
+테이블 생성
+프로젝트 생성(spring legacy project)
+스프링 설정 (스캔, db)
+dependency (spring, db관련, junit, mysql, 롬복)
+controller, service, mapper, xml, jsp
+테스트
+
+
+암호화
+- password()함수
+- MD5
+(DB버전이 바뀌면서 암호화방식이 변하는 경우도 있다. 로그인 상에 문제가 생길 수 있음)
+
+DB 테이블 생성
+
+servlet-context.config 설정파일 따로 위치를 바꿈 (resources/config폴더로 이동)
+ - web.xml 파일 내 위치 변경 (/WEB-INF/classes/config/servlet-context.xml)
+ - root-context.config 파일 삭제 -> servlet-context.config로 통일
+ - web.xml에서 <context-param>, <listener> 설정 삭제
+
+Dependency 추가
+ - 롬복, 스프링-테스트, mysql-커넥터-j, 스프링-tx, 스프링-jdbc, 히카리CP, 마이바티스, 마이바티스-스프링, log4jdbc
+ - ojdbc는 oracle 관련 jdbc임
+
+============= web.xml : beans 설정 (시작) ====================
+맨 처음 부분에 있는 설정 관련
+<beans xmlns="http://www.springframework.org/schema/beans http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+이렇게 설정되어있으면 아래부분에서 태그 설정 시에 어떤 xmlns인지를 표현해줘야한다.
+xmlns:xsi     -> <xsi:~~~>  </xsi:~~>
+xmlns:context -> <context:~~~> </context:~~~>
+xmlns:beans   -> <beans:~~~> </beans:~~~>
+
+xmlns: 만 있는 경우에는 그냥 사용이 가능하다.
+============= web.xml : beans 설정 (끝) ====================
+
+board 테이블 컬럼 설정
+ - 번호(pk) : no, int, auto_increment
+ - 제목 : title, varchar(255)
+ - 내용 : content, text
+ - 작성일 : regdate, timestamp
+ - 조회수 : viewcount, int
+ - 회원pk : member_no, int
+ - 첨부파일명(원본) : filename_org, varchar
+ - 첨부파일명(실제) : filename_real, varchar
 
 
 
