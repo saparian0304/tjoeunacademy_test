@@ -5261,6 +5261,64 @@ board 테이블 컬럼 설정
  - 첨부파일명(원본) : filename_org, varchar
  - 첨부파일명(실제) : filename_real, varchar
 
+=======================================
+22.07.20 수 - 54일차
+
+게시판(/board)
+- 목록(/index.do)
+  - 전체카운트, 목록조회, 검색, 페이징처리
+- 상세(/view.do)
+  - 해당글 조회, 조회수 1증가
+- 등록 insert.do (등록폼 write.do)
+- 수정 update.do (수정폼 edit.do)
+- 삭제 delete.do
+
+mapper
+- 전체 카운트*
+- 해당 페이지 조회 (검색 포함)*
+- 상세글 조회*
+- 조회수 +1*
+- 등록*
+- 수정*
+- 삭제*
+
+service -> interface / impl(구현클래스)
+- 목록 (카운트, 조회)
+- 상세 (조회수+1, 상세글 조회)
+- 수정폼 (상세조회)
+- 수정처리 (수정)
+- 삭제처리 (삭제)
+- 등록처리 (등록)
+
+mySQL의 특징
+ - "ORDER BY" 보다 "LIMIT"가 더 나중에 실행된다.
+ - LIMIT 시작인덱스, 페이지당개수
+
+1페이지 : 0
+2페이지 : 10
+3페이지 : 20
+4페이지 : 30
+
+시작인덱스 = (페이지번호 -1) * 페이지당 개수
+
+myBatis에 기본적으로 걸려있는 alias
+ - int -> java.lang.Integer
+ - map -> java.util.Map
+
+Mapper 어노테이션이 있는 것만 Mapper Bean으로 등록되도록 하는 설정
+ - annotation="org.apache.ibatis.annotations.Mapper" -> 매퍼스캔 설정에 추가 
+ - 해당 설정이 없으면 스캔범위에 있는 모든 인터페이스 파일을 찾아서 빈으로 등록한다.
+ 
+jsp파일이 아닌 다른 정적파일들에 대한 요청을 스프링이 인식할 수 있도록 하는 설정
+- xml방식
+ <mvc:default-servlet-handler/>
+- 자바방식
+@Override
+public void configureDefaultServletHandling(DefaultServletHandlerConfigurer conf) { conf.enable();	}
+
+
+
+
 
 
 
