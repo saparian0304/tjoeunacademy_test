@@ -27,7 +27,7 @@ public class BoardMapperTests {
 		log.info(mapper);
 	}
 	
-//	@Test
+	@Test
 	public void testInsert() {
 		BoardVO vo = new BoardVO();
 		vo.setTitle("제목 : test1");
@@ -35,10 +35,12 @@ public class BoardMapperTests {
 //		vo.setFilename_org("original name test");
 		
 		int r = 0;
-		for (int i=1; i<=10; i++) {
-			vo.setTitle("제목 : test" + i);
-			vo.setContent("내용 : test" + i);
-			r += mapper.insert(vo);
+		for (int j=1; j<=10; j++) {
+			for (int i=1; i<=10; i++) {
+				vo.setTitle("제목 : test" + i);
+				vo.setContent("내용 : test" + i);
+				r += mapper.insert(vo);
+			}
 		}
 		
 		log.info("등록 개수 : " + r);

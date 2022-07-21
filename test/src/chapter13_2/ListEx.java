@@ -19,6 +19,7 @@ public class ListEx {
 		list.add(1);
 		list.add("안녕");
 		
+		
 		System.out.println("요소의 개수는 : " + list.size());
 		System.out.println(list.get(2));
 		System.out.println(((Member)list.get(0)).name);	// 꺼내서 멤버변수를 사용하기 위해선 Member 타입으로 형변환 해야함

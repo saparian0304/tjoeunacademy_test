@@ -5313,8 +5313,50 @@ jsp파일이 아닌 다른 정적파일들에 대한 요청을 스프링이 인�
 - xml방식
  <mvc:default-servlet-handler/>
 - 자바방식
-@Override
-public void configureDefaultServletHandling(DefaultServletHandlerConfigurer conf) { conf.enable();	}
+ @Override
+ public void configureDefaultServletHandling (DefaultServletHandlerConfigurer conf) { conf.enable(); }
+
+=======================================
+22.07.21 목 - 55일차
+
+커맨드객체로 파라미터를 받으면 그 커맨드객체를 이용해서 EL 표현식을 사용할 수 있다.
+ - (백엔드) BoardVO로 파라미터를 받을 경우 -> (프론트) ${boardVO.page} 와 같이 이용이 가능함
+
+
+게시판(/board)
+- 목록(/index.do)*
+  - 전체카운트, 목록조회, 검색, 페이징처리*
+- 상세(/view.do)*
+  - 해당글 조회, 조회수 1증가*
+- 등록 insert.do (등록폼 write.do)*
+- 수정 update.do (수정폼 edit.do)*
+- 삭제 delete.do*
+
+mapper
+- 전체 카운트*
+- 해당 페이지 조회 (검색 포함)*
+- 상세글 조회*
+- 조회수 +1*
+- 등록*
+- 수정*
+- 삭제*
+
+service -> interface / impl(구현클래스)
+- 목록 (카운트, 조회)*
+- 상세 (조회수+1, 상세글 조회)*
+- 수정폼 (상세조회)*
+- 수정처리 (수정)*
+- 삭제처리 (삭제)*
+- 등록처리 (등록)*
+
+
+board(게시판) 존재 -> news 게시판 만들기
+
+
+
+
+
+
 
 
 

@@ -23,46 +23,51 @@ public class BoardServiceImpl implements BoardService {
 		// 시작 인덱스
 		int startIdx = (vo.getPage()-1) * vo.getRowPerPage();
 		vo.setStartIdx(startIdx);
-		
 		List<BoardVO> list = mapper.getList(vo);
+
+		// 페이징 처리
+		int endPage = (int)Math.ceil(vo.getPage() / 10.0)*10;
+		int startPage = endPage - 9;
+		if (endPage > totalPage) endPage = totalPage;
+		boolean prev = startPage > 1 ? true : false;
+		boolean next = endPage < totalPage ? true : false;
 		
 		Map map = new HashMap();
-		map.put("page", vo.getPage());
+//		map.put("page", vo.getPage());		// BoardVO로 파라미터를 받기때문에 다시 넣어줄 필요가 없음 (객체 생성시 생성자에 의해 페이지번호 자동 설정)
 		map.put("totalCount", totalCount);
 		map.put("totalPage", totalPage);
 		map.put("list", list);
-		map.put("paging", new BoardPageDTO(vo, totalCount));
+		map.put("endPage", endPage);
+		map.put("startPage", startPage);
+		map.put("prev", prev);
+		map.put("next", next);
 		return map;
 	}
 
 	@Override
 	public BoardVO view(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		mapper.updateViewcount(no);
+		return mapper.view(no);
 	}
 
 	@Override
 	public BoardVO edit(int no) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.view(no);
 	}
 
 	@Override
 	public boolean update(BoardVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return mapper.update(vo) > 0 ? true : false;
 	}
 
 	@Override
 	public boolean delete(int no) {
-		// TODO Auto-generated method stub
-		return false;
+		return mapper.delete(no) > 0 ? true : false;
 	}
 
 	@Override
 	public boolean insert(BoardVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return mapper.insert(vo) > 0 ? true : false;
 	}
 
 }
