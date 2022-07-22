@@ -14,4 +14,5 @@ public class NewsVO {
 	public Date postdate;
 	public int viewcount;
 	
+	
 }

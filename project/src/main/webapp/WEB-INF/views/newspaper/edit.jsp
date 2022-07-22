@@ -24,26 +24,21 @@
                 <h3 class="sub_title">게시판</h3>
     
                 <div class="bbs">
-                <form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data" >
+                <form method="post" name="frm" id="frm" action="update.do" > <!-- enctype="multipart/form-data" -->
+                <input type="hidden" name="no" value="${data.no }">
                     <table class="board_write">
                         <tbody>
                         <tr>
                             <th>제목</th>
                             <td>
-                                <input type="text" name="title" id="title" class="wid100" value=""/>
+                                <input type="text" name="title" id="title" class="wid100" value="${data.title }"></input>
                             </td>
                         </tr>
                         <tr>
                             <th>내용</th>
                             <td>
-                                <textarea name="content" id="content"></textarea>
+                                <textarea name="content" id="content">${data.content }</textarea>
                             </td>
-                        </tr>
-                        <tr>
-                        	<th>첨부파일</th>
-                        	<td>
-                        		<input type="file" name="filename">
-                        	</td>
                         </tr>
                         </tbody>
                     </table>

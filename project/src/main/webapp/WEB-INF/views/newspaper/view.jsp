@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ page import="java.net.URLEncoder" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -39,7 +38,8 @@
                         <dl class="file">
                             <dt>첨부파일 </dt>
                             <dd>
-                            <a href="/project/common/download.jsp?oName=${URLEncoder.encode(data.filename_org, "UTF-8")}&sName=${data.filename_real}">${data.filename_org }</a></dd>
+                            <a href="#" 
+                            target="_blank">첨부파일.pptx [38.07KB] </a></dd>
                         </dl>
                                     
                         <div class="btnSet clear">

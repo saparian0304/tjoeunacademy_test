@@ -21,5 +21,5 @@ public interface NewsMapper {
 	List<NewsVO> getList(NewsVO vo);
 	NewsVO view(NewsVO vo);
 	boolean update(NewsVO vo);
-	boolean
+	boolean delete(NewsVO vo);
 }

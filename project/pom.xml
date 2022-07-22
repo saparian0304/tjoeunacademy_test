@@ -175,7 +175,13 @@
 		    <artifactId>log4jdbc-log4j2-jdbc4.1</artifactId>
 		    <version>1.16</version>
 		</dependency>
-  
+  		
+  		<!-- commons-fileupload : 파일 업로드 라이브러리-->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
 	</dependencies>
     <build>
         <plugins>
