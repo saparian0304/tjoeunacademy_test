@@ -14,5 +14,8 @@ public class NewsVO {
 	public Date postdate;
 	public int viewcount;
 	
+	public String SearchType;
+	public String SearchWord;
+	
 	
 }

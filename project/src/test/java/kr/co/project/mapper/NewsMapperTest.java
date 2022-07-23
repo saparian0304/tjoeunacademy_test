@@ -23,7 +23,7 @@ public class NewsMapperTest {
 		log.info(mapper);
 	}
 	
-	@Test
+//	@Test
 	public void testInsert( ) {
 		NewsVO vo = new NewsVO();
 		vo.setTitle("제목 테스트");
@@ -32,5 +32,26 @@ public class NewsMapperTest {
 		log.info(mapper.insert(vo));
 	}
 	
+//	@Test
+	public void getCount() {
+		NewsVO vo = new NewsVO();
+		vo.setSearchType("content");
+		vo.setSearchWord("내용");
+		log.info(mapper.getTotalCount(vo));
+	}
+//	@Test
+	public void getList() {
+		NewsVO vo = new NewsVO();
+		vo.setSearchType("content");
+		vo.setSearchWord("내용");
+		log.info(mapper.getList(vo));
+	}
+	
+	@Test
+	public void getView() {
+		NewsVO vo = new NewsVO();
+		vo.setNo(1);
+		log.info(mapper.view(vo));
+	}
 	
 }

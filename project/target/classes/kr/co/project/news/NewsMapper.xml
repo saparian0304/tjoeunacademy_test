@@ -10,4 +10,40 @@
 		)
 	</insert>
 	
+	<select id="getTotalCount" parameterType="kr.co.project.news.NewsVO" resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM newsboard
+		<where>
+			<if test="searchWord != null and searchWord != '' and searchType != 'all'">
+			${searchType} LIKE '%${searchWord}%'
+			</if>
+			<if test="searchWord != null and searchWord != '' and searchType == 'all'">
+			title LIKE '%${searchWord}%' OR content LIKE '%${searchWord}%'
+			</if>
+		</where> 
+	</select>
+	
+	<select id="getList" parameterType="kr.co.project.news.NewsVO" resultType="kr.co.project.news.NewsVO">
+		SELECT * 
+		FROM newsboard
+		<where>
+			<if test="searchWord != null and searchWord != '' and searchType != 'all'">
+			${searchType} LIKE '%${searchWord}%'
+			</if>
+			<if test="searchWord != null and searchWord != '' and searchType == 'all'">
+			title LIKE '%${searchWord}%' OR content LIKE '%${searchWord}%'
+			</if>
+		</where>
+	</select>
+	
+	<select id="view" parameterType="kr.co.project.news.NewsVO" resultType="kr.co.project.news.NewsVO">
+		SELECT * FROM newsboard 
+		WHERE no = #{no}
+	</select>
+	
+	<update id="update" parameterType="kr.co.project.news.NewsVO">
+		UPDATE newsboard SET 
+		
+	</update>
 </mapper>
