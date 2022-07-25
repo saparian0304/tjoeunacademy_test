@@ -43,7 +43,11 @@
 	</select>
 	
 	<update id="update" parameterType="kr.co.project.news.NewsVO">
-		UPDATE newsboard SET 
-		
+		UPDATE newsboard SET title = #{title}, content = #{content}
+		WHERE no = #{no}
 	</update>
+	
+	<delete id="delete">
+		DELETE FROm newsboard WHERE no = #{no}
+	</delete>
 </mapper>

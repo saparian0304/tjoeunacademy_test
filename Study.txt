@@ -5304,6 +5304,7 @@ mySQL의 특징
 myBatis에 기본적으로 걸려있는 alias
  - int -> java.lang.Integer
  - map -> java.util.Map
+ - string -> java.lang.String
 
 Mapper 어노테이션이 있는 것만 Mapper Bean으로 등록되도록 하는 설정
  - annotation="org.apache.ibatis.annotations.Mapper" -> 매퍼스캔 설정에 추가 
@@ -5415,17 +5416,53 @@ SQL문 작성시 DB툴에서 컬럼명 복사한뒤, 편집기에 replace 기능
 
 우편번호 API : 카카오 우편번호 API 사용
 
+=======================================
+22.07.25 월 - 57일차
 
 
+ - 이메일 중복 체크*
+ - 이메일 형식 체크* (정규식 패턴 사용 -> 검색)
+
+ - 로그인
+ - 로그인 체크 (인터셉터)
+ - 글 작성(세션의 no 저장)
+ - 댓글(ajax:json, html), 공용
+ - 목록 댓글 수 출력
+ - 답변게시판(계층형 게시판)
 
 
+모든 제약조건을 코드를 새로 작성해서 구현하려고 하지 말고, 기존에 있는 태그들의 속성을 활용하자
+ - <input> 태그 내 : maxlength, required 등등
+ - required 속성의 경우 form 태그내 input[type='submit']을 이용할 시에 작용한다.
+
+ajax 시간 차이에 의한 문제
+ -> aysnc 속성을 false로 주면 통신이 완료된 후 다음으로 넘어감
+
+ajax - success 함수 : return문
+ - 콜백함수이기때문에 ajax 상위 함수가 return에 의해 종료되지 않음
+ -> flag를 이용해서 불만족시 함수가 중지되도록 함
+
+달력 사용하기
+ - https://jqueryui.com/ 접속
+ - jqueryui CDN 추가
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+ - jqueryui css link 추가
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+ - datepicker() 메서드 사용
+
+간단히 이용하기
+ - 구글 검색 : "jquery datapicker 사용법" 검색 후 적용
 
 
+form태그의 onsubmit 속성
+ - input type=submit 태그를 클릭할때 작용
+ - return을 안쓰면 false를 리턴해도 전송이 됨
+   예시 : onsubmit="return loginCheck();" -> loginCheck()가 false값 리턴해야 전송 X
+          onsubmit="loginCheck();" -> 함수 실행여부와 상관없이 form이 전송 됨
+ - return false가 되어야 전송이 안됨
 
-
-
-
-
+input 태그 속성 - autocomplete
+ - "off"로 설정 : 이전 입력 내역 안보이게 하는 설정
 
 
 

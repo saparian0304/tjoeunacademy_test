@@ -6,5 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface MemberMapper {
 
 	int insert(MemberVO vo);
-	int checkEmail(MemberVO vo);
+	int emailDupCheck(String email);
+	MemberVO loginCheck(MemberVO vo);
 }

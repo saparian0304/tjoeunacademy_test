@@ -24,7 +24,7 @@
 <body>
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">게시판</h3>
+                <h3 class="sub_title">게시판 ${loginInfo.email }</h3>
     
                 <div class="bbs">
                     <table class="list">

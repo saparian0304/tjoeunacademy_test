@@ -1,10 +1,19 @@
 package kr.co.project.member;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.io.IOExceptionWithCause;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MemberController {
@@ -28,9 +37,29 @@ public class MemberController {
 		return "common/alert";
 	}
 	
+	@GetMapping("/member/emailDupCheck.do")
+	public void emailDupCheck(@RequestParam String email, HttpServletResponse res) throws IOException {
+		int count = service.emailDupCheck(email);
+		boolean r = false;
+		if (count == 1) r = true;
+		
+		PrintWriter out = res.getWriter();
+		out.print(r);
+		out.flush();
+	}
+	
 	@GetMapping("/member/login.do")
 	public String login() {
 		return "member/login";
 	}
 	
+	@PostMapping("/member/login.do")
+	public String login(MemberVO vo, HttpSession sess, Model model) {
+		if(service.loginCheck(vo, sess)) {
+			return "redirect:/board/index.do";
+		} else {
+			model.addAttribute("msg", "이메일, 비밀번호를 확인해주세요");
+			return "common/alert";
+		}
+	}
 }

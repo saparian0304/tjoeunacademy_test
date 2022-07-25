@@ -12,8 +12,11 @@
 		)
 	</insert>
 	
-	<select id="checkEmail" parameterType="kr.co.project.member.MemberVO" resultType="int">
+	<select id="emailDupCheck" parameterType="string" resultType="int">
 		SELECT count(*) FROM member WHERE email = #{email}
 	</select>
 	
+	<select id="loginCheck" parameterType="kr.co.project.member.MemberVO" resultType="kr.co.project.member.MemberVO">
+		SELECT * FROM member WHERE email = #{email} AND pwd = MD5(#{pwd})
+	</select>
 </mapper>

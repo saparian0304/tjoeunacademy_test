@@ -47,11 +47,21 @@ public class NewsMapperTest {
 		log.info(mapper.getList(vo));
 	}
 	
-	@Test
+//	@Test
 	public void getView() {
 		NewsVO vo = new NewsVO();
 		vo.setNo(1);
 		log.info(mapper.view(vo));
 	}
+	
+	@Test
+	public void update() {
+		NewsVO vo = new NewsVO();
+		vo.setNo(1);
+		vo.setTitle("제목 수정 테스트");
+		vo.setContent("내용 수정 테스트");
+		log.info(mapper.update(vo));
+	}
+	
 	
 }

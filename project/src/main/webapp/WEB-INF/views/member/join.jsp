@@ -12,11 +12,108 @@
     <title>회원가입</title>
     <link rel="stylesheet" href="/project/css/reset.css"/>
     <link rel="stylesheet" href="/project/css/contents.css"/>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <script>
     	function goSave() {
+    		if( $('#email').val().trim() == '') {
+    			alert('이메일을 입력해주세요');
+    			$('#email').focus();
+    			return;
+    		}
+    		var reg_email = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
+			if(!reg_email.test($('#email').val())) {                            
+				alert('이메일 형식이 올바르지 않습니다.')
+				return;
+			}
+			var isCon = true;
+			$.ajax({
+				url : "emailDupCheck.do",
+				data : { email : $('#email').val()},
+				async : false,
+				success : function(res) {
+					if (res == 'true'){
+						alert("이미 사용 중인 이메일입니다. 다른 이메일을 입력해 주세요.");
+						$('#email').val('');
+						$('#email').focus();
+						isCon = false
+						// return;
+					}
+				}
+			})                
+	    	if (!isCon) return;
+    		if( $('#pwd').val().trim() == '') {
+    			alert('비밀번호를 입력해주세요');
+    			$('#pwd').focus();
+    			return;
+    		}
+			var reg = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+			if(!reg.test($('#pwd').val())) {
+				alert("비밀번호는 영문, 숫자, 특수문자 조합으로 8자 이상 입력하세요")
+				return;
+			}
+    		if( $('#pwd').val() != $('#pwd_check').val() ){
+    			alert('비밀번호가 일치하지 않습니다.');
+    			$('#pwd_check').focus();
+    			return;
+    		}    		
+    		if( $('#name').val().trim() == '') {
+    			alert('이름을 입력해주세요');
+    			$('#name').focus();
+    			return;
+    		}
+
     		$('#frm').submit();
     	}
+    	$(function () {
+    		$('#dupCheckBtn').click(function() {
+    			if ($("#email").val().trim() == '') {
+    				alert('이메일을 입력해주세요');
+    				$('#email').focus();
+    			} else {
+	    			$.ajax({
+	    				url : "emailDupCheck.do",
+	    				data : { email : $('#email').val()},
+	    				success : function(res) {
+	    					if (res == 'true'){
+	    						alert("사용 불가")
+	    					} else {
+	    						alert("사용 가능")
+	    					}
+	    				}
+	    			})
+    			}
+    		});
+    		
+    		
+    		
+			$("#birthday").datepicker({
+				dateFormat: 'yy-mm-dd' //달력 날짜 형태
+				    ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
+				    ,showMonthAfterYear:true // 월- 년 순서가아닌 년도 - 월 순서
+				    ,changeYear: true //option값 년 선택 가능
+				    ,changeMonth: true //option값  월 선택 가능
+				    //,showOn: "focus" //button:버튼을 표시하고,버튼을 눌러야만 달력 표시 ^ both:버튼을 표시하고,버튼을 누르거나 input을 클릭하면 달력 표시  
+				    //,buttonImage: "http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" //버튼 이미지 경로
+				    ,buttonImageOnly: true //버튼 이미지만 깔끔하게 보이게함
+				    ,buttonText: "선택" //버튼 호버 텍스트              
+				    ,yearSuffix: "년" //달력의 년도 부분 뒤 텍스트
+				    ,monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 텍스트
+				    ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip
+				    ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 텍스트
+				    ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 Tooltip
+				    ,minDate: "-50Y, -12M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+				    ,maxDate: "+Y, +12M", //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+				})
+			    
+				//초기값을 오늘 날짜로 설정해줘야 합니다.
+				$('#birth').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)            
+			
+    		} );
+    	
+    	
+    	
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
@@ -85,12 +182,12 @@
                             <th>*이메일</th>
                             <td>
                                 <input type="text" name="email" id="email" class="inNextBtn" style="float:left;">
-                                <span class="email_check"><a href="javascript:;"  class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
+                                <span class="emailDupCheck"><a href="javascript:;"  id="dupCheckBtn" class="btn bgGray" style="float:left; width:auto; clear:none;">중복확인</a></span>
                             </td>
                         </tr>
                         <tr>
                             <th>*비밀번호</th>
-                            <td><input type="password" name="pwd" id="pwd" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문 조합으로 8자 이상으로 입력해주세요.</span> </td>
+                            <td><input type="password" name="pwd" id="pwd" style="float:left;"> <span class="ptxt">비밀번호는 숫자, 영문, 특수문자 조합으로 8자 이상으로 입력해주세요.</span> </td>
                         </tr>
                         <tr>
                             <th>*비밀번호<span>확인</span></th>
@@ -98,7 +195,7 @@
                         </tr>
                         <tr>
                             <th>*이름</th>
-                            <td><input type="text" name="name" id="name" style="float:left;"> </td>
+                            <td><input type="text" name="name" id="name" style="float:left;" maxlength="5"> </td>
                         </tr>
                         <tr>
                             <th>*성별</th>
@@ -111,7 +208,7 @@
                         </tr>
                         <tr>
                             <th>*생년월일</th>
-                            <td><input type="text" name="birthday" id="birthday" style="float:left;"> </td>
+                            <td><input type="text" name="birthday" id="birthday" style="float:left;" autocomplete="off"> </td>
                         </tr>
                         <tr>
                             <th>*휴대폰 번호</th>

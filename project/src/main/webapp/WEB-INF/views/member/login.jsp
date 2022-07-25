@@ -12,10 +12,25 @@
     <title>로그인</title>
     <link rel="stylesheet" href="/project/css/reset.css"/>
     <link rel="stylesheet" href="/project/css/contents.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    	function loginCheck1() {
+    		if ($('#email').val() == ''){
+    			alert('이메일을 입력해주세요');
+    			$('#email').focus();
+    			return false;
+    		}
+    		if ($('#pwd1').val() == ''){
+    			alert('이메일을 입력해주세요');
+    			$('#pwd1').focus();
+    			return false;
+    		}
+    	}
+    </script>
 </head>
 <body>
-    
-        <form action="/login.do" method="post" id="board1" name="board1" onsubmit="return loginCheck1();"><!-- header에서 id="board"이미 사용중이라서 board2로 함 -->
+    																	<!-- return을 안쓰면 false를 리턴해도 전송이 됨 -->	
+        <form action="login.do" method="post" id="loginFrm1" name="loginFrm1" onsubmit="return loginCheck1();"><!-- header에서 id="board"이미 사용중이라서 board2로 함 -->
             <div class="sub">
                 <div class="size">
                     <h3 class="sub_title">로그인</h3>
@@ -25,7 +40,7 @@
                             <fieldset class="login_form">
                                 <ul>
                                     <li><input type="text" id="email1" name="email" placeholder="이메일"></li>
-                                    <li><input type="password" id="pw1" name="pw" placeholder="비밀번호"></li>
+                                    <li><input type="password" id="pw1" name="pwd" placeholder="비밀번호"></li>
                                     <li><label><input type="checkbox" name="reg1" id="reg1"/> 아이디저장</label></li>
                                 </ul>
                                 <div class="login_btn"><input type="submit" value="로그인" alt="로그인" /></div>
