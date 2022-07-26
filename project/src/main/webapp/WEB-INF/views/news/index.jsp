@@ -125,10 +125,11 @@
                     <caption class="hdd">공지사항 목록</caption>
                     <thead>
                         <tr>
-                            <th scope="col">번호</th>
-                            <th scope="col">제목</th>
-                            <th scope="col">조회수</th>
-                            <th scope="col">작성일</th>
+                            <th scope="col" width="15%">번호</th>
+                            <th scope="col" width="*">제목</th>
+                            <th scope="col" width="20%">작성자</th>
+                            <th scope="col" width="10%">조회수</th>
+                            <th scope="col" width="20%">작성일</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -137,10 +138,11 @@
                             <td colspan="4">게시글이 없습니다.</td>
                         </tr>
                     </c:if>
-                    <c:forEach items="${data}" var="vo">
+                    <c:forEach items="${data.list}" var="vo">
                     	<tr>
                             <td>${vo.no }</td>
                             <td class="tit_notice"><a href="#">${vo.title }</a></td>
+                            <td>${vo.writer }</td>
                             <td>${vo.viewcount }</td>
                             <td>${vo.postdate }</td>
                         </tr>
@@ -150,33 +152,30 @@
 
                 <!-- pagenation -->
                 <div class="pagenation">
-                    <a href="#" class="firstpage pbtn">
-                        <img src="/project/news/img/btn_firstpage.png" alt="첫 페이지로 이동">
-                    </a>
-                    <a href="#" class="prevpage pbtn">
-                        <img src="/project/news/img/btn_prevpage.png" alt="이전 페이지로 이동">
-                    </a>
-                    <a href="#">
-                        <span class="pagenum currentpage">1</span>
-                    </a>
-                    <a href="#">
-                        <span class="pagenum">2</span>
-                    </a>
-                    <a href="#">
-                        <span class="pagenum">3</span>
-                    </a>
-                    <a href="#">
-                        <span class="pagenum">4</span>
-                    </a>
-                    <a href="#">
-                        <span class="pagenum">5</span>
-                    </a>
-                    <a href="#" class="nextpage pbtn">
-                        <img src="/project/news/img/btn_nextpage.png" alt="다음 페이지로 이동">
-                    </a>
-                    <a href="#" class="lastpage pbtn">
-                        <img src="/project/news/img/btn_lastpage.png" alt="마지막 페이지 이동">
-                    </a>
+                    <c:if test="${data.prev }">
+	                    <a href="index.do?page=1&searchType=${param.searchWord}&searchWord=${param.searchWord}" class="firstpage pbtn">
+	                        <img src="/project/news/img/btn_firstpage.png" alt="첫 페이지로 이동">
+	                    </a>
+	                    <a href="index.do?page=${data.startPage -1}&searchType=${param.searchWord}&searchWord=${param.searchWord}" class="prevpage pbtn">
+	                        <img src="/project/news/img/btn_prevpage.png" alt="이전 페이지로 이동">
+	                    </a>
+                    </c:if>
+                    
+                    <c:forEach var="idx" begin="${data.startPage }" end="${data.endPage }">
+                       	<a href="index.do?page=${idx }&searchType=${param.searchType}&searchWord=${param.searchWord}" >
+                       		<span class="pagenum <c:if test="${idx==newsVO.page}">currentpage</c:if>">${idx }</span>
+                       	</a>
+                    </c:forEach>
+                    
+                    <c:if test="${data.next }">
+	                    <a href="index.do?page=${data.endPage +1}&searchType=${param.searchType}&searchWord=${param.searchWord}" class="nextpage pbtn">
+	                        <img src="/project/news/img/btn_nextpage.png" alt="다음 페이지로 이동">
+	                    </a>
+                    
+        	            <a href="index.do?page=${data.totalPage}&searchType=${param.searchType}&searchWord=${param.searchWord}" class="lastpage pbtn">
+    	                    <img src="/project/news/img/btn_lastpage.png" alt="마지막 페이지 이동">
+ 	                   </a>
+                    </c:if>
                 </div>
             </div>
         </div>

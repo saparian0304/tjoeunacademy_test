@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import kr.co.project.member.MemberVO;
 
 @Controller
 public class BoardController {
@@ -35,6 +38,7 @@ public class BoardController {
 	public String insert(BoardVO vo, Model model, 
 			@RequestParam MultipartFile filename,
 			HttpServletRequest req) {
+		
 		// 첨부파일 처리
 		if(!filename.isEmpty()) {
 			// 파일명 구하기
@@ -51,6 +55,11 @@ public class BoardController {
 			vo.setFilename_org(org);
 			vo.setFilename_real(real);
 		}
+		
+		// member_no 저장
+		HttpSession sess = req.getSession();
+		MemberVO mv = (MemberVO)sess.getAttribute("loginInfo");
+		vo.setNo(mv.getNo());
 		
 		if (service.insert(vo)) { 
 			model.addAttribute("msg", "정상적으로 저장되었습니다.");

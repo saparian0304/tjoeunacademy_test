@@ -23,13 +23,17 @@ public class NewsMapperTest {
 		log.info(mapper);
 	}
 	
-//	@Test
+	@Test
 	public void testInsert( ) {
-		NewsVO vo = new NewsVO();
-		vo.setTitle("제목 테스트");
-		vo.setContent("내용 테스트");
-		vo.setWriter("테스트작성자");
-		log.info(mapper.insert(vo));
+		int cnt = 0;
+		for (int i=0; i<100; i++) {
+			NewsVO vo = new NewsVO();
+			vo.setTitle("제목 테스트" + i);
+			vo.setContent("내용 테스트" + i);
+			vo.setWriter("테스트작성자" + i);
+			cnt += mapper.insert(vo);
+		}
+		log.info("cnt : " + cnt);
 	}
 	
 //	@Test
@@ -54,7 +58,7 @@ public class NewsMapperTest {
 		log.info(mapper.view(vo));
 	}
 	
-	@Test
+//	@Test
 	public void update() {
 		NewsVO vo = new NewsVO();
 		vo.setNo(1);

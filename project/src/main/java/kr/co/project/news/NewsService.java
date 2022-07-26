@@ -1,8 +1,8 @@
 package kr.co.project.news;
 
-import java.util.List;
+import java.util.Map;
 
 public interface NewsService {
 
-	List<NewsVO> getList(NewsVO vo);
+	Map getList(NewsVO vo);
 }

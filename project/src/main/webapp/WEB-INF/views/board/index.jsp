@@ -19,6 +19,16 @@
     		var a = document.querySelector("form[name='searchForm']");
     		a.submit;
     	}
+    	
+    	function goWrite() {
+    		<c:if test="${empty loginInfo}">
+    			alert('로그인 후 이용 가능합니다.');
+    		</c:if>
+    		<c:if test="${!empty loginInfo}">
+    			location.href="write.do";
+    		</c:if>
+    		
+    	}
     </script>
 </head>
 <body>
@@ -72,7 +82,7 @@
                         </tbody>
                     </table>
                     <div class="btnSet"  style="text-align:right;">
-                        <a class="btn" href="write.do">글작성 </a>
+                        <a class="btn" href="javascript:goWrite()" >글작성 </a>
                     </div>
                     <div class="pagenate clear">
                         <ul class='paging'>

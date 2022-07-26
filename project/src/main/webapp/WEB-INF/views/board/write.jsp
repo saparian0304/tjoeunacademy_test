@@ -25,6 +25,8 @@
     
                 <div class="bbs">
                 <form method="post" name="frm" id="frm" action="insert.do" enctype="multipart/form-data" >
+                	<!-- <input type="hidden" name="member_no" value="${loginInfo.no }"> -->
+                	<!-- hidden으로 숨기는 건 위험하기때문에 Controller에서 설정하도록 한다. -->
                     <table class="board_write">
                         <tbody>
                         <tr>

@@ -16,6 +16,17 @@ public class NewsVO {
 	
 	public String SearchType;
 	public String SearchWord;
+	private int startIdx;
+	private int rowPerPage;
+	private int page;
 	
+	public NewsVO() {
+		this(1, 10);
+	}
+	
+	public NewsVO(int page, int rowPerPage) {
+		this.page = page;
+		this.rowPerPage = rowPerPage;
+	}
 	
 }

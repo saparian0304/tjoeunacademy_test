@@ -35,6 +35,8 @@
 			title LIKE '%${searchWord}%' OR content LIKE '%${searchWord}%'
 			</if>
 		</where>
+		ORDER BY postdate DESC
+		LIMIT ${startIdx},${rowPerPage}
 	</select>
 	
 	<select id="view" parameterType="kr.co.project.news.NewsVO" resultType="kr.co.project.news.NewsVO">

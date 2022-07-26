@@ -66,4 +66,19 @@
 		<beans:property name="maxInMemorySize" value="10485756"></beans:property>
 	</beans:bean>
 	
+	<mvc:interceptors>
+		<mvc:interceptor>
+		<!-- 
+			<mvc:mapping path="/board/write.do"/>
+			<mvc:mapping path="/board/insert.do"/>
+			<mvc:mapping path="/board/edit.do"/>
+			<mvc:mapping path="/board/update.do"/>
+			<mvc:mapping path="/board/delete.do"/>
+		 -->
+			<mvc:mapping path="/board/**/"/>			
+			<mvc:exclude-mapping path="/board/index.do"/>
+			<mvc:exclude-mapping path="/board/view.do"/>
+			<bean class="interceptor.MemberLoginInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
 </beans>

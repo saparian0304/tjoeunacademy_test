@@ -62,4 +62,14 @@ public class MemberController {
 			return "common/alert";
 		}
 	}
+	
+	@GetMapping("/member/logout.do")
+	public String logout(Model model, HttpServletRequest req) {
+		HttpSession sess = req.getSession();
+		sess.invalidate();			// 세션초기화 (세션의 모든 데이터 삭제)
+//		sess.removeAttribute("loginInfo");	// 세션에 있는 해당 값만 삭제, 해당값이 없으면 에러가 남
+		model.addAttribute("msg", "로그아웃되었습니다");
+		model.addAttribute("url", "/project/board/index.do");
+		return "common/alert";
+	}
 }
