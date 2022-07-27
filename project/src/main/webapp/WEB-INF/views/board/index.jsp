@@ -57,6 +57,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                        
                         <c:if test="${empty data.list }">
                             <tr>
                                 <td class="first" colspan="5">등록된 글이 없습니다.</td>

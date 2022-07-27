@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.project.comment.CommentService;
+import kr.co.project.comment.CommentVO;
 import kr.co.project.member.MemberVO;
 
 @Controller
@@ -22,6 +24,8 @@ public class BoardController {
 	
 	@Autowired
 	BoardService service;
+	@Autowired
+	CommentService cService;
 	
 	@RequestMapping("/board/index.do")
 	public String index(Model model, BoardVO vo) {
@@ -107,9 +111,4 @@ public class BoardController {
 		}
 	}
 	
-	@GetMapping("/board/download.do")
-	public String download() {
-		
-		return "";
-	}
 }
