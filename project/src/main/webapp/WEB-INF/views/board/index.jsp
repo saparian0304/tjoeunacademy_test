@@ -27,18 +27,39 @@
     		<c:if test="${!empty loginInfo}">
     			location.href="write.do";
     		</c:if>
+    	}
+    	
+    	function login() {
+    		if (${empty loginInfo}) {
+    			location.href="/project/member/login.do";
+    		} else {
+    			location.href="/project/member/logout.do";
+    		}
     		
     	}
     </script>
 </head>
 <body>
+		
         <div class="sub">
             <div class="size">
-                <h3 class="sub_title">게시판 ${loginInfo.email }</h3>
+                <h3 class="sub_title">게시판</h3>
     
                 <div class="bbs">
                     <table class="list">
-                    <p><span><strong>총 ${data.totalCount }개</strong>  |  ${boardVO.page }/${data.totalPage }페이지</span></p>
+					<p style="text-align:right;">
+                    	<span> ${loginInfo.email }
+						    <a class="loginInfo" href="javascript:login()" >
+						    	<c:choose>
+									<c:when test="${empty loginInfo }">[로그인]</c:when>	    	
+							    	<c:otherwise>[로그아웃]</c:otherwise>
+						    	</c:choose>
+						    </a>
+						</span>
+					</p>
+                    <p style="text-align:right;">
+                    <span><strong>총 ${data.totalCount }개</strong>  |  ${boardVO.page }/${data.totalPage }페이지</span>
+					</p>
                         <caption>게시판 목록</caption>
                         <colgroup>
                             <col width="80px" />
@@ -68,13 +89,13 @@
 							<tr>
                                 <td>${data.totalCount - status.index -(boardVO.page -1) * boardVO.rowPerPage }</td>  <!-- 총 개수 - 인덱스 - (현재 페이지번호 -1) * 페이지당 개수 -->
                                 <td class="txt_l">
-                                    <a href="view.do?no=${vo.no }">${vo.title }</a>
+                                    <a href="view.do?no=${vo.no }">${vo.title } [${vo.comment_count }]</a>
                                 </td>
                                 <td class="viewcount">
                                 	${vo.viewcount }
                                 </td>
                                 <td class="writer">
-                                    ${vo.member_no}
+                                    ${vo.member_name}
                                 </td>
                                 <td class="date"><fmt:formatDate value="${vo.regdate }" pattern="yyyy-MM-dd HH:mm:ss"/> </td>
                             </tr>

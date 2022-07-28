@@ -63,7 +63,7 @@ public class BoardController {
 		// member_no 저장
 		HttpSession sess = req.getSession();
 		MemberVO mv = (MemberVO)sess.getAttribute("loginInfo");
-		vo.setNo(mv.getNo());
+		vo.setMember_no(mv.getNo());
 		
 		if (service.insert(vo)) { 
 			model.addAttribute("msg", "정상적으로 저장되었습니다.");

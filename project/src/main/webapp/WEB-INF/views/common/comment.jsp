@@ -25,9 +25,15 @@
                                     ${cvo.content }
                                 </td>
                                 <td class="writer">
-                                     ${cvo.member_no }
+                                     ${cvo.member_name }
                                 </td>
-                                <td class="date"><fmt:formatDate value="${cvo.regdate }" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+                                <td class="date">
+                                	<fmt:formatDate value="${cvo.regdate }" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                	<c:if test="${cvo.member_no == loginInfo.no }">
+                                	&nbsp &nbsp 
+                                	<button type="button" onclick="javascript:commentDel(${cvo.no})">[삭제]</button>
+                                	</c:if>
+                                </td>
                             </tr>
 						</c:forEach>
                         </tbody>
@@ -36,7 +42,7 @@
 	                        <ul class='paging'>
 	                        
 	                        <c:if test="${comment.prev }">
-								<li><a href="index.do?page=${comment.startPage -1}"><<</a>
+								<li><a href="javascript:getComment(${comment.startPage -1})"><<</a>
 							</c:if>
 	                        
 	                        <c:forEach var="idx" begin="${comment.startPage }" end="${comment.endPage }">
@@ -44,7 +50,7 @@
 	                        </c:forEach>
 	                        
 	                        <c:if test="${comment.next }">
-								<li><a href="index.do?page=${comment.endPage +1}">>></a>
+								<li><a href="javascript:getComment(${comment.endPage +1})">>></a>
 							</c:if>
 	                        </ul> 
 	                    </div>

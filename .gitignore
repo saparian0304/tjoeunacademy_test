@@ -86,3 +86,9 @@ ex03/target/
 ex03/.project
 ex03/.settings
 ex03/.springBeans
+
+community/.settings/
+community/target/
+community/.project
+community/.settings
+community/.springBeans

@@ -15,6 +15,7 @@ public class CommentVO {
 	private int board_no;
 	private Timestamp regdate;
 	private String tablename;
+	private String member_name;
 	
 	private int page;
 	private int startIdx;

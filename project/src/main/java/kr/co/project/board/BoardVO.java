@@ -18,6 +18,8 @@ public class BoardVO {
 	private String filename_org;
 	private String filename_real;
 	
+	private String member_name;
+	private String comment_count;
 	private int page;
 	private String stype;
 	private String sword;

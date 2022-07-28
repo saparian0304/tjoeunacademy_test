@@ -27,5 +27,6 @@ public class CommentController {
 	public String delete(CommentVO vo, Model model) {
 		model.addAttribute("result", service.delete(vo));
 		return "common/result";
+		
 	}
 }

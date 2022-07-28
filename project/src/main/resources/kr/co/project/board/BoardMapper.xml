@@ -31,7 +31,10 @@
 	</select>
 	
 	<select id="getList" parameterType="kr.co.project.board.BoardVO" resultType="kr.co.project.board.BoardVO">
-		SELECT * FROM board
+		SELECT *,
+			(SELECT name FROM member WHERE no = board.member_no) as member_name,
+    		(SELECT COUNT(*) FROM comment WHERE board_no = board.no AND tablename='board') as comment_count
+		FROM board
 		<where>
 			<if test="stype != null and stype != ''">
 				<if test="stype != 'all'">
