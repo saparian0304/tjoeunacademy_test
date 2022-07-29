@@ -5607,14 +5607,147 @@ AWS 프리티어
  - 1년간 750시간/월 무료
  - 반영되는 시간 -> 인스턴스 가동시간
 
-리눅스 명령어
+
  
+=======================================
+22.07.29 금 - 61일차
+
+리눅스 최고관리자 계정 : "root"
+
+리눅스 기본 명령어
+ pwd : 현재 디렉토리 위치 출력(print working directory)
+ ls : 파일/디렉토리 목록 출력(list, 윈도우는 dir)
+ ls -a : 숨겨진 파일/디렉토리도 출력
+ ls -l : 상세 정보 출력
+ ls -al : 숨겨진 파일까지 상세정보 출력
+ ls [대상] : 대상 경로에 있는 파일/디렉토리 목록 출력
+ cd : 디렉토리 이동 (change directory)
+ ('~'표시 : 내 계정의 home 디렉토리를 뜻함)
+ ('-'표시 : 이전에 있던 디렉토리로 이동)
+ touch 파일명
+ - 크기가 0인 빈 파일을 생성
+ - 파일이 존재하면 수정일시 업데이트
+ mkdir : 디렉토리 생성 (make directory)
+ cp : source파일을 destination에 복사(copy)
+ - cp source destination
+ mv : 파일 이동(move) + 이름변경도 가능
+ - mv source destination
+ rm : 삭제 (remove)
+ - rm 파일명 : 파일 삭제
+ - rm -r 디렉토리명 : 디렉토리 삭제
+ - rm -f : 강제 삭제 (rm -rf : 강제로 하위디렉토리까지)
+ cat : 파일 내용 출력
+ head : 파일 내용 위에서 10줄
+ tail : 파일 내용 밑에서 10줄
+ more : 페이지 단위로 출력
+
+############## ls 상세정보 화면 설명 ##############
+(1)(2)      (3) (4)   (5)    (6)      (7)      (8)
+  drwx------ 2 ubuntu ubuntu 4096 Jul 28 03:53 .ssh
+
+(1) : 파일 유형 ( 일반파일 - / 디렉터리 d / 블록디바이스 b / 문자디바이스 c / 링크 l )
+(2) : 파일허가권 
+ - 권한 ( 읽기 r / 쓰기 w / 실행 x )
+ - 문자 3개씩 구분 : 순서대로 (사용자/사용그룹/나머지사용자)
+(3) : 링크의 수
+(4) : 파일 소유권을 가진 소유 사용자명
+(5) : 파일을 소유한 그룹의 이름
+(6) : 파일의 크기
+(7) : 파일의 최종 수정일시
+(8) : 해당 파일의 이름
+###################################################
+
+-------------------------------------------------------
+vi편집기 : 리눅스 편집기 중 하나
+vi 파일명 (존재하면 해당파일이 열리고, 없으면 생성해서 열림)
+ i : 편집모드
+ esc : 명령모드
+ :w - 저장
+ :q - 종료
+ :wq - 저장 후 종료
+ :q! - 강제 종료 (저장X)
+ :set number - 행번호 표시
+ :행번호 - 해당 행번호로 이동
+ /검색어 - 검색
+     n : 다음 검색 결과로 이동
+     shift + n : 이전 검색결과로 이동
+ $ - 해당 라인의 마지막으로 이동
+ ^ - 해당 라인의 처음으로 이동
+ x - 현재커서위치의 문자하나 삭제
+ dd - 현재 행 삭제
+ yy - 현재 행 복사
+ p - 현재 행 아래위치에 붙여넣기
+ shift + g - 마지막 라인으로 이동
+ gg - 첫 라인으로 이동
+
+-------------------------------------------------------
+AWS에 DB 설치하기 순서
+xshell 실행
+관리자권한으로 실행하는 법 : 명령어 앞에 "sudo"를 붙여서 실행
+$ sudo apt-get update
+$ sudo apt-get install mysql-server
+
+$ sudo mysql
+mysql> alter user 'root'@'localhost' identified with mysql_native_password by 'root1234';
+mysql> \q
+
+$ sudo mysql_secure_installation
+Enter password for user root: -> root1234
+Would you like to setup VALIDATE PASSWORD component? -> N (강한 비밀번호 방법을 설정할 것인지 묻는 질문)
+Change the password for root ? -> N
+Remove anonymous users? -> Y (비밀번호 없이 접속할 수 있는 계정들을 삭제할 것인지 묻는 질문)
+Disallow root login remotely? -> N  (원격접속을 막을지에 대한 질문)
+Remove test database and access to it? -> Y
+Reload privilege tables now? -> Y
+
+외부 접속 허용 설정
+$ mysql -uroot -p
+(root계정으로 비밀번호 입력한 뒤 mysql 실행하겠다는 의미, 비밀번호는 커맨드 실행 후 입력한다.)
+mysql> create user 'root'@'%' identified with mysql_native_password by 'root1234';
+  (원격으로 접속이 가능한 계정 생성하기
+  mysql> select host, user from mysql.user;
+  실행하면 host가 %인 root 계정이 생성된 것 확인할 수 있음
+  host %값인 뜻 : host가 localhost가 아닌 모든 곳에서 접속할 수 있음
+  )
+mysql> grant all privileges on *.* to 'root'@'%' with grant option;
+ (생성한 계정에 모든 권한 부여)
+mysql> exit 
+ (mysql 종료)
+
+$ sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf
+(mysql 설정 변경하기 : 접속가능한 경로 수정하기)
+/bind 검색 후 편집
+ (수정전)bind-address      = 127.0.0.1 (해당 IP에서만 접속)
+ (수정후)bind-address      = 0.0.0.0 (모든 IP에서 접속 가능)
+:wq
+
+$ sudo systemctl restart mysql
+ (mysql 재시작)
+
+- 같은 서버에 was와 DB가 있다면 같은 local에 속하기 때문에 ip 설정을 바꿀 필요가 없음
+- was와 DB가 다른 서버에서 운영된다면 해당 IP에서 접속이 가능하게끔 설정함. (WAS 내 java가 실행되어서 DB에 접속하기때문에 WAS 위치가 중요함)
+- 지금처럼 모든 IP에서 접속이 가능하게 설정을 바꾼 이유는 다른 PC에서 workbench를 통해 DB에 접속하기 위함.
+
+workbench 실행
+새로운 Connection 생성
+ - Connection Name : aws
+ - Hostname : aws 퍼블릭 IP (현재입력은 15.164.103.67)
+ - 연결 테스트하면 오류남 -> 추가 설정이 필요함 (일단 connection 저장)
+ - AWS 인스턴스 안에 ubuntu가 설치되어있기 때문에 현재 AWS 인스턴스 접속단계에서 차단된 상태임 -> 3306 포트를 열어서 3306포트는 모든 IP에서 접속이 가능하게끔 설정해야함
+aws 홈페이지 로그인 -> EC2 -> 인스턴스 -> DB가 깔린 인스턴스 선택 -> 보안탭 -> 인바운드 규칙 (현재 22번 포트만 열려있음)
+ - 보안그룹 -> 인바운드 규칙 편집 
+   - 유형 : MYSQL/Aurora (포트번호 3306 확인)
+   - 소스 : 0.0.0.0/0
+   - 저장
+ - 이제 workbench에서 접속하면 접속 성공
+
+
+인바운드 규칙 : 외부에서 인스턴스로 들어오는 트래픽 관련
+아웃바운드 규칙 : 인스턴스에서 외부로 나가는 트래픽 관련
 
 
 
 
-개발 환경 정의(클라우드, db, 스프링)
-필요 라이브러리 정리
 
 
 회원관리
