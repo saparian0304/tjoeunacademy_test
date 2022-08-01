@@ -182,6 +182,14 @@
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.4</version>
 		</dependency>
+		
+		<!-- javax.mail/mail : 메일처리 라이브러리(JavaMail API (compat))-->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.7</version>
+		</dependency>
+
 	</dependencies>
     <build>
         <plugins>

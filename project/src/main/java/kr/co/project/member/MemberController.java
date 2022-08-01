@@ -72,4 +72,32 @@ public class MemberController {
 		model.addAttribute("url", "/project/board/index.do");
 		return "common/alert";
 	}
+	
+	@GetMapping("/member/findEmail.do")
+	public String findEmail() {
+		return "member/findEmail"; 
+	}
+	
+	@PostMapping("/member/findEmail.do")
+	public String findEmail(MemberVO param, Model model) {
+		MemberVO vo = service.findEmail(param);
+		if(vo != null) {
+			model.addAttribute("result", vo.getEmail());
+		}
+		return "common/result"; 
+	}
+
+	@GetMapping("/member/findPwd.do")
+	public String findPwd() {
+		return "member/findPwd"; 
+	}
+	
+	@PostMapping("/member/findPwd.do")
+	public String findPwd(MemberVO param, Model model) {
+		MemberVO vo = service.findPwd(param);
+		if(vo != null) {
+			model.addAttribute("result", vo.getEmail());
+		}
+		return "common/result"; 
+	}
 }

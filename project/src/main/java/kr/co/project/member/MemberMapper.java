@@ -8,4 +8,8 @@ public interface MemberMapper {
 	int insert(MemberVO vo);
 	int emailDupCheck(String email);
 	MemberVO loginCheck(MemberVO vo);
+	
+	MemberVO findEmail(MemberVO vo);
+	MemberVO findPwd(MemberVO vo);
+	int updateTempPwd(MemberVO vo);
 }

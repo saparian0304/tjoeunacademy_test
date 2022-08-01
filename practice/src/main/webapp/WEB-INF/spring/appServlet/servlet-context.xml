@@ -24,11 +24,20 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="org.practice.ajp, org.practice.bankA" />
-	
+	<!-- org.practice.ajp.chat2 설정 https://devmg.tistory.com/127 -->
+	<!-- 
 	<websocket:handlers>
 		<websocket:mapping handler="chattingHandler" path="/chatting"/>
 		<websocket:sockjs></websocket:sockjs>
 	</websocket:handlers>
 	<beans:bean id="chattingHandler" class="org.practice.ajp.chat.ChattingHandler"/>
+	 -->
 	
+	<!-- https://dalili.tistory.com/124?category=856049 설정 -->
+	<websocket:handlers allowed-origins="*" >
+        <websocket:mapping handler="handlerChat" path="/chat" />
+        <websocket:sockjs websocket-enabled="true" />
+    </websocket:handlers>
+    
+    <beans:bean id="handlerChat" class="org.practice.ajp.chat3.HandlerChat" />
 </beans:beans>

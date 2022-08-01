@@ -19,4 +19,17 @@
 	<select id="loginCheck" parameterType="kr.co.project.member.MemberVO" resultType="kr.co.project.member.MemberVO">
 		SELECT * FROM member WHERE email = #{email} AND pwd = MD5(#{pwd})
 	</select>
+	
+	<select id="findEmail" parameterType="kr.co.project.member.MemberVO" resultType="kr.co.project.member.MemberVO">
+		SELECT * FROM member WHERE name = #{name} AND hp = #{hp} 
+	</select>
+	
+	<select id="findPwd" parameterType="kr.co.project.member.MemberVO" resultType="kr.co.project.member.MemberVO">
+		SELECT * FROM member WHERE name = #{name} AND hp = #{hp} AND email = #{email}
+	</select>
+	
+	<update id="updateTempPwd" parameterType="kr.co.project.member.MemberVO">
+		UPDATE member SET pwd = md5(#{pwd}) WHERE name = #{name} AND hp = #{hp} AND email = #{email}
+	</update>
+	
 </mapper>
