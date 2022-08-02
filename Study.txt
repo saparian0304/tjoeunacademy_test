@@ -5798,12 +5798,35 @@ SQL
  - (완료)getMemberRecTotalCnt (통계용 - 회원이 좋아요를 누른 개수)
  - (완료)getMemberRecList (통계용 - 멤버별 댓글리스트)
 
+=======================================
+22.08.02 화 - 63일차
 
+답변게시판
+컬럼 추가 (3개)*
+- 그룹번호
+- 순서
+- 들여쓰기 정도
 
+목록*
+- 정렬기준 변화(→그룹번호 DESC, 순서 ASC)
 
+등록*
+1)
+- max(그룹번호) +1 
+- insert(그룹번호)
+2) 
+- insert, lsat_insert_id()
+<insert>
+    <selectKey keyProperty="no" resultType="int" order="AFTER">
+        SELECT LAST_INSERT_ID()
+    </selectKey>
+</insert>
+- update(그룹번호)
 
-
-
+답변*
+- 부모글의 그룹번호, 순서, 들여쓰기정도 가지고 옴
+- (update)부모글의 그룹번호와 같고, 부모글의 순서보다 큰 순서에 +1 
+- (insert)부모글의 그룹번호, 부모글의 순서에+1, 부모글의 들여쓰기정도에 +1
 
 
 

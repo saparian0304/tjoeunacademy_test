@@ -27,7 +27,7 @@ public class RecommendMapperTests {
 		vo.setMember_no(1);
 		vo.setReply_no(3);
 		vo.setBoard_no(1);
-		mapper.insertRec(vo);
+//		mapper.insertRec(vo);
 		
 		
 	}

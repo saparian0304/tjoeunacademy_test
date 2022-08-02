@@ -12,4 +12,7 @@ public class RecommendVO {
 	private int board_no;
 	private int reply_no;
 	
+	private int recommendCount;
+	private boolean recommended;
+		
 }
