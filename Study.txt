@@ -5829,6 +5829,52 @@ SQL
 - (insert)부모글의 그룹번호, 부모글의 순서에+1, 부모글의 들여쓰기정도에 +1
 
 
+=======================================
+22.08.03 수 - 64일차
+
+사진첨부기능있는 웹에디터*
+관리자페이지 소스*
+개인포폴용UI
+
+
+
+스마트에디터2
+https://naver.github.io/smarteditor2/
+부트스트랩 summernote.org
+https://summernote.org/
+
+업로드 기능은 따로 구현해야함
+
+업로드 기능이 구현된 스마트에디터 클래스룸에서 다운받기
+ - 함께 올라온 자바스크립트 함수 : webapp/js/function.js 파일을 만들어서 함수 추가하기.
+
+압축 풀어서 webapp 하위에 폴더 추가
+- cos 라이브러리 디펜던시 추가
+- SmartEditor2Skin.html -> 에디터 파일
+- editor_upload.jsp 내 수정사항 : myFileRenamePolicy() -> defaultFileRenamePolicy()
+
+에디터를 사용할 JSP에 추가(writer.jsp)
+ - function.js, 제이쿼리, HuskyEZCreator.js
+ - HuskyEZCreator.js내 함수를 function.js에서 사용하고 있기때문에 보다 위쪽에 있어야함 (해당 js파일은 네이버에서 제공하는 jindo 프레임워크에 속한(?/이용하는?) 파일임)
+
+스프링이 아닌 JSP로 작성된 이유 -> 스프링에 종속되지 않도록 하기 위함
+
+
+관리자 테이블은 따로 만들어야함 (개인정보보호법에 의함)
+ - 인터셉터도 별개로
+ - 로그인 내역 (접속 일시, 아이피,...등)
+
+개인 포트폴리오 참조사이트
+http://eservice.taiyoungship.co.kr/
+클래스룸 -> 개인포폴용UI
+프로젝트 이클립스에 import한 후 프로젝트 properties -> target runtimes을 바꿔줘야 오류없이 실행됨
+
+property 클래스의 필드변수를 바꿔도 static 변수이기때문에 잘 반영되지 않음 (서버를 재시작해도 안될 경우 "clean Tomcat Work Directory"를 실행해야함)
+
+
+
+
+
 
 
 

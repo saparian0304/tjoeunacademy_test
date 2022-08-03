@@ -11,10 +11,19 @@
     <title>게시판 등록</title>
     <link rel="stylesheet" href="/project/css/reset.css"/>
     <link rel="stylesheet" href="/project/css/contents.css"/>
+	<script src="/project/smarteditor/js/HuskyEZCreator.js"></script>
+    <script src="/project/js/function.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
     	function goSave() {
+    		editor.getById['content'].exec('UPDATE_CONTENTS_FIELD', []);
     		frm.submit();
     	}
+    	
+    	var editor;
+    	$(function() {
+    		editor = setEditor('content');
+    	});
     </script>
 </head>
 <body>
@@ -38,7 +47,7 @@
                         <tr>
                             <th>내용</th>
                             <td>
-                                <textarea name="content" id="content"></textarea>
+                                <textarea style="width:90%" name="content" id="content"></textarea>
                             </td>
                         </tr>
                         <tr>
