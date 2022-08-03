@@ -16,9 +16,13 @@ public class ControllerView {
 	// 채팅방 입장
 	@RequestMapping("/chat.do")
 	public String view_chat(HttpServletRequest req, HttpServletResponse res, Model model) {
-		return "chat3/view";
+		return "chat3/view_chat";
 	}
 	
+	@RequestMapping("/join.do")
+	public String join() {
+		return "chat3/login";
+	}
 	
 	
 }

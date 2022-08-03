@@ -29,7 +29,7 @@
             <div class="panel-body">
                 <form id="login-form" method="post" action="/ajp/chat.do">
                     <div>
-                        <input type="text"  name="id"	class="form-control" placeholder="Username" autofocus>
+                        <input type="text"  name="Uname"	class="form-control" placeholder="Username" autofocus>
                         <input type="text"  name="channel"	class="form-control" placeholder="채팅방 번호">
                     </div>
                     <div>
