@@ -5834,7 +5834,7 @@ SQL
 
 사진첨부기능있는 웹에디터*
 관리자페이지 소스*
-개인포폴용UI
+개인포폴용UI*
 
 
 
@@ -5870,6 +5870,81 @@ http://eservice.taiyoungship.co.kr/
 프로젝트 이클립스에 import한 후 프로젝트 properties -> target runtimes을 바꿔줘야 오류없이 실행됨
 
 property 클래스의 필드변수를 바꿔도 static 변수이기때문에 잘 반영되지 않음 (서버를 재시작해도 안될 경우 "clean Tomcat Work Directory"를 실행해야함)
+
+=======================================
+22.08.04 목 - 65일차
+
+버전관리, 형상관리, 협업툴...
+ - 파일 버전 관리
+ - 협업
+
+CVS (Current Version System)
+SVN (SubVersion) - 아직 많은 프로젝트가 SVN을 쓰고있을 확률↑
+Git 
+ - 로컬저장소와 서버저장소가 분리되어있음
+
+
+Git 설치
+git-scm.com 에서 깃 다운로드 (64비트 windows)
+- 기본 'next'
+- Use Git from Git Bash only 선택 (Adjusting your PATH environment 창)
+
+사용자 설정
+$ git config --global user.name "이름"
+$ git config --global user.email "이메일"
+
+gittest 폴더 생성 후 이동
+$ mkdir gittest
+$ cd gittest
+
+저장소 설정 
+$ git init
+저장소에 파일 추가
+$ git add 파일명
+커밋
+$ git commit 
+- 편집모드(i)를 통해 커밋 메시지 작성 가능 -> ":wq" 저장후 종료
+상태 출력
+$ git status
+
+브랜치 확인
+$ git branch
+브랜치 추가
+$ git branch 브랜치명
+브랜치 변경
+$ git checkout 브랜치명
+현재 브랜치에 해당 브랜치를 병합
+$ git merge 브랜치명
+
+.gitignore 파일 (버전관리가 필요없는 대상 제외)
+gitignore.io 접속 -> "Java" 적용 후 텍스트 복사해서 .gitignore에 붙여넣기
+
+충돌(conflict) 발생
+- 두브랜치 간에 커밋이 된 상태
+- 양쪽 동일한 코드를 다르게 수정한 상태에서 병합을 시도하면 충돌이 발생(같은 자리)
+- 충돌이 발생하면 직접 수정 후 "다시 커밋"
+    <<<<<<<<
+    내코드
+    ========
+    다른 코드
+    >>>>>>>>>
+
+커밋된 내역 상세조회
+$ git log -q 
+커밋내용에 대한 통계정보 확인 가능
+$ git log -stat
+커밋 내용 수정파일의 이름만 보기
+$ git log --name-only     
+
+
+
+
+
+
+
+
+
+
 
 
 
