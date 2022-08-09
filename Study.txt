@@ -5998,6 +5998,148 @@ window -> preferences -> 'secure' 검색 -> Secure Storage -> contents 탭
 깃허브에서 가져오기
 git clone 후 프로젝트폴더 우클릭 -> import projects
 
+=======================================
+22.08.09 화 - 68일차
+
+AWS에 프로젝트 배포
+ - JDK 설치
+    - openJDK 설치
+ - 톰캣 설치
+ - DB 백업
+ - aws DB에 복원
+ - aws 보안그룹 설정
+ - 웹어플리케이션 배포(war)
+
+
+========================================
+AWS 인스턴스 설정을 복사해두는 법
+ - 작업 -> 이미지 및 템플릿 -> 이미지 생성 
+=========================================
+준비
+- AWS 콘솔 로그인
+- 인스턴스 시작(Mysql 설치된) 시작
+- SSH(xshell) 접속
+
+1. 오픈JDK 설치하기
+$ sudo apt-get install openjdk-11-jdk
+ - 오픈JDK 11버전 설치(xshell에서 진행)
+ - sudo : 관리자 권한으로 실행
+ - apt-get : 리눅스에서 패키지를 설치하거나 삭제하는데 사용
+ - (진행중에 커널 업데이트를 진행했었음)
+
+$ java -version
+ - 설치된 자바 버전 확인
+
+2. 톰캣 설치하기
+2-(ㄱ) 톰캣 다운
+- https://tomcat.apache.org/ 접속
+- 톰캣 9.0 -> Binary Distributions -> Core -> tar.gz파일 다운로드
+2-(ㄴ) FTP 접속
+ - 클라이언트 프로그램(Filezilla, 무료) 다운로드
+ - https://filezilla-project.org/ 접속 -> client 다운로드 -> 설치 (설치 중에 브라우저 함께 설치하는 것 거절)
+ - filezilla 실행
+ - 사이트 관리자 -> 새 사이트
+    - 프로토콜 : SFTP (SSH를 이용한 파일 전송)
+    - 호스트 : aws 인스턴스 IP
+    - 포트 : 공백 (FTP 프로토콜일경우 21번 포트)
+    - 로그온 유형 : 키 파일
+    - 사용자 : ubuntu
+    - 키 파일 : aws 인스턴스 생성시 받았던 키 페어 파일(.pem)   - 다운받은 톰캣 파일을 "/home/ubuntu/" 디렉토리로 업로드
+
+2-(ㄷ) 톰캣 설치 (2)
+$ tar xvzf apache-tomcat-9.0.65.tar.gz 
+- 톰캣 파일 압축 풀기
+- 압축 푼 폴더 내 bin 디렉토리로 이동
+    - ./startup.sh -> 서버 실행
+    - ./shutdown.sh -> 서버 종료
+$ ps -ef 
+$ ps -ef | grep java
+ - ps : 현재 실행중인 프로세스 목록을 보여줌 
+ - "-e" (속성) : 모든 프로세스의 정보
+ - "-f" (속성) : 프로세스의 자세한 정보
+ - '| grep java' : 'java'가 들어있는 pid를 조회
+
+3. 보안그룹 설정 (8080포트 인바운드 규칙 추가)
+aws -> 대상 인스턴스 선택 -> 보안탭 -> 보안그룹 선택
+인바운드 규칙 편집 (8080 포트를 열어줘야함)
+ - 규칙추가 
+    - 유형 : 사용자 지정 TCP
+    - 포트범위 : 8080 
+    - 소스 : 사용자지정 0.0.0.0/0
+ - 규칙 추가후 publicIP:8080로 접속해서 접속이 잘 되는지 확인
+
+4. DB 백업 (CLI 환경에서 백업하기)
+명령프롬프트 열기
+> mysqldump
+ - mysql 백업프로그램 (경로 C:\Program Files\MySQL\MySQL Server 8.0\bin)
+ - 환경변수 설정해서 실행하거나, 경로를 입력해서 실행
+
+> mysql -h15.164.103.67 -uroot -p
+ - -h : 해당 서버로 접속(15.164.103.67로 접속, 생략하면 local)
+ - -u : 접속 계정 (root로 접속)
+ - -p : 비밀번호 
+ 
+ - quit 명령어를 사용하면 mysql 종료
+
+> mysqldump -uroot -p project > project.dmp
+ - 백업파일 생성 명령어 (mysqldump -u계정명 -p DB명 > 파일명)
+ - (화살표 방향에 유의!)
+ - project > project.dmp : project 데이터베이스를 파일명 "project.dmp"로 백업
+ - 실행한 위치(명령프롬프트)에 백업파일이 생성됨
+
+ - filezilla를 이용하여 백업파일을 리모트사이트(aws-ubuntu)에 업로드
+========================================
+MySQL Batch Insert 
+ - mysql 다량의 데이터 넣기
+ - DB에 insert해야하는 튜플이 많을 때 사용함, 한번에 수천개의 쿼리를 묶어서 넣어준다
+ - 100,000건 이상의 데이터를 넣을때 사용하는것이 좋음
+=========================================
+
+5. aws DB에 복원 (xshell에서 진행)
+
+$ mysql -uroot -p
+- 접속 명령어
+
+mysql> create database db명;
+- db 생성
+- mysql> create database project; 를 통해 생성된 DB 확인
+- mysql> \q (-> mysql 종료 (quit도 사용 가능))
+
+$ mysql -uroot -p project < project.dmp
+ - DB 복원 명령어 (화살표 방향에 유의!)
+ - $ mysql -u계정명 -p DB명 < 백업파일명
+
+6. project 웹어플리케이션 배포(war)
+
+db와 톰캣이 같은 인스턴스에 올라간 경우 프로젝트내 DB 설정을 localhost에서 변경할 필요가 없다. (단, 접속계정 정보는 바꿔야할 수 있음)
+
+
+(이클립스)대상 프로젝트 우클릭 -> Run As -> Maven Install
+ - target 디렉토리에 가면 war파일이 생성되어있음
+ - 생성된 war 파일을 aws의 톰캣/webapps 디렉토리에 업로드 -> 자동으로 디렉토리가 생성되면서 배포됨
+ - (생성된 디렉토리명을 ROOT로 바꾸면 컨텍스트패스 없이 접속됨)
+
+
+서버 시간 설정 (방법1)
+$ tzselect
+ -> 4) asia -> 24 (south)Korea -> Yes
+ - 타임존 셀렉트 명령어
+
+$ sudo vi /etc/profile
+
+   TZ='Asia/Seoul';
+   export TZ
+ - ↑↑↑ 파일 맨 아래에 추가 (공백 없이!)
+
+$ source /etc/profile
+ - 컴퓨터 재시작 없이 설정 파일 적용
+
+서버 시간 설정 (방법 2)
+ - crontab 설정해서 매일 0시에 시간을 불러오기 (배우지는 않음)
+ - crontab : 리눅스 작업스케쥴러 (예약된 작업을 주기적으로 실행시킬 수 있음)
+
+
+
 
 
 
