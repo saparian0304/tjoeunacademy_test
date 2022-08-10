@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script src="/js/script.js"></script>
+<script>
+test();
+</script>
+</head>
+<body>
+<table border="1">
+	<tr>
+		<th>번호</th>
+		<th>제목</th>
+	</tr>
+	<tr th:each="data, index:${list}">
+		<td th:text="${data.no}">1</td>
+		<td th:text="${data.title}">제목입니다.</td>
+	</tr>
+</table>
+
+
+</body>
+</html>
