@@ -6367,6 +6367,248 @@ Java : 메서드 앞에 synchronized 키워드를 적어준다
 22.08.30 화 - 82일차
 
 
+=======================================
+22.08.31 수 - 83일차
+
+
+=======================================
+22.09.01 목 - 84일차
+
+파이썬 수업 시작
+
+커리큘럼
+파이썬(파이참 : 기본문법) -> Jupyter(데이터분석 : 이론, 전처리, 수집, 저장, 수학{선형대수, 행렬, 확률, 통계, 미분, 가설검정}, 실습{가설검정, 회귀분석, 요약분석) -> 머신러닝 -> 딥러닝
+
+기본문법 교재 : Let's 실전 예제로 배우는 파이썬프로그래밍
+데이터분석 교재 : 기타 강의자료
+딥러닝 이후 수업 교재 : 파이썬 데이터분석 실무테크닉 100
+
+
+파이썬의 특징
+ - 하이브리드 언어 : 대화형 인터프리터 언어
+ - 동적인 자료형 결정 : 타입을 선언하지 않음
+ - 플랫폼 독립적 언어 : 대부분의 운영체제(윈도우, 리눅스, 유닉스)에서 동작
+ - 간결하고 쉬운 문법
+ - 풍부한 라이브러리와 오픈소스
+ - 메모리 자동 관리
+
+
+파이썬 설치하기
+최신버전 설치파일 다운로드 (www.python.org)
+설치파일 실행
+- PATH 설치 체크 안한채로 설치 
+  (파이썬이 여러개 설치되면 경로가 꼬일수 있음, 이 부분은 선택사항임)
+- Customize installation -> next -> 설치경로 설정 (현재 E:\kdigital_a\python\python310)
+- Disable path length limit 클릭 후 close
+
+파이참 설치하기
+'pyCharm' 검색 후 공식사이트 접속 -> community 버전 다운
+(현재 설치경로 : E:\kdigital_a\python\pycharm\)
+설정들 체크하지 않고 next->intsall
+
+new project -> 경로 (E:\kdigital_a\python\workspace\project)
+python 패키지 만들고 python 파일 생성
+
+
+##############################################################
+파이참 단축키
+1. 실행(Run)
+   현재소스 실행     : Ctrl + Shift + F10
+   최근소스 재실행  : Shift + F10
+   소스선택 실행     : Alt + Shift + F10
+2. 편집
+   수정취소/되돌리기(Undo)   : Ctrl + z
+   수정취소 재실행(Redo)      : Ctrl + Shift + z
+   현재라인 위/아래 라인으로이동      : Alt + ↑ 또는 Alt + ↓
+   최근 실행파일 열기      : Ctrl + e
+   파일 열기                  : Ctrl + Shift + n, Ctrl + n
+   파일간 이동               : Alt + ← 또는 Alt + →
+   선택내역 복제    : Ctrl + d (Shift로 선택후 실행시 전체, 미선택시 1줄 복제)
+   블럭단위 선택    : Ctrl + w
+   삭제        : Crtl + y
+   복사        : Ctrl + c
+   붙여넣기   : Ctrl + v
+   ( )소괄호 밖 탈출     : Ctrl + Shift + Enter
+   주석처리(#)            : Ctrl + /(영역선택후)
+   글자 이동(Tab간격)  : 순방향: Tab, 역방향 : Shift + Tab(영역선택후)   
+   전체화면 이동         : Ctrl + 방향키
+3. 기타
+   소스(탭)간 이동        : Alt + 좌/우방향키 Ctrl + Tab (2개탭사이만 이동)
+   폴더, 새파일 생성     : Alt + Insert
+   폴더, 파일이름 변경  : Shift + F6
+   파일 목록열기         : Ctrl + e
+   편집창 닫기            : Ctrl + F4
+   파이참 종료            :  Alt + F4
+4. Debugging
+   Break point
+   한줄씩 실행     : F8
+   함수로 이동     : F7
+   run to cursor   : Run
+###################################################################
+
+# 자료형
+# 정수(int)
+# 실수(float)
+# 문자열(string)
+# 논리(bool)
+# 파이썬에서는 기본자료형이라는 말을 사용하지 않음 -> 모든 것이 객체임
+
+print() 함수 설명
+# dynamic type : 동적 자료형
+print(1,2,3,4,5)   # 매개변수 여러개 출력 (기본값이 공백)
+print(1,2,3,4,5, sep='-')   # 구분값 지정
+# print함수는 end 속성 기본값이 출력 후 줄바꿈을 함 (end='\n')
+print(1, end='')
+
+# None Type
+c = None    # 아직 값이 없지만 변수를 선언하고 싶을때 None를 사용
+print(type(c))
+
+# 같은 변수를 다시 선언해도 에러가 나지 않는다 -> 디버깅하기 어려운 이유 중 하나
+# 변수 선언 방법
+a,b = 1,2
+# 두 변수의 값을 교체
+a = 1
+b = 2
+a, b = b, a     # 두 변수의 값을 간단하게 교체할 수 있음   
+
+# 자료형 변환 -> 함수 이름이 자료형 이름임
+a = '3.14'
+print(type(a))
+b = float(a)
+print(type(b))
+
+a = False    # boolean은 첫 글자가 대문자
+b = int(a)
+print(b)
+
+# 값이 있으면 True, 없으면 False (0도 False)
+print(bool(1))  -> True
+print(bool(''))  -> False
+print(bool('a'))  -> True
+print(bool(0))  -> False
+print(bool(31))  -> True
+
+print(10//3)    # // : 몫
+print(10%3)     # % : 나머지
+print(2**8)     # ** : 제곱
+
+논리연산자
+ and, or, not   (&&, ||, ! 사용X)
+
+# 이진수 연산에 &가 사용됨
+a = 2
+b = 3
+print(a & b)
+#   10
+# & 11
+# True, False (10) -> 2가 됨
+
+# bin() 이진수로 표현하는 함수 
+print(bin(a))   # 0b10 (a가 2)
+print(bin(b))   # 0b11 (b가 3)
+print(bin(a&b)) # 0b10
+
+# input() : 값 입력 (문자열로 리턴함)
+number = input('숫자를 입력하세요')
+
+# 연결해서 사용할때는 변환해줘야함
+number1 = 10
+print('number1에 들어있는 숫자는 ' + str(number1) + '입니다.')
+
+# help() : 함수의 관련 정보를 보여주는 함수
+help(print)
+
+# 포맷팅 3가지 방법 ('{}'.format(변수명), '%s'%(변수명), f'{변수명}')
+name = '홍길동'
+age = 30
+tel = '010'
+'{}'.format(변수명)
+ - introduce = '이름은 {}이고, 나이는 {}살이며, 전화번호는 {}입니다'.format(name, age, tel)
+'%s'%(변수명)
+ - introduce = '이름은 %s이고, 나이는 %d살이며, 전화번호는 %s입니다'%(name, age, tel)
+f'{변수명}'
+ - introduce = f'이름은 {name}이고, 나이는 {age}살이며, 전화번호는 {tel}입니다'
+
+다른 형태
+'이름:{name}, 나이: {age}, 전화번호 : {tel}'.format(name='010', age='홍', tel='50')
+
+# 실수 포맷팅 (전체자리수.소수점자리수
+print('원주율:%.3f' % 3.141592)
+
+# 문자열
+# '', "" 둘 다 사용 가능
+# ''', """ 는 여러줄 표현이 가능함
+introduce = """안녕하세요
+나는 홍길동입니다
+반갑습니다"""
+
+# 문자열 인덱싱
+# 맨끝 인덱스 -1
+string = '안녕하세요'
+print(string[4], string[-1])
+
+# 문자열 * 연산
+print('-' * 10)
+
+# 문자열 슬라이싱
+# 문자열[시작인덱스 : 끝인덱스 전 : 증감값]
+string = '안녕하세요'
+print(string[0:2])  # 안녕
+print(string[:2])   # 안녕, 0은 생략이 가능함
+print(string[2:])   # 하세요
+print(string[::2])  # 안하요
+
+# string은 immutable! : 변경되지 않는 자료형!
+# string[0] = '간' # immutable하기 때문에 변경할 수 없음
+sitrng = '간' + string[1:]
+print(string)
+
+# 문자열 처리 함수
+# 형식 : 문자열객체.함수([인수])
+
+oneLine = "this is one line string"
+# (1) 특정 글자 수 반환 - count()
+print('t 글자 수 : ', oneLine.count('t'))
+
+# (2) 접두어 문자 비교 판단 - startswith()
+print(oneLine.startswith('this'))
+print(oneLine.startswith('that'))
+
+# (3) 문자열 교체 - replace()
+print(oneLine.replace("this", "that"))  # oneLine이라는 변수 자체가 바뀌는 것이 아니다
+print(oneLine)
+
+# (4) 문자열 분리(split) : 문단 -> 문장 - split()
+multiLine = """this is
+multi line
+string"""
+sent = multiLine.split('\n')    # 리스트로 리턴
+print('문장 : ', sent)
+
+# (5) 문자열 분리(split) 2: 문장 -> 단어
+words = oneLine.split(' ') # sep = ' ' : default
+print('단어 : ' , words)
+
+# (6) 문자열 결합(join) : 단어 -> 문장 - join()
+sent2 = ','.join(words)     # '구분자'.join(string)
+print(sent2) # this, is, one, line, string
+
+# 길이
+len()
+
+# 위치(포함여부) - index(), find()
+# print(oneLine.index('oxne'))  # 존재하지 않으면 에러
+print(oneLine.find('oxne'))     # 존재하지 않으면 -1 리턴
+
+# 에러가 안난다고 좋은 것은 아님, 오류 확인하기가 더 어려울 수 있음
+if oneLine.count('oxne') > 0:
+    print(oneLine.index('oxne'))
+
+
+
+
+
 
 
 
