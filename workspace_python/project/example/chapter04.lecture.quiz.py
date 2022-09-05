@@ -136,9 +136,9 @@ for a in range(0,n):
     print(lst[a])
 
     for num in lst:
-    print('lst : ', lst)
-    print('cnt : ', cnt)
-    print('num : ',num)
+        print('lst : ', lst)
+        print('cnt : ', cnt)
+        print('num : ',num)
     print('lst[cnt]', lst[cnt])
     for a in range(2,lst[cnt]):
         print('a : ', a)
