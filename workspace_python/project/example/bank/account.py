@@ -5,12 +5,12 @@ class Account:
         holder : 계좌주 성명
         accNo : 계좌번호
         '''
-        self.balance = balance
+        self.__balance = balance
         self.holder = holder
         self.accNo = accNo
 
     def getBalance(self):
-        return self.balance
+        return self.__balance
     def getHolder(self):
         return self.holder
     def getAccNo(self):
@@ -28,4 +28,6 @@ class Account:
 if __name__ == '__main__' :
     a = Account(100, '홍길동', 123-123)
     print(a.holder)
-    print(a.balance)
+    # print(a.__balance)
+    print(a._Account__balance)
+

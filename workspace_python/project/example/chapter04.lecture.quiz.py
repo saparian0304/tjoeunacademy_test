@@ -129,26 +129,17 @@ def prime_list(n) :
 # print(prime_list(5))
 
 
-n = 10
-lst = list(range(1,n+1))
-print(list(range(0,n)))
-for a in range(0,n):
-    print(lst[a])
+def prime_list(n):
+    lst = list(range(2, n + 1))
+    lst1 = list(range(2, n + 1))
 
-    for num in lst:
-        print('lst : ', lst)
-        print('cnt : ', cnt)
-        print('num : ',num)
-    print('lst[cnt]', lst[cnt])
-    for a in range(2,lst[cnt]):
-        print('a : ', a)
-        # print('num : ', num, ', a : ', a)
-        if num != a and num % a == 0 :
-            print('for문 성공한 숫자 num, a: ', num, a)
-            for b in list(range(num, n, num)):
-                lst.remove(b)
-                print('현재 lst : ', lst)
-                print('지울 숫자 : ', b)
-                print('##########')
-            break
-    cnt += 1
+    cnt = 0
+    for l in lst1:
+        for a in range(2, l):
+            if l % a == 0:
+                # print(list(range(l, n, l)))
+                for b in range(l, n + 1, l):
+                    if lst.count(b):
+                        lst.remove(b)
+    return lst
+print(prime_list(100))
