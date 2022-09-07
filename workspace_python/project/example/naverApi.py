@@ -14,8 +14,8 @@ import sys
 import urllib.request
 import json
 import re
-client_id = "aeWLdjxAXU_GuuCWUIs3"
-client_secret = "DAfbQKkzPS"
+client_id = "아이디"
+client_secret = "시크릿키"
 searchWord = input('검색할 영화를 입력해주세요 : ')
 encText = urllib.parse.quote(searchWord)
 url = "https://openapi.naver.com/v1/search/movie.json?query=" + encText # json 결과
