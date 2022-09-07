@@ -5,23 +5,23 @@ class Account:
         holder : 계좌주 성명
         accNo : 계좌번호
         '''
-        self.__balance = balance
+        self.balance = balance
         self.holder = holder
         self.accNo = accNo
 
-    def getBalance(self):
-        return self.__balance
-    def getHolder(self):
-        return self.holder
-    def getAccNo(self):
-        return self.accNo
-
-    def setBalance(self, bal):
-        self.balance = bal
-    def setHolder(self, name):
-        self.holder = name
-    def setAccNo(self, no):
-        self.accNo = no
+    # def getBalance(self):
+    #     return self.__balance
+    # def getHolder(self):
+    #     return self.holder
+    # def getAccNo(self):
+    #     return self.accNo
+    #
+    # def setBalance(self, bal):
+    #     self.balance = bal
+    # def setHolder(self, name):
+    #     self.holder = name
+    # def setAccNo(self, no):
+    #     self.accNo = no
 
 
 

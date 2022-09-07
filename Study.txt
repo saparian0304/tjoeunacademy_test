@@ -7134,6 +7134,199 @@ url을 movie로 변경
 응답받은 데이터의 제목, 링크 출력
 ########과제/#########
 
+=======================================
+22.09.07 수 - 88일차
+
+앞으로 배울 내용
+- numpy, pandas
+- 엑셀 다루기
+- 데이터 수집(웹 크롤링)
+- 데이터 처리(pandas) 분석
+- 시각화
+- 수학(선형대수, 행렬, 미분), 가설검정
+- 데이터 분석 실습
+- 머신러닝
+- 딥러닝
+
+웹로그 분석 논문 (강사님 논문)
+ - 
+
+아나콘다 설치
+1. https://www.anaconda.com/products/distribution 접속 후 다운로드
+2. 설치파일 실행
+ - 경로 설정(E:\kdigital_a\anaconda3\)
+ - PATH 추가에도 체크 (default python은 원래 체크되어있음)
+
+spyder : 파이참과 비슷한 프로그램
+Anaconda Powershell Prompt : 아나콘다 권한으로 실행되는 Powershell
+ - 가상환경별로 파이썬을 실행시킬 수 있음
+ - (base)는 기본 파이썬 실행
+Jupyter : 웹 기반 파이썬 툴
+
+jupyter 초기 시작경로 : c:/Users/사용자명/
+#############/ jupyter 기본경로 변경하기##################
+방법 1
+annaconda prompt 실행
+ - 'jupyter notebook --generate-config' 실행
+ - 실행하면 출력되는 경로에 설정파일이 생성됨 -> 생성된 파일 실행
+ - "# c.NotebookApp.notebook_dir = ''" 코드 찾아서 주석 풀고 설정할 경로 저장
+명령프롬프트에서 jupyter notebook 실행
+
+방법 2
+메뉴파일에서 경로 변경하기
+jupyter 아이콘 마우스 우클릭 -> 자세히 -> 파일위치 열기 -> 아이콘 우클릭-속성 -> 대상위치 "%USERPROFILE%" -> "시작경로"
+
+방법 3
+명령프롬프트에서 명령어 실행
+jupyter notebook "시작경로"
+
+#############jupyter 기본경로 변경하기 /##################
+
+서버에서 파이썬 실행하는 법(명령프롬프트로 실행하기)
+ - 명령어 : python 파일명.py
+
+
+주피터 파일 확장자 : .ipynb (파이썬 파일이 아니라서 파이썬에서 실행은 불가능함) 
+셀 단위로 파이썬이 실행됨
+모드 전환
+ - 명령모드 -> 편집모드 : enter
+ - 편집모드 -> 명령모드 : esc
+마지막 라인에 있는 코드가 출력됨
+
+File -> Download as
+ - Python(.py) : 파이썬 확장자 형태로 다운로드가 가능함
+ - HTML(.html) : 다른 프로젝트에 추가해서 보여줄때 유용함 (iframe, ...)
+
+Kernel 메뉴 (웹기반이기때문에 가끔 먹통이 될때 사용)
+ - Restart & Clear Output : 서버 재시작 및 output 초기화
+ - Restart & Clear Output : 서버 재시작 및 모든 셀 실행 
+
+실행단축키
+shift + enter : 실행 -> 하단 셀로 이동 (하단 셀이 없을 경우 추가)
+alt + enter : 실행 -> 하단셀 추가 -> 하단셀로 이동
+ctrl + enter : 실행 -> 현재 셀 선택된 상태로 명령모드 진입
+(명령모드) a : 현재 셀 위에 셀 추가
+(명령모드) b : 현재 셀 아래에 셀 추가
+(명령모드) dd : 현재셀 삭제
+(명령모드) z : 되돌리기
+(명령모드) m : 마크다운
+(명령모드) y : 코드
+
+tab : 자동완성 (한번 실행이 되어야 메모리에 로드되어서 자동완성이 가능함)
+
+
+마크다운 사용 기초(마크다운.ipynb)
+
+SQLite
+import sqlite3
+conn = sqlite3.connect('test.sqlite')
+
+# 한 행을 딕셔너리로 출력하기 위해
+# 함수를 만들어서 conn.row_factory 매서드에 오버라이드
+def dictFactory(cursor, row):
+    d={}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d
+conn.row_factory = dictFactory
+
+cur = conn.cursor()
+cur.execute("SELECT * from mvcboard")
+result = cur.fetchall()
+result
+
+Mysql
+# pymysql 설치
+# !를 붙이면 콘솔창에 명령어 실행시키는 것과 같음
+!pip install pymysql
+# 설치 중에 콘솔창에서 추가로 명령어를 입력해야하는 경우에는 사용하면 안됨
+
+# dict로 출력하기
+cur = conn.cursor(pymysql.cursors.DictCursor)
+
+
+Oracle
+# 패키지 설치
+!pip install cx_Oracle
+import cx_Oracle
+conn = cx_Oracle.connect("testuser/test1234@localhost:1521/xe")
+==========/에러날 경우===========
+오라클 instant client 다운로드
+https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html
+압축해제
+커넥트(conn) 전에
+cx_Oracle.init_oracle_client(lib_dir= r"해당경로")
+==========에러날 경우/===========
+
+'''
+cur.description을 이용해서
+반복문 안에서 딕셔너리로 변환해서 r['name'] 출력
+'''
+
+for r in result:
+#     r = dictFactory(cur, r)
+    r = dict(zip([d[0] for d in cur.description], r))
+    print(r['TITLE'], r['NAME'])
+
+
+Numpy 
+
+- 숫자와 관련된 작업 도구
+- numpy array 자료형 : 파이썬의 리스트와 유사
+- 리스트는 자료형 제한없음, array는 동일한 자료형만 가능
+- 리스트보다 코드량도 적고, 속도도 빠름
+
+numpy array 생성방법 
+# 1. 리스트를 변환 (상단에서 했음)
+arr = np.array([[1,2,3],[4,5,6]])
+
+# 2. 동일한 값으로 생성
+arr = np.full(10,7)
+
+# 3. 모든 값이 0으로 생성
+arr = np.zeros(10, dtype=int)
+
+# 4. 모든 값이 1로 생성
+arr = np.ones((5,2), dtype=int)
+
+# 5. 랜덤값으로 생성
+np.random.random(10)    # 0~1 사이의 실수를 뽑아줌
+np.random.randint(1,7, size=(2,5))
+
+# 6. 범위값으로 생성
+np.arange(10)
+
+
+인덱싱 / 슬라이싱
+# 인덱싱
+arr[0], arr[-1]
+# 인덱스 각각
+# 1번, 3번
+arr[[1,3]]
+
+# 슬라이싱
+arr[1:4]  # 1부터 4 전까지
+arr[:4]   # 맨 앞에서부터 4 전까지
+arr[3:]   # 3부터 맨 끝까지
+arr[:]    # 맨 앞에서부터 맨 끝까지
+arr[::2]  # 맨 앞에서부터 맨 끝까지 2개 요소마다
+
+arr2 = np.array([1,2,3,'4',5,6])
+arr2  # 하나라도 문자열이 섞여있으면 전체가 문자열이 됨 (동일한 자료형이어야 해서..)
+
+연산
+
+벡터, 스칼라 연산시 -> 스칼라가 벡터로 변환됨
+# 1이 [1,1,1,1,1,1,1,1,1,1] 변환해서 연산 -> 브로드캐스팅
+# 요소개수가 다르면 연산이 안됨
+
+# bool 연산
+# 조건에 만족하는 인덱스 찾기
+np.where(arr1 % 2 == 0)
+
+
+
+
 
 
 
