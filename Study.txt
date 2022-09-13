@@ -7430,6 +7430,55 @@ df.drop(df.index[[0,2]])
 # df.index : DataFrame의 index를 리턴 (리스트 형태와 유사한 자료형으로 동작)
 # df.columns : DataFrame의 전체 컬럼
 
+=======================================
+22.09.13 금 - 90일차
+
+colab - 구글에서 만든 웹기반 도구 (주피터와 유사)
+ - 설치없이 사용할 수 있기때문에 연습용으로 사용할때 좋음
+
+Pandas로 엑셀 다루기
+
+# csv로 저장
+df.to_csv('score.csv')  # 인덱스명 제외 (, index=False)
+
+df2 = pd.read_csv('score.csv', index_col=0) # 첫번째 열을 인덱스로 지정
+
+# 한글 깨지는 문제 
+# 인코딩을 ms949/cp949
+df.to_csv('score2.csv', encoding='ms949') # 엑셀에선 안깨지지만, 주피터에서는 깨짐
+# 메모장은 두가지 다 깨짐없이 열어볼 수 있음
+
+# 유니코드가 아니면 아예 읽어오지 못함, 인코딩 옵션 줘야함
+df3 = pd.read_csv('score2.csv', encoding='ms949', index_col=0) 
+
+# 합계 출력
+df3.iloc[:, 1:4].sum(axis=1)
+
+# 평균 출력
+df3.iloc[:, 1:4].mean(axis=1)
+
+# 평균 열을 추가
+df3['평균'] = df3.iloc[:, 1:4].mean(axis=1)
+
+# 과목평균
+df3.iloc[:, 1:].mean(axis=0)
+
+# 과목 평균행 추가
+df3.loc[3] = df3.iloc[:, 1:].mean(axis=0)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
