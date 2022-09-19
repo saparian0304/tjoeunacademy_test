@@ -7431,7 +7431,7 @@ df.drop(df.index[[0,2]])
 # df.columns : DataFrame의 전체 컬럼
 
 =======================================
-22.09.13 금 - 90일차
+22.09.13 화 - 90일차
 
 colab - 구글에서 만든 웹기반 도구 (주피터와 유사)
  - 설치없이 사용할 수 있기때문에 연습용으로 사용할때 좋음
@@ -7466,6 +7466,133 @@ df3.iloc[:, 1:].mean(axis=0)
 # 과목 평균행 추가
 df3.loc[3] = df3.iloc[:, 1:].mean(axis=0)
 
+# 두번째 시트
+df2 = pd.read_excel('학생성적.xlsx', sheet_name=1)
+df2
+
+Excel 저장
+- ExcelWriter 객체 생성
+- DataFrame 객체를 지정된 시트에 쓰기
+- ExcelWriter 객체 저장
+
+# 객체 생성
+ew = pd.ExcelWriter('학생성적2.xlsx', engine='xlsxwriter')
+# 시트에 쓰기
+df1.to_excel(ew, index=False, sheet_name='중간고사') #시트명 지정
+df2.to_excel(ew, index=False, sheet_name='기말고사')
+# 저장
+ew.save()
+
+
+필요한 파일명들만 가지고 올때 사용하는 모듈 - glob
+import glob
+glob.glob('./*')
+glob.glob('./XX푸드_*.xlsx') 
+
+엑셀에 차트 넣기 (참고 URL)
+https://xlsxwriter.readthedocs.io/
+
+빅데이터 분석
+ - DB에 있는 데이터, csv데이터, 엑셀 등등을 가져와서 분석결과를 내는 것
+ - 모든 데이터를 다 정형화 시켜서 DB에 넣는게 중요한 게 아님
+
+스크래핑
+- 웹 문서에 있는 정보를 추출하는 기술
+- 웹 문서 구조 분석 포함
+
+크롤링
+- 웹사이트를 정기적으로 접속해서 정보를 추출하는 기술
+- 프로그램을 크롤러 또는 스파이더라고 부름
+
+데이터분석에서 사용할 수 있는 데이터 구조
+- 데이터베이스(테이블)
+- 파일(csv, excel, json...)
+- 웹문서(html) : html(dom) 구조를 파악해서 추출
+
+파이썬 라이브러리 (2가지 방법)
+- requests 모듈
+- urllib 라이브러리
+
+BeautifulSoup
+- html, xml에서 원하는 데이터를 추출
+- 다운로드 안됨
+- 아나콘다에 내장되어있음
+
+urllib + BeautifulSoup 조합
+
+
+=======================================
+22.09.19 월 - 91일차
+
+웹브라우저를 이용해서 스크래핑
+- Selenium
+  - 웹 테스트 도구
+
+# selenium 설치
+- !pip install selenium
+# 크롬드라이버 설치
+- https://chromedriver.chromium.org/downloads
+- 현재 설치된 크롬버전과 일치하는 파일 다운로드 
+ - 크롬 정보에서 버전 확인 (버전 105.0.5195.102 -> 105 버전 설치)
+ - 압축 풀어서 해당파일을 실행할 파이썬파일 폴더에 넣으면 경로지정할때 용이함
+
+
+selenium 사용하기 
+ - 브라우저를 직접 실행하여 다소 느리지만 대부분의 크롤링이 가능함
+
+from selenium import webdriver
+br = webdriver.Chrome('chromedriver.exe') # 크롬창이 새로 실행됨
+
+# url 이동하기
+br.get('http://www.daum.net')
+
+selenium 메서드
+- 요소 추출 메서드
+  - find_element_by_id(아이디)
+  - find_element_by_name(name)
+  - find_element_by_css_selector(선택자)
+- 조작 메서드
+  - get(url) : url로 이동
+  - click() : 클릭
+  - send_keys(값) : 값 입력
+  - quit() : 종료
+  - implicitly_wait(초) : 최대 대기 시간(초) (로딩 대기시간을 기다리고 동작할수 있게 함)
+
+
+# 응답받은 소스
+br.page_source
+
+selenium에서 특정 element의 로딩 대기
+- WebDriverWait 객체를 통해 로딩 대기
+- 이 기능을 활용하면 거의 모든 사이트에 크롤링 가능
+  from selenium.webdriver.support.ui import WebDriverWait
+  from selenium.webdriver.support import expected_conditions as ec
+obj = WebDriverWait(br, 5).until(ec.presence_of_element_located((By.CSS_SELECTOR, '.u_cbox_count')))
+
+
+from tqdm import tqdm_notebook
+for i in tqdm_notebook(range(100)):
+    pass
+- for문이 도는 동안 진행상황을 bar 형태로 보여줌
+
+
+
+스케줄링
+Windows : 작업스케줄러 (windows 관리도구 > 작업스케줄러)
+linux : cron
+
+작업스케줄러
+기본 작업 만들기 -> 작업명, 트리거 시간 설정 -> 작업 : 프로그램 시작 
+ - 프로그램/스크립트 : "python.exe파일위치"(E:\kdigital_a\anaconda3\python.exe)
+ - 인수 추가(파라미터) : exchange.py
+ - 시작 위치(실행할 파일 위치) : E:// 
+
+
+크롤링 과제
+http://www.weatheri.co.kr/
+과거기상 > 일별검색
+서울의 2021년 1월 1일부터 2021년 12월 31일까지
+평균기온, 최고기온, 최저기온 데이터 수집(출력)
 
 
 
@@ -7477,6 +7604,16 @@ df3.loc[3] = df3.iloc[:, 1:].mean(axis=0)
 
 
 
+
+
+
+소비자 인식 조사
+제조공정 빅데이터
+시험, 실험관련 빅데이터
+
+지하철 유동인구 조사 -> 부동산 관련?
+자연어 처리
+이미지 처리
 
 
 
@@ -7497,7 +7634,7 @@ df3.loc[3] = df3.iloc[:, 1:].mean(axis=0)
 
 
 
-
+데이터크롤링 프레임워크 : Scrapy(스크래피; 추가로 공부할 내용)
 
 
 추가 공부 키워드
