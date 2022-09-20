@@ -259,7 +259,7 @@ Util - Git(소스 버전 관리), Maven(빌드 도구), Junit(테스트 도구)
 SQL, 파이썬, 데이터 수집, 데이터 전처리, 데이터 시각화, 기초수학, 머신러닝, 딥러닝, NoSQL, API
 
 SQL - RDBMS 데이터 분석
-파이썬 - 기본뭄법, 연산, 제어문, 객체지향프로그래밍, 클래스와 객체, 자료구조, 입출력, 모듈/패키지
+파이썬 - 기본문법, 연산, 제어문, 객체지향프로그래밍, 클래스와 객체, 자료구조, 입출력, 모듈/패키지
 데이터 수집 - API, 웹 크롤링, 데이터베이스 연동
 데이터 전처리 - Numpy, Pandas, excel/csv 파일 다루기, JSON 파일처리, 결측값, 이상값 처리
 데이터 시각화 - matplotlib, seaborn, 시각화 종류 및 시각화 실습
@@ -7595,6 +7595,203 @@ http://www.weatheri.co.kr/
 평균기온, 최고기온, 최저기온 데이터 수집(출력)
 
 
+=======================================
+22.09.20 화 - 92일차
+
+Pandas 깊게 파기 
+df = pd.read_csv('../data/gapminder.tsv', sep='\t')
+1. 기초
+1-1. 데이터 살펴보기
+df.head() # 상위 5개 출력 (기본값이 5개)
+df.tail() # 하위 5개 출력
+
+type(df) # DataFrame : 행렬 형태의 2차원 자료구조
+df.shape # 행, 열
+df.info() # 데이터프레임 기본정보
+ - Non-Null Count : null값이 아닌 데이터 수
+ - Dtype : 데이터타입
+df.columns # 컬럼 확인
+df.dtypes # 컬럼별 데이터 타입 확인
+
+df.describe() # 기술통계량(요약 통계) - 총계, 평균, 표준편차, 최대, 최소, 사분위수
+df.count() # 데이터의 개수(컬럼별)
+df['country'].value_counts() # 범주형데이터의 각 범주별 개수 -> Series 타입으로 반환됨
+
+1-2. 통계함수
+df[['lifeExp', 'pop']].mean() # 특정 컬럼 평균
+df.mean() # 평균
+df['lifeExp'].median() # 중앙값
+df['lifeExp'].max(), df['lifeExp'].min() # 최대값, 최소값
+df['lifeExp'].var(), df['lifeExp'].std() # 분산, 표준편차
+df['lifeExp'].sum() # 합계
+
+df.corr() # 상관계수
+ - 두 변수(컬럼)간의 관계 (인과관계는 아님)
+ - -1~1 사이
+ - 1에 가까우면 양의 상관관계, -1에 가까우면 음의 상관관계
+
+1-3. 데이터 추출
+열 추출 : ['열이름']     
+ - 1개 -> 시리즈, 2개이상 -> 데이터프레임
+행 추출 : loc, iloc
+df.loc[0] # 인덱스명
+ - df.loc[-1] -> 키 에러
+df.iloc[0] # 인덱스번호 
+ - df.iloc[-1] -> 마지막 행 추출
+
+1-4. 그룹핑 
+(groupby를 쓰면 그룹함수를 사용한다고 생각하자)
+df.groupby('year')['lifeExp'].mean() # 연도별 기대수명 평균
+df.groupby(['year','continent'])[['lifeExp','gdpPercap']].mean() # 연도별, 대륙별 기대수명과 gdp 평균
+df.groupby(['continent'])['country'].count() # 대륙별 국가 개수
+df.groupby(['continent'])['country'].nunique() # 대륙별 국가 개수(유니크)
+
+
+2. 시리즈와 데이터프레임
+시리즈 생성
+pd.Series(['홍길동', 80])
+pd.Series(['홍길동', 80], index=['name', 'score']) # 인덱스명 부여해서 생성
+
+차원이 줄어들때마다 자료타입이 바뀜
+1차원(Str, int,...) -> 2차원(Series) -> 3차원(DataFrame)
+
+member : DataFrame
+member.index = ['hong', 'kim']  # 데이터프레임에 인덱스 부여
+first = member.loc['hong'] # 데이터프레임에서 시리즈형태로 특정 데이터 추출
+first.index, first.keys() # 시리즈의 인덱스
+first.values # 시리즈의 값
+
+예제에 사용된 데이터파일 : df = pd.read_csv('../data/scientists.csv')
+df[df['Age'] > df['Age'].mean()] # 평균 나이보다 많은 사람 추출
+df[df['Age'] > df['Age'].mean()]['Age'].min() # 평균 나이보다 많은 사람 중에서 제일 어린 나이 추출
+
+age = df['Age']
+age2 = pd.Series([1,2])
+age + age2  # 서로 길이가 다른 시리즈로 연산하기
+ -> 같은 인덱스 값만 연산되고 나머지는 NaN(결측값) 처리됨
+
+age.sort_index(ascending=False) # 인덱스로 정렬하기
+age + age.sort_index(ascending=False) # 정렬 여부와 상관없이 같은 인덱스끼리 연산
+
+데이터 타입 변환하기 (object -> 날짜)
+ - 날짜데이터는 연산이 가능함
+print(df.['Born']) # object 타입
+pd.to_datetime(df['Born']) # 날짜 타입으로 데이터 변환
+df['born_dt'], df['died_dt] = pd.to_datetime(df['Born']), pd.to_datetime(df['Died'] # 날짜 타입으로 변환 후 DataFrame에 컬럼 추가
+df['days'] = df['died_dt'] - df['born_dt'] # 날짜끼리 연산 후 컬럼 추가
+
+3. 데이터 합치기
+사용한 파일
+df1 = pd.read_csv('../data/concat_1.csv')
+df2 = pd.read_csv('../data/concat_2.csv')
+df3 = pd.read_csv('../data/concat_3.csv')
+
+concat_df = pd.concat([df1, df2, df3]) # 위/아래로 합치기(수직)
+ - (기본값)열이름이 같아야 함
+ - 한행만 합치는 경우 append를 이용해도 됨
+concat_df.reset_index() # 인덱스 리셋, 반영은 하지 않고 리턴만 함
+pd.concat([df1, df2, df3], ignore_index=True) # 인덱스를 새로 지정하면서 합침
+
+col_df = pd.concat([df1, df2, df3], axis=1) # 수평 합치기(가로/열방향)
+pd.concat([df1, df2, df3], axis=1, ignore_index=True) # 열이름 새로 지정
+
+concat() - join 속성
+ - 기본값 : outer
+ - pd.concat([df1, df3], join='inner') # inner조인
+
+
+concat : row나 columns을 기준으로 단순하게 이어붙이기
+merge : 특정 값을 기준으로 병합
+- pd.merge(left, right, on='기준컬럼', how='left|right|inner|outer')
+pd.merge(df, df3, left_on='이름', right_on='성명', how='left') # 기준컬럼명이 다를 경우
+
+4. 결측값처리
+4-1 fillna() 
+ - na값을 fill(채워주는) 함수 (리턴값을 돌려줌, 원데이터에 반영 x)
+ - 원데이터에 반영하려면 inplace=True 속성 사용
+
+결측치를 치환할 때 자주 사용되는 대표값
+ - 평균, 중앙값(수치형) + 최빈값(범주형)
+df['키'].mean() : 평균 
+df['키'].median() : 중앙값
+df['키'].mode() : 최빈값 -> Series 형태로 리턴
+ - df['키'].mode()[0] : 값만 빼내는 방법
+
+4-2 결측값이 있는 행을 제거
+df.dropna() # 하나라도 결측치가 있으면 그 행을 삭제
+df.dropna(axis=1) # 하나라도 결측치가 있는 열을 삭제
+ - how 옵션 : any - 하나라도 있으면 삭제, all - 전부 결측치면 삭제
+
+4-3 컬럼의 중복값을 제거
+df['키'].drop_duplicates() # 중복된 값이 있으면 제거
+ - keep 옵션 : first | last
+
+df.drop_duplicates('키') # 행 단위로 제거하기 (파라미터가 중복값 판정 기준)
+
+5. 데이터 가공
+5-1 피벗테이블
+- 엑셀 피벗테이블
+- 컬럼 중에서 두개를 골라서 행 인덱스, 열 인덱스로 사용해서 데이터를 펼처 놓은 것
+- index : 행, columns : 열, values : 값 (기본값은 평균)
+# aggfunc : 추가 계산 옵션(np.mean: 기본값)
+ - numpy import 필요
+pd.pivot_table(df, index='그룹', columns='혈액형', values='브랜드평판지수', aggfunc = np.sum)
+
+5-2 자료형 변환
+# 키 (실수 -> 정수)
+astype()
+df['키'] = df['키'].fillna(df['키'].mean()).astype(int)
+- 결측치가 있는 경우 결측각 처리해줘야 에러 안남
+- 변환한 값을 리턴만 해주므로 다시 대입
+
+# 날짜변환
+df['생년월일'] = pd.to_datetime(df['생년월일'])
+- 변환한 값을 리턴만 해주므로 다시 대입
+
+날짜타입으로 변경해주는 이유
+ - 년, 월, 일, 요일... 추출 가능
+ - 날짜 연산 가능
+
+카테고리 자료형
+ - 범주형
+ - 용량, 속도에 이점이 있음
+
+문자열 처리
+샘플데이터 : df = pd.read_excel('../data/불량 기록 데이터.xlsx')
+
+# 시리얼번호 : 공정-제품-식별자
+# 공정이 S인 제품개수
+df['시리얼번호'].str.contains('S').sum() # True는 1, False는 0
+
+# '-' 기준으로 분할하기 (expand : 컬럼별로 분할)
+df['시리얼번호'].str.split('-', expand=True)
+
+# 컬럼명 변경(원하는 컬럼만 변경)
+df2.rename({0:'공정', 1:'제품', 2:'식별자'}, axis=1, inplace=True)
+
+# 불량데이터의 공정별, 제품의 개수
+pd.pivot_table(df2.loc[df2['불량 여부'] == '불량'], index='공정', columns='제품', values='불량 여부', aggfunc='count')
+
+apply() 메서드
+df = pd.DataFrame({'a': [10, 20, 30], 'b': [20, 30, 40]})
+df['a'].apply(func_sq)   # 함수를 매개변수로 넘겨줄 수 있음 (callback함수처럼 사용 가능)
+
+def avg(row):
+    total = 0
+    for r in row:
+        total += r
+    return total / len(row)
+
+df.apply(avg) # 컬럼별 평균 확인 가능
+
+라벨인코딩(Label Encoding)
+# map (값 매핑)
+gender_map = {'남자':1, '여자':2}
+df['성별'].map(gender_map)
+
+원핫인코딩 (One-Hot Encoding)
+pd.get_dummies(df['혈액형'], prefix='혈액형')
+pd.concat([df, pd.get_dummies(df['혈액형'], prefix='혈액형')], axis=1)
 
 
 
