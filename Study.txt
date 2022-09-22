@@ -7828,6 +7828,91 @@ df.groupby('쇼핑몰 유형')[['판매금액', '수량']].agg(['mean', 'max'])
 실습과제 2 - 패밀리레스토랑 데이터 분석 과제
 https://codro.notion.site/a8bcd12fb866494680ca57bc07bbacc7
 
+=======================================
+22.09.22 목 - 94일차
+
+수집 -> 저장 -> 전처리(+시각화) -> 분석 -> 결과(시각화)
+
+파이썬 시각화 라이브러리 - matplotlib, seaborn
+
+
+pandas 내장 그래프
+- plot() 메서드를 통해서 kind 옵션으로 그래프 종류 지정
+- 그래프 종류
+  - line : 선그래프 (기본값)
+  - bar : 바그래프(수직)
+  - barh : 바그래프(수평)
+  - hist : 히스토그램
+  - box : 박스플롯
+  - kde : 커널 밀도 그래프
+  - area : 면적
+  - pie : 파이차트
+  - scatter : 산점도
+  - hexbin : 고밀도 산점도
+
+파이썬에서 기본적으로 사용하는 matplotlib는 한글처리가 되어있지 않음
+한글처리를 따로 해줘야함
+
+
+행과 열을 바꾸기(전치행렬)
+df2_t = df2.T # transpose()
+
+
+import matplotlib.pyplot as plt
+ - 대부분 경우 사용되는 라이브러리
+
+# 결측치 처리 (앞 데이터로 채우기) - ★★★★
+df = df.fillna(method='ffill')
+
+# 차트 스타일 지정
+plt.style.use('ggplot') # 사용가능한 스타일은 plt.style.available에서 확인 가능
+# 크기 지정
+plt.figure(figsize=(15,4))
+# x축 이름 회전
+plt.xticks(rotation='vertical') # 회전각도 숫자 또는 'vertical', 'horizontal' 가능
+# 마커
+plt.plot(df_seoul.loc['경기도'], color='red', marker='s') # marker : ^, *, o, + 등등 help 확인
+# 축이름
+plt.xlabel('연도')
+plt.ylabel('인구수')
+# 제목
+plt.title('서울->경기도')
+# 범례 
+plt.legend(labels=['서울->경기'])
+plt.show()
+
+
+
+# 그래프 여러개 사용하기 (방식이 조금 다름)
+# 크기 지정
+fig = plt.figure(figsize=(15,10)) # 큰 도화지
+ax1 = fig.add_subplot(2, 1, 1) # 첫번째 그래프 (행, 열, 순서)
+ax2 = fig.add_subplot(2, 1, 2) # 두번째 그래프 (행, 열, 순서)
+# 마커
+ax1.plot(df_seoul.loc['경기도'], color='red', marker='s') 
+ax2.plot(df_seoul.loc['충청남도'], color='blue', marker='P')
+# x축 이름 회전 (메서드가 달라짐)
+ax1.set_xticklabels(df_seoul.loc['경기도'].index, rotation='vertical')
+ax2.set_xticklabels(df_seoul.loc['충청남도'].index, rotation='vertical')
+
+# y축의 범위(최소, 최대)
+ax1.set_ylim(50000, 800000)
+ax1.legend(labels=['서울->경기'], loc='upper left') # loc옵션 : 위치 지정
+plt.show()
+
+
+
+워닝메시지 무시하는법
+import warnings
+warnings.filterwarnings("ignore")
+
+
+
+
+
+
+
+
 
 
 
