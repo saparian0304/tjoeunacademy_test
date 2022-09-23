@@ -7901,30 +7901,107 @@ ax1.legend(labels=['서울->경기'], loc='upper left') # loc옵션 : 위치 지
 plt.show()
 
 
-
 워닝메시지 무시하는법
 import warnings
 warnings.filterwarnings("ignore")
 
 
+하나의 axe객체에 여러개의 그래프 추가하기
+fig = plt.figure(figsize=(15,4)) # 그래프 크기 지정,
+ax = fig.add_subplot(1,1,1) # 객체 생성
+# 마커, 데이터 추가
+ax.plot(df_seoul.loc['전라남도'], color='red', marker='s')
+ax.plot(df_seoul.loc['충청남도'], color='blue', marker='X')
+ax.plot(df_seoul.loc['충청북도'], color='green', marker='o')
+plt.show()
 
 
+누적영역그래프
+df2 = df_seoul.loc[['전라북도','전라남도','충청북도','충청남도']].T
+df2.plot(kind='area', alpha=0.5)
+
+지도시각화 - folium
+!pip install folium
+import folium
+
+folium.Map(location=[37.5697987, 126.9837167], zoom_start=12, tiles='Stamen Terrain') # 지도 시각화, 위치 지정
+
+# 지도에 마커 추가하기
+df = pd.read_excel('데이터수집/data/서울지역 대학교 위치.xlsx', index_col=0)
+for lat, lng, name in zip(df['위도'], df['경도'], df.index):
+    folium.Marker([lat, lng], popup=name ).add_to(seoul)
+seoul
+
+# 행정구역 데이터 기반으로 지역 구분하기
+df = pd.read_excel('데이터수집/data/경기도인구데이터.xlsx', index_col=0)
+import json
+geo = json.load(open('데이터수집/data/경기도행정구역경계.json', mode='r', encoding='utf-8'))
+geo
+gg = folium.Map(location=[37.5697987, 126.9837167], zoom_start=9, tiles='Stamen Terrain')
+folium.Choropleth(geo_data=geo, data=df[2017], 
+                  columns=[df.index, df[2017]],
+                  fill_color='Reds', 
+                  fill_opacity=0.7,
+#                   bins=[40000, 100000, 300000, 500000, 700000],
+                  threshold_scale=[40000, 100000, 300000, 500000, 700000],
+                 key_on='feature.properties.name').add_to(gg)
+gg
 
 
+gg.save('gg.html') # html로 저장하기
+
+=======================================
+22.09.23 금 - 95일차
+
+시각화 - seaborn
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# 데이터 로드
+tips = sns.load_dataset('tips')
+
+# 그래프 종류
+sns.violinplot(data=tips, x='day', y='total_bill') # 바이올린플롯 
+sns.countplot(x=tips['day']) # 카운트(개수)플롯
+sns.relplot(data=tips, x='tip', y='total_bill') # 산점도
+sns.lmplot(data=tips, x='tip', y='total_bill') # 산점도 + 리니어(선)
+sns.heatmap(tips.corr(), annot=True, linewidths=1, cmap='Reds') # 히트맵
+sns.barplot(data=tips, x='day', y='total_bill', palette='rainbow') # 막대그래프, 상단 중앙에 선은 신뢰구간을 의미함, palette : rainbow, coolwarm, 등등 여러가지 있음
+sns.catplot(data=tips, x='sex', y='total_bill', hue='smoker') # catplot : 범주형 변수와 수치형 변수간의 관계
+sns.catplot(data=tips, x='sex', y='total_bill', hue='smoker', kind='bar') # catplot 막대그래프형태로 출력
+sns.catplot(data=tips, x='sex', y='total_bill', hue='smoker', kind='bar', col='time') # col 옵션 : 설정한 변수별로 그래프 출력
+sns.scatterplot(x, y, size=z, sizes=(z.min(), z.max()), hue=z, palette='coolwarm') # 산점도, size 옵션 : 값에 따라 크기 변함 (z=x*y*1000 으로 설정함)
+ - pyplot에 산점도와 비교
+ - plt.scatter(x, y, s=z, c=np.arange(50))
+sns.pairplot(tips, hue='size', palette='rainbow') # pairplot : 그리드 형태(히스토그램 + 분포도)
+sns.jointplot(data=tips, x='total_bill', y='tip') # 보고싶은 것만 선택해서 (히스토그램 + 산점도)
+ - kind 옵션 
+   - reg : 회귀선
+   - hex : 밀도
+   - kde : 등고선 형태
+
+# 상관계수 확인
+tips.corr()
 
 
+파이차트
+# 옵션 explode : 파이차트에서 한 조각이 튀어나오는 비율
+labels = ['삼성', '애플', '화웨이', '샤오미', '기타']
+values = [40, 30, 20, 7, 3]
+explode = [0.1, 0, 0, 0, 0]
+# startangle : 시작각도
+# autopct : 퍼센트 표기
+plt.pie(values, labels=labels, shadow=True, explode=explode, startangle=90, autopct='%.1f%%')
+plt.show()
 
 
+타이타닉 데이터로 히트맵 표현해보기
+titanic = sns.load_dataset('titanic') # 데이터셋 로드
+sns.heatmap(titanic.corr(), annot=True, linewidths=1, cmap='Reds')
 
 
-
-
-
-
-
-
-
-
+공공데이터 자료 사이트
+https://www.aihub.or.kr/
 
 
 소비자 인식 조사
