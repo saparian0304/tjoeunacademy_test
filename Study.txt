@@ -8095,12 +8095,30 @@ from sklearn.model_selection import train_test_split
  - 표준화(Standardization; Z-score 정규화)
 
 
+=======================================
+22.09.30 금 - 100일차
+
+분류 - 의사결정나무, 로지스틱 회귀, KNN, 나이브 베이지안, 퍼셉트론, 인공신경망, 다층신경망, 혼동행렬, 분류보고서, 교차검증
+
+회귀
 
 
+스케일링 - StandardScaler, MinMaxScaler, RobustScaler
+# StandardScaler
+# 평균 : 0, 표준편차 : 1
+
+# MinMaxScaler
+# 0~1 사이로 정규화
+
+# RobustScaler
+# 중앙값 : 0, IQR : 1
+# 이상치(Outlier) 처리에 유용함
 
 
+파이프라인
 
-
+다음주 배울 내용
+앙상플, 비지도학습, 파라미터 수정하기, 데이터가 불균현할때
 
 
 

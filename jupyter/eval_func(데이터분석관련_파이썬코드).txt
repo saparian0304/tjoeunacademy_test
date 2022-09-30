@@ -1,0 +1,69 @@
+# 파이썬 정의함수
+# 분석결과들을 한꺼번에 볼 수 있도록 구현한 코드
+# mse_eval(name_, pred, actual) 메서드를 실행할때마다 그동안 실행된 결과값이 함께 출력됨
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+my_predictions = {}
+
+colors = ['r', 'c', 'm', 'y', 'k', 'khaki', 'teal', 'orchid', 'sandybrown',
+          'greenyellow', 'dodgerblue', 'deepskyblue', 'rosybrown', 'firebrick',
+          'deeppink', 'crimson', 'salmon', 'darkred', 'olivedrab', 'olive', 
+          'forestgreen', 'royalblue', 'indigo', 'navy', 'mediumpurple', 'chocolate',
+          'gold', 'darkorange', 'seagreen', 'turquoise', 'steelblue', 'slategray', 
+          'peru', 'midnightblue', 'slateblue', 'dimgray', 'cadetblue', 'tomato'
+         ]
+
+def plot_predictions(name_, pred, actual):
+    df = pd.DataFrame({'prediction': pred, 'actual': y_test})
+    df = df.sort_values(by='actual').reset_index(drop=True)
+
+    plt.figure(figsize=(12, 9))
+    plt.scatter(df.index, df['prediction'], marker='x', color='r')
+    plt.scatter(df.index, df['actual'], alpha=0.7, marker='o', color='black')
+    plt.title(name_, fontsize=15)
+    plt.legend(['prediction', 'actual'], fontsize=12)
+    plt.show()
+
+def mse_eval(name_, pred, actual):
+    global predictions
+    global colors
+
+    plot_predictions(name_, pred, actual)
+
+    mse = mean_squared_error(pred, actual)
+    my_predictions[name_] = mse
+
+    y_value = sorted(my_predictions.items(), key=lambda x: x[1], reverse=True)
+    
+    df = pd.DataFrame(y_value, columns=['model', 'mse'])
+    print(df)
+    min_ = df['mse'].min() - 10
+    max_ = df['mse'].max() + 10
+    
+    length = len(df)
+    
+    plt.figure(figsize=(10, length))
+    ax = plt.subplot()
+    ax.set_yticks(np.arange(len(df)))
+    ax.set_yticklabels(df['model'], fontsize=15)
+    bars = ax.barh(np.arange(len(df)), df['mse'])
+    
+    for i, v in enumerate(df['mse']):
+        idx = np.random.choice(len(colors))
+        bars[i].set_color(colors[idx])
+        ax.text(v + 2, i, str(round(v, 3)), color='k', fontsize=15, fontweight='bold')
+        
+    plt.title('MSE Error', fontsize=18)
+    plt.xlim(min_, max_)
+    
+    plt.show()
+
+def remove_model(name_):
+    global my_predictions
+    try:
+        del my_predictions[name_]
+    except KeyError:
+        return False
+    return True
