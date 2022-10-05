@@ -8170,6 +8170,30 @@ Weighted Blending
 각 모델들의 "예측값"에 가중치(weight)값을 지정
 가중치의 합은 1
 
+=======================================
+22.10.05 수 - 102일차
+
+캐글사이트에서 실습하기
+https://www.kaggle.com/
+
+타이타닉 데이터
+https://www.kaggle.com/competitions/titanic
+
+
+train.isnull().sum() # 결측치 확인
+train.describe() # 요약 통계 -> 수치형 데이터에 대한 요약통계
+train['Survived'].value_counts() # 특정 컬럼에 대한 value 확인
+train.corr() # 상관관계 테이블
+
+대략적으로 데이터를 파악한 후에 시각화를 통해 추가로 살펴보자
+
+
+
+
+
+
+
+
 
 
 
