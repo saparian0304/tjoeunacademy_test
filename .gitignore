@@ -411,3 +411,7 @@ cython_debug/
 #.idea/
 
 # End of https://www.toptal.com/developers/gitignore/api/pycharm,python
+
+
+# 추가 제외
+jupyter/데이터수집/data/

@@ -8176,7 +8176,7 @@ Weighted Blending
 캐글사이트에서 실습하기
 https://www.kaggle.com/
 
-타이타닉 데이터
+타이타닉 데이터 - 분류
 https://www.kaggle.com/competitions/titanic
 
 
@@ -8186,6 +8186,49 @@ train['Survived'].value_counts() # 특정 컬럼에 대한 value 확인
 train.corr() # 상관관계 테이블
 
 대략적으로 데이터를 파악한 후에 시각화를 통해 추가로 살펴보자
+
+
+=======================================
+22.10.06 목 - 103일차
+
+회귀 실습
+자전거 수요예측 - 회귀
+https://www.kaggle.com/competitions/bike-sharing-demand
+
+비지도학습
+- 지도학습과는 다르게 결과값(y값, 목표값...)이 없는 경우
+- 차원축소 : PCA, LDA...
+- 군집화(Clustering) : K-Means Clustering, DBSCAN
+- 군집화 평가 : 실루엣
+
+차원축소
+- feature의 개수를 줄임
+- 특징을 추출하는 역할
+- 계산량이 감소하는 효과
+
+K-means, DBSCAN 애니메이션 참고 사이트
+https://medium.com/@phil.busko/animation-of-k-means-clustering-31a484c30ba5
+
+
+비대칭 데이터
+- 불균형 데이터, imbalanced data
+- target 데이터의 비율이 차이가 많이 나는 경우 (암 양/악성, 반도체 고장여부)
+- 정확도는 높지만, 재현율이 낮아지는 현상
+
+해결방법
+- over-sampling : 적은 데이터를 증가(많이 사용)
+- under-sampling : 많은 데이터를 제거
+
+
+AB테스트 실습 -> 모바일게임 리텐션 분석
+
+
+
+내일 할 것
+ - 텍스트 분석
+다음주 : 딥러닝
+
+
 
 
 
