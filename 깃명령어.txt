@@ -1,0 +1,10 @@
+이전 커밋에 잘못 올라간 파일들 삭제하는 명령어
+(1) 이전 커밋에 잘못 올라간 파일들 삭제
+git filter-branch --force --index-filter 'git rm --cached --ignore-unmatch jupyter/데이터수집/data/*' --prune-empty --tag-name-filter cat -- --all
+(2) 빈 커밋 제거
+git filter-branch -f --prune-empty HEAD
+(3) 깃허브에 반영하기
+git push -f origin master
+
+참고 사이트
+https://parksb.github.io/article/28.html
