@@ -415,3 +415,4 @@ cython_debug/
 
 # 추가 제외
 jupyter/데이터수집/data/
+jupyter/연습/hp
