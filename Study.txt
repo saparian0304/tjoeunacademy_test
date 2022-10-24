@@ -8551,6 +8551,32 @@ Res : 총개수, 총페이지수, 현재페이지번호, items라는 속성 안�
  - Thumbnailator (https://github.com/coobird/thumbnailator)
 
 
+=======================================
+22.10.24 월 - 114일차
+
+(완료)게시글 쓰기(write.do[작성페이지, get] / write.do[삽입, post])
+(완료)수정 (edit.do[수정페이지, get] / edit.do[수정, post]
+(완료)view (view.do - get)
+(완료)관리자 테이블 생성
+
+(구현중)파일 첨부 구현
+
+ - 로그인 여부 체크 메서드 구현-> 백엔드? 프론트엔드? (둘다 하자)
+
+썸네일에디터
+ - Thumbnailator (https://github.com/coobird/thumbnailator)
+
+댓글 구현
+총 댓글수 view sql에 추가
+
+/insert.do
+임시경로에 저장 먼저 하고, 
+board테이블에 먼저 insert한 이후에 
+file테이블에 bno값을 받아서 저장할 수 있도록 구현하기
+
+
+
+
 
 
 
