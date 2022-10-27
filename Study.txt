@@ -8606,11 +8606,69 @@ file테이블에 bno값을 받아서 저장할 수 있도록 구현하기
 회원정보 수정
 로그인 체크
 
+=======================================
+22.10.27 목 - 117일차
+
+NoSQL
+ - Not Only SQL
+ - 비관계형 데이터베이스 (NoREL)
+ - 비정형(반정형)데이터 저장 용도
+ - 수평적 확장
+ - 관계형 데이터베이스에 비해 유연
+ - 제약조건/무결성 유연
+ - ACID 결여
+ - 쓰기 속도 빠름
+ - join 없음 (완전히 없다고 할 수는 없음...)
+
+종류
+ - column 기반 : HBase, Cassandra
+ - document 기반 : "mongoDB", couchbase
+ - key-value 기반 : DynamoDB, "Redis"
+ - graph 기반 : Neo4j
+
+MongoDB
+ - C++로 만들어진 document기반 데이터베이스
+ - NoSQL 중 1위
+
+NoSQL	vs	RDB
+document(문서)	==	recode(하나의 데이터)
+collection	==	table
+
+JSON 구조
 
 
+==== MongoDB 설치 ====
+https://www.mongodb.com 접속
+product -> Community Edition -> 윈도우버전 다운로드
+설치파일 실행 -> custom -> 경로변경 (E:\kdigital_a\mongodb6.0)
+ -> Run service as Network Service User -> (MongoDB Compass는 설치해도 되고 안해도 됨) -> install
+(이번에는 MongoDB Compass 같이 설치함)
+
+MongoDB Compass
+기본 포트번호 : 27017
+접속 : connect
+기본 데이터베이스 3개 (admin, config, local)
 
 
+Robomongo 설치 (다른 클라이언트 프로그램 설치)
+https://robomongo.org/
+다운로드 Studio 3T Free -> 압축 풀고 실행 -> 경로(E:\kdigital_a\Studio 3T)
+설치 완료 후 실행 -> Use Studio 3T's default password encryption -> Shell-centric 테마 
+-> Do not import existing connection setting
+-> 가입 및 등록
+-> Manually configure my connection settings
+connection name : local
 
+--------------------
+개인프로젝트 오늘 일정
+(완료)properties 설정
+(완료)아이디 찾기
+(완료)비밀번호 찾기
+(완료)회원정보 수정
+(완료)비밀번호 수정기능
+
+로그인 체크
+방문자 카운트
 
 
 
