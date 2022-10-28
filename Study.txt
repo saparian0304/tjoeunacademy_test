@@ -8670,6 +8670,137 @@ connection name : local
 로그인 체크
 방문자 카운트
 
+=======================================
+22.10.28 금 - 118일차
+
+Stduio 3T 실습
+주석 : //
+커서칸 실행 : ctrl + enter
+
+db 확인 : show dbs;
+db 선택 : use db명;
+선택된 db 확인 : db;
+컬랙션 생성 (collection은 RDB의 table 역할을 수행함)
+ : db.createCollection('컬렉션명')
+
+컬렉션 확인 : show collections;
+데이터 저장
+db.컬렉션명.insert(JSON);
+
+db.컬렉션명.insertOne() : 한건 {}
+db.컬렉션명.insertMany() : 여러건 [{}, {}, {}]
+db.컬렉션명.insert() : 한건도 되고, 여러건도 됨 (편리함)
+
+변수사용 : j = {'id':'lee', 'name':'이길동', 'age':10};
+
+데이터 조회 : 
+db.student.find(); (조건 없이 검색 가능)
+
+컬렉션 삭제 : db.컬렉션명.drop();
+db 삭제(현재 선택된 db) : db.dropDatabase();
+데이터 삭제 : db.컬렉션명.remove({'속성명':'속성값'}); 
+
+검색 조건
+$eq - equal
+$gt - greater than >
+$gte - greater than or equal >=
+$lt - less than <
+$lte - less than or equal <=
+$in
+$nin - not in
+$or
+$and
+
+LIKE 검색(정규식)
+/검색어/ - %검색어%
+/^검색어/ = 검색어%
+/검색어$/ - %검색어
+
+예시
+ - db.student.find({'age':{$gt:30}});
+ - db.student.find({$and:[{'age':{$gt:30}}, {'age':{$lt:60}}]});
+
+조회결과에서 필드 선택
+db.student.find({criteria}, {projection})
+예시 - db.student.find({'id':{$in:['hong', 'kim']}}, {'_id':false, 'id':true, 'name':true});
+
+정렬 : sort() (1:오름차순, -1: 내림차순)
+db.student.find().sort({'name':-1, 'id':1});
+
+조회개수 : limit()
+db.student.find().sort({'name':1}).limit(2);
+
+LIKE 검색 예시
+db.student.find({'id':/o/});
+db.student.find({'name':/^김/});
+db.student.find({'name':/동$/});
+
+수정
+아이디가 hong인 학생의 나이를 40으로 변경
+document 전체가 수정됨 (document는 RDB에서 튜플에 대응됨)
+db.student.update({'age':30}, {'id':'hong', 'name':'홍길똥','age':50});
+db.student.find();
+
+원하는 값만 수정 ($set)
+multi 옵션 : 질의결과가 여러개일때 multi 옵션을 true
+db.student.update({'id':'hong'}, {$set:{'age':30}}, {multi:true});
+upsert 옵션 : 있으면 수정, 없으면 등록
+db.student.update({'id':'hong'}, {$set:{'age':31}}, {upsert:true});
+
+save : upsert 옵션과  유사하게 있으면 수정, 없으면 등록
+bulkWrite : 등록, 수정, 삭제를 한번에 수행
+
+
+함수
+페이징 방법(시작값: skip(), 개수:limit())
+db.student.find().skip(3).limit(3);
+
+페이징 처리 함수 만들기(매개변수 : 시작값, 개수)
+function page(idx, count) {
+    return db.student.find().skip(idx).limit(count);  
+}
+page(3,3);
+
+자바스크립트처럼 익명함수로 사용하기
+var page2 = function(idx, c) {
+    return db.student.find().skip(idx).limit(c);  
+}
+page2(0,2);
+
+파이썬으로 MongoDB 사용해보기
+
+JAVA로 MongoDB 사용해보기
+mvnrepository.com 디펜던시 추가
+"Legacy MongoDB Driver" 검색 
+ - 4.2.0 버전 pom.xml에 추가 (spring 5.2.22버전)
+"mongodb spring data" 검색 
+ - Spring Data MongoDB Core 클릭 -> 3.1.0 버전 추가
+
+servlet-context.xml 설정
+ - namespace 추가 : mongo
+<mongo:mongo-client id="mongoClient" connection-string="mongodb://localhost:27017/test"/>
+<mongo:db-factory id="mongoFactory" dbname="test" mongo-client-ref="mongoClient"/>
+<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+	<constructor-arg value="mongoFactory"/>
+</bean>
+
+bean으로 설정한 mongoTemplate를 주입받아서 DB 조작할 수 있다.
+
+======================
+개인프로젝트
+(완료)방문자 카운트(DB에 방문자 기록 남기기)
+(30% 완료)헤더 정리
+
+로그인 체크 (인터셉터)
+페이징 처리
+이전글, 다음글
+댓글게시판 구현
+
+
+
+
+
+
 
 
 
