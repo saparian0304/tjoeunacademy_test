@@ -9804,6 +9804,69 @@ geojson으로 변환시 좌표계도 맞춰서 변환하자.
 빅분기 시험 준비
 (40% 완료)팀프로젝트 문서화
 
+=======================================
+22.11.14 월 - 129일차
+
+11.4 서울 공공와이파이 지도 만들기
+서울열린데이터광장 홈페이지 -> "서울시 공공와이파이 서비스 위치 정보" 오픈 API 사용
+
+11.4.3 파이썬 엘라스틱 서치 클라이언트
+# eleasticsearch 모듈 설치 (버전에 맞춰서 설치 7.10.1)
+!pip install elasticsearch==7.10.1
+
+객체 생성
+es = Elasticsearch()
+
+데이터 저장하기
+doc = {"name" : "kim", "age" : 35}
+es.index(index='test_index', body=doc)
+
+데이터 검색하기
+doc = {
+    "size" : 1,
+    "query" : {
+        "term" : {
+            "DestCityName" : "Seoul"
+        }
+    }
+}
+res = es.search(index='kibana_sample_data_flights', body=doc)
+
+엘라스틱서치 모듈이 아니라 requests 모듈을 이용해서도 등록, 검색도 가능하다.
+
+등록
+doc = { "name" : "lee", "age" : 40}
+res = requests.put('http://localhost:9200/test_index/_doc/1', 
+                   data=json.dumps(doc),
+                  headers=header)
+검색
+res = requests.get('http://localhost:9200/test_index/_search')
+res.text
+
+11.4.4 파이썬 클라이언트 앱
+
+-----------------------------------
+Java로 엘라스틱 서치 이용하기
+https://mvnrepository.com/
+ - elasticsearch 검색 -> server, REST High Level 추가 (7.10.1 버전)
+
+1건 조회
+HttpHost, RestClient, RestClientBuilder, RestHighLevelClient
+GetRequest, RequestOptions, GetResponse
+
+여러건 조회
+HttpHost, RestClient, RestClientBuilder, RestHighLevelClient
+SearchRequest, SearchSourceBuilder, SearchResponse, RequestOptions
+
+엘라스틱서치나 NoSQL에서는 조인하기가 어렵다.
+ -> 한번 검색한 후 결과를 가지고 다시 검색을 반복실행한다. (단순하지만 속도가 빨라짐)
+
+
+
+
+
+
+
 
 
 
