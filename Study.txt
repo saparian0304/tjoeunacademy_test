@@ -9861,6 +9861,74 @@ SearchRequest, SearchSourceBuilder, SearchResponse, RequestOptions
 엘라스틱서치나 NoSQL에서는 조인하기가 어렵다.
  -> 한번 검색한 후 결과를 가지고 다시 검색을 반복실행한다. (단순하지만 속도가 빨라짐)
 
+=======================================
+22.11.15 화 - 130일차
+
+Java로 엘라스틱서치 사용하기 - (2)
+
+// 페이징 처리
+sourceBuilder.size(20);
+sourceBuilder.from(20);
+
+// fuzzyQuery - 쿼리의 철자와 term의 철자를 비교할 때 유사도를 고려
+sourceBuilder.query(QueryBuilders.fuzzyQuery("place_nm", "송x파").fuzziness(Fuzziness.ONE));
+
+
+데이터 이관 (RDBMS -> elasticsearch)
+ - 정규화되어있는 부분을 조인시켜서 삽입시키기
+ - mysql과 엘라스틱에서 사용하는 날짜 타입이 달라서 변환작업이 필요함
+
+파이썬 사용
+pymysql로 불러온 후 -> requests, json 모듈을 이용하여 엘라스틱서치에 삽입(indexing)
+ - 날짜는 변환해서 삽입해야한다.
+
+아리랑 플러그인은 자소분리 기능이 있어서 좀 더 좋은 통합검색이 가능해진다. 
+
+
+자동완성 기능 구현
+ - JSP 입력란에서 keyup event 걸기(ajax) -> 결과 받아와서 자동완성목록 뜨게 구현 하기
+
+
+엘라스틱서치 교재
+12장 리눅스 실습 환경
+
+가상머신 프로그램 - 버추얼박스(virtualbox), VM웨어(유료)
+
+12.1 버추얼박스에서 우분투 설치하기
+
+가상머신 설치
+https://www.virtualbox.org 접속 후 다운로드
+ - 윈도우PC에 설치할 것이기 때문에 windows hosts 를 다운로드
+설치 경로 : E:\kdigital_a\virtualbox
+
+가상머신에 우분투 설치
+https://ubuntu.com/ 접속 후 downloads -> other ways to download -> older releases -> 18.04버전 Desktop image (64bit AMD64) 다운로드받기
+
+버추얼박스 실행
+ 새로만들기
+ - 이름 : ubuntu
+ - 머신 폴더 : E:\kdigital_a\ubuntu
+ - ISO Image : 선택하지 않음
+ - 종류 : Linux
+ - 버전 : Ubuntu (64-bit)
+
+ - 기본메모리 : 4기가
+ - CPU : 1개
+ - Create a Virtual Hard Disk Now : 10.0GB (새 가상 하드디스크 만들기)
+
+
+
+댓글
+코드 리팩토링
+가비아 지원서
+
+빅분기 시험 준비
+빅데이터분석
+
+
+
+
+
 
 
 
