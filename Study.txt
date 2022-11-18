@@ -10123,6 +10123,108 @@ PUT .../_settings
 }
 
 
+=======================================
+22.11.17 목 - 132일차
+면접
+
+=======================================
+22.11.18 금 - 133일차
+14장 운영클러스터 구축
+
+14.1 성능과 안정성을 위한 운영 클러스터 고려사항
+12.1.2 하드웨어 선정
+메모리, CPU, 디스크
+
+메모리
+ - 가장 먼저 고갈되어 문제가 되는 리소스
+ - 검색성능을 위해 샤드 유지, 검색과 집계, 인덱싱, 코디네이팅 등 전반적인 영역에서 많은 메모리를 사용함
+ - 이상적인 메모리 : 64GB (단일노드에 대해 충분한 힙 크기 활용)
+
+CPU
+ - 단일 코어 성능이 높은 CPU << 코어의 수가 많은 CPU
+
+디스크
+ - SSD를 권장
+ - 하드디스크를 사용할 경우 RPM이 빠른 제품
+ - 네트워크 저장소는 피하자
+ - SSD
+
+하드웨어 통일
+각 노드들의 하드웨어 성능을 통일시키도록 하자
+
+14.1.3 엘라스틱서치 버전 설정
+LTS가 따로 없으므로 특별한 상황이 아닌 경우 가장 최신버전을 사용하는 것이 좋다
+ - 모든 보안 및 성능패치가 최신 버전에 적용되어있음
+ - 다만 x.x.0 버전은 버그가 있을 확률이 있으므로 피하자
+
+JVM, OS
+서포트 매트릭스를 확인해서 지원하는 JVM, OS 버전을 확인하자
+ - https://www.elastic.co/support/matrix
+
+14.2 클러스터 구성
+14.2.1 노드 설치
+하나의 로컬PC => 3개의 엘라스틱서치와 하나의 키바나 프로세스를 실행 
+ - 실습편의상 하나의 pc에서 진행
+
+==================
+스냅 삭제
+>snap remove --purge gtk-common-themes
+>snap remove --purge gnome-3-38-2004
+>snap remove --purge bare
+
+>sudo umount 경로
+
+초기 삭제 명령어
+>sudo apt remove snapd
+=====================
+
+키바나 디렉토리명 변경
+>mv kibana-7.10.1-linux-x86_64/ kibana
+
+엘라스틱서치 디렉토리명 변경
+mv elasticsearch-7.10.1-linux-x86_64/ node1
+
+노드 추가(copy 명령어)
+>cp -R node1 node2
+>cp -R node1 node3
+ - -R : 디렉토리 내 모든 파일 복사
+
+ip 확인
+> ifconfig
+- 안될경우 net-tools 설치 필요
+ (>sudo apt install net-tools)
+
+어댑터 설정이 필요함(가상환경 끄고 할 것)
+*버추얼박스창 - 파일 - 도구 - network manager - 속성 - host-only Networks
+ - 선택해서 어댑터 및 DHCP 설정 되어있는지 확인
+
+*버추얼박스 가상환경 설정 - 네트워크 - 어댑터2 - 네트워크어댑터 사용하기 체크 -> 다음에 연결됨 : 호스트전용어댑터
+ - 네트워크 어댑터를 하나 더 추가해서 꼽은 것과 같은 설정
+
+가상환경을 키고나서 ifconfig를 실행하면 enp0 관련 항목이 2개 나옴 (어댑터가 2개 연결되어있기 때문)
+
+ssh 서버 열도록 관련 프로그램 설치하기
+>sudo apt install openssh-server
+
+openssh 설치시 에러나는 경우
+ - apt 업데이트 후 openssh-server 삭제 후 재설치
+ - >sudo apt update
+ - >sudo apt autoremove openssh-server
+ - >sudo apt install openssh-server
+
+xshell을 이용해서 가상환경에 원격으로 접속하기
+ - 호스트 : ifconfig로 확인한 ip주소
+
+
+
+
+
+
+
+
+
+
+
 
 댓글
 코드 리팩토링
