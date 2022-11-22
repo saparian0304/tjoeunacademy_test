@@ -33,11 +33,11 @@ now = datetime.now()
 # In[107]:
 
 
-obj = WebDriverWait(br, 5).until(ec.presence_of_element_located((By.CSS_SELECTOR, '#browse-root-main-content > div.Layout-sc-nxg1ff-0.hEbiVi > div > div.Layout-sc-nxg1ff-0 > div:nth-child(1) > div.Layout-sc-nxg1ff-0.kMghud > h4 > button > strong')))
-br.find_element(By.CSS_SELECTOR, '#browse-root-main-content > div.Layout-sc-nxg1ff-0.hEbiVi > div > div.Layout-sc-nxg1ff-0 > div:nth-child(1) > div.Layout-sc-nxg1ff-0.kMghud > h4 > button > strong').click()
+obj = WebDriverWait(br, 5).until(ec.presence_of_element_located((By.CSS_SELECTOR, '#browse-root-main-content > div.Layout-sc-1xcs6mc-0.lgdxlP > div > div.Layout-sc-1xcs6mc-0 > div:nth-child(1) > div.Layout-sc-1xcs6mc-0.iPAXTU > h4 > button > strong')))
+br.find_element(By.CSS_SELECTOR, '#browse-root-main-content > div.Layout-sc-1xcs6mc-0.lgdxlP > div > div.Layout-sc-1xcs6mc-0 > div:nth-child(1) > div.Layout-sc-1xcs6mc-0.iPAXTU > h4 > button > strong').click()
 br.get(url)
 time.sleep(2)
-br.find_element(By.CSS_SELECTOR, '#browse-root-main-content > div.Layout-sc-nxg1ff-0.jPhzSy > div > div > ul').click()
+br.find_element(By.CSS_SELECTOR, '#browse-root-main-content > div.Layout-sc-1xcs6mc-0.coBOrf > div > div > ul').click()
 for i in range(0, 10):
     br.find_element(By.TAG_NAME, 'body').send_keys(Keys.PAGE_DOWN)
     time.sleep(1)
@@ -57,10 +57,10 @@ soup = BeautifulSoup(html, 'html.parser')
 f = open("twitch_log.tsv", "a", encoding="UTF-8")
 for i in range(2, 52):
     try : 
-        title = soup.select_one(f'#browse-root-main-content > div.Layout-sc-nxg1ff-0.hEbiVi > div > div.ScTower-sc-1dei8tr-0.dcmlaV.tw-tower > div:nth-child({i}) article > div.Layout-sc-nxg1ff-0 div.ScTextWrapper-sc-14f6evl-1 > div.ScTextMargin-sc-14f6evl-2 > a > h3').string
-        streamer = soup.select_one(f'#browse-root-main-content > div.Layout-sc-nxg1ff-0.hEbiVi > div > div.ScTower-sc-1dei8tr-0.dcmlaV.tw-tower > div:nth-child({i}) article > div.Layout-sc-nxg1ff-0.ggozbG div.ScTextWrapper-sc-14f6evl-1 > div.ScTextMargin-sc-14f6evl-2 > a > p').string
-        viewer = soup.select_one(f'#browse-root-main-content > div.Layout-sc-nxg1ff-0.hEbiVi > div > div.ScTower-sc-1dei8tr-0.dcmlaV.tw-tower > div:nth-child({i}) article > div.ScWrapper-sc-uo2e2v-0 > div.ScTransformWrapper-sc-uo2e2v-1 > a > div > div.ScPositionCorner-sc-1iiybo2-1.eHqCXd > div').string
-        cate = soup.select_one(f'#browse-root-main-content > div.Layout-sc-nxg1ff-0.hEbiVi > div > div.ScTower-sc-1dei8tr-0.dcmlaV.tw-tower > div:nth-child({i}) article > div.Layout-sc-nxg1ff-0 > div > div.ScTextWrapper-sc-14f6evl-1 > div.ScTextMargin-sc-14f6evl-2 > p > a').string
+        title = soup.select_one(f'#browse-root-main-content > div.Layout-sc-1xcs6mc-0.lgdxlP > div > div.ScTower-sc-1sjzzes-0.czzjEE.tw-tower > div:nth-child({i}) article > div.Layout-sc-1xcs6mc-0.gUnRUD div.ScTextWrapper-sc-10mto54-1.fwZpSK > div.ScTextMargin-sc-10mto54-2.bcdHdk > a > h3').string
+        streamer = soup.select_one(f'#browse-root-main-content > div.Layout-sc-1xcs6mc-0.lgdxlP > div > div.ScTower-sc-1sjzzes-0.czzjEE.tw-tower > div:nth-child({i}) article > div.Layout-sc-1xcs6mc-0.gUnRUD div.ScTextWrapper-sc-10mto54-1.fwZpSK > div.ScTextMargin-sc-10mto54-2.bcdHdk > a > p').string
+        viewer = soup.select_one(f'#browse-root-main-content > div.Layout-sc-1xcs6mc-0.lgdxlP > div > div.ScTower-sc-1sjzzes-0.czzjEE.tw-tower > div:nth-child({i}) article > div.ScWrapper-sc-1wvuch4-0 > div.ScTransformWrapper-sc-1wvuch4-1.gMwbGx > a > div > div.ScPositionCorner-sc-1shjvnv-1.gUtzBI > div').string
+        cate = soup.select_one(f'#browse-root-main-content > div.Layout-sc-1xcs6mc-0.lgdxlP > div > div.ScTower-sc-1sjzzes-0.czzjEE.tw-tower > div:nth-child({i}) article > div.Layout-sc-1xcs6mc-0.gUnRUD div.ScTextWrapper-sc-10mto54-1.fwZpSK > div.ScTextMargin-sc-10mto54-2.bcdHdk > p > a').string
         f.write(f'{streamer}\t{title}\t{viewer}\t{cate}\t{now}'+ '\n')
     except Exception as e1:
         e = open("error.tsv", "a", encoding="UTF-8")

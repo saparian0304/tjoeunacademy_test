@@ -10216,7 +10216,110 @@ xshell을 이용해서 가상환경에 원격으로 접속하기
  - 호스트 : ifconfig로 확인한 ip주소
 
 
+=======================================
+22.11.21 월 - 134일차
 
+14.2.1 노드 설치
+~/elastic >tree -L 2 -d
+ - -L 2 : 두번째 디렉토리까지 구조를 보여줌
+ - -d : 디렉토리만 보여주는 옵션
+
+vim 에디터 설치
+>sudo apt install vim
+(에러날 경우 아래 명령어 실행하고 위에 다시 실행)
+ - sudo apt autoremove vim
+ - sudo apt autoremove vim-common
+
+node1의 설정파일 수정(node1/config/elasticsearch.yml, vi 편집기 이용)
+ - cluster.name: my-prod-cluster
+ - node.name: node1
+ - network.host: [_local_]
+ - http.port: 9200
+ - transport.port: 9300
+ - discovery.seed_hosts: ["localhost:9300", "localhost:9310", "localhost:9320"]
+ - cluster.initial_master_nodes: ["node1", "node2", "node3"]
+
+설정 설명
+cluster.name : 클러스터 이름, 같은 클러스터로 묶으려면 반드시 클러스터명이 통일되어야 함
+node.name : 노드의 이름, 단일 클러스터에서는 노드이름이 각각 달라야함
+network.host : 노드가 배포될 네트워크 호스트를 지정, IPv4, IPv6, _local_, _site_, _global_ 값을 이용하여 지정할 수 있음
+http.port : HTTP 통신에 사용할 포트를 지정, 엘라스틱서치의 REST API에 접근하기 위한 포트, 노드간 충돌 방지를 위해 노드별로 포트를 다르게 설정
+transport.port : 클러스터 내부에서 노드끼리 통신할 때 사용되는 포트, 별도로 외부 클라이언트가 접근할 필요가 없는 포트, 충돌방지를 위해 노드별로 다른 포트를 할당
+discovery.seed_hosts : 클러스터 구성을 위해 다른 노드를 발견(discovery)해야하는데 사용되는 상대노드 주소. 클러스터 구성을 위한 시드일 뿐이므로 등록할 필요는 없으며, 마스터노드가 없으면 클러스터링이 이뤄지지 않기 때문에 마스터후보 노드들만 등록해주면 된다. 내부통신이기때문에 주소 뒤에 트랜스포트 포트(transport.port)를 적어줘야한다.
+cluster.initial_master_nodes : 클러스터 최초 구성시에 사용되는 설정, 이후 노드가 추가/이탈됨에 따라 내부적으로 마스터 후보 노드들이 관리함
+
+14.2.2 개발모드와 운영모드
+
+각 노드의 설정파일 수정
+network.host: [_local_, _site_, _global_]
+ 
+개발모드 : elasticsearch.yml의 network.host 값이 로컬호스트인 경우
+운영모드 : elasticsearch.yml의 network.host 값이 로컬호스트가 아닌 경우
+ - 엘라스틱서치는 시작할 경우 노드의 안정성 체크를 위해 부트스트랩을 검사함 -> 운영모드에서 부트스트랩 체크에 실패하면 로그와 함께 즉시 노드 실행이 중단됨
+
+network.host
+ - _local_ : 로컬 네트워크
+ - _site_ : 내부 네트워크
+ - _global_ : 외부 네트워크
+
+14.2.3 운영 모드 설정
+
+** config/jvm.options
+Xms(최소 힙 크기)
+Xmx(최대 힙 크기)
+ (1) Xms와 Xmx 수치를 동일하게 할당 : 최소와 최대 힙크기를 동일하게 하지 않을 경우 메모리 할당량을 확장하는 과정에서 노드가 일시적으로 멈출 수 있음, 기본값은 1GB
+ (2) 힙크기는 최대 시스템 물리 메모리의 절반으로 한다 : 엘라스틱서치는 힙 메모리 외에도 빠른 검색과 인덱싱 성능을 위해 파일시스템 캐시를 적극적으로 사용하기 때문에 충분한 여유 메모리를 확보해야한다.
+ (3) 힙 크기는 최대 30~31GB 수준을 넘기지 않는다. : 힙메모리를 효율적으로 사용하고자 하는 Compressed Ordinary Object Pointers 기술은 시스템마다 차이가 있지만 힙 메모리가 최대 32GB를 넘기면 비활성화가 됨 -> 32GB 이상 설정하더라도 성능상 이점이 없음
+
+Djava.io.tmpdir(임시디렉토리 루트 설정)
+XX.HeapDumPath(힙 덤프 파일이 생성되면 저장되는 경로)
+ - OutOfMemory 오류가 발생했을 때 원인분석을 위한 덤프파일이 저장되는 경로
+
+리눅스 명령어
+ - chmod : 파일 권한 변경
+ - chown : 파일 소유권 변경
+
+**config/elasticsearch.yml (메모리 락 설정)
+bootstrap.memory_lock: true
+ - 노드 실행시 시스템의 물리 메모리를 미리 할당받아 스왑영역을 사용하지 않도록 방어하는 설정
+ - 스왑영역을 참조할 경우 성능저하가 심각하게 일어날 수 있음
+
+** /etc/security/limits.conf (시스템 수준에 걸린 제한을 해제 : 리눅스에만 존재하는 파일)
+ (권한이 root 계정에만 있기 때문에 sudo vi 명령어로 수정한다)
+es - nofile 65535
+es - nproc 4096
+es soft memlock unlimited
+es hard memlock unlimited
+
+es - nofile 65535 : 시스템에서 최대로 열 수 있는 파일 수를 제한하는 설정
+es - nproc 4096 : 최대 프로세스 수를 제한하는 설정
+memlock unlimited : 메모리 내 주소 공간의 최대 크기
+ - soft : 기본한도
+ - hard : 최대한도
+
+비밀번호 설정하기 (root 계정)
+>sudo passwd root
+ - 현재 로그인 계정 비밀번호 적고, root 계정 비밀번호 2번 적기
+관리자계정으로 로그인하기
+>su -
+
+파일 수정
+/etc/systemd/system.conf
+/etc/systemd/user.conf
+ - DefaultLimitNOFILE=65536
+
+최대 가상 메모리 개수 변경(반드시 해야하는 설정)
+/etc/sysctl.conf
+ - vm.max_map_count=232144
+커널 변수값을 수정해서 보안이나 성능을 향상하는데 사용함
+
+=======================================
+22.11.22 화 - 135일차
+
+메모리 문제로 가상환경 램 6기가로 변경
+
+
+노드 3개 실행하고 "localhost:9200/_cluster/health" 접속시 노드 개수가 3으로 나와야함
 
 
 
