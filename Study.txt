@@ -10441,9 +10441,11 @@ talend를 이용시 Headers에 add authorization 기능을 이용하면 로그�
 p400 주구매상품 encoder.classes_
  - train / test 구성이 다른데 어떻게 해야하는지
 
+=======================================
+22.11.28 월 - 139일차
 
-
-
+XGBClassifier, RandomForestClassifier
+파라미터 : n_estimators, max_depth
 
 
 

@@ -1,0 +1,18 @@
+# 데이터 확인하기 (범주형 데이터 일치하는지!)
+# 라벨인코딩
+# 전처리 (이상값, 결측치)
+# 스케일링
+# split
+# model 학습
+# 평가
+# 모델 적용
+# 제출
+# 확인
+
+회귀모델 (평가지표 : MAE, MSE, RMSE, r2_score)
+XGBRegressor, RandomForestRegressor
+LinearRegression, GradientBoostingRegressor, 
+
+분류모델 (평가지표 : roc_auc_score, f1_score
+XGBClassifier, RandomForest
+DecisionTreeClassifier, LogisticRegression
