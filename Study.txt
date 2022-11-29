@@ -10448,12 +10448,16 @@ XGBClassifier, RandomForestClassifier
 파라미터 : n_estimators, max_depth
 
 
+=======================================
+22.11.29 화 - 140일차
+
+프로젝트 발표 (오후 3시 30분)
+참여 업체
+ - (현장) : 메가스터디, cal 주식회사(www.cal.co.jp)
+ - (줌) : 더씨에스알, 아이메코, 프리코우, 소베텍, 대원씨앤씨
 
 
-sbtglobal
-대원씨앤씨
-cal 주식회사(www.cal.co.jp)
-(주)소베텍
+
 
 
 
