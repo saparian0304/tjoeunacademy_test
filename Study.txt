@@ -10473,6 +10473,56 @@ XGBClassifier, RandomForestClassifier
 (완료) 기출 2,3회
 (완료)단답형 복습 1회
 
+=======================================
+22.12.05 월 - 144일차
+휴가
+
+=======================================
+22.12.06 화 - 145일차
+
+SNS 어플리케이션
+- Rest API (JSON)
+- Springboot, gradle, jdk11, MyBatis
+- MySQL
+- 회원(등록,수정,로그인)
+- 포스트(등록,수정,삭제,목록:특정회원글,조회)
+- 배포(jar)
+- API문서
+- 300백만건 포스트 조회 성능 개선
+  1. 성능개선 방법
+  2. 대량의 데이터를 등록
+
+
+대용량 데이터(파이프 라인)
+hadoop, es, kafka, mongodb, redis…
+business Data (RDBMS)
+RDBMS에서의 대용량 데이터 처리에 대한 고민
+상황마다 다름
+교육하기엔 이론이 정형화 되어있지 않음
+MySql에서 성능 최적화
+sever에 대한 부분은 검색하면 나온다.
+모델링(설계), 인덱스(로직) 관점
+정규화 / 반정규화
+
+
+Swagger
+ - API를 문서화, 테스트해주는 라이브러리
+
+https://mvnrepository.com/ 접속 후 "springfox" 검색 -> SpringFox Boot Starter -> 3.0.0
+
+ - "http://localhost:8080/swagger-ui/"에 접속하면 매핑되어있는 모든 요청 목록을 볼 수 있음
+
+스프링부트 버전이 맞지 않을 수 있음
+
+
+JACOCO
+ - Java Code Coverage를 측정하는 라이브러리입니다.  
+ - 코드 커버리지란, 소프트웨어의 테스트코드가 얼마나 많은 코드를 충족시키고 있는지에 대한 지표중 하나
+
+
+
+
+
 
 
 
