@@ -10519,6 +10519,55 @@ JACOCO
  - Java Code Coverage를 측정하는 라이브러리입니다.  
  - 코드 커버리지란, 소프트웨어의 테스트코드가 얼마나 많은 코드를 충족시키고 있는지에 대한 지표중 하나
 
+@JsonIgnore
+ - JSON 직렬화, 역직렬화에서 속성을 무시하는데 사용
+
+=======================================
+22.12.07 수 - 146일차
+
+swagger를 이용해서 api문서 편집하기
+@Api(tags = "회원 API 명세")
+ - 컨트롤러 설명
+ - 클래스 위에 사용
+
+@ApiParam(value="회원번호")
+ - 파라미터 설명
+예시)
+ @GetMapping("/get")
+ public Map get(@ApiParam(value = "회원번호") @RequestParam int no) { }
+
+@ApiModelProperty
+ - 커맨드객체를 사용할 때 객체 내부 변수를 지칭하기 위해 사용
+
+@ApiResponse(code = 502, message = "등록오류")
+ - 응답 오류에 대한 설명
+
+
+300만건 데이터 조회 (인덱스 개념 잡기)
+-- index 생성
+create index IDX_MEMBER_NO on post(member_no);
+create index IDX_REG_DATE on post(reg_date);
+
+-- 복합인덱스
+create index IDX_MEMBER_NO_REG_DATE on post(member_no, reg_date);
+
+
+SQL 실행계획 보기
+sql문 앞에 'explain'을 추가해서 질의하면 실행계획을 볼 수 있음
+ - rows : 살펴본 row 수
+
+인덱스 지정하기
+use index(인덱스명)
+
+index 지정 및 실행계획 보기 : use index, explain
+explain select member_no, count(*) from post use index(IDX_MEMBER_NO)
+where member_no=2 and reg_date between '2022-12-01' and '2022-12-10';
+
+explain select member_no, count(*) from post use index(IDX_MEMBER_NO_REG_DATE)
+where member_no=2 and reg_date between '2022-12-01' and '2022-12-10';
+
+함수를 사용하는 것 처럼 가공이 일어나는 순간 인덱스를 타지 않음
+ -> 때문에 분석하기 위해서는 일별, 월별, 년별 컬럼을 따로 만들어둠
 
 
 
@@ -10526,23 +10575,17 @@ JACOCO
 
 
 
+
+
+
+
+
+
+동적게시판 만들기
 
 댓글
 코드 리팩토링
 빅데이터분석
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 소비자 인식 조사

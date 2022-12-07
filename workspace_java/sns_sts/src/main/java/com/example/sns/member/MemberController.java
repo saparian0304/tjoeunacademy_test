@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.yaml.snakeyaml.constructor.DuplicateKeyException;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.ApiResponse;
 import lombok.AllArgsConstructor;
-
+@Api(tags = "회원 API 명세")
 @RestController
 @RequestMapping("/member")
 @AllArgsConstructor
@@ -24,7 +27,7 @@ public class MemberController {
 //	MemberController(MemberMapper mmapper) {
 //		this.mmapper = mmapper;
 //	}
-	
+	@ApiResponse(code = 502, message = "등록오류")
 	@PutMapping("/regist")
 	public Map regist(@RequestBody MemberVO vo) {
 		var map = new HashMap<String, String>();
@@ -73,7 +76,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/get")
-	public Map get(@RequestParam int no) {
+	public Map get(@ApiParam(value = "회원번호") @RequestParam int no) {
 		var map = new HashMap<String, Object>();
 		String result = "";
 		
