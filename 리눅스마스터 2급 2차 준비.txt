@@ -239,3 +239,162 @@ HA(High Availability, 고가용성 클러스터)
 
 HPC(High Performance Computing, 고계산성 클러스터)
  - 고성능의 계산능력을 제공하기 위한 목적으로 여러대의 컴퓨터를 병렬로 묶어서 슈퍼 컴퓨터를 제작하는 방식
+
+
+LVM 관련 용어
+ - PV(Physical Volume) : 디스크를 LVM에서 사용할 수 있게 변환하는 작업
+ - VG(Volume Group) : PV가 모여 만들어진 그룹, VG는 다시 LV로 할당할 수 있는 공간이기도 함
+ - LV(Logical Volume) : VG에서 사용자가 필요한 만큼 할당되서 만들어지는 공간
+ - PE(Physical Extent) : PV에서 나누어 사용하는 블록. 4MB 단위
+ - LE(Logical Extent) : LV가 나누어진 일정한 크기의 블록. PE와 서로 1:1 대응
+
+YUM : RPM의 의존성 문제를 해결하기 위한 유틸리티
+yum install [패키지명] : 의존성을 고려하며 패키지 설치
+
+빌 조이 : vi 편집기를 개발함
+리처드 스톨만 : emacs를 개발
+Aboil Kasar : pico를 개발
+
+
+vi 편집기의 환경설정 값
+ - set ai : auto indent, 자동 들여쓰기 옵션
+ - set ic : 검색 패턴 사용시 대소문자 구별 X (ignore character ?)
+ - set sm : 괄호 개폐시 연관된 괄호 위치 표시
+ - set list : 눈에 보이지 않는 특수문자 표시
+
+vi 편집기 단어 치환 명령
+s/<SEARCH>/<REPLACE>/g
+ - SEARCH에 해당되는 문자열을 찾아서 REPLACE로 치환
+ - g : 한 행에 같은 내용이 여러번 나타나도 모두 치환
+ - <> : 완벽하게 같은 경우에만 바꾸라는 것(문자단위)
+ - 특수문자는 앞에 \표시로 구분해줘야한다.
+
+/etc/fstab 파일에 각 필드값
+[장치명] [마운트 포인트] [파일시스템 종류] [마운트 옵션] [Dump 값] [무결성검사 우선순위값]
+
+XFS 파일시스템을 점검하는 명령어(xfs_repair)
+ - xfs_repair /dec/sdb1
+
+UTP 케이블 배열
+ - 568-B : 흰주, 주, 흰녹, 파, 흰파, 녹, 흰갈, 갈
+ - 568-A : 흰녹, 녹, 흰주, 파, 흰파, 주, 흰갈, 갈
+
+
+route 명령어
+ - 디폴트 게이트웨이 추가 : route add default gw x.x.x.x
+ - 네트워크 경로 추가 : route add -net x.x.x.x netmask x.x.x.x gw x.x.x.x
+ - 호스트 경로 추가 : route add -host x.x.x.x
+
+
+이미지 뷰어 프로그램
+ - eog : GNOME의 이미지 뷰어 프로그램
+ - Gwenview : KDE의 이미지 뷰어 프로그램
+
+윈도우매니저 : 창의 배치와 표현을 담당. 창 열기, 닫기, 창 생성위치, 창 크기 및 모양 조정이 가능
+데스크톱 환경, 데스크톱 관리자 : 아이콘, 창, 도구모음, 폴더, 배경화면, 데스크톱 위젯을 제공 (KDE, GNOME)
+디스플레이 매니저 : 그래픽 로그인 화면을 띄워주고, 세션을 시작한다. (xdm, kdm, gdm, dtlogin)
+
+CLI로 부팅 설정하기
+ - systemctl set-default runlevel3
+ - systemctl set-default multi-user.target
+GUI(X-윈도)로 부팅 설정하기
+ - systemctl set-default runlevel5
+ - systemctl set-default graphical.target
+
+X-Windows 환경에서 프린터 설정하기
+ - system-config-printer
+
+압축률 : compress < gzip < bz2 < xz
+ - compress : .Z
+ - gzip : .gz (옵션 z)
+ - bzip : .bz2 (옵션 j)
+ - xz : .xz (옵션 J)
+
+온라인 패키지 관리도구 : yum(레드햇), apt-get(데비안), zypper(수세)
+
+시그널번호
+ - 2 : SIGINT (Ctrl + C), 종료
+ - 9 : SIGKILL, 강제종료
+ - 15 : SIGTERM, 정상적인 종료방법
+ - 20 : SIGTSTP (Ctrl + Z), 프로세스 대기로 전환
+
+ps aux : 현재 시스템 사용자가 사용중인 모든 프로세스 정보를 확인
+ps a : 현재 실행 중인 모든 프로세스 출력
+
+LVM의 특징
+ - 유연한 용량 조절
+ - 크기조절이 가능한 storage pool
+ - 편의에 따른 장치 이름 지정
+
+OSS : 사운드를 만들고 캡쳐하는 인터페이스, 현재 리눅스 커뮤니티에서는 ALSA로 대체됨
+ALSA (Advanced Linux Sound Architecture) : 사운드카드를 자동으로 구성하고,시스템의 여러개의 사운드카드를 관리하는 것이 목적이다.
+
+FDDI : 광섬유 케이블을 사용하여 설계된 링 구조의 통신망. 엑세스 제어는 토큰 패싱 방법을 채택
+
+konqueror : KDE 기반, 웹브라우저 및 파일 관리 시스템
+nautilus : GNOME 데스크톱 기반의 파일 관리 프로그램
+metacity : GNOME 2.x 윈도우 매니저
+mutter : GNOME 3.x 윈도우 매니저
+
+프린터 관련 명령어
+System V 계열 : lp, lpstat, cancle
+BSD 계열 명령어 : lpr, lpq, lprm, lpc, lpd
+
+패키지 설치
+- rpm -i 패키지명
+- yum install 패키지명 (온라인)
+- dpkg -i 패키지명
+- apt-get intall 패키지명 (온라인)
+
+rpm 기본 옵션
+ -q : 패키지 설치 여부 확인
+ -a : 모든 패키지 확인
+ -i : 패키지 설치
+ -e : 삭제(erase)
+
+yum 삭제는 -r 또는 remove
+
+
+LAN : Ethernet, Token Ring, FDDI
+MAN : DQDB(Distributed Queue Dual Bus)
+WAN 
+ - 전용회선 & 회선교환망 : HDLC, PPP
+ - 패킷교환망 : X.25, Frame-relay, ATM
+
+fdisk
+ - 새로운 파티션의 생성, 기존 파티션의 삭제, 파티션의 타입 결정 등의 작업을 수행할 수 있음
+ - Swap: 82
+ - Linux: 83
+ - LVM: 8e
+ - Raid: fd
+
+vi +/ihd /etc/hosts
+
+vi 편집기의 환경을 설정하는 방법
+ - .exrc 파일로 저장 -> 자동으로 실행되도록 설정
+ - 셸의 환경변수 EXINIT 지정
+
+
+scanimage : 이미지 스캔
+scanadf : 여러개의 사진 스캔
+xcam : GUI 기반으로 평판 스캐너나 카메라로부터 이미지 스캔
+
+xauth 명령어 (Xauthority 파일 관련)
+ - ~/.Xauthority 파일의 내용인 MIT-MAGIC-COOKIEs 값을 보여주거나 값을 변경할 수 있다. 
+ - 예시) xauth list $DISPLAY
+
+x 윈도 개념과 특징
+ - 리눅스 환경의 각종 애플리케이션과 유틸리티에 대해 그래픽 사용자 인터페이스 제공
+ - Athena 프로젝트
+ - 1984년에 x윈도 처음 개발
+ - 1987 오픈 소스프로젝트 하에 X11 발표
+
+X 윈도 특징
+ - 네트워크 기반 그래픽 환경 지원
+ - 이기종 시스템 사이에서도 사용 가능
+ - 그래픽 환경 자원들이 특정 형태로 정의되어 있지 않음
+ - 디스플레이 장치에 의존적이지 않으며 원하는 인터페이스를 만들 수 있음
+
+X 윈도 시스템
+ IBM과 MIT, DEC 공동의 아데나 프로젝트를 통해서 Bob Scheifler와  Jim Gettys가 1984년에 처음 개발
+ 1988년에는 수많은 컴퓨터 제조업체로 이루어진 X컨소시엄이 조직되고, X컨소시엄에 의해서 X11 버전이 처음으로 개정되어 X11R2가 발표되었으며 1996년에는 최종 개정판인 X11R6 버전을 내놓으면서 X11R6.3
