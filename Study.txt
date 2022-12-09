@@ -10581,17 +10581,123 @@ where member_no=2 and reg_date between '2022-12-01' and '2022-12-10';
 (완료)기출 20년 2회차
 
 
+=======================================
+22.12.09 금 - 148일차
+
+Redis (REmote DIctionary Server)
+ - Docker 설치
+ - Redis Container 설치
+ - Redis 구조, 자료구조
+ - Redis 명령어
+ - Java 연동(SpringBoot)
+
+Redis
+ - in-memory 저장소(메모리에 저장)
+ - 자바 컬렉션과 유사
+ - key-value 구조(nosql)
+ - RDB와 Redis 혼용
+ - 구조가 단순(사용법이 쉬움)
+ - 읽기 속도가 빠름(key의 장점)
+ - 반복(범위 질의) 불가(key의 특징)
+ - 분산환경에서의 수평적 확장성 
 
 
+Docker desktop 설치
+ - https://www.docker.com/ 접속 -> 윈도우용 docker desktop 설치
+ - 실행 후 설치
+
+docker가 제대로 시작이 안되는 경우 (powershell)
+> cd "C:\Program Files\Docker\Docker"
+> .\DockerCli.exe -SwitchDaemon
+
+WSL 2, 리눅스커널 관련 에러가 나는 경우
+ - 메시지에 있는 링크를 통해서 리눅스커널 업데이트 패키지 받아서 설치 후 도커 재실행하면 됨
+
+Redis 이미지 설치 (powershell)
+> docker search redis
+> docker pull redis
+
+redis 실행 (컨테이너에 등록)
+> docker run --name my-redis -p 6379:6379 redis
+ - --name my-redis -> 이름 지정
+ - -p 6379:6379 -> (외부에서 쓰는 포트번호):(내부에서 쓰는 포트번호)
 
 
+> docker ps
+
+redis 중지(컨테이너)
+> docker stop my-redis
+ - snapshot을 디스크에 저장한 후 종료함
+
+redis 시작(컨테이너)
+> docker start my-redis
+ - 시작시 디스크에 저장된 snapshot을 가져옴 
+
+redis 컨테이너에 접속(실행 중인 컨테이너에 접속할 쉘 실행하기)
+> docker exec -it my-redis /bin/sh
+ - /bin/sh : 접속한 컨테이너에서 사용할 쉘 지정
+
+redis 클라이언트 실행 (호스트, 포트 미지정시 로컬, 6379 포트가 기본값)
+> redis-cli
+ - 접속한 쉘에서 redis 클라이언트 실행
+
+저장
+> set key value
+
+조회
+> get key
+
+전체 키
+> keys *
+
+키 갯수
+> dbsize
+
+전체 삭제
+> flushall
 
 
+Redis 데이터 타입
+* string
+ - 기본 데이터 타입, 가장 많이 사용
+ - 바이너리로도 저장 가능(이미지 등)
+ - 최대 512mb
+
+* list
+ - linked list 형태
+ - 큐, 스택으로도 사용이 가능
+ - lpush, rpush, lpop, rpop
+리스트에 넣기 (lpush : left push, rpush : right push)
+> lpush mylist v1
+> lpush mylist v2
+
+리스트에서 꺼내기 (lpop : left pop, rpop : right pop)
+> rpop mylist
+
+리스트의 길이 
+> llen mylist
+
+* set
+ - 순서, 중복이 없음
+ - 검색이 빠름
+ - sadd : 추가
+ - srem : 삭제
+ - scard : 개수
+ - smembers : 저장된 값 조회
+ - sismember : 값이 포함되어있는지 여부
+
+set/get
+incr/decr
+ - 1 증가 / 1 감소 (수치형 타입에만 가능)
+mset/mget
+ - mulit를 의미함
+ - mset key value key value key value ...
+ - mget key key key ...
 
 
-
-
-
+Springboot 연동하기
+디펜던시 추가 
+ - https://mvnrepository.com/ 에서 redis 검색 -> Spring Boot Starter Data Redis -> 2.5.3 버전 build.gradle에 추가
 
 
 
